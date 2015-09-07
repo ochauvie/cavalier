@@ -3,4 +3,15 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Nation -->
+    <string name="nation_fr">Français</string>
+    <string name="nation_ru">Russe</string>
+    <string name="nation_us">Americain</string>
+    <string name="nation_en">Anglais</string>
+    <string name="nation_de">1llemand</string>
+    <string name="nation_it">Italien</string>
+    <string name="nation_jp">Japonais</string>
+
+
 </resources>
