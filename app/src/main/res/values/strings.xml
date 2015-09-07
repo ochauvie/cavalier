@@ -13,5 +13,12 @@
     <string name="nation_it">Italien</string>
     <string name="nation_jp">Japonais</string>
 
+    <!-- Genre -->
+    <string name="genre_lourd">Lourd</string>
+    <string name="genre_moyen">Moyen</string>
+    <string name="genre_leger">Léger</string>
+    <string name="genre_anti_char">Anti char</string>
+    <string name="genre_cam">Canon auto moteur</string>
+
 
 </resources>
