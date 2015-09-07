@@ -4,11 +4,11 @@ import com.tankbattle.R;
 
 public enum Genre {
 
-    LOURD(R.string.genre_lourd, R.drawable.genre_lourd_rouge),
-    MOYEN(R.string.genre_moyen, R.drawable.genre_lourd_rouge),
-    LEGER(R.string.genre_leger, R.drawable.genre_lourd_rouge),
-    ANTI_CHAR(R.string.genre_anti_char, R.drawable.genre_lourd_rouge),
-    CAM(R.string.genre_cam, R.drawable.genre_lourd_rouge);
+    HEAVY(R.string.genre_lourd, R.drawable.genre_heavy),
+    MEDIUM(R.string.genre_moyen, R.drawable.genre_medium),
+    LIGHT(R.string.genre_leger, R.drawable.genre_light),
+    DESTROYER(R.string.genre_anti_char, R.drawable.genre_destroyer),
+    ARTILLERY(R.string.genre_cam, R.drawable.genre_artillery);
 
     private final int label;
     private final int flag;

@@ -21,4 +21,25 @@
     <string name="genre_cam">Canon auto moteur</string>
 
 
+    <!-- Fiche Tank -->
+    <string name="nation">Nation</string>
+    <string name="genre">Genre</string>
+    <string name="nom">Nom</string>
+    <string name="pv">Pv</string>
+
+    <!-- Action -->
+    <string name="action_list_tank">List des tanks</string>
+    <string name="action_add_tank">Ajouter un tank</string>
+    <string name="action_close_tank">Annuler</string>
+
+
+    <string name="title_activity_list_tank">Liste des tanks</string>
+    <string name="title_activity_add_tank">Ajouter un tank</string>
+
+    <!-- Mandatory -->
+    <string name="nom_mandatory">Le nom est obligatoire</string>
+
+    <string name="tank_save">Le tank est sauvegardé</string>
+
+
 </resources>

@@ -1,18 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity">
-    <item
-        android:id="@+id/action_show_list_tank"
-        android:title="@string/action_list_tank"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
+    tools:context="com.tankbattle.activity.ListTankActivity">
 
-
-    <item
-        android:id="@+id/action_show_add_tank"
+    <item android:id="@+id/action_create_tank"
         android:title="@string/action_add_tank"
         android:orderInCategory="100"
+        app:icon="@drawable/smalladd"
         app:showAsAction="never" />
+
+
 
 </menu>

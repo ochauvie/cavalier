@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:id="@+id/item_tank">
+
+    <TextView android:text="@string/nation" android:id="@+id/nation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:textSize="20sp"
+        android:layout_marginLeft="5dp">
+    </TextView>
+
+    <TextView android:text="@string/nom" android:id="@+id/nom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:textSize="20sp"
+        android:layout_marginLeft="200dp">
+    </TextView>
+
+    <TextView android:text="@string/genre" android:id="@+id/genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:textSize="20sp"
+        android:layout_marginLeft="300dp">
+    </TextView>
+
+    <TextView android:text="@string/pv" android:id="@+id/pv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:textSize="20sp"
+        android:layout_marginLeft="400dp">
+    </TextView>
+
+
+
+
+</RelativeLayout>
