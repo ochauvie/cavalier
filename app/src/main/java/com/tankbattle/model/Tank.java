@@ -12,10 +12,13 @@ public class Tank extends Model {
 
     @Column(name = "Nom")
     private String nom;
+
     @Column(name = "Pv")
     private int pv;
+
     @Column(name = "Nation")
     private Nation nation;
+
     @Column(name = "Genre")
     private Genre genre;
 

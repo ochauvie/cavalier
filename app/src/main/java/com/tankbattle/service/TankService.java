@@ -1,5 +1,6 @@
 package com.tankbattle.service;
 
+import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 import com.tankbattle.model.Nation;
 import com.tankbattle.model.Tank;
@@ -27,5 +28,9 @@ public class TankService {
     }
 
 
+    public static void deleteAllTanks() {
+        new Delete().from(Tank.class)
+                    .execute();
+    }
 
 }
