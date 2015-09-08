@@ -24,6 +24,7 @@ public class MainActivity extends Activity {
 
         // PHOTO: http://blog.ace-dev.fr/2011/07/14/tutoriel-android-partie-13-lappareil-photo/
         // SCREEN: http://developer.android.com/guide/practices/screens_support.html
+        //          http://developer.android.com/guide/topics/media/camera.html
     }
 
     @Override
