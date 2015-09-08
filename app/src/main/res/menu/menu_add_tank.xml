@@ -3,21 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.tankbattle.activity.AddTankActivity">
 
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
 
     <item android:id="@+id/action_add_tank"
-        android:title="@string/action_add_tank"
+        android:title="@string/action_save"
         android:orderInCategory="100"
         app:icon="@drawable/smalladd"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 
     <item android:id="@+id/action_close_tank"
-        android:title="@string/action_close_tank"
+        android:title="@string/action_close"
         android:orderInCategory="100"
         app:icon="@drawable/smallclose"
-        app:showAsAction="never" />
-
-
+        app:showAsAction="ifRoom" />
 
 </menu>

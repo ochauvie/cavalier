@@ -82,20 +82,20 @@ public class TankListAdapter extends BaseAdapter {
         Tank currentTank = tankList.get(position);
 
         imageNationFlag.setImageDrawable(mContext.getResources().getDrawable(currentTank.getNation().getFlag()));
-        tv_nation.setText(currentTank.getNation().getLabel());
-        imageGenreFlag.setImageDrawable(mContext.getResources().getDrawable(currentTank.getGenre().getFlag() ));
-        tv_genre.setText(currentTank.getGenre().getLabel());
+        //tv_nation.setText(currentTank.getNation().getLabel());
+        imageGenreFlag.setImageDrawable(mContext.getResources().getDrawable(currentTank.getGenre().getFlag()));
+        //tv_genre.setText(currentTank.getGenre().getLabel());
         tv_nom.setText(currentTank.getNom());
         tv_pv.setText(String.valueOf(currentTank.getPv()));
 
         // Image du tank
-        if (currentTank.getImage() != null) {
-            Bitmap bitmap  = BitmapFactory.decodeFile(currentTank.getImage());
-            imageTank.setImageBitmap(bitmap);
-        }
+//        if (currentTank.getImage() != null) {
+//            Bitmap bitmap  = BitmapFactory.decodeFile(currentTank.getImage());
+//            imageTank.setImageBitmap(bitmap);
+//        }
 
         // On memorise la position  dans le composant textview
-        tv_nation.setTag(position);
+        imageNationFlag.setTag(position);
 
         return layoutItem;
     }

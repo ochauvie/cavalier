@@ -52,8 +52,14 @@ public class AddTankActivity extends Activity {
         switch (item.getItemId()) {
             case R.id.action_add_tank:
                 onSave();
+                Intent listTankActivity = new Intent(getApplicationContext(), ListTankActivity.class);
+                startActivity(listTankActivity);
+                finish();
                 return true;
             case R.id.action_close_tank:
+                finish();
+                listTankActivity = new Intent(getApplicationContext(), ListTankActivity.class);
+                startActivity(listTankActivity);
                 finish();
                 return true;
         }
@@ -86,20 +92,14 @@ public class AddTankActivity extends Activity {
         if (edName==null || "".equals(edName.toString())) {
             Toast.makeText(getBaseContext(), getString(R.string.nom_mandatory), Toast.LENGTH_LONG).show();
         } else {
-
             Tank newTank = new Tank();
-            newTank.setNation((Nation)spinnerNation.getSelectedItem());
+            newTank.setNation((Nation) spinnerNation.getSelectedItem());
             newTank.setGenre((Genre) spinnerGenre.getSelectedItem());
             newTank.setNom(edName.toString());
             newTank.setPv(Integer.valueOf(edPv.toString()));
 
             newTank.save();
             Toast.makeText(getBaseContext(), getString(R.string.tank_save), Toast.LENGTH_LONG).show();
-
-            Intent listTankActivity = new Intent(getApplicationContext(), ListTankActivity.class);
-            startActivity(listTankActivity);
-            finish();
-
         }
     }
 

@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
 
         switch (item.getItemId()) {
             case R.id.action_init_data:
-                InitDataBase.initTankList();
+                InitDataBase.initTankList(getApplicationContext());
                 Toast.makeText(getBaseContext(), getString(R.string.db_tank_initialized), Toast.LENGTH_LONG).show();
                 return true;
             case R.id.action_show_list_tank:

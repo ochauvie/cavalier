@@ -9,7 +9,7 @@ public enum Nation {
     DE(R.string.nation_de, R.drawable.de),
     RU(R.string.nation_ru, R.drawable.ru),
     US(R.string.nation_us, R.drawable.us),
-    EN(R.string.nation_en, R.drawable.england),
+    EN(R.string.nation_en, R.drawable.en),
     IT(R.string.nation_it, R.drawable.it),
     JP(R.string.nation_jp, R.drawable.jp);
 

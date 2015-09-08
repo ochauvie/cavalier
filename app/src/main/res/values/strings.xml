@@ -30,11 +30,12 @@
     <!-- Action -->
     <string name="action_list_tank">List des tanks</string>
     <string name="action_add_tank">Ajouter un tank</string>
-    <string name="action_close_tank">Annuler</string>
+    <string name="action_save">Sauvegarder</string>
+    <string name="action_close">Annuler</string>
     <string name="action_init_data">Initialiser les données</string>
 
 
-    <string name="title_activity_list_tank">Liste des tanks</string>
+    <string name="title_activity_list_tank">Hangar</string>
     <string name="title_activity_add_tank">Ajouter un tank</string>
 
 

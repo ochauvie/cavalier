@@ -15,7 +15,7 @@ public class TankService {
     public static List<Tank> getAllTanks() {
         return new Select()
                 .from(Tank.class)
-                .orderBy("Nom ASC")
+                .orderBy("Nation, Genre, Nom ASC")
                 .execute();
     }
 
@@ -23,7 +23,7 @@ public class TankService {
         return new Select()
                 .from(Tank.class)
                 .where("Nation = ?", nation.name())
-                .orderBy("Nom ASC")
+                .orderBy("Nation, Genre, Nom ASC")
                 .execute();
     }
 

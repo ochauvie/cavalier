@@ -7,7 +7,7 @@
         android:title="@string/action_add_tank"
         android:orderInCategory="100"
         app:icon="@drawable/smalladd"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 
 
 
