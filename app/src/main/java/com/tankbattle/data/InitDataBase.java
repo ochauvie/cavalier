@@ -30,7 +30,7 @@ public class InitDataBase {
         tank = new Tank("Jagdtiger (Henschel)", 10, Nation.DE, Genre.DESTROYER); tank.save();
         tank = new Tank("Sturmgeschutz III Ausf.E Sturmgeschu", 10, Nation.DE, Genre.DESTROYER); tank.save();
         tank = new Tank("Sdkfz 138 Marder III Ausf M", 10, Nation.DE, Genre.DESTROYER); tank.save();
-        tank = new Tank("10.5cm LE FH18 Auf39-H", 10, Nation.DE, Genre.ARTILLERY); tank.save();
+        tank = new Tank("LE FH18 Auf39-H 10.5cm", 10, Nation.DE, Genre.ARTILLERY); tank.save();
 
         // Anglais
         tank = new Tank("Churchill MK.III", 10, Nation.EN, Genre.HEAVY); tank.save();
