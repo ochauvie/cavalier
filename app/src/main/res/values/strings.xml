@@ -9,7 +9,7 @@
     <string name="nation_ru">Russe</string>
     <string name="nation_us">Americain</string>
     <string name="nation_en">Anglais</string>
-    <string name="nation_de">1llemand</string>
+    <string name="nation_de">Allemand</string>
     <string name="nation_it">Italien</string>
     <string name="nation_jp">Japonais</string>
 
@@ -18,7 +18,7 @@
     <string name="genre_moyen">Moyen</string>
     <string name="genre_leger">Léger</string>
     <string name="genre_anti_char">Anti char</string>
-    <string name="genre_cam">Canon auto moteur</string>
+    <string name="genre_cam">Artillerie</string>
 
 
     <!-- Fiche Tank -->

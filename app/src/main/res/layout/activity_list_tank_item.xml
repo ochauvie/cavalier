@@ -3,15 +3,29 @@
     android:layout_width="wrap_content" android:layout_height="wrap_content"
     android:id="@+id/item_tank">
 
+    <ImageView
+        android:id="@+id/imageNationFlag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/fr"
+        android:layout_marginLeft="5dp"/>
+
     <TextView android:text="@string/nation" android:id="@+id/nation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textSize="20sp"
-        android:layout_marginLeft="5dp">
+        android:layout_marginLeft="50dp">
     </TextView>
 
-    <TextView android:text="@string/nom" android:id="@+id/nom"
+    <ImageView
+        android:id="@+id/imageGenreFlag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/genre_heavy"
+        android:layout_marginLeft="100dp"/>
+
+    <TextView android:text="@string/genre" android:id="@+id/genre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -19,13 +33,14 @@
         android:layout_marginLeft="200dp">
     </TextView>
 
-    <TextView android:text="@string/genre" android:id="@+id/genre"
+    <TextView android:text="@string/nom" android:id="@+id/nom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textSize="20sp"
         android:layout_marginLeft="300dp">
     </TextView>
+
 
     <TextView android:text="@string/pv" android:id="@+id/pv"
         android:layout_width="wrap_content"

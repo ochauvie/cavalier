@@ -1,7 +1,7 @@
 package com.tankbattle.activity;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.Menu;
@@ -19,7 +19,7 @@ import com.tankbattle.service.TankService;
 
 import java.util.ArrayList;
 
-public class AddTankActivity extends AppCompatActivity {
+public class AddTankActivity extends Activity {
 
     private Spinner spinnerNation, spinnerGenre;
     private EditText editTextNom, editTextPv;
