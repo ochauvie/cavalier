@@ -22,14 +22,18 @@ public class Tank extends Model {
     @Column(name = "Genre")
     private Genre genre;
 
+    @Column(name = "Image")
+    private String image;
+
     public Tank() {
     }
 
-    public Tank(String nom, int pv, Nation nation, Genre genre) {
+    public Tank(String nom, int pv, Nation nation, Genre genre, String image) {
         this.nom = nom;
         this.pv = pv;
         this.nation = nation;
         this.genre = genre;
+        this.image = image;
     }
 
     public String getNom() {
@@ -66,6 +70,14 @@ public class Tank extends Model {
 
     public void setGenre(Genre genre) {
         this.genre = genre;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public boolean isDestroyed() {

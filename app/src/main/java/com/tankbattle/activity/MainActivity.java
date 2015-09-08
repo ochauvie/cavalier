@@ -16,8 +16,14 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         ActiveAndroid.initialize(this);
+
         setContentView(R.layout.activity_main);
+
+
+        // PHOTO: http://blog.ace-dev.fr/2011/07/14/tutoriel-android-partie-13-lappareil-photo/
+        // SCREEN: http://developer.android.com/guide/practices/screens_support.html
     }
 
     @Override

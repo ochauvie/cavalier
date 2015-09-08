@@ -1,6 +1,8 @@
 package com.tankbattle.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,22 +69,30 @@ public class TankListAdapter extends BaseAdapter {
         }
 
         // Recuperation des TextView de notre layout
-        TextView tv_nation = (TextView)layoutItem.findViewById(R.id.nation);
-        TextView tv_nom = (TextView)layoutItem.findViewById(R.id.nom);
-        TextView tv_genre = (TextView)layoutItem.findViewById(R.id.genre);
-        TextView tv_pv = (TextView)layoutItem.findViewById(R.id.pv);
-
         ImageView imageNationFlag = (ImageView)layoutItem.findViewById(R.id.imageNationFlag);
+        TextView tv_nation = (TextView)layoutItem.findViewById(R.id.nation);
         ImageView imageGenreFlag = (ImageView)layoutItem.findViewById(R.id.imageGenreFlag);
+        TextView tv_genre = (TextView)layoutItem.findViewById(R.id.genre);
+        TextView tv_nom = (TextView)layoutItem.findViewById(R.id.nom);
+        TextView tv_pv = (TextView)layoutItem.findViewById(R.id.pv);
+        ImageView imageTank = (ImageView)layoutItem.findViewById(R.id.imageTank);
+
 
         //(3) : Renseignement des valeurs
-        tv_nation.setText(tankList.get(position).getNation().getLabel());
-        tv_nom.setText(tankList.get(position).getNom());
-        tv_genre.setText(tankList.get(position).getGenre().getLabel());
-        tv_pv.setText(String.valueOf(tankList.get(position).getPv()));
+        Tank currentTank = tankList.get(position);
 
-        imageNationFlag.setImageDrawable(mContext.getResources().getDrawable(tankList.get(position).getNation().getFlag()));
-        imageGenreFlag.setImageDrawable(mContext.getResources().getDrawable( tankList.get(position).getGenre().getFlag() ));
+        imageNationFlag.setImageDrawable(mContext.getResources().getDrawable(currentTank.getNation().getFlag()));
+        tv_nation.setText(currentTank.getNation().getLabel());
+        imageGenreFlag.setImageDrawable(mContext.getResources().getDrawable(currentTank.getGenre().getFlag() ));
+        tv_genre.setText(currentTank.getGenre().getLabel());
+        tv_nom.setText(currentTank.getNom());
+        tv_pv.setText(String.valueOf(currentTank.getPv()));
+
+        // Image du tank
+        if (currentTank.getImage() != null) {
+            Bitmap bitmap  = BitmapFactory.decodeFile(currentTank.getImage());
+            imageTank.setImageBitmap(bitmap);
+        }
 
         // On memorise la position  dans le composant textview
         tv_nation.setTag(position);
