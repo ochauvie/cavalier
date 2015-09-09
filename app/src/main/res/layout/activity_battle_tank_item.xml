@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:id="@+id/item_tank"
+    android:padding="6dip">
+
+    <ImageView
+        android:id="@+id/imageNationFlag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/fr"
+        android:layout_marginLeft="5dp"/>
+
+
+
+    <ImageView
+        android:id="@+id/imageGenreFlag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/smallsave"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="90dp"/>
+
+
+
+    <TextView android:text="@string/nom" android:id="@+id/nom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginLeft="21dp"
+        android:layout_alignBottom="@+id/imageGenreFlag"
+        android:layout_toRightOf="@+id/imageGenreFlag">
+    </TextView>
+
+
+    <TextView android:text="@string/pv" android:id="@+id/pv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_alignBottom="@+id/imageNationFlag"
+        android:layout_alignLeft="@+id/nom">
+    </TextView>
+
+
+    <ImageButton
+        android:id="@+id/pvIncrease"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="#00000000"
+        android:contentDescription="+"
+        android:src="@drawable/smalladd"
+        android:layout_alignTop="@+id/pv"
+        android:layout_toLeftOf="@+id/nom" />
+
+    <ImageButton
+        android:id="@+id/pvDecrease"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="#00000000"
+        android:contentDescription="-"
+        android:src="@drawable/smallreset"
+        android:layout_alignTop="@+id/pv"
+        android:layout_toRightOf="@+id/nom" />
+
+</RelativeLayout>
