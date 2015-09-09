@@ -9,13 +9,14 @@ import android.widget.ListView;
 
 import com.tankbattle.R;
 import com.tankbattle.adapter.TankListAdapter;
+import com.tankbattle.listner.TankListener;
 import com.tankbattle.model.Tank;
 import com.tankbattle.service.TankService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListTankActivity extends ListActivity {
+public class ListTankActivity extends ListActivity implements TankListener{
 
     private ListView listView;
     private TankListAdapter tankListAdapter;
@@ -31,9 +32,12 @@ public class ListTankActivity extends ListActivity {
 
         // Creation et initialisation de l'Adapter
         tankListAdapter = new TankListAdapter(this, tankList);
+        tankListAdapter.addListener(this);
 
         //Initialisation de la liste avec les donnees
         setListAdapter(tankListAdapter);
+
+
 
     }
 
@@ -52,8 +56,20 @@ public class ListTankActivity extends ListActivity {
                 startActivityForResult(myIntent, 0);
                 finish();
                 return true;
+            case R.id.action_close_list:
+                finish();
+                return true;
         }
 
         return false;
+    }
+
+    @Override
+    public void onClickTank(Tank tank, int position) {
+        Intent myIntent = new Intent(getApplicationContext(), AddTankActivity.class);
+        myIntent.putExtra(Tank.TANK_ID, tank.getId());
+        startActivityForResult(myIntent, 0);
+        finish();
+
     }
 }

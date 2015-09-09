@@ -4,13 +4,16 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Definition d'un tank
  */
 @Table(name = "Tank")
-public class Tank extends Model {
+public class Tank extends Model implements Serializable {
+
+    public static final String TANK_ID = "TANK_ID";
 
     @Column(name = "Nom")
     private String nom;
@@ -83,5 +86,10 @@ public class Tank extends Model {
     // Liste des équipes dont le tank appartient
     public List<Equipe> equipes() {
         return getMany(Equipe.class, "EquipeTank");
+    }
+
+    @Override
+    public String toString() {
+        return this.nom;
     }
 }

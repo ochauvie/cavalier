@@ -16,6 +16,7 @@ import com.tankbattle.model.Genre;
 import com.tankbattle.model.Nation;
 import com.tankbattle.model.Tank;
 import com.tankbattle.service.TankService;
+import com.tankbattle.tools.SpinnerTool;
 
 import java.util.ArrayList;
 
@@ -23,6 +24,7 @@ public class AddTankActivity extends Activity {
 
     private Spinner spinnerNation, spinnerGenre;
     private EditText editTextNom, editTextPv;
+    private Tank tank = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,8 @@ public class AddTankActivity extends Activity {
 
         editTextNom = (EditText)  findViewById(R.id.editTextNom);
         editTextPv = (EditText)  findViewById(R.id.editTextPv);
+
+        initView();
 
     }
 
@@ -86,19 +90,36 @@ public class AddTankActivity extends Activity {
         spinnerGenre.setAdapter(dataAdapter);
     }
 
+    private void initView() {
+        Bundle bundle = getIntent().getExtras();
+        if (bundle!=null) {
+            //tank = (Tank)bundle.getSerializable(Tank.class.getName());
+            long tankId = bundle.getLong(Tank.TANK_ID);
+            tank = Tank.load(Tank.class, tankId);
+            if (tank!=null) {
+                editTextNom.setText(tank.getNom());
+                editTextPv.setText(String.valueOf(tank.getPv()));
+                SpinnerTool.SelectSpinnerItemByValue(spinnerNation, tank.getNation().name());
+                SpinnerTool.SelectSpinnerItemByValue(spinnerGenre, tank.getGenre().name());
+            }
+        }
+    }
+
     private void onSave() {
         Editable edName = editTextNom.getText();
         Editable edPv = editTextPv.getText();
         if (edName==null || "".equals(edName.toString())) {
             Toast.makeText(getBaseContext(), getString(R.string.nom_mandatory), Toast.LENGTH_LONG).show();
         } else {
-            Tank newTank = new Tank();
-            newTank.setNation((Nation) spinnerNation.getSelectedItem());
-            newTank.setGenre((Genre) spinnerGenre.getSelectedItem());
-            newTank.setNom(edName.toString());
-            newTank.setPv(Integer.valueOf(edPv.toString()));
+            if (tank == null) {
+                tank = new Tank();
+            }
+            tank.setNation((Nation) spinnerNation.getSelectedItem());
+            tank.setGenre((Genre) spinnerGenre.getSelectedItem());
+            tank.setNom(edName.toString());
+            tank.setPv(Integer.valueOf(edPv.toString()));
 
-            newTank.save();
+            tank.save();
             Toast.makeText(getBaseContext(), getString(R.string.tank_save), Toast.LENGTH_LONG).show();
         }
     }

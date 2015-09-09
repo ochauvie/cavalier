@@ -19,7 +19,7 @@ public class InitDataBase {
         TankService.deleteAllTanks();
 
         ContextWrapper cw = new ContextWrapper(context);
-        String DEFAULT_IMAGE = cw.getFilesDir() + "/default_tank.png";
+        String DEFAULT_IMAGE = "default_tank.png";
 
         // Russe
         Tank tank = new Tank("KV-1", 10, Nation.RU, Genre.HEAVY, DEFAULT_IMAGE); tank.save();
