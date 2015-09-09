@@ -1,0 +1,34 @@
+package com.tankbattle.model;
+
+import com.activeandroid.Model;
+import com.activeandroid.annotation.Column;
+import com.activeandroid.annotation.Table;
+
+/**
+ * Created by olivier on 09/09/15.
+ */
+
+@Table(name = "BatailleTank")
+public class BatailleTank extends Model{
+
+    @Column(name = "Bataille", onDelete= Column.ForeignKeyAction.CASCADE)
+    public Bataille bataille;
+
+    @Column(name = "Tank", onDelete=Column.ForeignKeyAction.CASCADE)
+    public Tank tank;
+
+    @Column(name = "PvRestant")
+    private int pvRestant;
+
+    public void addPv(int pvToAdd) {
+        this.pvRestant = this.pvRestant + pvToAdd;
+    }
+
+    public boolean isDestroyed() {
+        if (this.pvRestant<=0) {
+            return true;
+        }
+        return false;
+    }
+
+}

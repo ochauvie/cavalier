@@ -8,10 +8,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Olivier on 05/09/15.
+ * Created by olivier on 09/09/15.
  */
-@Table(name = "Equipe")
-public class Equipe extends Model {
+@Table(name = "Bataille")
+public class Bataille extends Model {
 
     @Column(name = "Nom")
     private String nom;
@@ -19,9 +19,17 @@ public class Equipe extends Model {
     @Column(name = "DateCreation")
     private Date dateCreation;
 
-    // Liste des tanks de l'équipe
+    @Column(name = "DateFin")
+    private Date dateFin;
+
+    private Equipe equipeVert;
+
+    private Equipe equipeRouge;
+
+
+    // Liste des tanks de la bataille
     public List<Tank> tanks() {
-        return getMany(Tank.class, "EquipeTank");
+        return getMany(Tank.class, "BatailleTank");
     }
 
 
@@ -40,4 +48,20 @@ public class Equipe extends Model {
     public void setDateCreation(Date dateCreation) {
         this.dateCreation = dateCreation;
     }
+
+    public Date getDateFin() {
+        return dateFin;
+    }
+
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
+    }
+
+    public boolean isTerminate() {
+        if (dateFin != null) {
+            return true;
+        }
+        return false;
+    }
+
 }

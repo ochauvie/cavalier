@@ -4,6 +4,8 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
+import java.util.List;
+
 /**
  * Definition d'un tank
  */
@@ -52,10 +54,6 @@ public class Tank extends Model {
         this.pv = pv;
     }
 
-    public void addPv(int pvToAdd) {
-        this.pv = this.pv + pvToAdd;
-    }
-
     public Nation getNation() {
         return nation;
     }
@@ -80,10 +78,10 @@ public class Tank extends Model {
         this.image = image;
     }
 
-    public boolean isDestroyed() {
-        if (this.pv<=0) {
-            return true;
-        }
-        return false;
+
+
+    // Liste des équipes dont le tank appartient
+    public List<Equipe> equipes() {
+        return getMany(Equipe.class, "EquipeTank");
     }
 }
