@@ -16,23 +16,22 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:layout_marginTop="50px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/nation"
-                android:textSize="30px"
+                android:textSize="30sp"
                 android:id="@+id/textView"
-                android:layout_column="0" />
+                android:layout_column="0"
+                android:layout_marginTop="10dp" />
 
             <Spinner
-                android:layout_marginTop="50px"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/spNation"
                 android:spinnerMode="dialog"
-                android:textSize="30px"
+                android:textSize="30sp"
                 android:layout_column="1"
-                android:layout_centerVertical="true"/>
+                />
         </TableRow>
 
         <TableRow
@@ -40,23 +39,23 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:layout_marginTop="50px"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/nom"
-                android:textSize="30px"
+                android:textSize="30sp"
                 android:id="@+id/textView2"
                 android:layout_column="0" />
 
             <EditText
-                android:layout_marginTop="50px"
+                android:layout_marginTop="10dp"
                 android:id="@+id/editTextNom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/textView2"
                 android:layout_toRightOf="@+id/textView2"
                 android:ems="30"
-                android:textSize="30px"
+                android:textSize="30sp"
                 android:inputType="textCapWords" />
 
         </TableRow>
@@ -66,23 +65,23 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:layout_marginTop="50px"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/genre"
-                android:textSize="30px"
+                android:textSize="30sp"
                 android:id="@+id/textView3"
-                android:layout_column="0" />
+                android:layout_column="0"
+                />
 
             <Spinner
-                android:layout_marginTop="50px"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/spGenre"
                 android:spinnerMode="dialog"
-                android:textSize="20px"
+                android:textSize="20sp"
                 android:layout_column="1"
-                android:layout_centerVertical="true"/>
+                />
         </TableRow>
 
         <TableRow
@@ -90,23 +89,23 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:layout_marginTop="50px"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/pv"
-                android:textSize="30px"
+                android:textSize="30sp"
                 android:id="@+id/textView4"
                 android:layout_column="0" />
 
             <EditText
-                android:layout_marginTop="50px"
+                android:layout_marginTop="10dp"
                 android:id="@+id/editTextPv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/textView4"
                 android:layout_toRightOf="@+id/textView4"
                 android:ems="30"
-                android:textSize="30px"
+                android:textSize="30sp"
                 android:inputType="number" />
         </TableRow>
 
