@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/textView2"
                 android:layout_toRightOf="@+id/textView2"
-                android:ems="10"
+                android:ems="30"
                 android:textSize="30px"
                 android:inputType="textCapWords" />
 
@@ -103,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/textView4"
                 android:layout_toRightOf="@+id/textView4"
-                android:ems="10"
+                android:ems="30"
                 android:textSize="30px"
                 android:inputType="number" />
         </TableRow>

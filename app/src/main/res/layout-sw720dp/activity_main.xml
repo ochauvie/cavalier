@@ -21,7 +21,7 @@
             android:layout_height="80px"
             android:text="Initialiser le hangar"
             android:id="@+id/button1"
-            android:textSize="20sp"
+            android:textSize="40sp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal" />
 
@@ -31,7 +31,7 @@
             android:layout_height="80px"
             android:text="Allez au hangar"
             android:id="@+id/button2"
-            android:textSize="20sp"
+            android:textSize="40sp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal" />
 
@@ -41,7 +41,7 @@
             android:layout_height="80px"
             android:text="Liste des équipes"
             android:id="@+id/button3"
-            android:textSize="20sp"
+            android:textSize="40sp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal" />
 
@@ -51,7 +51,7 @@
             android:layout_height="80px"
             android:text="Nouvelle partie"
             android:id="@+id/button4"
-            android:textSize="20sp"
+            android:textSize="40sp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal" />
 

@@ -110,6 +110,8 @@ public class AddTankActivity extends Activity {
         Editable edPv = editTextPv.getText();
         if (edName==null || "".equals(edName.toString())) {
             Toast.makeText(getBaseContext(), getString(R.string.nom_mandatory), Toast.LENGTH_LONG).show();
+        } else if (edPv==null || "".equals(edPv.toString())) {
+            Toast.makeText(getBaseContext(), getString(R.string.pv_mandatory), Toast.LENGTH_LONG).show();
         } else {
             if (tank == null) {
                 tank = new Tank();
