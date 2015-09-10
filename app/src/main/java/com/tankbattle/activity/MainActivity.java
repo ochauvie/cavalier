@@ -50,7 +50,7 @@ public class MainActivity extends Activity {
         but3 = (Button) findViewById(R.id.button3);
         but3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getBaseContext(), "En travaux", Toast.LENGTH_LONG).show();
+                startActivityForResult(new Intent(getApplicationContext(), ListEquipeActivity.class), 0);
             }
         });
 

@@ -36,6 +36,14 @@
             android:icon="@drawable/tank"
             android:label="@string/title_activity_add_tank" >
         </activity>
+        <activity
+            android:name=".activity.ListEquipeActivity"
+            android:label="@string/title_activity_list_equipe" >
+        </activity>
+        <activity
+            android:name=".activity.AddEquipeActivity"
+            android:label="@string/title_activity_add_equipe" >
+        </activity>
     </application>
 
 </manifest>

@@ -4,6 +4,7 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,9 @@ import java.util.List;
  * Created by Olivier on 05/09/15.
  */
 @Table(name = "Equipe")
-public class Equipe extends Model {
+public class Equipe extends Model implements Serializable{
+
+    public static final String EQUIPE_ID = "EQUIPE_ID";
 
     @Column(name = "Nom")
     private String nom;
@@ -20,8 +23,8 @@ public class Equipe extends Model {
     private Date dateCreation;
 
     // Liste des tanks de l'équipe
-    public List<Tank> tanks() {
-        return getMany(Tank.class, "EquipeTank");
+    public List<EquipeTank> tanks() {
+        return getMany(EquipeTank.class, "Equipe");
     }
 
 
@@ -39,5 +42,10 @@ public class Equipe extends Model {
 
     public void setDateCreation(Date dateCreation) {
         this.dateCreation = dateCreation;
+    }
+
+    @Override
+    public String toString() {
+        return this.nom;
     }
 }

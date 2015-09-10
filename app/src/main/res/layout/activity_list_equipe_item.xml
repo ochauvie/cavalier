@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:id="@+id/item_equipe">
+
+
+    <TextView android:text="@string/nom" android:id="@+id/nomEquipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:textSize="20sp"
+        android:layout_marginLeft="5dp">
+    </TextView>
+
+
+    <TextView android:text="@string/nb_tank" android:id="@+id/nbTank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:textSize="20sp"
+        android:layout_marginLeft="250dp">
+    </TextView>
+
+
+</RelativeLayout>
