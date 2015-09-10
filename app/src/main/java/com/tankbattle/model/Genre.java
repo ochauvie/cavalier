@@ -2,7 +2,7 @@ package com.tankbattle.model;
 
 import com.tankbattle.R;
 
-public enum Genre {
+public enum Genre implements IRefData {
 
     HEAVY(R.string.genre_lourd, R.drawable.genre_heavy),
     MEDIUM(R.string.genre_moyen, R.drawable.genre_medium),

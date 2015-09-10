@@ -3,7 +3,7 @@ package com.tankbattle.model;
 
 import com.tankbattle.R;
 
-public enum Nation {
+public enum Nation implements IRefData {
 
     FR(R.string.nation_fr, R.drawable.fr),
     DE(R.string.nation_de, R.drawable.de),

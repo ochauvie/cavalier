@@ -31,7 +31,9 @@
                 android:id="@+id/spNation"
                 android:spinnerMode="dialog"
                 android:textSize="30px"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_centerVertical="true"
+                />
         </TableRow>
 
         <TableRow
@@ -80,7 +82,8 @@
                 android:id="@+id/spGenre"
                 android:spinnerMode="dialog"
                 android:textSize="20px"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_centerVertical="true"/>
         </TableRow>
 
         <TableRow

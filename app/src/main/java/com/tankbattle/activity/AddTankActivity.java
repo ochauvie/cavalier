@@ -12,7 +12,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.tankbattle.R;
+import com.tankbattle.adapter.IDataSpinnerAdapter;
 import com.tankbattle.model.Genre;
+import com.tankbattle.model.IRefData;
 import com.tankbattle.model.Nation;
 import com.tankbattle.model.Tank;
 import com.tankbattle.service.TankService;
@@ -71,23 +73,25 @@ public class AddTankActivity extends Activity {
     }
 
     private void loadSpinnerNation() {
-        ArrayList<Nation> list = new ArrayList<Nation>();
+        ArrayList<IRefData> list = new ArrayList<IRefData>();
         for (Nation nation:Nation.values()) {
             list.add(nation);
         }
-        ArrayAdapter<Nation> dataAdapter = new ArrayAdapter<Nation>(this, android.R.layout.simple_spinner_item, list);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerNation.setAdapter(dataAdapter);
+//        ArrayAdapter<Nation> dataAdapter = new ArrayAdapter<Nation>(this, android.R.layout.simple_spinner_item, list);
+//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinnerNation.setAdapter(dataAdapter);
+        spinnerNation.setAdapter(new IDataSpinnerAdapter(this, list));
     }
 
     private void loadSpinnerGenre() {
-        ArrayList<Genre> list = new ArrayList<Genre>();
+        ArrayList<IRefData> list = new ArrayList<IRefData>();
         for (Genre genre:Genre.values()) {
             list.add(genre);
         }
-        ArrayAdapter<Genre> dataAdapter = new ArrayAdapter<Genre>(this, android.R.layout.simple_spinner_item, list);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerGenre.setAdapter(dataAdapter);
+//        ArrayAdapter<Genre> dataAdapter = new ArrayAdapter<Genre>(this, android.R.layout.simple_spinner_item, list);
+//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinnerGenre.setAdapter(dataAdapter);
+        spinnerGenre.setAdapter(new IDataSpinnerAdapter(this, list));
     }
 
     private void initView() {
