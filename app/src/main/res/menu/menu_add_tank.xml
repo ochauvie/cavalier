@@ -16,4 +16,10 @@
         app:icon="@drawable/smallclose"
         app:showAsAction="ifRoom" />
 
+    <item android:id="@+id/action_delete_tank"
+        android:title="@string/action_delete"
+        android:orderInCategory="100"
+        app:icon="@drawable/delete"
+        app:showAsAction="ifRoom" />
+
 </menu>

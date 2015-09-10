@@ -32,6 +32,7 @@
     <string name="action_add_tank">Ajouter un tank</string>
     <string name="action_save">Sauvegarder</string>
     <string name="action_close">Annuler</string>
+    <string name="action_delete">Supprimer</string>
     <string name="action_init_data">Initialiser les données</string>
 
 
@@ -44,6 +45,7 @@
     <string name="pv_mandatory">Le nombre de point de vie est obligatoire</string>
 
     <string name="tank_save">Le tank est sauvegardé</string>
+    <string name="tank_delete">Le tank est supprimé</string>
     <string name="db_tank_initialized">La base de données des tanks a été initialisée.</string>
 
 

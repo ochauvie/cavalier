@@ -57,17 +57,25 @@ public class AddTankActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add_tank:
-                onSave();
+                if (onSave()) {
+                    Intent listTankActivity = new Intent(getApplicationContext(), ListTankActivity.class);
+                    startActivity(listTankActivity);
+                    finish();
+                    return true;
+                }
+            case R.id.action_close_tank:
+                finish();
                 Intent listTankActivity = new Intent(getApplicationContext(), ListTankActivity.class);
                 startActivity(listTankActivity);
                 finish();
                 return true;
-            case R.id.action_close_tank:
-                finish();
-                listTankActivity = new Intent(getApplicationContext(), ListTankActivity.class);
-                startActivity(listTankActivity);
-                finish();
-                return true;
+            case R.id.action_delete_tank:
+                if (onDelete()) {
+                    listTankActivity = new Intent(getApplicationContext(), ListTankActivity.class);
+                    startActivity(listTankActivity);
+                    finish();
+                    return true;
+                }
         }
         return false;
     }
@@ -109,13 +117,15 @@ public class AddTankActivity extends Activity {
         }
     }
 
-    private void onSave() {
+    private boolean onSave() {
         Editable edName = editTextNom.getText();
         Editable edPv = editTextPv.getText();
         if (edName==null || "".equals(edName.toString())) {
             Toast.makeText(getBaseContext(), getString(R.string.nom_mandatory), Toast.LENGTH_LONG).show();
+            return false;
         } else if (edPv==null || "".equals(edPv.toString())) {
             Toast.makeText(getBaseContext(), getString(R.string.pv_mandatory), Toast.LENGTH_LONG).show();
+            return false;
         } else {
             if (tank == null) {
                 tank = new Tank();
@@ -128,6 +138,16 @@ public class AddTankActivity extends Activity {
             tank.save();
             Toast.makeText(getBaseContext(), getString(R.string.tank_save), Toast.LENGTH_LONG).show();
         }
+        return true;
+    }
+
+    private boolean onDelete() {
+        // TODO Popup e confirmation
+        if (tank != null) {
+            tank.delete();
+            Toast.makeText(getBaseContext(), getString(R.string.tank_delete), Toast.LENGTH_LONG).show();
+        }
+        return true;
     }
 
 }
