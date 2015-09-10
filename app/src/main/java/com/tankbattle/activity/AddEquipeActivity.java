@@ -46,7 +46,6 @@ public class AddEquipeActivity extends Activity {
                     return true;
                 }
             case R.id.action_close_equipe:
-                finish();
                 Intent listActivity = new Intent(getApplicationContext(), ListEquipeActivity.class);
                 startActivity(listActivity);
                 finish();
@@ -58,8 +57,10 @@ public class AddEquipeActivity extends Activity {
                     finish();
                     return true;
                 }
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return false;
+
     }
 
 

@@ -64,7 +64,6 @@ public class AddTankActivity extends Activity {
                     return true;
                 }
             case R.id.action_close_tank:
-                finish();
                 Intent listTankActivity = new Intent(getApplicationContext(), ListTankActivity.class);
                 startActivity(listTankActivity);
                 finish();

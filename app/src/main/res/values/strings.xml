@@ -40,8 +40,8 @@
 
     <string name="title_activity_list_tank">Hangar</string>
     <string name="title_activity_add_tank">Ajouter un tank</string>
-    <string name="title_activity_list_equipe">Equipe</string>
-    <string name="title_activity_add_equipe">Ajouter une équipe</string>
+    <string name="title_activity_list_equipe">Equipes</string>
+    <string name="title_activity_add_equipe">Equipe</string>
 
 
     <!-- Mandatory -->

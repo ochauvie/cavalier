@@ -5,13 +5,11 @@
 
     <item android:id="@+id/action_create_tank"
         android:title="@string/action_add_tank"
-        android:orderInCategory="100"
         app:icon="@drawable/smalladd"
         app:showAsAction="ifRoom" />
 
     <item android:id="@+id/action_close_list"
         android:title="@string/action_close"
-        android:orderInCategory="100"
         app:icon="@drawable/smallclose"
         app:showAsAction="ifRoom" />
 

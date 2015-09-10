@@ -57,7 +57,6 @@ public class ListEquipeActivity extends ListActivity implements EquipeListener {
                 finish();
                 return true;
         }
-
         return false;
     }
 

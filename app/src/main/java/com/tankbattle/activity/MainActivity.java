@@ -73,8 +73,6 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-
         switch (item.getItemId()) {
             case R.id.action_init_data:
                 InitDataBase.initTankList(getApplicationContext());
@@ -88,7 +86,6 @@ public class MainActivity extends Activity {
                 startActivityForResult(new Intent(getApplicationContext(), AddTankActivity.class), 0);
                 return true;
         }
-
-        return true;
+        return false;
     }
 }
