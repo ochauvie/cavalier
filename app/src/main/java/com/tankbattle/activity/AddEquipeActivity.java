@@ -45,6 +45,7 @@ public class AddEquipeActivity extends Activity {
                     finish();
                     return true;
                 }
+                return false;
             case R.id.action_close_equipe:
                 Intent listActivity = new Intent(getApplicationContext(), ListEquipeActivity.class);
                 startActivity(listActivity);
@@ -57,6 +58,7 @@ public class AddEquipeActivity extends Activity {
                     finish();
                     return true;
                 }
+                return false;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -93,7 +95,7 @@ public class AddEquipeActivity extends Activity {
     }
 
     private boolean onDelete() {
-        // TODO Popup e confirmation
+        // TODO Popup de confirmation
         if (equipe != null) {
             equipe.delete();
             Toast.makeText(getBaseContext(), getString(R.string.equipe_delete), Toast.LENGTH_LONG).show();

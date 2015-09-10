@@ -28,8 +28,8 @@ public class Bataille extends Model {
 
 
     // Liste des tanks de la bataille
-    public List<Tank> tanks() {
-        return getMany(Tank.class, "BatailleTank");
+    public List<BatailleTank> tanks() {
+        return getMany(BatailleTank.class, "Bataille");
     }
 
 

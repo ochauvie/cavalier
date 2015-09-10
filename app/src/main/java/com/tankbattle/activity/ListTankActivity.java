@@ -13,7 +13,6 @@ import com.tankbattle.listner.TankListener;
 import com.tankbattle.model.Tank;
 import com.tankbattle.service.TankService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListTankActivity extends ListActivity implements TankListener{

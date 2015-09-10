@@ -1,10 +1,7 @@
 package com.tankbattle.service;
 
-import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 import com.tankbattle.model.Equipe;
-import com.tankbattle.model.Nation;
-import com.tankbattle.model.Tank;
 
 import java.util.List;
 

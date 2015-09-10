@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -17,7 +16,6 @@ import com.tankbattle.model.Genre;
 import com.tankbattle.model.IRefData;
 import com.tankbattle.model.Nation;
 import com.tankbattle.model.Tank;
-import com.tankbattle.service.TankService;
 import com.tankbattle.tools.SpinnerTool;
 
 import java.util.ArrayList;
@@ -63,6 +61,7 @@ public class AddTankActivity extends Activity {
                     finish();
                     return true;
                 }
+                return false;
             case R.id.action_close_tank:
                 Intent listTankActivity = new Intent(getApplicationContext(), ListTankActivity.class);
                 startActivity(listTankActivity);
@@ -75,6 +74,7 @@ public class AddTankActivity extends Activity {
                     finish();
                     return true;
                 }
+                return false;
         }
         return false;
     }
@@ -84,9 +84,6 @@ public class AddTankActivity extends Activity {
         for (Nation nation:Nation.values()) {
             list.add(nation);
         }
-//        ArrayAdapter<Nation> dataAdapter = new ArrayAdapter<Nation>(this, android.R.layout.simple_spinner_item, list);
-//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinnerNation.setAdapter(dataAdapter);
         spinnerNation.setAdapter(new IDataSpinnerAdapter(this, list));
     }
 
@@ -95,9 +92,6 @@ public class AddTankActivity extends Activity {
         for (Genre genre:Genre.values()) {
             list.add(genre);
         }
-//        ArrayAdapter<Genre> dataAdapter = new ArrayAdapter<Genre>(this, android.R.layout.simple_spinner_item, list);
-//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinnerGenre.setAdapter(dataAdapter);
         spinnerGenre.setAdapter(new IDataSpinnerAdapter(this, list));
     }
 
@@ -141,7 +135,7 @@ public class AddTankActivity extends Activity {
     }
 
     private boolean onDelete() {
-        // TODO Popup e confirmation
+        // TODO Popup de confirmation
         if (tank != null) {
             tank.delete();
             Toast.makeText(getBaseContext(), getString(R.string.tank_delete), Toast.LENGTH_LONG).show();

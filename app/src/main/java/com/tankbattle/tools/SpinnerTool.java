@@ -1,6 +1,5 @@
 package com.tankbattle.tools;
 
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Spinner;
 
