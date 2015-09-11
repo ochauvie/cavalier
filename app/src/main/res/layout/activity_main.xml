@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:background="@drawable/battle_of_kursk">
 
         <Button
             android:layout_marginTop="50px"
@@ -22,6 +23,7 @@
             android:text="Initialiser le hangar"
             android:id="@+id/button1"
             android:textSize="20sp"
+            android:textColor="@android:color/black"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal" />
 
@@ -31,6 +33,7 @@
             android:layout_height="80px"
             android:text="Allez au hangar"
             android:id="@+id/button2"
+            android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal" />
@@ -41,6 +44,7 @@
             android:layout_height="80px"
             android:text="Liste des équipes"
             android:id="@+id/button3"
+            android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal" />
@@ -51,6 +55,7 @@
             android:layout_height="80px"
             android:text="Nouvelle partie"
             android:id="@+id/button4"
+            android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal" />
