@@ -1,6 +1,8 @@
 package com.tankbattle.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -20,11 +22,12 @@ import com.tankbattle.tools.SpinnerTool;
 
 import java.util.ArrayList;
 
-public class AddTankActivity extends Activity {
+public class AddTankActivity extends Activity implements MyDialogInterface.DialogReturn {
 
     private Spinner spinnerNation, spinnerGenre;
     private EditText editTextNom, editTextPv;
     private Tank tank = null;
+    private MyDialogInterface myInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +43,15 @@ public class AddTankActivity extends Activity {
         editTextNom = (EditText)  findViewById(R.id.editTextNom);
         editTextPv = (EditText)  findViewById(R.id.editTextPv);
 
+        myInterface = new MyDialogInterface();
+        myInterface.setListener(this);
+
         initView();
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_add_tank, menu);
         return true;
     }
@@ -68,12 +73,7 @@ public class AddTankActivity extends Activity {
                 finish();
                 return true;
             case R.id.action_delete_tank:
-                if (onDelete()) {
-                    listTankActivity = new Intent(getApplicationContext(), ListTankActivity.class);
-                    startActivity(listTankActivity);
-                    finish();
-                    return true;
-                }
+                onDelete();
                 return false;
         }
         return false;
@@ -135,12 +135,40 @@ public class AddTankActivity extends Activity {
     }
 
     private boolean onDelete() {
-        // TODO Popup de confirmation
         if (tank != null) {
-            tank.delete();
-            Toast.makeText(getBaseContext(), getString(R.string.tank_delete), Toast.LENGTH_LONG).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(true);
+            builder.setIcon(R.drawable.delete);
+            builder.setTitle(tank.getNom());
+            builder.setInverseBackgroundForced(true);
+            builder.setPositiveButton(R.string.oui, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    myInterface.getListener().onDialogCompleted(true, null);
+                    dialog.dismiss();
+                }
+            });
+            builder.setNegativeButton(R.string.non, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    myInterface.getListener().onDialogCompleted(false, null);
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
         }
         return true;
     }
 
+    @Override
+    public void onDialogCompleted(boolean answer, String type) {
+        if (answer && tank!=null) {
+            tank.delete();
+            Toast.makeText(getBaseContext(), getString(R.string.tank_delete), Toast.LENGTH_LONG).show();
+            Intent listTankActivity = new Intent(getApplicationContext(), ListTankActivity.class);
+            startActivity(listTankActivity);
+            finish();
+        }
+    }
 }

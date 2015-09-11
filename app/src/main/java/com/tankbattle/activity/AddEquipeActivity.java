@@ -1,6 +1,8 @@
 package com.tankbattle.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,10 +15,11 @@ import com.tankbattle.R;
 import com.tankbattle.model.Equipe;
 
 
-public class AddEquipeActivity extends Activity {
+public class AddEquipeActivity extends Activity implements MyDialogInterface.DialogReturn {
 
     private EditText editTextNom;
     private Equipe equipe = null;
+    private MyDialogInterface myInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,9 @@ public class AddEquipeActivity extends Activity {
         setContentView(R.layout.activity_add_equipe);
 
         editTextNom = (EditText)  findViewById(R.id.editTextNom);
+
+        myInterface = new MyDialogInterface();
+        myInterface.setListener(this);
 
         initView();
 
@@ -52,19 +58,13 @@ public class AddEquipeActivity extends Activity {
                 finish();
                 return true;
             case R.id.action_delete_equipe:
-                if (onDelete()) {
-                    listActivity = new Intent(getApplicationContext(), ListEquipeActivity.class);
-                    startActivity(listActivity);
-                    finish();
-                    return true;
-                }
+                onDelete();
                 return false;
             default:
                 return super.onOptionsItemSelected(item);
         }
 
     }
-
 
     private void initView() {
         Bundle bundle = getIntent().getExtras();
@@ -95,12 +95,42 @@ public class AddEquipeActivity extends Activity {
     }
 
     private boolean onDelete() {
-        // TODO Popup de confirmation
         if (equipe != null) {
-            equipe.delete();
-            Toast.makeText(getBaseContext(), getString(R.string.equipe_delete), Toast.LENGTH_LONG).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(true);
+            builder.setIcon(R.drawable.delete);
+            builder.setTitle(equipe.getNom());
+            builder.setInverseBackgroundForced(true);
+            builder.setPositiveButton(R.string.oui, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    myInterface.getListener().onDialogCompleted(true, null);
+                    dialog.dismiss();
+                }
+            });
+            builder.setNegativeButton(R.string.non, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    myInterface.getListener().onDialogCompleted(false, null);
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
         }
         return true;
     }
+
+    @Override
+    public void onDialogCompleted(boolean answer, String type) {
+        if (answer && equipe!=null) {
+            equipe.delete();
+            Toast.makeText(getBaseContext(), getString(R.string.equipe_delete), Toast.LENGTH_LONG).show();
+            Intent listActivity = new Intent(getApplicationContext(), ListEquipeActivity.class);
+            startActivity(listActivity);
+            finish();
+        }
+    }
+
 
 }

@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">TankBattle</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="oui">Oui</string>
+    <string name="non">Non</string>
 
     <!-- Nation -->
     <string name="nation_fr">Français</string>
