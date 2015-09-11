@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content" android:layout_height="wrap_content"
     android:id="@+id/item_tank"
-    android:padding="6dip">
+    android:padding="1dip">
 
     <ImageView
         android:id="@+id/imageNationFlag"
@@ -15,29 +15,37 @@
 
     <ImageView
         android:id="@+id/imageGenreFlag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/smallsave"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="90dp"/>
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/genre_heavy"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/pvIncrease" />
 
 
 
     <TextView android:text="@string/nom" android:id="@+id/nom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_marginLeft="21dp"
+        android:textSize="15sp"
+        android:layout_marginLeft="8dp"
         android:layout_alignBottom="@+id/imageGenreFlag"
-        android:layout_toRightOf="@+id/imageGenreFlag">
+        android:layout_toRightOf="@+id/imageGenreFlag"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
+        android:layout_alignBaseline="@+id/imageGenreFlag"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/imageGenreFlag">
     </TextView>
 
 
     <TextView android:text="@string/pv" android:id="@+id/pv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_alignBottom="@+id/imageNationFlag"
+        android:textSize="15sp"
+        android:layout_alignTop="@+id/pvIncrease"
         android:layout_alignLeft="@+id/nom">
     </TextView>
 
@@ -46,19 +54,23 @@
         android:id="@+id/pvIncrease"
         android:layout_width="32dp"
         android:layout_height="32dp"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
         android:background="#00000000"
         android:contentDescription="+"
-        android:src="@drawable/smalladd"
-        android:layout_alignTop="@+id/pv"
-        android:layout_toLeftOf="@+id/nom" />
+        android:src="@drawable/small_add"
+        android:layout_below="@+id/imageGenreFlag"
+        android:layout_toRightOf="@+id/imageNationFlag" />
 
     <ImageButton
         android:id="@+id/pvDecrease"
         android:layout_width="32dp"
         android:layout_height="32dp"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
         android:background="#00000000"
         android:contentDescription="-"
-        android:src="@drawable/smallreset"
+        android:src="@drawable/small_remove"
         android:layout_alignTop="@+id/pv"
         android:layout_toRightOf="@+id/nom" />
 
