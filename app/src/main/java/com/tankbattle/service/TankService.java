@@ -27,6 +27,13 @@ public class TankService {
                 .execute();
     }
 
+    public static Tank getTankById(long id) {
+        return new Select()
+                .from(Tank.class)
+                .where("Id = ?", id)
+                .executeSingle();
+    }
+
 
     public static void deleteAllTanks() {
         new Delete().from(Tank.class)
