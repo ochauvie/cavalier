@@ -9,7 +9,7 @@
         android:layout_height="100dp"
         android:src="@drawable/fr"
         android:minWidth="96px"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="2dp"
         android:layout_centerVertical="true"/>
 
     <!--<TextView android:text="@string/nation" android:id="@+id/nation"-->
@@ -27,7 +27,7 @@
         android:src="@drawable/genre_heavy"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="100dp"/>
+        android:layout_marginLeft="90dp"/>
 
     <!--<TextView android:text="@string/genre" android:id="@+id/genre"-->
         <!--android:layout_width="wrap_content"-->
@@ -43,7 +43,7 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:textSize="40sp"
-        android:layout_marginLeft="250dp">
+        android:layout_marginLeft="220dp">
     </TextView>
 
 
@@ -53,16 +53,16 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:textSize="40sp"
-        android:layout_marginLeft="650dp">
+        android:layout_marginLeft="600dp">
     </TextView>
 
     <ImageView
         android:id="@+id/imageTank"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
         android:src="@drawable/default_tank"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="750dp"/>
+        android:layout_alignParentLeft="false"
+        android:layout_marginLeft="700dp"
+        android:layout_alignParentTop="true" />
 
 </RelativeLayout>

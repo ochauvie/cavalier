@@ -9,29 +9,49 @@ import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.tankbattle.R;
+import com.tankbattle.adapter.TankInEquipeListAdapter;
 import com.tankbattle.model.Equipe;
+import com.tankbattle.model.EquipeTank;
+import com.tankbattle.model.Tank;
+import com.tankbattle.service.EquipeService;
+import com.tankbattle.service.TankService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class AddEquipeActivity extends Activity implements MyDialogInterface.DialogReturn {
 
+    private ListView listViewEquipe, listViewHangar;
     private EditText editTextNom;
     private Equipe equipe = null;
     private MyDialogInterface myInterface;
+
+    List<Tank> tanksInEquipeList = new ArrayList<Tank>();
+    List<Tank> tanskInHangarList = TankService.getAllTanks();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_equipe);
 
-        editTextNom = (EditText)  findViewById(R.id.editTextNom);
-
         myInterface = new MyDialogInterface();
         myInterface.setListener(this);
 
+        editTextNom = (EditText)  findViewById(R.id.editTextNom);
+        listViewEquipe = (ListView) findViewById(R.id.listViewEquipe);
+        listViewHangar = (ListView) findViewById(R.id.listViewHangar);
+
         initView();
+
+        TankInEquipeListAdapter adapterEquipe= new TankInEquipeListAdapter(this, tanksInEquipeList, false);
+        TankInEquipeListAdapter adapterHangar= new TankInEquipeListAdapter(this, tanskInHangarList, false);
+        listViewEquipe.setAdapter(adapterEquipe);
+        listViewHangar.setAdapter(adapterHangar);
 
     }
 
@@ -88,6 +108,14 @@ public class AddEquipeActivity extends Activity implements MyDialogInterface.Dia
             equipe = Equipe.load(Equipe.class, equipeId);
             if (equipe!=null) {
                 editTextNom.setText(equipe.getNom());
+
+                List<EquipeTank> tanks = equipe.tanks();
+                if (tanks!=null) {
+                    for (EquipeTank equipeTank:tanks) {
+                        Tank tank = TankService.getTankById(equipeTank.getId());
+                        tanksInEquipeList.add(tank);
+                    }
+                }
             }
         }
     }

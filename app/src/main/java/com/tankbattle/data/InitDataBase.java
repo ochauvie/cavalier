@@ -19,12 +19,12 @@ public class InitDataBase {
         TankService.deleteAllTanks();
 
         ContextWrapper cw = new ContextWrapper(context);
-        String DEFAULT_IMAGE = "default_tank.png";
+        String DEFAULT_IMAGE = "default_tank";
 
         // Russe
         Tank tank = new Tank("KV-1", 10, Nation.RU, Genre.HEAVY, DEFAULT_IMAGE); tank.save();
         tank = new Tank("KV-2", 10, Nation.RU, Genre.HEAVY, DEFAULT_IMAGE); tank.save();
-        tank = new Tank("T-55", 10, Nation.RU, Genre.MEDIUM, DEFAULT_IMAGE); tank.save();
+        tank = new Tank("T-54", 10, Nation.RU, Genre.MEDIUM, "tank_t54"); tank.save();
         tank = new Tank("T-34/76", 10, Nation.RU, Genre.MEDIUM, DEFAULT_IMAGE); tank.save();
         tank = new Tank("ISu 152", 10, Nation.RU, Genre.DESTROYER, DEFAULT_IMAGE); tank.save();
         tank = new Tank("Su-85", 10, Nation.RU, Genre.DESTROYER, DEFAULT_IMAGE); tank.save();
@@ -34,14 +34,15 @@ public class InitDataBase {
         tank = new Tank("Tigre 1 Gris", 10, Nation.DE, Genre.HEAVY, DEFAULT_IMAGE); tank.save();
         tank = new Tank("Ferdinand", 10, Nation.DE, Genre.ARTILLERY, DEFAULT_IMAGE); tank.save();
         tank = new Tank("Jagdpanther", 10, Nation.DE, Genre.DESTROYER, DEFAULT_IMAGE); tank.save();
-        tank = new Tank("Jagdtiger", 10, Nation.DE, Genre.DESTROYER, DEFAULT_IMAGE); tank.save();
+        tank = new Tank("Jagdtiger", 10, Nation.DE, Genre.DESTROYER, "tank_jagtiger"); tank.save();
         tank = new Tank("Stug III", 10, Nation.DE, Genre.DESTROYER, DEFAULT_IMAGE); tank.save();
+        tank = new Tank("Panzer SLF4C", 10, Nation.DE, Genre.DESTROYER, "tank_panzer_slf4c"); tank.save();
         tank = new Tank("Marder III", 10, Nation.DE, Genre.DESTROYER, DEFAULT_IMAGE); tank.save();
         tank = new Tank("FH18 Auf39-H", 10, Nation.DE, Genre.ARTILLERY, DEFAULT_IMAGE); tank.save();
 
         // Anglais
         tank = new Tank("Churchill MK.III", 10, Nation.EN, Genre.HEAVY, DEFAULT_IMAGE); tank.save();
-        tank = new Tank("AS-90 SPG", 10, Nation.EN, Genre.ARTILLERY, DEFAULT_IMAGE); tank.save();
+        tank = new Tank("AS-90 SPG", 10, Nation.EN, Genre.ARTILLERY, "tank_as90spg"); tank.save();
         tank = new Tank("Vickers MK VI", 10, Nation.EN, Genre.LIGHT, DEFAULT_IMAGE); tank.save();
         tank = new Tank("Cromwell IV", 10, Nation.EN, Genre.MEDIUM, DEFAULT_IMAGE); tank.save();
 

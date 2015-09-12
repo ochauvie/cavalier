@@ -30,6 +30,9 @@
     <string name="pv">Pv</string>
     <string name="nb_tank">Nombres de tanks</string>
 
+    <!-- Fiche Equipe -->
+    <string name="tank_equipe">Tanks de l\'équipe</string>
+
 
     <!-- Action -->
     <string name="action_list_tank">List des tanks</string>
