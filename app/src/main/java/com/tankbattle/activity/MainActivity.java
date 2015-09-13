@@ -58,7 +58,7 @@ public class MainActivity extends Activity {
         but4 = (Button) findViewById(R.id.button4);
         but4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getBaseContext(), "En travaux", Toast.LENGTH_LONG).show();
+                startActivityForResult(new Intent(getApplicationContext(), CreateBatailleActivity.class), 0);
             }
         });
 

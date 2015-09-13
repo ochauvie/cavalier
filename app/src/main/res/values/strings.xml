@@ -33,6 +33,14 @@
     <!-- Fiche Equipe -->
     <string name="tank_equipe">Tanks de l\'équipe</string>
 
+    <!-- Fiche Bataille -->
+    <string name="equipe1">Equipe 1</string>
+    <string name="equipe2">Equipe 2</string>
+    <string name="date_creation">Date de début</string>
+    <string name="date_fin">Date de fin</string>
+    <string name="start_bataille">Démarrer la bataille</string>
+    <string name="return_bataille">Continuer la bataille</string>
+
 
     <!-- Action -->
     <string name="action_list_tank">List des tanks</string>
@@ -47,6 +55,7 @@
     <string name="title_activity_add_tank">Ajouter un tank</string>
     <string name="title_activity_list_equipe">Equipes</string>
     <string name="title_activity_add_equipe">Equipe</string>
+    <string name="title_activity_create_bataille">Bataille</string>
 
 
     <!-- Mandatory -->

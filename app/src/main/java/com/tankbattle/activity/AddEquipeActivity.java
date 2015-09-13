@@ -84,7 +84,6 @@ public class AddEquipeActivity extends Activity implements MyDialogInterface.Dia
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -143,7 +142,6 @@ public class AddEquipeActivity extends Activity implements MyDialogInterface.Dia
             return false;
         } else {
             try {
-
                 ActiveAndroid.beginTransaction();
                 if (equipe == null) {
                     equipe = new Equipe();
@@ -158,13 +156,11 @@ public class AddEquipeActivity extends Activity implements MyDialogInterface.Dia
                     EquipeTank equipeTank = new EquipeTank(equipe, tank);
                     equipeTank.save();
                 }
-
                 ActiveAndroid.setTransactionSuccessful();
                 Toast.makeText(getBaseContext(), getString(R.string.equipe_save), Toast.LENGTH_LONG).show();
             }
             finally {
                 ActiveAndroid.endTransaction();
-
             }
         }
         return true;
@@ -207,6 +203,4 @@ public class AddEquipeActivity extends Activity implements MyDialogInterface.Dia
             finish();
         }
     }
-
-
 }
