@@ -20,7 +20,7 @@
             android:layout_marginTop="50px"
             android:layout_width="400px"
             android:layout_height="80px"
-            android:text="Initialiser le hangar"
+            android:text="Initialiser les donées"
             android:id="@+id/button1"
             android:textColor="@android:color/black"
             android:textSize="40sp"

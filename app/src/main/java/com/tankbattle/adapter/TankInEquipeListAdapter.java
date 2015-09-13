@@ -8,10 +8,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.tankbattle.R;
+import com.tankbattle.listner.MyTouchListener;
 import com.tankbattle.listner.TankListener;
 import com.tankbattle.model.Tank;
 
@@ -23,17 +23,22 @@ import java.util.List;
  */
 public class TankInEquipeListAdapter extends BaseAdapter {
 
+    public static final String ORIGINE_HANGAR = "HANGAR";
+    public static final String ORIGINE_EQUIPE = "EQUIPE";
+
     private List<Tank> tankList;
     private Context mContext;
     private boolean butActivated;
     private LayoutInflater mInflater;
     private List<TankListener> listeners = new ArrayList<TankListener>();
+    private String origine;
 
-    public TankInEquipeListAdapter(Context mContext, List<Tank> tankList, boolean butActivated) {
+    public TankInEquipeListAdapter(Context mContext, List<Tank> tankList, boolean butActivated, String origine) {
         this.tankList = tankList;
         this.mContext = mContext;
         mInflater = LayoutInflater.from(mContext);
         this.butActivated = butActivated;
+        this.origine = origine;
     }
 
 
@@ -71,6 +76,14 @@ public class TankInEquipeListAdapter extends BaseAdapter {
         return null;
     }
 
+    public List<Tank> getTankList() {
+        return tankList;
+    }
+
+    public String getItemOrigine() {
+        return this.origine;
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.activity_battle_tank_item, parent, false);
@@ -96,7 +109,9 @@ public class TankInEquipeListAdapter extends BaseAdapter {
         tv_pv.setText(String.valueOf(currentTank.getPv()));
 
         // On memorise la position  dans le composant textview
-        layoutTank.setTag(position);
+        TagTank tagTank = new TagTank(position, this.origine);
+        layoutTank.setTag(tagTank);
+
         layoutTank.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -109,6 +124,11 @@ public class TankInEquipeListAdapter extends BaseAdapter {
             }
 
         });
+
+
+        // Drag
+        layoutTank.setOnTouchListener(new MyTouchListener());
+
 
         return layoutItem;
     }

@@ -4,7 +4,7 @@
     android:id="@+id/item_tank"
     android:padding="1dip"
     android:background="@android:color/black"
-    android:minWidth="100dp">
+    android:minWidth="300dp">
 
     <ImageView
         android:id="@+id/imageNationFlag"
@@ -24,23 +24,24 @@
     <TextView android:text="@string/nom" android:id="@+id/nom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:layout_marginLeft="0dp"
+        android:layout_toRightOf="@+id/imageGenreFlag"
         android:layout_alignWithParentIfMissing="false"
         android:layout_alignParentRight="false"
         android:layout_alignParentBottom="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentTop="false"
+        android:layout_alignBaseline="@+id/imageGenreFlag"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/imageNationFlag"
-        android:layout_alignLeft="@+id/imageNationFlag">
+        android:layout_alignTop="@+id/imageGenreFlag">
     </TextView>
 
 
     <TextView android:text="@string/pv" android:id="@+id/pv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:layout_alignTop="@+id/butAdd"
         android:layout_toRightOf="@+id/butAdd"
         android:layout_marginLeft="5dp"
@@ -58,7 +59,7 @@
         android:contentDescription="+"
         android:src="@drawable/small_add"
         android:layout_below="@+id/nom"
-        android:layout_alignLeft="@+id/imageNationFlag" />
+        android:layout_toRightOf="@+id/imageGenreFlag" />
 
     <ImageButton
         android:id="@+id/butRemove"

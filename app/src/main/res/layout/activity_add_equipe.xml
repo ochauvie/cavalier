@@ -5,32 +5,31 @@
     android:id="@+id/layout_filter">
 
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/nom"
-            android:textSize="20sp"
-            android:id="@+id/textView2"
-            android:layout_column="0" />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nom"
+        android:textSize="20sp"
+        android:id="@+id/textView2"/>
 
-        <EditText
-            android:layout_marginTop="10dp"
-            android:id="@+id/editTextNom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/textView2"
-            android:layout_toRightOf="@+id/textView2"
-            android:ems="10"
-            android:textSize="20sp"
-            android:inputType="textCapWords" />
+    <EditText
+        android:layout_marginTop="10dp"
+        android:id="@+id/editTextNom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+        android:ems="10"
+        android:textSize="20sp"
+        android:inputType="textCapWords" />
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/editTextNom"
         android:layout_alignParentLeft="true"
-
+        android:layout_marginTop="5dp"
         android:id="@+id/tableLayout2">
 
         <TableRow
@@ -38,12 +37,13 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:layout_width="300dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/viewText"
                 android:text="@string/tank_equipe"
                 android:textSize="20sp"
-                android:layout_column="0" />
+                android:layout_column="0"
+                android:autoText="false" />
 
             <Space
                 android:layout_width="5dp"
@@ -51,26 +51,27 @@
                 android:layout_column="2" />
 
             <TextView
-                android:layout_width="300dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="@string/title_activity_list_tank"
                 android:textSize="20sp"
                 android:id="@+id/viewText1"
                 android:layout_column="1" />
-
-
         </TableRow>
-
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ListView
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="350dp"
                 android:id="@+id/listViewEquipe"
-                android:layout_column="0" />
+                android:layout_column="0"
+                android:padding="1dp"
+                android:background="@android:color/darker_gray"
+                android:scrollbars="vertical"
+                android:scrollbarAlwaysDrawVerticalTrack="true"/>
 
             <Space
                 android:layout_width="5dp"
@@ -78,12 +79,19 @@
                 android:layout_column="2" />
 
             <ListView
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="350dp"
                 android:id="@+id/listViewHangar"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:padding="1dp"
+                android:background="@android:color/darker_gray"
+                android:scrollbars="vertical"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                />
         </TableRow>
     </TableLayout>
+
+
 
 
 </RelativeLayout>

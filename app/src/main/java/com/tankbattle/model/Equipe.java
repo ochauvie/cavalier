@@ -27,7 +27,6 @@ public class Equipe extends Model implements Serializable{
         return getMany(EquipeTank.class, "Equipe");
     }
 
-
     public String getNom() {
         return nom;
     }
@@ -48,4 +47,6 @@ public class Equipe extends Model implements Serializable{
     public String toString() {
         return this.nom;
     }
+
+
 }

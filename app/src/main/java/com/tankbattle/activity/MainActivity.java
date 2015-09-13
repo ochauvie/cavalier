@@ -36,6 +36,7 @@ public class MainActivity extends Activity {
         but1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 InitDataBase.initTankList(getApplicationContext());
+                InitDataBase.initEquipeList();
                 Toast.makeText(getBaseContext(), getString(R.string.db_tank_initialized), Toast.LENGTH_LONG).show();
             }
         });

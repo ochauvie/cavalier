@@ -45,7 +45,7 @@
                 android:layout_column="0" />
 
             <Space
-                android:layout_width="100dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_column="2" />
 
@@ -67,20 +67,29 @@
 
             <ListView
                 android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_height="1000dp"
                 android:id="@+id/listViewEquipe"
-                android:layout_column="0" />
+                android:layout_column="0"
+                android:padding="5dp"
+                android:background="@android:color/darker_gray"
+                android:scrollbars="vertical"
+                android:scrollbarAlwaysDrawVerticalTrack="true"/>
 
             <Space
-                android:layout_width="100dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_column="2" />
 
             <ListView
                 android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_height="1000dp"
                 android:id="@+id/listViewHangar"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:padding="5dp"
+                android:background="@android:color/darker_gray"
+                android:scrollbars="vertical"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                />
         </TableRow>
     </TableLayout>
 

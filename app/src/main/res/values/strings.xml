@@ -57,6 +57,7 @@
     <string name="tank_delete">Le tank est supprimé</string>
 
     <string name="equipe_save">L\'équipe est sauvegardé</string>
+    <string name="equipe_notsave">Erreur à la sauvegarde de l\'équipe</string>
     <string name="equipe_delete">L\'équipe est supprimé</string>
 
     <string name="db_tank_initialized">La base de données des tanks a été initialisée.</string>
