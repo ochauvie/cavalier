@@ -134,11 +134,13 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
     }
 
     private void onExitBataille() {
+        // TODO Popup Oui/Non
         onSaveBataille();
         finish();
     }
 
     private void onEndBataille() {
+        // TODO Popup Oui/Non
         onSaveBataille();
         bataille.setDateFin(new Date());
         bataille.save();
