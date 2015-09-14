@@ -84,60 +84,9 @@
                 android:layout_centerVertical="true"/>
         </TableRow>
 
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent">
 
-            <TextView
-                android:layout_marginTop="10px"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/date_creation"
-                android:textSize="20sp"
-                android:id="@+id/textView4"
-                android:layout_column="0" />
 
-            <TextView
-                android:layout_marginTop="10px"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/date_creation"
-                android:textSize="20sp"
-                android:id="@+id/textDateCreation"
-                android:layout_column="0" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_marginTop="10px"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/date_fin"
-                android:textSize="20sp"
-                android:id="@+id/textView6"
-                android:layout_column="0" />
-
-            <TextView
-                android:layout_marginTop="10px"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/date_fin"
-                android:textSize="20sp"
-                android:id="@+id/textDateFin"
-                android:layout_column="0" />
-        </TableRow>
     </TableLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/start_bataille"
-        android:id="@+id/btStart"
-        android:layout_below="@+id/tableLayout"
-        android:layout_alignRight="@+id/tableLayout"
-        android:layout_marginRight="127dp"
-        android:layout_marginTop="50dp" />
+
 </RelativeLayout>

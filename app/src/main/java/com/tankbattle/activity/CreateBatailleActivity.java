@@ -30,9 +30,7 @@ import java.util.List;
  */
 public class CreateBatailleActivity extends Activity {
 
-    private TextView textDateCreation, textDateFin;
     private EditText editTextNom;
-    private Button btStart;
     private Spinner spEquipe1, spEquipe2;
     private Bataille currentyBataille;
 
@@ -47,8 +45,7 @@ public class CreateBatailleActivity extends Activity {
         spEquipe2 = (Spinner) findViewById(R.id.spEquipe2);
         loadSpinnerEquipe(spEquipe2);
 
-        textDateCreation = (TextView)  findViewById(R.id.textDateCreation);
-        textDateFin = (TextView)  findViewById(R.id.textDateFin);
+        editTextNom = (EditText)  findViewById(R.id.editTextNom);
     }
 
     private void loadSpinnerEquipe(Spinner spinner) {
