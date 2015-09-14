@@ -27,4 +27,9 @@ public class BatailleService {
                 .executeSingle();
     }
 
+    public static void deleteAllBatailles() {
+        new Delete().from(Bataille.class)
+                .execute();
+    }
+
 }

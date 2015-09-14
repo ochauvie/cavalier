@@ -1,13 +1,14 @@
 package com.tankbattle.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.activeandroid.ActiveAndroid;
@@ -21,9 +22,10 @@ import com.tankbattle.service.BatailleService;
 // PHOTO: http://blog.ace-dev.fr/2011/07/14/tutoriel-android-partie-13-lappareil-photo/
 // SCREEN: http://developer.android.com/guide/practices/screens_support.html
 //          http://developer.android.com/guide/topics/media/camera.html
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements MyDialogInterface.DialogReturn {
 
     private Button but1, but2, but3, but4, but5;
+    private MyDialogInterface myInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +36,14 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
+        myInterface = new MyDialogInterface();
+        myInterface.setListener(this);
+
         but1 = (Button) findViewById(R.id.button1);
         but1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                InitDataBase.initTankList(getApplicationContext());
-                InitDataBase.initEquipeList();
-                Toast.makeText(getBaseContext(), getString(R.string.db_tank_initialized), Toast.LENGTH_LONG).show();
+                onInitDb();
+
             }
         });
 
@@ -95,7 +99,7 @@ public class MainActivity extends Activity {
         switch (item.getItemId()) {
             case R.id.action_init_data:
                 InitDataBase.initTankList(getApplicationContext());
-                Toast.makeText(getBaseContext(), getString(R.string.db_tank_initialized), Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), getString(R.string.db_initialized), Toast.LENGTH_LONG).show();
                 return true;
             case R.id.action_show_list_tank:
                 startActivityForResult(new Intent(getApplicationContext(), ListTankActivity.class), 0);
@@ -106,6 +110,42 @@ public class MainActivity extends Activity {
                 return true;
         }
         return false;
+    }
+
+
+    private boolean onInitDb() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setIcon(R.drawable.delete);
+        builder.setTitle(getString(R.string.db_initialized));
+        builder.setInverseBackgroundForced(true);
+        builder.setPositiveButton(R.string.oui, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                myInterface.getListener().onDialogCompleted(true, null);
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton(R.string.non, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                myInterface.getListener().onDialogCompleted(false, null);
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+        return true;
+    }
+
+    @Override
+    public void onDialogCompleted(boolean answer, String type) {
+        if (answer) {
+            InitDataBase.initTankList(getApplicationContext());
+            InitDataBase.initEquipe();
+            InitDataBase.initBataille();
+            Toast.makeText(getBaseContext(), getString(R.string.db_initialized), Toast.LENGTH_LONG).show();
+        }
     }
 }
 

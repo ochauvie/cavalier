@@ -7,6 +7,7 @@ import android.os.Environment;
 import com.tankbattle.model.Genre;
 import com.tankbattle.model.Nation;
 import com.tankbattle.model.Tank;
+import com.tankbattle.service.BatailleService;
 import com.tankbattle.service.EquipeService;
 import com.tankbattle.service.TankService;
 
@@ -82,7 +83,12 @@ public class InitDataBase {
         tank.save();
     }
 
-    public static void initEquipeList() {
+    public static void initEquipe() {
         EquipeService.deleteAllEquipes();
     }
+
+    public static void initBataille() {
+        BatailleService.deleteAllBatailles();
+    }
+
 }
