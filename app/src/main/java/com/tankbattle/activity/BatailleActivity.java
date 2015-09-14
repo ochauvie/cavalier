@@ -31,6 +31,7 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
     private Bataille bataille;
     private List<Tank> tanksEquipe1 = new ArrayList<Tank>();
     private List<Tank> tanksEquipe2 = new ArrayList<Tank>();
+    private TankInEquipeListAdapter adapterEquipe1, adapterEquipe2;
 
 
 
@@ -46,9 +47,9 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
 
         initView();
 
-        TankInEquipeListAdapter adapterEquipe1 = new TankInEquipeListAdapter(this, tanksEquipe1, true, null);
+        adapterEquipe1 = new TankInEquipeListAdapter(this, tanksEquipe1, true, null);
         adapterEquipe1.addListener(this);
-        TankInEquipeListAdapter adapterEquipe2 = new TankInEquipeListAdapter(this, tanksEquipe2, true, null);
+        adapterEquipe2 = new TankInEquipeListAdapter(this, tanksEquipe2, true, null);
         adapterEquipe2.addListener(this);
         listViewEquipe1.setAdapter(adapterEquipe1);
         listViewEquipe2.setAdapter(adapterEquipe2);
@@ -148,11 +149,21 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
     @Override
     public void onClickAddPv(Tank item, int position) {
         item.setPv(item.getPv()+1);
+        if (bataille.getEquipe1().isTankOfEquipe(item)) {
+            adapterEquipe1.notifyDataSetChanged();
+        } else {
+            adapterEquipe2.notifyDataSetChanged();
+        }
     }
 
     @Override
     public void onClickDeletePv(Tank item, int position) {
         item.setPv(item.getPv()-1);
+        if (bataille.getEquipe1().isTankOfEquipe(item)) {
+            adapterEquipe1.notifyDataSetChanged();
+        } else {
+            adapterEquipe2.notifyDataSetChanged();
+        }
     }
 }
 

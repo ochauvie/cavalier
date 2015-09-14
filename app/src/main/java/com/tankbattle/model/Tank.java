@@ -81,6 +81,12 @@ public class Tank extends Model implements Serializable {
         this.image = image;
     }
 
+    public boolean isDestroyed() {
+        if (this.pv<=0) {
+            return true;
+        }
+        return false;
+    }
 
 
     // Liste des équipes dont le tank appartient

@@ -1,6 +1,7 @@
 package com.tankbattle.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -115,7 +116,11 @@ public class TankInEquipeListAdapter extends BaseAdapter {
         tv_pv.setText(String.valueOf(currentTank.getPv()));
 
 
-        // TODO: si tank destroy, nouveau fond ?
+        if (currentTank.isDestroyed()) {
+            tv_nom.setTextColor(Color.RED);
+        } else {
+            tv_nom.setTextColor(Color.GREEN);
+        }
 
         // On memorise la position  dans le composant textview
         TagTank tagTank = new TagTank(position, this.origine);
