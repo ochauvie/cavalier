@@ -19,9 +19,6 @@ import com.tankbattle.model.Bataille;
 import com.tankbattle.model.BatailleTank;
 import com.tankbattle.model.Equipe;
 import com.tankbattle.model.EquipeTank;
-import com.tankbattle.model.Genre;
-import com.tankbattle.model.Nation;
-import com.tankbattle.model.Tank;
 import com.tankbattle.service.EquipeService;
 
 import java.util.Date;
@@ -52,20 +49,12 @@ public class CreateBatailleActivity extends Activity {
 
         textDateCreation = (TextView)  findViewById(R.id.textDateCreation);
         textDateFin = (TextView)  findViewById(R.id.textDateFin);
-
-        initView();
     }
 
     private void loadSpinnerEquipe(Spinner spinner) {
         spinner.setAdapter(new EquipeSpinnerAdapter(this, EquipeService.getAllEquipes()));
     }
 
-    private void initView() {
-        Bundle bundle = getIntent().getExtras();
-        if (bundle!=null) {
-            // TODO
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
