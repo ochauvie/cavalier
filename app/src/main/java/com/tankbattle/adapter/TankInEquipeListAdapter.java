@@ -29,17 +29,19 @@ public class TankInEquipeListAdapter extends BaseAdapter {
 
     private List<Tank> tankList;
     private Context mContext;
+    private boolean dragDrop;
     private boolean butActivated;
     private LayoutInflater mInflater;
     private List<TankInBatailleListener> listeners = new ArrayList<TankInBatailleListener>();
     private String origine;
 
-    public TankInEquipeListAdapter(Context mContext, List<Tank> tankList, boolean butActivated, String origine) {
+    public TankInEquipeListAdapter(Context mContext, List<Tank> tankList, boolean butActivated, String origine, boolean dragDrop) {
         this.tankList = tankList;
         this.mContext = mContext;
         mInflater = LayoutInflater.from(mContext);
         this.butActivated = butActivated;
         this.origine = origine;
+        this.dragDrop = dragDrop;
     }
 
 
@@ -125,6 +127,8 @@ public class TankInEquipeListAdapter extends BaseAdapter {
         // On memorise la position  dans le composant textview
         TagTank tagTank = new TagTank(position, this.origine);
         layoutTank.setTag(tagTank);
+        butAdd.setTag(position);
+        butRemove.setTag(position);
 
         butAdd.setOnClickListener(new View.OnClickListener() {
 
@@ -152,7 +156,9 @@ public class TankInEquipeListAdapter extends BaseAdapter {
 
 
         // Drag
-        layoutTank.setOnTouchListener(new MyTouchListener());
+        if (dragDrop) {
+            layoutTank.setOnTouchListener(new MyTouchListener());
+        }
 
 
         return layoutItem;

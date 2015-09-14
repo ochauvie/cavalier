@@ -52,8 +52,8 @@ public class AddEquipeActivity extends Activity implements MyDialogInterface.Dia
 
         initView();
 
-        TankInEquipeListAdapter adapterEquipe= new TankInEquipeListAdapter(this, tanksInEquipeList, false, TankInEquipeListAdapter.ORIGINE_EQUIPE);
-        TankInEquipeListAdapter adapterHangar= new TankInEquipeListAdapter(this, tanskInHangarList, false, TankInEquipeListAdapter.ORIGINE_HANGAR);
+        TankInEquipeListAdapter adapterEquipe= new TankInEquipeListAdapter(this, tanksInEquipeList, false, TankInEquipeListAdapter.ORIGINE_EQUIPE, true);
+        TankInEquipeListAdapter adapterHangar= new TankInEquipeListAdapter(this, tanskInHangarList, false, TankInEquipeListAdapter.ORIGINE_HANGAR, true);
         listViewEquipe.setAdapter(adapterEquipe);
         listViewHangar.setAdapter(adapterHangar);
 

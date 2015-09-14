@@ -75,6 +75,10 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
             }
         });
 
+        setButton();
+    }
+
+    private void setButton() {
         // Si pas de bataille en cours, affichage de "Nouvelle bataille", sinon "Continuer la bataille"
         Bataille currentBataille = BatailleService.getCurrentBataille();
         if (currentBataille!=null) {
@@ -84,7 +88,6 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
             but4.setVisibility(View.VISIBLE);
             but5.setVisibility(View.GONE);
         }
-
     }
 
     @Override
@@ -117,7 +120,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setIcon(R.drawable.delete);
-        builder.setTitle(getString(R.string.db_initialized));
+        builder.setTitle("Voulez vous vraiement initialiser la base de données (les équipes et les parties seront perdues)");
         builder.setInverseBackgroundForced(true);
         builder.setPositiveButton(R.string.oui, new DialogInterface.OnClickListener() {
             @Override
@@ -141,11 +144,18 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
     @Override
     public void onDialogCompleted(boolean answer, String type) {
         if (answer) {
-            InitDataBase.initTankList(getApplicationContext());
-            InitDataBase.initEquipe();
             InitDataBase.initBataille();
+            InitDataBase.initEquipe();
+            InitDataBase.initTankList(getApplicationContext());
+            setButton();
             Toast.makeText(getBaseContext(), getString(R.string.db_initialized), Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        setButton();
+        super.onResume();
     }
 }
 

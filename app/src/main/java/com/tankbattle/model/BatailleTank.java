@@ -20,8 +20,6 @@ public class BatailleTank extends Model{
     @Column(name = "PvRestant")
     private int pvRestant;
 
-    @Column(name = "PvRestant")
-    private int numEquipe;
 
     public BatailleTank() {
     }
@@ -47,10 +45,6 @@ public class BatailleTank extends Model{
         return bataille;
     }
 
-    public void setBataille(Bataille bataille) {
-        this.bataille = bataille;
-    }
-
     public int getPvRestant() {
         return pvRestant;
     }
@@ -63,7 +57,5 @@ public class BatailleTank extends Model{
         return tank;
     }
 
-    public void setTank(Tank tank) {
-        this.tank = tank;
-    }
+
 }

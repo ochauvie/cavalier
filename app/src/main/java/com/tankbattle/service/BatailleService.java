@@ -21,10 +21,15 @@ public class BatailleService {
 
 
     public static Bataille getCurrentBataille() {
-        return new Select()
-                .from(Bataille.class)
-                .where("DateFin = ?", null)
-                .executeSingle();
+        List<Bataille> bats = getAllBatailles();
+        if (bats!=null) {
+            for (Bataille bat:bats) {
+                if (bat.isFinished()==0) {
+                    return bat;
+                }
+            }
+        }
+        return null;
     }
 
     public static void deleteAllBatailles() {

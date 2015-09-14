@@ -19,7 +19,9 @@ import com.tankbattle.model.Bataille;
 import com.tankbattle.model.BatailleTank;
 import com.tankbattle.model.Equipe;
 import com.tankbattle.model.EquipeTank;
+import com.tankbattle.model.Tank;
 import com.tankbattle.service.EquipeService;
+import com.tankbattle.service.TankService;
 
 import java.util.Date;
 import java.util.List;
@@ -79,8 +81,13 @@ public class CreateBatailleActivity extends Activity {
 
     private boolean onCreateBataille() {
         Editable edName = editTextNom.getText();
+        Equipe equipe1 = (Equipe) spEquipe1.getSelectedItem();
+        Equipe equipe2 = (Equipe) spEquipe2.getSelectedItem();
         if (edName==null || "".equals(edName.toString())) {
             Toast.makeText(getBaseContext(), getString(R.string.nom_mandatory), Toast.LENGTH_LONG).show();
+            return false;
+        } else if (equipe1==null || equipe2==null || equipe1.getId()==equipe2.getId()) {
+            Toast.makeText(getBaseContext(), getString(R.string.equipes_mandatory), Toast.LENGTH_LONG).show();
             return false;
         } else {
             try {
@@ -89,22 +96,25 @@ public class CreateBatailleActivity extends Activity {
                     currentyBataille = new Bataille();
                 }
                 currentyBataille.setDateCreation(new Date());
+                currentyBataille.setFinished(0);
                 currentyBataille.setNom(edName.toString());
-                Equipe equipe1 = (Equipe) spEquipe1.getSelectedItem();
-                Equipe equipe2 = (Equipe) spEquipe2.getSelectedItem();
+
                 currentyBataille.setEquipe1(equipe1);
                 currentyBataille.setEquipe2(equipe2);
+
                 currentyBataille.save();
 
                 List<EquipeTank> equipeTanks1 = equipe1.tanks();
                 for (EquipeTank equipeTank1:equipeTanks1) {
-                    BatailleTank bT = new BatailleTank(currentyBataille, equipeTank1.getTank(), equipeTank1.getTank().getPv());
+                    Tank hangarTank = TankService.getTankById(equipeTank1.getTank().getId());
+                    BatailleTank bT = new BatailleTank(currentyBataille, equipeTank1.getTank(), hangarTank.getPv());
                     bT.save();
                 }
                 List<EquipeTank> equipeTanks2 = equipe2.tanks();
                 for (EquipeTank equipeTank2:equipeTanks2) {
-                    BatailleTank bT = new BatailleTank(currentyBataille, equipeTank2.getTank(), equipeTank2.getTank().getPv());
-                    bT.save();
+                    Tank hangarTank2 = TankService.getTankById(equipeTank2.getTank().getId());
+                    BatailleTank bT2 = new BatailleTank(currentyBataille, equipeTank2.getTank(), hangarTank2.getPv());
+                    bT2.save();
                 }
 
                 ActiveAndroid.setTransactionSuccessful();

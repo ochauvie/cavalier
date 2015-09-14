@@ -1,6 +1,8 @@
 package com.tankbattle.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,15 +26,15 @@ import java.util.List;
 /**
  * Created by olivier on 14/09/15.
  */
-public class BatailleActivity extends Activity implements TankInBatailleListener{
+public class BatailleActivity extends Activity implements TankInBatailleListener, MyDialogInterface.DialogReturn{
 
     private ListView listViewEquipe1, listViewEquipe2;
-    private TextView textViewNom, textViewDate;
+    private TextView textViewNom, textViewDate, viewTextEquipe1, viewTextEquipe2;
     private Bataille bataille;
     private List<Tank> tanksEquipe1 = new ArrayList<Tank>();
     private List<Tank> tanksEquipe2 = new ArrayList<Tank>();
     private TankInEquipeListAdapter adapterEquipe1, adapterEquipe2;
-
+    private MyDialogInterface myInterface;
 
 
     @Override
@@ -42,14 +44,19 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
 
         textViewNom = (TextView)  findViewById(R.id.textViewNom);
         textViewDate = (TextView)  findViewById(R.id.textViewDate);
+        viewTextEquipe1 = (TextView)  findViewById(R.id.viewTextEquipe1);
+        viewTextEquipe2 = (TextView)  findViewById(R.id.viewTextEquipe2);
         listViewEquipe1 = (ListView) findViewById(R.id.listViewEquipe1);
         listViewEquipe2 = (ListView) findViewById(R.id.listViewEquipe2);
 
+        myInterface = new MyDialogInterface();
+        myInterface.setListener(this);
+
         initView();
 
-        adapterEquipe1 = new TankInEquipeListAdapter(this, tanksEquipe1, true, null);
+        adapterEquipe1 = new TankInEquipeListAdapter(this, tanksEquipe1, true, null, false);
         adapterEquipe1.addListener(this);
-        adapterEquipe2 = new TankInEquipeListAdapter(this, tanksEquipe2, true, null);
+        adapterEquipe2 = new TankInEquipeListAdapter(this, tanksEquipe2, true, null, false);
         adapterEquipe2.addListener(this);
         listViewEquipe1.setAdapter(adapterEquipe1);
         listViewEquipe2.setAdapter(adapterEquipe2);
@@ -59,7 +66,11 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
         bataille = BatailleService.getCurrentBataille();
         if (bataille!=null) {
             textViewNom.setText(bataille.getNom());
-            textViewDate.setText(bataille.getDateCreation().toString());
+            viewTextEquipe1.setText(bataille.getEquipe1().getNom());
+            viewTextEquipe2.setText(bataille.getEquipe2().getNom());
+            // TODO formatage
+            //textViewDate.setText(bataille.getDateCreation().toString());
+            textViewDate.setText("");
 
             List<BatailleTank> batailleTanks = bataille.tanks();
             for (BatailleTank batailleTank:batailleTanks) {
@@ -134,18 +145,64 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
     }
 
     private void onExitBataille() {
-        // TODO Popup Oui/Non
-        onSaveBataille();
-        finish();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setIcon(R.drawable.delete);
+        builder.setTitle("Faire une pause");
+        builder.setInverseBackgroundForced(true);
+        builder.setPositiveButton(R.string.oui, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                myInterface.getListener().onDialogCompleted(true, "ACTION_PAUSE");
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton(R.string.non, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                myInterface.getListener().onDialogCompleted(false, "ACTION_PAUSE");
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     private void onEndBataille() {
-        // TODO Popup Oui/Non
-        onSaveBataille();
-        bataille.setDateFin(new Date());
-        bataille.save();
-        Toast.makeText(getBaseContext(), getString(R.string.current_bataille_end), Toast.LENGTH_LONG).show();
-        finish();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setIcon(R.drawable.delete);
+        builder.setTitle("Terminer la bataille " + bataille.getNom());
+        builder.setInverseBackgroundForced(true);
+        builder.setPositiveButton(R.string.oui, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                myInterface.getListener().onDialogCompleted(true, "ACTION_END");
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton(R.string.non, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                myInterface.getListener().onDialogCompleted(false, "ACTION_END");
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    @Override
+    public void onDialogCompleted(boolean answer, String type) {
+        if (answer) {
+            onSaveBataille();
+            if ("ACTION_END".equals(type)) {
+                bataille.setDateFin(new Date());
+                bataille.setFinished(1);
+                bataille.save();
+            }
+            finish();
+        }
     }
 
     @Override

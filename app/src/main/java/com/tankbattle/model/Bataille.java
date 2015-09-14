@@ -22,6 +22,9 @@ public class Bataille extends Model {
     @Column(name = "DateFin")
     private Date dateFin;
 
+    @Column(name = "Finished")
+    private int finished;
+
     @Column(name = "Equipe1")
     private Equipe equipe1;
 
@@ -80,5 +83,13 @@ public class Bataille extends Model {
 
     public void setEquipe2(Equipe equipe2) {
         this.equipe2 = equipe2;
+    }
+
+    public int isFinished() {
+        return finished;
+    }
+
+    public void setFinished(int finished) {
+        this.finished = finished;
     }
 }
