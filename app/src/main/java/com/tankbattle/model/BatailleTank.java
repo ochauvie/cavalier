@@ -20,6 +20,9 @@ public class BatailleTank extends Model{
     @Column(name = "PvRestant")
     private int pvRestant;
 
+    @Column(name = "PvRestant")
+    private int numEquipe;
+
     public BatailleTank() {
     }
 

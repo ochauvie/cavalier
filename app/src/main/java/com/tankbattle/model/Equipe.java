@@ -48,5 +48,16 @@ public class Equipe extends Model implements Serializable{
         return this.nom;
     }
 
+    public boolean isTankOfEquipe(Tank tank) {
+        if (tanks() !=null) {
+            for (EquipeTank equipeTank:tanks()) {
+                if (equipeTank.getTank().getId() == tank.getId()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 
 }

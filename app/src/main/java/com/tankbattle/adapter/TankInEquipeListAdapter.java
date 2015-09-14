@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.tankbattle.R;
 import com.tankbattle.listner.MyTouchListener;
-import com.tankbattle.listner.TankListener;
+import com.tankbattle.listner.TankInBatailleListener;
 import com.tankbattle.model.Tank;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class TankInEquipeListAdapter extends BaseAdapter {
     private Context mContext;
     private boolean butActivated;
     private LayoutInflater mInflater;
-    private List<TankListener> listeners = new ArrayList<TankListener>();
+    private List<TankInBatailleListener> listeners = new ArrayList<TankInBatailleListener>();
     private String origine;
 
     public TankInEquipeListAdapter(Context mContext, List<Tank> tankList, boolean butActivated, String origine) {
@@ -45,13 +45,19 @@ public class TankInEquipeListAdapter extends BaseAdapter {
     /**
      * Pour ajouter un listener sur notre adapter
      */
-    public void addListener(TankListener aListener) {
+    public void addListener(TankInBatailleListener aListener) {
         listeners.add(aListener);
     }
 
-    private void sendListenerToUpdate(Tank item, int position) {
+    private void sendListenerToAddPv(Tank item, int position) {
         for(int i = listeners.size()-1; i >= 0; i--) {
-            listeners.get(i).onClickTank(item, position);
+            listeners.get(i).onClickAddPv(item, position);
+        }
+    }
+
+    private void sendListenerToDeletePv(Tank item, int position) {
+        for(int i = listeners.size()-1; i >= 0; i--) {
+            listeners.get(i).onClickDeletePv(item, position);
         }
     }
 
@@ -108,19 +114,33 @@ public class TankInEquipeListAdapter extends BaseAdapter {
         tv_nom.setText(currentTank.getNom());
         tv_pv.setText(String.valueOf(currentTank.getPv()));
 
+
+        // TODO: si tank destroy, nouveau fond ?
+
         // On memorise la position  dans le composant textview
         TagTank tagTank = new TagTank(position, this.origine);
         layoutTank.setTag(tagTank);
 
-        layoutTank.setOnClickListener(new View.OnClickListener() {
+        butAdd.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 //Lorsque l'on clique sur le nom, on recupere la position de Site"
                 Integer position = (Integer) v.getTag();
-
                 //On previent les listeners qu'il y a eu un clic sur le tank.
-                sendListenerToUpdate(tankList.get(position), position);
+                sendListenerToAddPv(tankList.get(position), position);
+            }
+
+        });
+
+        butRemove.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //Lorsque l'on clique sur le nom, on recupere la position de Site"
+                Integer position = (Integer) v.getTag();
+                //On previent les listeners qu'il y a eu un clic sur le tank.
+                sendListenerToDeletePv(tankList.get(position), position);
             }
 
         });
