@@ -20,6 +20,15 @@ public class BatailleTank extends Model{
     @Column(name = "PvRestant")
     private int pvRestant;
 
+    public BatailleTank() {
+    }
+
+    public BatailleTank(Bataille bataille, Tank tank, int pvRestant) {
+        this.bataille = bataille;
+        this.tank = tank;
+        this.pvRestant = pvRestant;
+    }
+
     public void addPv(int pvToAdd) {
         this.pvRestant = this.pvRestant + pvToAdd;
     }
@@ -31,4 +40,27 @@ public class BatailleTank extends Model{
         return false;
     }
 
+    public Bataille getBataille() {
+        return bataille;
+    }
+
+    public void setBataille(Bataille bataille) {
+        this.bataille = bataille;
+    }
+
+    public int getPvRestant() {
+        return pvRestant;
+    }
+
+    public void setPvRestant(int pvRestant) {
+        this.pvRestant = pvRestant;
+    }
+
+    public Tank getTank() {
+        return tank;
+    }
+
+    public void setTank(Tank tank) {
+        this.tank = tank;
+    }
 }

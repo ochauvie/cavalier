@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <item android:id="@+id/action_create_bataille"
+        android:title="@string/action_save"
+        app:icon="@drawable/smallsave"
+        app:showAsAction="ifRoom" />
+
+    <item android:id="@+id/action_close_bataille"
+        android:title="@string/action_close"
+        app:icon="@drawable/smallclose"
+        app:showAsAction="ifRoom" />
+
+
+
+</menu>

@@ -22,9 +22,11 @@ public class Bataille extends Model {
     @Column(name = "DateFin")
     private Date dateFin;
 
-    private Equipe equipeVert;
+    @Column(name = "Equipe1")
+    private Equipe equipe1;
 
-    private Equipe equipeRouge;
+    @Column(name = "Equipe2")
+    private Equipe equipe2;
 
 
     // Liste des tanks de la bataille
@@ -64,4 +66,19 @@ public class Bataille extends Model {
         return false;
     }
 
+    public Equipe getEquipe1() {
+        return equipe1;
+    }
+
+    public void setEquipe1(Equipe equipe1) {
+        this.equipe1 = equipe1;
+    }
+
+    public Equipe getEquipe2() {
+        return equipe2;
+    }
+
+    public void setEquipe2(Equipe equipe2) {
+        this.equipe2 = equipe2;
+    }
 }

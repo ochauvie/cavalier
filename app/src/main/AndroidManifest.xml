@@ -48,6 +48,10 @@
             android:name=".activity.CreateBatailleActivity"
             android:label="@string/title_activity_create_bataille" >
         </activity>
+        <activity
+            android:name=".activity.BatailleActivity"
+            android:label="@string/title_activity_bataille" >
+        </activity>
 
 
 

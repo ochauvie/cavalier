@@ -40,6 +40,8 @@
     <string name="date_fin">Date de fin</string>
     <string name="start_bataille">Démarrer la bataille</string>
     <string name="return_bataille">Continuer la bataille</string>
+    <string name="action_end_bataille">Terminer la baraille</string>
+    <string name="bataille_save">La bataille est crée</string>
 
 
     <!-- Action -->
@@ -56,6 +58,7 @@
     <string name="title_activity_list_equipe">Equipes</string>
     <string name="title_activity_add_equipe">Equipe</string>
     <string name="title_activity_create_bataille">Bataille</string>
+    <string name="title_activity_bataille">Bataille</string>
 
 
     <!-- Mandatory -->

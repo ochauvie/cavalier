@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.activeandroid.ActiveAndroid;
 import com.tankbattle.R;
 import com.tankbattle.data.InitDataBase;
+import com.tankbattle.model.Bataille;
+import com.tankbattle.service.BatailleService;
 
 // DOC:
 // http://www.vogella.com/tutorials
@@ -21,7 +23,7 @@ import com.tankbattle.data.InitDataBase;
 //          http://developer.android.com/guide/topics/media/camera.html
 public class MainActivity extends Activity {
 
-    private Button but1, but2, but3, but4;
+    private Button but1, but2, but3, but4, but5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,22 @@ public class MainActivity extends Activity {
             }
         });
 
+        but5 = (Button) findViewById(R.id.button5);
+        but5.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivityForResult(new Intent(getApplicationContext(), BatailleActivity.class), 0);
+            }
+        });
+
+        // Si pas de bataille en cours, affichage de "Nouvelle bataille", sinon "Continuer la bataille"
+        Bataille currentBataille = BatailleService.getCurrentBataille();
+        if (currentBataille!=null) {
+            but4.setVisibility(View.GONE);
+            but5.setVisibility(View.VISIBLE);
+        } else {
+            but4.setVisibility(View.VISIBLE);
+            but5.setVisibility(View.GONE);
+        }
 
     }
 
@@ -90,3 +108,5 @@ public class MainActivity extends Activity {
         return false;
     }
 }
+
+
