@@ -42,6 +42,7 @@
     <string name="return_bataille">Continuer la bataille</string>
     <string name="action_end_bataille">Terminer la baraille</string>
     <string name="bataille_save">La bataille est crée</string>
+    <string name="no_current_bataille">Aucune bataille en cours. Il faut en créer une.</string>
 
 
     <!-- Action -->
