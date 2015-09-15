@@ -15,6 +15,7 @@ import com.tankbattle.R;
 import com.tankbattle.listner.MyTouchListener;
 import com.tankbattle.listner.TankInBatailleListener;
 import com.tankbattle.model.Tank;
+import com.tankbattle.model.TankVictoires;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,14 +35,16 @@ public class TankInEquipeListAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private List<TankInBatailleListener> listeners = new ArrayList<TankInBatailleListener>();
     private String origine;
+    private String nomBataille;
 
-    public TankInEquipeListAdapter(Context mContext, List<Tank> tankList, boolean butActivated, String origine, boolean dragDrop) {
+    public TankInEquipeListAdapter(Context mContext, List<Tank> tankList, boolean butActivated, String origine, boolean dragDrop, String nomBataille) {
         this.tankList = tankList;
         this.mContext = mContext;
         mInflater = LayoutInflater.from(mContext);
         this.butActivated = butActivated;
         this.origine = origine;
         this.dragDrop = dragDrop;
+        this.nomBataille = nomBataille;
     }
 
 
@@ -126,7 +129,16 @@ public class TankInEquipeListAdapter extends BaseAdapter {
         imageGenreFlag.setImageDrawable(mContext.getResources().getDrawable(currentTank.getGenre().getFlag()));
         tv_nom.setText(currentTank.getNom());
         tv_pv.setText(String.valueOf(currentTank.getPv()));
-        tv_victoire.setText(String.valueOf(currentTank.victoires().size()));
+
+        int vic = 0;
+        if (nomBataille!=null) {
+            for (TankVictoires victoire:currentTank.victoires()) {
+                if (nomBataille.equals(victoire.getNomBataille())) {
+                    vic++;
+                }
+            }
+        }
+        tv_victoire.setText(String.valueOf(vic));
 
 
         if (currentTank.isDestroyed()) {

@@ -15,9 +15,10 @@ public class TankVictoires extends Model{
     public TankVictoires() {
     }
 
-    public TankVictoires(Tank tankDetruit, Tank tankVictorieux) {
+    public TankVictoires(String nomBataille, Tank tankDetruit, Tank tankVictorieux) {
         this.tankDetruit = tankDetruit;
         this.tankVictorieux = tankVictorieux;
+        this.nomBataille = nomBataille;
     }
 
     @Column(name = "TankDetruit", onDelete= Column.ForeignKeyAction.CASCADE)
@@ -25,6 +26,9 @@ public class TankVictoires extends Model{
 
     @Column(name = "Tank", onDelete=Column.ForeignKeyAction.CASCADE)
     public Tank tankVictorieux;
+
+    @Column(name = "NomBataille")
+    public String nomBataille;
 
     public Tank getTankDetruit() {
         return tankDetruit;
@@ -40,5 +44,13 @@ public class TankVictoires extends Model{
 
     public void setTankVictorieux(Tank tankVictorieux) {
         this.tankVictorieux = tankVictorieux;
+    }
+
+    public String getNomBataille() {
+        return nomBataille;
+    }
+
+    public void setNomBataille(String nomBataille) {
+        this.nomBataille = nomBataille;
     }
 }

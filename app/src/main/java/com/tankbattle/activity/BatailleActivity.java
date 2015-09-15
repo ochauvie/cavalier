@@ -60,9 +60,9 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
 
         initView();
 
-        adapterEquipe1 = new TankInEquipeListAdapter(this, tanksEquipe1, true, null, false);
+        adapterEquipe1 = new TankInEquipeListAdapter(this, tanksEquipe1, true, null, false, bataille.getNom());
         adapterEquipe1.addListener(this);
-        adapterEquipe2 = new TankInEquipeListAdapter(this, tanksEquipe2, true, null, false);
+        adapterEquipe2 = new TankInEquipeListAdapter(this, tanksEquipe2, true, null, false, bataille.getNom());
         adapterEquipe2.addListener(this);
         listViewEquipe1.setAdapter(adapterEquipe1);
         listViewEquipe2.setAdapter(adapterEquipe2);
@@ -229,7 +229,7 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
             }
             else if ("VICTOIRE_OK".equals(type)) {
                 if (currentVictoire!=null && currentDestroy!=null) {
-                    TankVictoires tankVictoire = new TankVictoires(currentDestroy, currentVictoire);
+                    TankVictoires tankVictoire = new TankVictoires(bataille.getNom(), currentDestroy, currentVictoire);
                     tankVictoire.save();
                     adapterEquipe1.notifyDataSetChanged();
                     adapterEquipe2.notifyDataSetChanged();
@@ -273,11 +273,14 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
         builder.setInverseBackgroundForced(true);
         String result = "";
         for (TankVictoires victoire:item.victoires()) {
+            // On n'affiche que les victoires de la bataille en cours
+            if (victoire.getNomBataille().equals(bataille.getNom())) {
 //            result = result + victoire.getTankDetruit().getNation().getLabel() + "\t"
 //                    + victoire.getTankDetruit().getGenre().getLabel() + "\t"
 //                    + victoire.getTankDetruit().getNom()  +  "\n";
 
-            result = result + victoire.getTankDetruit().getNom()  +  "\n";
+                result = result + victoire.getTankDetruit().getNom() + "\n";
+            }
         }
         builder.setMessage(result);
         builder.setNegativeButton(R.string.fermer, new DialogInterface.OnClickListener() {
