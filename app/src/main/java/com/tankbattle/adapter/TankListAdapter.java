@@ -78,15 +78,7 @@ public class TankListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        RelativeLayout layoutItem;
-
-        // Reutilisation des layouts
-        if (convertView == null) {
-            //Initialisation de notre item a partir du  layout XML
-            layoutItem = (RelativeLayout) mInflater.inflate(R.layout.activity_list_tank_item, parent, false);
-        } else {
-            layoutItem = (RelativeLayout) convertView;
-        }
+        RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.activity_list_tank_item, parent, false);
 
         // Recuperation des TextView de notre layout
         RelativeLayout layoutTank = (RelativeLayout)layoutItem.findViewById(R.id.item_tank);

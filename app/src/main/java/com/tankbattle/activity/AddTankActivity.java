@@ -18,6 +18,7 @@ import com.tankbattle.model.Genre;
 import com.tankbattle.model.IRefData;
 import com.tankbattle.model.Nation;
 import com.tankbattle.model.Tank;
+import com.tankbattle.service.EquipeService;
 import com.tankbattle.tools.SpinnerTool;
 
 import java.util.ArrayList;
@@ -58,13 +59,25 @@ public class AddTankActivity extends Activity implements MyDialogInterface.Dialo
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem item = menu.findItem(R.id.action_delete_tank);
+        MenuItem itemD = menu.findItem(R.id.action_delete_tank);
+        MenuItem itemS = menu.findItem(R.id.action_add_tank);
         if (tank!=null) {
-            item.setEnabled(true);
-            item.getIcon().setAlpha(255);
+            if (EquipeService.isTankInEquipe(tank)) {
+                itemD.setEnabled(false);
+                itemD.getIcon().setAlpha(130);
+                itemS.setEnabled(false);
+                itemS.getIcon().setAlpha(130);
+            } else {
+                itemD.setEnabled(true);
+                itemD.getIcon().setAlpha(255);
+                itemS.setEnabled(true);
+                itemS.getIcon().setAlpha(255);
+            }
         } else {
-            item.setEnabled(false);
-            item.getIcon().setAlpha(130);
+            itemD.setEnabled(false);
+            itemD.getIcon().setAlpha(130);
+            itemS.setEnabled(true);
+            itemS.getIcon().setAlpha(255);
         }
         return true;
     }
