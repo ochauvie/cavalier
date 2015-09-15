@@ -54,7 +54,7 @@
     <string name="action_close">Annuler</string>
     <string name="action_delete">Supprimer</string>
     <string name="action_init_data">Initialiser les données</string>
-
+    <string name="action_close_bataille">Terminer la bataille</string>
 
     <string name="title_activity_list_tank">Hangar</string>
     <string name="title_activity_add_tank">Ajouter un tank</string>
@@ -62,7 +62,6 @@
     <string name="title_activity_add_equipe">Equipe</string>
     <string name="title_activity_create_bataille">Bataille</string>
     <string name="title_activity_bataille">Bataille</string>
-
 
     <!-- Mandatory -->
     <string name="nom_mandatory">Le nom est obligatoire</string>

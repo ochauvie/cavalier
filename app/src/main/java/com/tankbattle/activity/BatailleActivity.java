@@ -213,9 +213,10 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
         if (answer) {
             onSaveBataille();
             if ("ACTION_END".equals(type)) {
-                bataille.setDateFin(new Date());
-                bataille.setFinished(1);
-                bataille.save();
+                //bataille.setDateFin(new Date());
+                //bataille.setFinished(1);
+                //bataille.save();
+                bataille.delete();
             }
             finish();
         }
