@@ -17,10 +17,12 @@ import com.activeandroid.ActiveAndroid;
 import com.tankbattle.R;
 import com.tankbattle.adapter.TankInEquipeListAdapter;
 import com.tankbattle.listner.MyDragListener;
+import com.tankbattle.model.Bataille;
 import com.tankbattle.model.Equipe;
 import com.tankbattle.model.EquipeTank;
 import com.tankbattle.model.Nation;
 import com.tankbattle.model.Tank;
+import com.tankbattle.service.BatailleService;
 import com.tankbattle.service.EquipeService;
 import com.tankbattle.service.TankService;
 
@@ -73,13 +75,25 @@ public class AddEquipeActivity extends Activity implements MyDialogInterface.Dia
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem item = menu.findItem(R.id.action_delete_equipe);
+        MenuItem itemD = menu.findItem(R.id.action_delete_equipe);
+        MenuItem itemS = menu.findItem(R.id.action_add_equipe);
         if (equipe!=null) {
-            item.setEnabled(true);
-            item.getIcon().setAlpha(255);
+            if (BatailleService.isEquipeInBataille(equipe)) {
+                itemD.setEnabled(false);
+                itemD.getIcon().setAlpha(130);
+                itemS.setEnabled(false);
+                itemS.getIcon().setAlpha(130);
+            } else {
+                itemD.setEnabled(true);
+                itemD.getIcon().setAlpha(255);
+                itemS.setEnabled(true);
+                itemS.getIcon().setAlpha(255);
+            }
         } else {
-            item.setEnabled(false);
-            item.getIcon().setAlpha(130);
+            itemD.setEnabled(false);
+            itemD.getIcon().setAlpha(130);
+            itemS.setEnabled(true);
+            itemS.getIcon().setAlpha(255);
         }
         return true;
     }

@@ -40,7 +40,6 @@ public class ListEquipeActivity extends ListActivity implements EquipeListener {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_list_equipe, menu);
         return true;
     }
