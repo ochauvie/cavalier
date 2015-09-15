@@ -45,6 +45,7 @@
     <string name="current_bataille_save">La bataille est sauvegardée</string>
     <string name="current_bataille_end">La bataille est terminée</string>
     <string name="no_current_bataille">Aucune bataille en cours. Il faut en créer une.</string>
+    <string name="victoire_save">Victoire sauvegardée</string>
 
 
     <!-- Action -->

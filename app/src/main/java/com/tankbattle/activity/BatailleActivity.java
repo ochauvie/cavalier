@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.activeandroid.ActiveAndroid;
 import com.tankbattle.R;
 import com.tankbattle.adapter.TankInEquipeListAdapter;
+import com.tankbattle.adapter.TankListAdapter;
 import com.tankbattle.listner.TankInBatailleListener;
 import com.tankbattle.model.Bataille;
 import com.tankbattle.model.BatailleTank;
@@ -38,6 +39,8 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
     private List<Tank> tanksEquipe2 = new ArrayList<Tank>();
     private TankInEquipeListAdapter adapterEquipe1, adapterEquipe2;
     private MyDialogInterface myInterface;
+    private Tank currentVictoire = null;
+    private Tank currentDestroy = null;
 
 
     @Override
@@ -225,8 +228,11 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
                 finish();
             }
             else if ("VICTOIRE_OK".equals(type)) {
-                // TODO Enregistrement
-                //TankVictoires tankVictoire = new TankVictoires();
+                if (currentVictoire!=null && currentDestroy!=null) {
+                    TankVictoires tankVictoire = new TankVictoires(currentDestroy, currentVictoire);
+                    tankVictoire.save();
+                    Toast.makeText(getBaseContext(), getString(R.string.victoire_save), Toast.LENGTH_LONG).show();
+                }
             }
         }
     }
@@ -257,16 +263,42 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
     }
 
     private void selectVictoire(Tank tank) {
-        // Popup confirmation de victoire
+        currentDestroy = tank;
+        currentVictoire = null;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setIcon(R.drawable.victoire);
         builder.setTitle("Qui à détruit ce tank ?");
 
         // TODO
-        //builder.setMultiChoiceItems();
-        // cf http://www.java2s.com/Code/Android/UI/DialogMultipleChoice.htm
-        //http://stackoverflow.com/questions/8180674/show-spinner-in-alertdialog
+        final List<Tank> tankList;
+        if (bataille.getEquipe1().isTankOfEquipe(tank)) {
+            tankList = tanksEquipe2;
+        } else {
+            tankList = tanksEquipe1;
+        }
+
+        final String[] tks = new String[tankList.size()];
+        for (int i = 0; i < tankList.size(); i++) {
+            tks[i] = tankList.get(i).getNom();
+        }
+        builder.setSingleChoiceItems(tks, 0,
+                new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        // get selected item and close the dialog
+                        String tankNom = tks[which];
+                        for (Tank tk:tankList) {
+                            if (tk.getNom().equals(tankNom)) {
+                                currentVictoire = tk;
+                            }
+                        }
+
+                    }
+                });
+
 
         builder.setInverseBackgroundForced(true);
         builder.setPositiveButton(R.string.action_save, new DialogInterface.OnClickListener() {
