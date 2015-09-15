@@ -64,6 +64,13 @@ public class TankInEquipeListAdapter extends BaseAdapter {
         }
     }
 
+
+    private void sendListenerToVictoire(Tank item, int position) {
+        for(int i = listeners.size()-1; i >= 0; i--) {
+            listeners.get(i).onClickVictoire(item, position);
+        }
+    }
+
     @Override
     public int getCount() {
         if (tankList!=null) {
@@ -106,6 +113,8 @@ public class TankInEquipeListAdapter extends BaseAdapter {
         TextView tv_victoire = (TextView)layoutItem.findViewById(R.id.victoire);
         ImageButton butAdd = (ImageButton)layoutItem.findViewById(R.id.butAdd);
         ImageButton butRemove = (ImageButton)layoutItem.findViewById(R.id.butRemove);
+        ImageButton butVictoire = (ImageButton)layoutItem.findViewById(R.id.butVictoire);
+
 
             butAdd.setActivated(butActivated);
             butRemove.setActivated(butActivated);
@@ -131,6 +140,7 @@ public class TankInEquipeListAdapter extends BaseAdapter {
         layoutTank.setTag(tagTank);
         butAdd.setTag(position);
         butRemove.setTag(position);
+        butVictoire.setTag(position);
 
         butAdd.setOnClickListener(new View.OnClickListener() {
 
@@ -152,6 +162,16 @@ public class TankInEquipeListAdapter extends BaseAdapter {
                 Integer position = (Integer) v.getTag();
                 //On previent les listeners qu'il y a eu un clic sur le tank.
                 sendListenerToDeletePv(tankList.get(position), position);
+            }
+
+        });
+
+        butVictoire.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Integer position = (Integer) v.getTag();
+                sendListenerToVictoire(tankList.get(position), position);
             }
 
         });

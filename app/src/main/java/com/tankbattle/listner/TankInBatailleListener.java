@@ -10,4 +10,6 @@ public interface TankInBatailleListener {
     public void onClickAddPv(Tank item, int position);
 
     public void onClickDeletePv(Tank item, int position);
+
+    public void onClickVictoire(Tank item, int position);
 }

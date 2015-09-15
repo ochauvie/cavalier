@@ -5,6 +5,7 @@
 
     <string name="oui">Oui</string>
     <string name="non">Non</string>
+    <string name="fermer">Fermer</string>
 
     <!-- Nation -->
     <string name="nation_fr">Français</string>

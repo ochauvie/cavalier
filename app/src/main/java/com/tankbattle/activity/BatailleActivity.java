@@ -231,6 +231,8 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
                 if (currentVictoire!=null && currentDestroy!=null) {
                     TankVictoires tankVictoire = new TankVictoires(currentDestroy, currentVictoire);
                     tankVictoire.save();
+                    adapterEquipe1.notifyDataSetChanged();
+                    adapterEquipe2.notifyDataSetChanged();
                     Toast.makeText(getBaseContext(), getString(R.string.victoire_save), Toast.LENGTH_LONG).show();
                 }
             }
@@ -262,6 +264,32 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
         }
     }
 
+    @Override
+    public void onClickVictoire(Tank item, int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setIcon(R.drawable.victoire);
+        builder.setTitle("Victoires du tank " + item.getNom());
+        builder.setInverseBackgroundForced(true);
+        String result = "";
+        for (TankVictoires victoire:item.victoires()) {
+//            result = result + victoire.getTankDetruit().getNation().getLabel() + "\t"
+//                    + victoire.getTankDetruit().getGenre().getLabel() + "\t"
+//                    + victoire.getTankDetruit().getNom()  +  "\n";
+
+            result = result + victoire.getTankDetruit().getNom()  +  "\n";
+        }
+        builder.setMessage(result);
+        builder.setNegativeButton(R.string.fermer, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
     private void selectVictoire(Tank tank) {
         currentDestroy = tank;
         currentVictoire = null;
@@ -291,6 +319,7 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
                         for (Tank tk:tankList) {
                             if (tk.getNom().equals(tankNom)) {
                                 currentVictoire = tk;
+                                break;
                             }
                         }
                     }
