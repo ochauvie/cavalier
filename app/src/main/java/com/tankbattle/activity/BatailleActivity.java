@@ -17,6 +17,7 @@ import com.tankbattle.listner.TankInBatailleListener;
 import com.tankbattle.model.Bataille;
 import com.tankbattle.model.BatailleTank;
 import com.tankbattle.model.Tank;
+import com.tankbattle.model.TankVictoires;
 import com.tankbattle.service.BatailleService;
 
 import java.text.SimpleDateFormat;
@@ -211,20 +212,28 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
     @Override
     public void onDialogCompleted(boolean answer, String type) {
         if (answer) {
-            onSaveBataille();
-            if ("ACTION_END".equals(type)) {
+            if ("ACTION_PAUSE".equals(type)) {
+                onSaveBataille();
+                finish();
+            }
+            else if ("ACTION_END".equals(type)) {
+                onSaveBataille();
                 //bataille.setDateFin(new Date());
                 //bataille.setFinished(1);
                 //bataille.save();
                 bataille.delete();
+                finish();
             }
-            finish();
+            else if ("VICTOIRE_OK".equals(type)) {
+                // TODO Enregistrement
+                //TankVictoires tankVictoire = new TankVictoires();
+            }
         }
     }
 
     @Override
     public void onClickAddPv(Tank item, int position) {
-        item.setPv(item.getPv()+1);
+        item.setPv(item.getPv() + 1);
         if (bataille.getEquipe1().isTankOfEquipe(item)) {
             adapterEquipe1.notifyDataSetChanged();
         } else {
@@ -234,12 +243,48 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
 
     @Override
     public void onClickDeletePv(Tank item, int position) {
-        item.setPv(item.getPv()-1);
-        if (bataille.getEquipe1().isTankOfEquipe(item)) {
-            adapterEquipe1.notifyDataSetChanged();
-        } else {
-            adapterEquipe2.notifyDataSetChanged();
+        if (item.getPv()>0) {
+            item.setPv(item.getPv() - 1);
+            if (item.isDestroyed()) {
+                selectVictoire(item);
+            }
+            if (bataille.getEquipe1().isTankOfEquipe(item)) {
+                adapterEquipe1.notifyDataSetChanged();
+            } else {
+                adapterEquipe2.notifyDataSetChanged();
+            }
         }
+    }
+
+    private void selectVictoire(Tank tank) {
+        // Popup confirmation de victoire
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setIcon(R.drawable.victoire);
+        builder.setTitle("Qui à détruit ce tank ?");
+
+        // TODO
+        //builder.setMultiChoiceItems();
+        // cf http://www.java2s.com/Code/Android/UI/DialogMultipleChoice.htm
+        //http://stackoverflow.com/questions/8180674/show-spinner-in-alertdialog
+
+        builder.setInverseBackgroundForced(true);
+        builder.setPositiveButton(R.string.action_save, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                myInterface.getListener().onDialogCompleted(true, "VICTOIRE_OK");
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton(R.string.action_close, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                myInterface.getListener().onDialogCompleted(false, "VICTOIRE_PERSONNE");
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
 

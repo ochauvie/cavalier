@@ -4,6 +4,7 @@ import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 import com.tankbattle.model.Nation;
 import com.tankbattle.model.Tank;
+import com.tankbattle.model.TankVictoires;
 
 import java.util.List;
 
@@ -38,6 +39,11 @@ public class TankService {
     public static void deleteAllTanks() {
         new Delete().from(Tank.class)
                     .execute();
+    }
+
+    public static void deleteAllTankVictoires() {
+        new Delete().from(TankVictoires.class)
+                .execute();
     }
 
 }

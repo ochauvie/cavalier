@@ -9,13 +9,13 @@ import com.activeandroid.annotation.Table;
  * Created by olivier on 09/09/15.
  */
 
-@Table(name = "TankVicoires")
-public class TankVicoires extends Model{
+@Table(name = "TankVictoires")
+public class TankVictoires extends Model{
 
-    public TankVicoires() {
+    public TankVictoires() {
     }
 
-    public TankVicoires(Tank tank, Tank victoire) {
+    public TankVictoires(Tank tank, Tank victoire) {
         this.tank = tank;
         this.victoire = victoire;
     }

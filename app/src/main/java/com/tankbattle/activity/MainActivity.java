@@ -146,6 +146,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         if (answer) {
             InitDataBase.initBataille();
             InitDataBase.initEquipe();
+            InitDataBase.initTankVioctoires();
             InitDataBase.initTankList(getApplicationContext());
             setButton();
             Toast.makeText(getBaseContext(), getString(R.string.db_initialized), Toast.LENGTH_LONG).show();
