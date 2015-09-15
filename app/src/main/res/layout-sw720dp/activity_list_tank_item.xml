@@ -37,8 +37,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:textSize="40sp"
-        android:layout_marginLeft="580dp">
+        android:textSize="20sp"
+        android:layout_marginLeft="500dp">
     </TextView>
 
     <ImageView
