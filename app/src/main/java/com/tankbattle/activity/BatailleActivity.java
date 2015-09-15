@@ -19,9 +19,11 @@ import com.tankbattle.model.BatailleTank;
 import com.tankbattle.model.Tank;
 import com.tankbattle.service.BatailleService;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by olivier on 14/09/15.
@@ -68,9 +70,9 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
             textViewNom.setText(bataille.getNom());
             viewTextEquipe1.setText(bataille.getEquipe1().getNom());
             viewTextEquipe2.setText(bataille.getEquipe2().getNom());
-            // TODO formatage
-            //textViewDate.setText(bataille.getDateCreation().toString());
-            textViewDate.setText("");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
+            String sDateCrea = sdf.format(bataille.getDateCreation());
+            textViewDate.setText(sDateCrea);
 
             List<BatailleTank> batailleTanks = bataille.tanks();
             for (BatailleTank batailleTank:batailleTanks) {
@@ -86,6 +88,20 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
             Toast.makeText(getBaseContext(), getString(R.string.no_current_bataille), Toast.LENGTH_LONG).show();
             finish();
         }
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem itemS = menu.findItem(R.id.action_save_bataille);
+        MenuItem itemE = menu.findItem(R.id.action_exit_bataille);
+        MenuItem itemC = menu.findItem(R.id.action_close_bataille);
+        itemS.setEnabled(true);
+        itemS.getIcon().setAlpha(255);
+        itemE.setEnabled(true);
+        itemE.getIcon().setAlpha(255);
+        itemC.setEnabled(true);
+        itemC.getIcon().setAlpha(255);
+        return true;
     }
 
     @Override
