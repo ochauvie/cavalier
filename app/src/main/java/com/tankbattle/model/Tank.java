@@ -94,6 +94,12 @@ public class Tank extends Model implements Serializable {
         return getMany(Equipe.class, "EquipeTank");
     }
 
+    // Liste des tanks détruits
+    public List<TankVictoires> victoires() {
+        return getMany(TankVictoires.class, "Tank");
+    }
+
+
     @Override
     public String toString() {
         return this.nom;

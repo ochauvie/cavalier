@@ -15,30 +15,30 @@ public class TankVictoires extends Model{
     public TankVictoires() {
     }
 
-    public TankVictoires(Tank tank, Tank victoire) {
-        this.tank = tank;
-        this.victoire = victoire;
+    public TankVictoires(Tank tankDetruit, Tank tankVictorieux) {
+        this.tankDetruit = tankDetruit;
+        this.tankVictorieux = tankVictorieux;
     }
 
-    @Column(name = "Tank", onDelete= Column.ForeignKeyAction.CASCADE)
-    public Tank tank;
+    @Column(name = "TankDetruit", onDelete= Column.ForeignKeyAction.CASCADE)
+    public Tank tankDetruit;
 
-    @Column(name = "Victoire", onDelete=Column.ForeignKeyAction.CASCADE)
-    public Tank victoire;
+    @Column(name = "Tank", onDelete=Column.ForeignKeyAction.CASCADE)
+    public Tank tankVictorieux;
 
-    public Tank getTank() {
-        return tank;
+    public Tank getTankDetruit() {
+        return tankDetruit;
     }
 
-    public void setTank(Tank tank) {
-        this.tank = tank;
+    public void setTankDetruit(Tank tankDetruit) {
+        this.tankDetruit = tankDetruit;
     }
 
-    public Tank getVictoire() {
-        return victoire;
+    public Tank getTankVictorieux() {
+        return tankVictorieux;
     }
 
-    public void setVictoire(Tank victoire) {
-        this.victoire = victoire;
+    public void setTankVictorieux(Tank tankVictorieux) {
+        this.tankVictorieux = tankVictorieux;
     }
 }

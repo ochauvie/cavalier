@@ -103,6 +103,7 @@ public class TankInEquipeListAdapter extends BaseAdapter {
         ImageView imageGenreFlag = (ImageView)layoutItem.findViewById(R.id.imageGenreFlag);
         TextView tv_nom = (TextView)layoutItem.findViewById(R.id.nom);
         TextView tv_pv = (TextView)layoutItem.findViewById(R.id.pv);
+        TextView tv_victoire = (TextView)layoutItem.findViewById(R.id.victoire);
         ImageButton butAdd = (ImageButton)layoutItem.findViewById(R.id.butAdd);
         ImageButton butRemove = (ImageButton)layoutItem.findViewById(R.id.butRemove);
 
@@ -116,6 +117,7 @@ public class TankInEquipeListAdapter extends BaseAdapter {
         imageGenreFlag.setImageDrawable(mContext.getResources().getDrawable(currentTank.getGenre().getFlag()));
         tv_nom.setText(currentTank.getNom());
         tv_pv.setText(String.valueOf(currentTank.getPv()));
+        tv_victoire.setText(String.valueOf(currentTank.victoires().size()));
 
 
         if (currentTank.isDestroyed()) {

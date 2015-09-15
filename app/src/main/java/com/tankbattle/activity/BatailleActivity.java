@@ -268,9 +268,8 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setIcon(R.drawable.victoire);
-        builder.setTitle("Qui à détruit ce tank ?");
+        builder.setTitle("Qui à détruit le tank " + tank.getNom() + " ?");
 
-        // TODO
         final List<Tank> tankList;
         if (bataille.getEquipe1().isTankOfEquipe(tank)) {
             tankList = tanksEquipe2;
@@ -282,20 +281,18 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
         for (int i = 0; i < tankList.size(); i++) {
             tks[i] = tankList.get(i).getNom();
         }
-        builder.setSingleChoiceItems(tks, 0,
+        builder.setSingleChoiceItems(tks, -1,
                 new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog,
                                         int which) {
-                        // get selected item and close the dialog
                         String tankNom = tks[which];
                         for (Tank tk:tankList) {
                             if (tk.getNom().equals(tankNom)) {
                                 currentVictoire = tk;
                             }
                         }
-
                     }
                 });
 

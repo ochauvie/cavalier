@@ -99,7 +99,7 @@ public class TankListAdapter extends BaseAdapter {
         imageGenreFlag.setImageDrawable(mContext.getResources().getDrawable(currentTank.getGenre().getFlag()));
         //tv_genre.setText(currentTank.getGenre().getLabel());
         tv_nom.setText(currentTank.getNom());
-        tv_pv.setText(String.valueOf(currentTank.getPv()));
+        tv_pv.setText(String.valueOf(currentTank.getPv()) + " PV et "+ currentTank.victoires().size() + " victoire(s)");
 
         // Image du tank
         if (currentTank.getImage() != null) {
