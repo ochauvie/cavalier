@@ -51,7 +51,7 @@ public class Equipe extends Model implements Serializable{
     public boolean isTankOfEquipe(Tank tank) {
         if (tanks() !=null) {
             for (EquipeTank equipeTank:tanks()) {
-                if (equipeTank.getTank().getId() == tank.getId()) {
+                if (equipeTank.getTank().getId().equals(tank.getId())) {
                     return true;
                 }
             }

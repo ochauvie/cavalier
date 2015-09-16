@@ -2,7 +2,6 @@ package com.tankbattle.data;
 
 import android.content.Context;
 import android.content.ContextWrapper;
-import android.os.Environment;
 
 import com.tankbattle.model.Genre;
 import com.tankbattle.model.Nation;
