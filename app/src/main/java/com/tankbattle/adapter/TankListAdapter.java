@@ -73,8 +73,6 @@ public class TankListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.activity_list_tank_item, parent, false);
-
-        // Recuperation des TextView de notre layout
         RelativeLayout layoutTank = (RelativeLayout)layoutItem.findViewById(R.id.item_tank);
         ImageView imageNationFlag = (ImageView)layoutItem.findViewById(R.id.imageNationFlag);
         ImageView imageGenreFlag = (ImageView)layoutItem.findViewById(R.id.imageGenreFlag);
@@ -83,7 +81,7 @@ public class TankListAdapter extends BaseAdapter {
         ImageView imageTank = (ImageView)layoutItem.findViewById(R.id.imageTank);
 
 
-        //(3) : Renseignement des valeurs
+        // Renseignement des valeurs
         Tank currentTank = tankList.get(position);
 
         imageNationFlag.setImageDrawable(mContext.getResources().getDrawable(currentTank.getNation().getFlag()));

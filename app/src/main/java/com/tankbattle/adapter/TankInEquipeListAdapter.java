@@ -67,7 +67,6 @@ public class TankInEquipeListAdapter extends BaseAdapter {
         }
     }
 
-
     private void sendListenerToVictoire(Tank item, int position) {
         for(int i = listeners.size()-1; i >= 0; i--) {
             listeners.get(i).onClickVictoire(item, position);
@@ -107,7 +106,6 @@ public class TankInEquipeListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.activity_battle_tank_item, parent, false);
 
-        // Recuperation des TextView de notre layout
         RelativeLayout layoutTank = (RelativeLayout)layoutItem.findViewById(R.id.item_tank);
         ImageView imageNationFlag = (ImageView)layoutItem.findViewById(R.id.imageNationFlag);
         ImageView imageGenreFlag = (ImageView)layoutItem.findViewById(R.id.imageGenreFlag);
@@ -118,11 +116,10 @@ public class TankInEquipeListAdapter extends BaseAdapter {
         ImageButton butRemove = (ImageButton)layoutItem.findViewById(R.id.butRemove);
         ImageButton butVictoire = (ImageButton)layoutItem.findViewById(R.id.butVictoire);
 
-
             butAdd.setActivated(butActivated);
             butRemove.setActivated(butActivated);
 
-        //(3) : Renseignement des valeurs
+        // Renseignement des valeurs
         Tank currentTank = tankList.get(position);
 
         imageNationFlag.setImageDrawable(mContext.getResources().getDrawable(currentTank.getNation().getFlag()));
@@ -190,7 +187,6 @@ public class TankInEquipeListAdapter extends BaseAdapter {
         if (dragDrop) {
             layoutTank.setOnTouchListener(new MyTouchListener());
         }
-
 
         return layoutItem;
     }

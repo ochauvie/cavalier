@@ -71,28 +71,17 @@ public class EquipeListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        RelativeLayout layoutItem;
+        RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.activity_list_equipe_item, parent, false);
 
-        // Reutilisation des layouts
-        if (convertView == null) {
-            //Initialisation de notre item a partir du  layout XML
-            layoutItem = (RelativeLayout) mInflater.inflate(R.layout.activity_list_equipe_item, parent, false);
-        } else {
-            layoutItem = (RelativeLayout) convertView;
-        }
-
-        // Recuperation des TextView de notre layout
         RelativeLayout layout = (RelativeLayout)layoutItem.findViewById(R.id.item_equipe);
         TextView tv_nomEquipe = (TextView)layoutItem.findViewById(R.id.nomEquipe);
         TextView tv_nbTank = (TextView)layoutItem.findViewById(R.id.nbTank);
 
-
-        //(3) : Renseignement des valeurs
+        // Renseignement des valeurs
         Equipe currentEquipe = equipeList.get(position);
 
         tv_nomEquipe.setText(currentEquipe.getNom());
         tv_nbTank.setText(String.valueOf( currentEquipe.tanks()!=null?currentEquipe.tanks().size():0));
-
 
         // On memorise la position  dans le composant textview
         layout.setTag(position);
@@ -100,13 +89,9 @@ public class EquipeListAdapter extends BaseAdapter {
 
             @Override
             public void onClick(View v) {
-                //Lorsque l'on clique sur le nom, on recupere la position
                 Integer position = (Integer) v.getTag();
-
-                //On previent les listeners qu'il y a eu un clic sur le tank.
                 sendListenerToUpdate(equipeList.get(position), position);
             }
-
         });
 
         return layoutItem;

@@ -63,12 +63,9 @@ public class VictoireListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.activity_list_victoire_item, parent, false);
-
-        // Recuperation des TextView de notre layout
         TextView tv_nomBataille = (TextView)layoutItem.findViewById(R.id.nomBataille);
         TextView tv_tank = (TextView)layoutItem.findViewById(R.id.tank);
 
-        //(3) : Renseignement des valeurs
         TankVictoires victoire = victoires.get(position);
 
         tv_nomBataille.setText(victoire.getNomBataille());
