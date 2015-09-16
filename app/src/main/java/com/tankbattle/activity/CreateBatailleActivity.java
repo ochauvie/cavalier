@@ -127,7 +127,5 @@ public class CreateBatailleActivity extends Activity {
         return true;
     }
 
-
-
 }
 

@@ -17,11 +17,6 @@ import com.tankbattle.data.InitDataBase;
 import com.tankbattle.model.Bataille;
 import com.tankbattle.service.BatailleService;
 
-// DOC:
-// http://www.vogella.com/tutorials
-// PHOTO: http://blog.ace-dev.fr/2011/07/14/tutoriel-android-partie-13-lappareil-photo/
-// SCREEN: http://developer.android.com/guide/practices/screens_support.html
-//          http://developer.android.com/guide/topics/media/camera.html
 public class MainActivity extends Activity implements MyDialogInterface.DialogReturn {
 
     private Button but1, but2, but3, but4, but5;
@@ -39,6 +34,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         myInterface = new MyDialogInterface();
         myInterface.setListener(this);
 
+        // Base de données
         but1 = (Button) findViewById(R.id.button1);
         but1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -47,6 +43,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
             }
         });
 
+        // Hangar
         but2 = (Button) findViewById(R.id.button2);
         but2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -54,6 +51,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
             }
         });
 
+        // Equipes
         but3 = (Button) findViewById(R.id.button3);
         but3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -61,6 +59,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
             }
         });
 
+        // Créer bataille
         but4 = (Button) findViewById(R.id.button4);
         but4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -68,6 +67,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
             }
         });
 
+        // Retour bataille
         but5 = (Button) findViewById(R.id.button5);
         but5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -119,7 +119,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
     private boolean onInitDb() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
-        builder.setIcon(R.drawable.delete);
+        builder.setIcon(R.drawable.smallsave);
         builder.setTitle("Voulez vous vraiement initialiser la base de données (les équipes et les parties seront perdues)");
         builder.setInverseBackgroundForced(true);
         builder.setPositiveButton(R.string.oui, new DialogInterface.OnClickListener() {
@@ -146,7 +146,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         if (answer) {
             InitDataBase.initBataille();
             InitDataBase.initEquipe();
-            InitDataBase.initTankVioctoires();
+            InitDataBase.initTankVictoires();
             InitDataBase.initTankList(getApplicationContext());
             setButton();
             Toast.makeText(getBaseContext(), getString(R.string.db_initialized), Toast.LENGTH_LONG).show();

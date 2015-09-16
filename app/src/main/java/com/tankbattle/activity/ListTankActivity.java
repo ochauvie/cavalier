@@ -36,8 +36,6 @@ public class ListTankActivity extends ListActivity implements TankListener{
         //Initialisation de la liste avec les donnees
         setListAdapter(tankListAdapter);
 
-
-
     }
 
     @Override

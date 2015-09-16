@@ -91,7 +91,7 @@ public class InitDataBase {
         BatailleService.deleteAllBatailles();
     }
 
-    public static void initTankVioctoires() {
+    public static void initTankVictoires() {
         TankService.deleteAllTankVictoires();
     }
 
