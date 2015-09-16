@@ -8,9 +8,12 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tankbattle.R;
@@ -24,6 +27,7 @@ import com.tankbattle.model.TankVictoires;
 import com.tankbattle.service.EquipeService;
 import com.tankbattle.service.TankService;
 import com.tankbattle.tools.SpinnerTool;
+import com.tankbattle.tools.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +36,7 @@ public class AddTankActivity extends ListActivity implements MyDialogInterface.D
 
     private Spinner spinnerNation, spinnerGenre;
     private EditText editTextNom, editTextPv;
+    private TextView textVictoire;
     private Tank tank = null;
     private MyDialogInterface myInterface;
     private ListView listView;
@@ -51,6 +56,7 @@ public class AddTankActivity extends ListActivity implements MyDialogInterface.D
 
         editTextNom = (EditText)  findViewById(R.id.editTextNom);
         editTextPv = (EditText)  findViewById(R.id.editTextPv);
+        textVictoire = (TextView) findViewById(R.id.textVictoire);
 
         myInterface = new MyDialogInterface();
         myInterface.setListener(this);
@@ -59,13 +65,17 @@ public class AddTankActivity extends ListActivity implements MyDialogInterface.D
 
         initView();
 
-        // Creation et initialisation de l'Adapter
-        victoireListAdapter = new VictoireListAdapter(this, victoiresAndDefaites, tank.getId());
+        if (victoiresAndDefaites.size()>0) {
+            textVictoire.setVisibility(View.VISIBLE);
+        } else {
+            textVictoire.setVisibility(View.GONE);
+        }
 
-
-        //Initialisation de la liste avec les donnees
+        victoireListAdapter = new VictoireListAdapter(this, victoiresAndDefaites, (tank!=null)?tank.getId():-1);
         setListAdapter(victoireListAdapter);
 
+        // Hide keyboard
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     @Override
@@ -80,21 +90,15 @@ public class AddTankActivity extends ListActivity implements MyDialogInterface.D
         MenuItem itemS = menu.findItem(R.id.action_add_tank);
         if (tank!=null) {
             if (EquipeService.isTankInEquipe(tank)) {
-                itemD.setEnabled(false);
-                itemD.getIcon().setAlpha(130);
-                itemS.setEnabled(false);
-                itemS.getIcon().setAlpha(130);
+                Utils.disableItem(itemD);
+                Utils.disableItem(itemS);
             } else {
-                itemD.setEnabled(true);
-                itemD.getIcon().setAlpha(255);
-                itemS.setEnabled(true);
-                itemS.getIcon().setAlpha(255);
+                Utils.enableItem(itemD);
+                Utils.enableItem(itemS);
             }
         } else {
-            itemD.setEnabled(false);
-            itemD.getIcon().setAlpha(130);
-            itemS.setEnabled(true);
-            itemS.getIcon().setAlpha(255);
+            Utils.disableItem(itemD);
+            Utils.enableItem(itemS);
         }
         return true;
     }

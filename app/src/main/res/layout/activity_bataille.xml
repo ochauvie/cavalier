@@ -9,6 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nom"
+        android:textStyle="bold"
+        android:textColor="@android:color/holo_orange_dark"
         android:textSize="20sp"
         android:id="@+id/textViewNom"/>
 
@@ -41,8 +43,11 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/viewTextEquipe1"
                 android:text="@string/equipe1"
+                android:textColor="@android:color/holo_orange_dark"
+                android:textStyle="bold"
                 android:textSize="20sp"
-                android:layout_column="0" />
+                android:layout_column="0"
+                android:layout_gravity="center_horizontal" />
 
             <Space
                 android:layout_width="5dp"
@@ -53,9 +58,12 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="@string/equipe2"
+                android:textColor="@android:color/holo_orange_dark"
+                android:textStyle="bold"
                 android:textSize="20sp"
                 android:id="@+id/viewTextEquipe2"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_gravity="center_horizontal" />
         </TableRow>
 
         <TableRow
@@ -67,10 +75,9 @@
                 android:layout_height="350dp"
                 android:id="@+id/listViewEquipe1"
                 android:layout_column="0"
-                android:padding="1dp"
+                android:padding="1px"
                 android:background="@android:color/darker_gray"
-                android:scrollbars="vertical"
-                android:scrollbarAlwaysDrawVerticalTrack="true"/>
+                android:scrollbars="vertical"/>
 
             <Space
                 android:layout_width="5dp"
@@ -82,11 +89,9 @@
                 android:layout_height="350dp"
                 android:id="@+id/listViewEquipe2"
                 android:layout_column="1"
-                android:padding="1dp"
+                android:padding="1px"
                 android:background="@android:color/darker_gray"
-                android:scrollbars="vertical"
-                android:scrollbarAlwaysDrawVerticalTrack="true"
-                />
+                android:scrollbars="vertical"/>
         </TableRow>
     </TableLayout>
 

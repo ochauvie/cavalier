@@ -140,11 +140,12 @@ public class TankInEquipeListAdapter extends BaseAdapter {
         }
         tv_victoire.setText(String.valueOf(vic));
 
-
         if (currentTank.isDestroyed()) {
             tv_nom.setTextColor(Color.RED);
+            tv_pv.setTextColor(Color.RED);
         } else {
             tv_nom.setTextColor(Color.GREEN);
+            tv_pv.setTextColor(Color.GREEN);
         }
 
         // On memorise la position  dans le composant textview
@@ -158,9 +159,7 @@ public class TankInEquipeListAdapter extends BaseAdapter {
 
             @Override
             public void onClick(View v) {
-                //Lorsque l'on clique sur le nom, on recupere la position de Site"
                 Integer position = (Integer) v.getTag();
-                //On previent les listeners qu'il y a eu un clic sur le tank.
                 sendListenerToAddPv(tankList.get(position), position);
             }
 
@@ -170,9 +169,7 @@ public class TankInEquipeListAdapter extends BaseAdapter {
 
             @Override
             public void onClick(View v) {
-                //Lorsque l'on clique sur le nom, on recupere la position de Site"
                 Integer position = (Integer) v.getTag();
-                //On previent les listeners qu'il y a eu un clic sur le tank.
                 sendListenerToDeletePv(tankList.get(position), position);
             }
 

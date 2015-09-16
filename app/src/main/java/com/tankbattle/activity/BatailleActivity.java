@@ -66,6 +66,8 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
         adapterEquipe2.addListener(this);
         listViewEquipe1.setAdapter(adapterEquipe1);
         listViewEquipe2.setAdapter(adapterEquipe2);
+        listViewEquipe1.setScrollbarFadingEnabled(false);
+        listViewEquipe2.setScrollbarFadingEnabled(false);
     }
 
     private void initView() {

@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:id="@+id/layout_filter">
 
-
     <TextView
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
@@ -42,11 +41,14 @@
                 android:id="@+id/viewText"
                 android:text="@string/tank_equipe"
                 android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_orange_dark"
                 android:layout_column="0"
-                android:autoText="false" />
+                android:autoText="false"
+                android:layout_gravity="center_horizontal" />
 
             <Space
-                android:layout_width="5dp"
+                android:layout_width="2dp"
                 android:layout_height="wrap_content"
                 android:layout_column="2" />
 
@@ -55,8 +57,11 @@
                 android:layout_height="wrap_content"
                 android:text="@string/title_activity_list_tank"
                 android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_orange_dark"
                 android:id="@+id/viewText1"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_gravity="center_horizontal" />
         </TableRow>
 
         <TableRow
@@ -74,7 +79,7 @@
                 android:scrollbarAlwaysDrawVerticalTrack="true"/>
 
             <Space
-                android:layout_width="5dp"
+                android:layout_width="2dp"
                 android:layout_height="wrap_content"
                 android:layout_column="2" />
 
@@ -90,8 +95,5 @@
                 />
         </TableRow>
     </TableLayout>
-
-
-
 
 </RelativeLayout>

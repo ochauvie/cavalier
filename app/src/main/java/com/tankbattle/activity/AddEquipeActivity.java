@@ -25,6 +25,7 @@ import com.tankbattle.model.Tank;
 import com.tankbattle.service.BatailleService;
 import com.tankbattle.service.EquipeService;
 import com.tankbattle.service.TankService;
+import com.tankbattle.tools.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +51,9 @@ public class AddEquipeActivity extends Activity implements MyDialogInterface.Dia
 
         editTextNom = (EditText)  findViewById(R.id.editTextNom);
         listViewEquipe = (ListView) findViewById(R.id.listViewEquipe);
+        listViewEquipe.setScrollbarFadingEnabled(false);
         listViewHangar = (ListView) findViewById(R.id.listViewHangar);
+        listViewHangar.setScrollbarFadingEnabled(false);
 
         initView();
 
@@ -79,21 +82,15 @@ public class AddEquipeActivity extends Activity implements MyDialogInterface.Dia
         MenuItem itemS = menu.findItem(R.id.action_add_equipe);
         if (equipe!=null) {
             if (BatailleService.isEquipeInBataille(equipe)) {
-                itemD.setEnabled(false);
-                itemD.getIcon().setAlpha(130);
-                itemS.setEnabled(false);
-                itemS.getIcon().setAlpha(130);
+                Utils.disableItem(itemD);
+                Utils.disableItem(itemS);
             } else {
-                itemD.setEnabled(true);
-                itemD.getIcon().setAlpha(255);
-                itemS.setEnabled(true);
-                itemS.getIcon().setAlpha(255);
+                Utils.enableItem(itemD);
+                Utils.enableItem(itemS);
             }
         } else {
-            itemD.setEnabled(false);
-            itemD.getIcon().setAlpha(130);
-            itemS.setEnabled(true);
-            itemS.getIcon().setAlpha(255);
+            Utils.disableItem(itemD);
+            Utils.enableItem(itemS);
         }
         return true;
     }
@@ -218,3 +215,4 @@ public class AddEquipeActivity extends Activity implements MyDialogInterface.Dia
         }
     }
 }
+
