@@ -30,6 +30,7 @@
     <string name="nom">Nom</string>
     <string name="pv">Pv</string>
     <string name="victoire">Victoire</string>
+    <string name="victoires">Victoires et défaites:</string>
     <string name="nb_tank">Nombres de tanks</string>
 
     <!-- Fiche Equipe -->
@@ -40,6 +41,7 @@
     <string name="equipe2">Equipe 2</string>
     <string name="date_creation">Date de début</string>
     <string name="date_fin">Date de fin</string>
+    <string name="bataille">Bataille</string>
     <string name="start_bataille">Démarrer la bataille</string>
     <string name="return_bataille">Continuer la bataille</string>
     <string name="action_end_bataille">Terminer la baraille</string>

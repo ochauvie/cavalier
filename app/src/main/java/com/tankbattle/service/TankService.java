@@ -46,4 +46,12 @@ public class TankService {
                 .execute();
     }
 
+    public static List<TankVictoires> findDefaites(Tank tank) {
+        return new Select()
+                .from(TankVictoires.class)
+                .where("TankDetruit = ?", tank.getId())
+                .orderBy("NomBataille ASC")
+                .execute();
+    }
+
 }

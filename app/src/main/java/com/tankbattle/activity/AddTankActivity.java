@@ -1,7 +1,7 @@
 package com.tankbattle.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,26 +9,34 @@ import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.tankbattle.R;
 import com.tankbattle.adapter.IDataSpinnerAdapter;
+import com.tankbattle.adapter.VictoireListAdapter;
 import com.tankbattle.model.Genre;
 import com.tankbattle.model.IRefData;
 import com.tankbattle.model.Nation;
 import com.tankbattle.model.Tank;
+import com.tankbattle.model.TankVictoires;
 import com.tankbattle.service.EquipeService;
+import com.tankbattle.service.TankService;
 import com.tankbattle.tools.SpinnerTool;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class AddTankActivity extends Activity implements MyDialogInterface.DialogReturn {
+public class AddTankActivity extends ListActivity implements MyDialogInterface.DialogReturn {
 
     private Spinner spinnerNation, spinnerGenre;
     private EditText editTextNom, editTextPv;
     private Tank tank = null;
     private MyDialogInterface myInterface;
+    private ListView listView;
+    private VictoireListAdapter victoireListAdapter;
+    private List<TankVictoires> victoiresAndDefaites = new ArrayList<TankVictoires>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +55,16 @@ public class AddTankActivity extends Activity implements MyDialogInterface.Dialo
         myInterface = new MyDialogInterface();
         myInterface.setListener(this);
 
+        listView = getListView();
+
         initView();
+
+        // Creation et initialisation de l'Adapter
+        victoireListAdapter = new VictoireListAdapter(this, victoiresAndDefaites, tank.getId());
+
+
+        //Initialisation de la liste avec les donnees
+        setListAdapter(victoireListAdapter);
 
     }
 
@@ -133,6 +150,8 @@ public class AddTankActivity extends Activity implements MyDialogInterface.Dialo
                 SpinnerTool.SelectSpinnerItemByValue(spinnerNation, tank.getNation().name());
                 SpinnerTool.SelectSpinnerItemByValue(spinnerGenre, tank.getGenre().name());
             }
+            victoiresAndDefaites = tank.victoires();
+            victoiresAndDefaites.addAll(TankService.findDefaites(tank));
         }
     }
 

@@ -113,5 +113,30 @@
 
     </TableLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tableLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"
+        android:layout_alignRight="@+id/tableLayout">
 
+        <TextView
+            android:layout_marginTop="10px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/victoires"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:id="@+id/textVictoire"
+            android:layout_column="0" />
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/textVictoire"
+            android:layout_alignParentLeft="true">
+        </ListView>
+
+    </RelativeLayout>
 </RelativeLayout>

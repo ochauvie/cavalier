@@ -83,9 +83,7 @@ public class TankListAdapter extends BaseAdapter {
         // Recuperation des TextView de notre layout
         RelativeLayout layoutTank = (RelativeLayout)layoutItem.findViewById(R.id.item_tank);
         ImageView imageNationFlag = (ImageView)layoutItem.findViewById(R.id.imageNationFlag);
-        //TextView tv_nation = (TextView)layoutItem.findViewById(R.id.nation);
         ImageView imageGenreFlag = (ImageView)layoutItem.findViewById(R.id.imageGenreFlag);
-        //TextView tv_genre = (TextView)layoutItem.findViewById(R.id.genre);
         TextView tv_nom = (TextView)layoutItem.findViewById(R.id.nom);
         TextView tv_pv = (TextView)layoutItem.findViewById(R.id.pv);
         ImageView imageTank = (ImageView)layoutItem.findViewById(R.id.imageTank);
@@ -95,9 +93,7 @@ public class TankListAdapter extends BaseAdapter {
         Tank currentTank = tankList.get(position);
 
         imageNationFlag.setImageDrawable(mContext.getResources().getDrawable(currentTank.getNation().getFlag()));
-        //tv_nation.setText(currentTank.getNation().getLabel());
         imageGenreFlag.setImageDrawable(mContext.getResources().getDrawable(currentTank.getGenre().getFlag()));
-        //tv_genre.setText(currentTank.getGenre().getLabel());
         tv_nom.setText(currentTank.getNom());
         tv_pv.setText(String.valueOf(currentTank.getPv()) + " PV et "+ currentTank.victoires().size() + " Vic.");
 
