@@ -74,8 +74,6 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
         bataille = BatailleService.getCurrentBataille();
         if (bataille!=null) {
             textViewNom.setText(bataille.getNom());
-            viewTextEquipe1.setText(bataille.getEquipe1().getNom());
-            viewTextEquipe2.setText(bataille.getEquipe2().getNom());
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
             String sDateCrea = sdf.format(bataille.getDateCreation());
             textViewDate.setText(sDateCrea);
@@ -90,6 +88,7 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
                     tanksEquipe2.add(tank);
                 }
             }
+            updateEquipeTitle();
         } else {
             Toast.makeText(getBaseContext(), getString(R.string.no_current_bataille), Toast.LENGTH_LONG).show();
             finish();
@@ -249,6 +248,7 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
         } else {
             adapterEquipe2.notifyDataSetChanged();
         }
+        updateEquipeTitle();
     }
 
     @Override
@@ -264,6 +264,7 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
                 adapterEquipe2.notifyDataSetChanged();
             }
         }
+        updateEquipeTitle();
     }
 
     @Override
@@ -321,7 +322,7 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
                     public void onClick(DialogInterface dialog,
                                         int which) {
                         String tankNom = tks[which];
-                        for (Tank tk:tankList) {
+                        for (Tank tk : tankList) {
                             if (tk.getNom().equals(tankNom)) {
                                 currentVictoire = tk;
                                 break;
@@ -348,6 +349,25 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
         });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    private void updateEquipeTitle() {
+        if (bataille!=null) {
+            viewTextEquipe1.setText(bataille.getEquipe1().getNom() + " (" + String.valueOf(getNbTanksAlive(tanksEquipe1)) + ")");
+            viewTextEquipe2.setText(bataille.getEquipe2().getNom() + " (" + String.valueOf(getNbTanksAlive(tanksEquipe2)) + ")");
+        }
+    }
+
+    private int getNbTanksAlive(List<Tank> list) {
+        int result= 0;
+        if (list!=null) {
+            for (Tank t:list) {
+                if (!t.isDestroyed()) {
+                    result++;
+                }
+            }
+        }
+        return result;
     }
 }
 
