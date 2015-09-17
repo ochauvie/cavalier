@@ -120,7 +120,8 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setIcon(R.drawable.smallsave);
-        builder.setTitle("Voulez vous vraiement initialiser la base de données (les équipes et les parties seront perdues)");
+        builder.setTitle("Initialisation de l'application");
+        builder.setMessage("Voulez vous vraiement initialiser la base de données (les équipes et les parties seront perdues) ?");
         builder.setInverseBackgroundForced(true);
         builder.setPositiveButton(R.string.oui, new DialogInterface.OnClickListener() {
             @Override

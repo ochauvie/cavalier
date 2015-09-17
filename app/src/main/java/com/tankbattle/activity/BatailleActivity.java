@@ -276,11 +276,9 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
         for (TankVictoires victoire:item.victoires()) {
             // On n'affiche que les victoires de la bataille en cours
             if (victoire.getNomBataille().equals(bataille.getNom())) {
-//            result = result + victoire.getTankDetruit().getNation().getLabel() + "\t"
-//                    + victoire.getTankDetruit().getGenre().getLabel() + "\t"
-//                    + victoire.getTankDetruit().getNom()  +  "\n";
-
-                result = result + victoire.getTankDetruit().getNom() + "\n";
+            result = result + victoire.getTankDetruit().getNation().name() + " - "
+                    + victoire.getTankDetruit().getNom()  +  "\n";
+             //result = result + victoire.getTankDetruit().getNom() + "\n";
             }
         }
         builder.setMessage(result);
