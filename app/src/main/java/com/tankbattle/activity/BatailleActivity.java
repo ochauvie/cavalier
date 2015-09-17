@@ -20,6 +20,7 @@ import com.tankbattle.model.BatailleTank;
 import com.tankbattle.model.Tank;
 import com.tankbattle.model.TankVictoires;
 import com.tankbattle.service.BatailleService;
+import com.tankbattle.tools.Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -100,12 +101,9 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
         MenuItem itemS = menu.findItem(R.id.action_save_bataille);
         MenuItem itemE = menu.findItem(R.id.action_exit_bataille);
         MenuItem itemC = menu.findItem(R.id.action_close_bataille);
-        itemS.setEnabled(true);
-        itemS.getIcon().setAlpha(255);
-        itemE.setEnabled(true);
-        itemE.getIcon().setAlpha(255);
-        itemC.setEnabled(true);
-        itemC.getIcon().setAlpha(255);
+        Utils.enableItem(itemS);;
+        Utils.enableItem(itemE);;
+        Utils.enableItem(itemC);;
         return true;
     }
 
@@ -141,7 +139,7 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
             ActiveAndroid.beginTransaction();
             for (Tank tank1:tanksEquipe1) {
                 for (BatailleTank bt:bataille.tanks()) {
-                    if (bt.getTank().getId()==tank1.getId()) {
+                    if (bt.getTank().getId().equals(tank1.getId())) {
                         bt.setPvRestant(tank1.getPv());
                         bt.save();
                         break;
@@ -150,7 +148,7 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
             }
             for (Tank tank2:tanksEquipe2) {
                 for (BatailleTank bt:bataille.tanks()) {
-                    if (bt.getTank().getId()==tank2.getId()) {
+                    if (bt.getTank().getId().equals(tank2.getId())) {
                         bt.setPvRestant(tank2.getPv());
                         bt.save();
                         break;
@@ -302,7 +300,7 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setIcon(R.drawable.victoire);
-        builder.setTitle("Qui à détruit le tank " + tank.getNom() + " ?");
+        builder.setTitle("Qui a détruit le tank " + tank.getNom() + " ?");
 
         final List<Tank> tankList;
         if (bataille.getEquipe1().isTankOfEquipe(tank)) {
@@ -330,7 +328,6 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
                         }
                     }
                 });
-
 
         builder.setInverseBackgroundForced(true);
         builder.setPositiveButton(R.string.action_save, new DialogInterface.OnClickListener() {
