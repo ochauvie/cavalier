@@ -214,5 +214,10 @@ public class AddEquipeActivity extends Activity implements MyDialogInterface.Dia
             finish();
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        // Nothings
+    }
 }
 

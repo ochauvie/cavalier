@@ -67,4 +67,9 @@ public class ListEquipeActivity extends ListActivity implements EquipeListener {
         finish();
 
     }
+
+    @Override
+    public void onBackPressed() {
+        // Nothings
+    }
 }

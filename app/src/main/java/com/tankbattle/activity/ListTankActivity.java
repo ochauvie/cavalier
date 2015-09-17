@@ -69,4 +69,9 @@ public class ListTankActivity extends ListActivity implements TankListener{
         finish();
 
     }
+
+    @Override
+    public void onBackPressed() {
+        // Nothings
+    }
 }

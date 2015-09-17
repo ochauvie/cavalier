@@ -369,5 +369,10 @@ public class BatailleActivity extends Activity implements TankInBatailleListener
         }
         return result;
     }
+
+    @Override
+    public void onBackPressed() {
+        // Nothings
+    }
 }
 

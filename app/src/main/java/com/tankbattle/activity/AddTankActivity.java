@@ -220,4 +220,9 @@ public class AddTankActivity extends ListActivity implements MyDialogInterface.D
             finish();
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        // Nothings
+    }
 }
