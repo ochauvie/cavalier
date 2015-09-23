@@ -137,12 +137,17 @@ public class TankInEquipeListAdapter extends BaseAdapter {
         }
         tv_victoire.setText(String.valueOf(vic));
 
+        // Tank detroyed
         if (currentTank.isDestroyed()) {
             tv_nom.setTextColor(Color.RED);
             tv_pv.setTextColor(Color.RED);
+            layoutTank.setBackgroundColor(Color.GRAY);
+
+        // Tank alive
         } else {
             tv_nom.setTextColor(Color.GREEN);
             tv_pv.setTextColor(Color.GREEN);
+            layoutTank.setBackgroundColor(Color.BLACK);
         }
 
         // On memorise la position  dans le composant textview
