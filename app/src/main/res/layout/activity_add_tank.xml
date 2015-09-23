@@ -128,8 +128,33 @@
             android:text="@string/victoires"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:textColor="@android:color/holo_green_light"
             android:id="@+id/textVictoire"
-            android:layout_column="0" />
+            />
+
+        <TextView
+            android:layout_marginTop="10px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/et"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:id="@+id/textEt"
+            android:layout_toRightOf="@+id/textVictoire"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"/>
+
+        <TextView
+            android:layout_marginTop="10px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/defaites"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_red_light"
+            android:id="@+id/textDefaite"
+            android:layout_toRightOf="@+id/textEt" />
+
         <ListView
             android:id="@android:id/list"
             android:layout_width="match_parent"

@@ -30,7 +30,9 @@
     <string name="nom">Nom</string>
     <string name="pv">Pv</string>
     <string name="victoire">Victoire</string>
-    <string name="victoires">Victoires et défaites:</string>
+    <string name="victoires">Victoires</string>
+    <string name="et">et</string>
+    <string name="defaites">défaites</string>
     <string name="nb_tank">Nombres de tanks</string>
 
     <!-- Fiche Equipe -->
