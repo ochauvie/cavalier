@@ -74,6 +74,7 @@
     <string name="nom_mandatory">Le nom est obligatoire</string>
     <string name="pv_mandatory">Le nombre de point de vie est obligatoire</string>
     <string name="equipes_mandatory">Il faut choisir deux équipes différentes</string>
+    <string name="equipes_ko">Les deux équipes ont des tanks en commun</string>
 
 
     <string name="tank_save">Le tank est sauvegardé</string>

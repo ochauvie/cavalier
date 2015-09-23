@@ -86,8 +86,11 @@ public class CreateBatailleActivity extends Activity {
         if (edName==null || "".equals(edName.toString())) {
             Toast.makeText(getBaseContext(), getString(R.string.nom_mandatory), Toast.LENGTH_LONG).show();
             return false;
-        } else if (equipe1==null || equipe2==null || equipe1.getId()==equipe2.getId()) {
+        } else if (equipe1==null || equipe2==null || equipe1.getId().equals(equipe2.getId())) {
             Toast.makeText(getBaseContext(), getString(R.string.equipes_mandatory), Toast.LENGTH_LONG).show();
+            return false;
+        } else if (isConstitutionEquipeKo(equipe1, equipe2)) {
+            Toast.makeText(getBaseContext(), getString(R.string.equipes_ko), Toast.LENGTH_LONG).show();
             return false;
         } else {
             try {
@@ -130,6 +133,15 @@ public class CreateBatailleActivity extends Activity {
     @Override
     public void onBackPressed() {
         // Nothings
+    }
+
+    private boolean isConstitutionEquipeKo(Equipe equipe1, Equipe equipe2) {
+        for (EquipeTank equipeTank1:equipe1.tanks()) {
+            if (equipe2.isTankOfEquipe(equipeTank1.getTank())) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
