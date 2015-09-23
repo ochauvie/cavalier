@@ -14,6 +14,7 @@ public class MyDragListener implements View.OnDragListener {
 
     private TankInEquipeListAdapter adapterDestination;
     private TankInEquipeListAdapter adapterOrigine;
+    private float oldY;
 
     public MyDragListener(TankInEquipeListAdapter adapterDestination, TankInEquipeListAdapter adapterOrigine) {
         this.adapterDestination = adapterDestination;
@@ -28,6 +29,7 @@ public class MyDragListener implements View.OnDragListener {
                 // do nothing
                 break;
             case DragEvent.ACTION_DRAG_ENTERED:
+                oldY = event.getY();
                 break;
             case DragEvent.ACTION_DRAG_EXITED:
                 break;
@@ -37,7 +39,8 @@ public class MyDragListener implements View.OnDragListener {
                 int position = tagTank.getPosition();
                 String origine = tagTank.getOrigine();
 
-                // On interdit le drop and drop dans la même liste
+
+                // Dag and drop dans des listes différentes
                 if (!adapterDestination.getItemOrigine().equals(origine)) {
                     Tank currentTank = (Tank)adapterOrigine.getItem(position);
 
@@ -46,6 +49,29 @@ public class MyDragListener implements View.OnDragListener {
 
                     adapterDestination.notifyDataSetChanged();
                     adapterOrigine.notifyDataSetChanged();
+
+                // Dag and drop dans la même liste: on monte ou on dessend d'une case
+                } else {
+                    Tank currentTank = (Tank)adapterDestination.getItem(position);
+                    // Drag down
+                    if (event.getY()>oldY) {
+                        // Not the last
+                        if (position<adapterDestination.getTankList().size()-1) {
+                            Tank oldTank = (Tank) adapterDestination.getItem(position + 1);
+                            adapterDestination.getTankList().set(position + 1, currentTank);
+                            adapterDestination.getTankList().set(position, oldTank);
+                        }
+                    // Drag up
+                    } else if (event.getY()<oldY) {
+                        // Not the first
+                        if (position>0) {
+                            Tank oldTank = (Tank) adapterDestination.getItem(position - 1);
+                            adapterDestination.getTankList().set(position - 1, currentTank);
+                            adapterDestination.getTankList().set(position, oldTank);
+                        }
+
+                    }
+                    adapterDestination.notifyDataSetChanged();
                 }
 
                 break;
@@ -56,3 +82,4 @@ public class MyDragListener implements View.OnDragListener {
         return true;
     }
 }
+
