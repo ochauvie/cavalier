@@ -67,7 +67,8 @@ public class EquipeSpinnerAdapter extends BaseAdapter {
         Equipe item = dataList.get(position);
 
         TextView main_text = (TextView) mySpinner .findViewById(R.id.text_main_seen);
-        main_text.setText(item.getNom());
+        main_text.setText(item.getNom() + " (" + String.valueOf(item.tanks().size()) + ")");
+
 
         return mySpinner;
 
