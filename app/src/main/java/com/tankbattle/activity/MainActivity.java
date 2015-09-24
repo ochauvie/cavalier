@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
 
     private Button but1, but2, but3, but4, but5;
     private MyDialogInterface myInterface;
+    private Animation blinkAnim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,10 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         ActiveAndroid.initialize(this);
 
         setContentView(R.layout.activity_main);
+
+        // load the animation
+        blinkAnim = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.blink);
 
         myInterface = new MyDialogInterface();
         myInterface.setListener(this);
@@ -82,11 +89,15 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         // Si pas de bataille en cours, affichage de "Nouvelle bataille", sinon "Continuer la bataille"
         Bataille currentBataille = BatailleService.getCurrentBataille();
         if (currentBataille!=null) {
+            but4.clearAnimation();
             but4.setVisibility(View.GONE);
             but5.setVisibility(View.VISIBLE);
+            but5.startAnimation(blinkAnim);
         } else {
             but4.setVisibility(View.VISIBLE);
+            but4.startAnimation(blinkAnim);
             but5.setVisibility(View.GONE);
+            but5.clearAnimation();
         }
     }
 
