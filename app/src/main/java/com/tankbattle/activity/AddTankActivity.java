@@ -249,8 +249,8 @@ public class AddTankActivity extends ListActivity implements MyDialogInterface.D
             builder.setCancelable(true);
             builder.setIcon(R.drawable.delete);
             builder.setTitle(tankVictoire.getNomBataille());
-            builder.setMessage("Suppression de la vitoire: " + tankVictoire.getTankVictorieux().getNom()
-                    + " sur: " + tankVictoire.getTankDetruit().getNom());
+            builder.setMessage("Suppression de la vitoire: \n" + tankVictoire.getTankVictorieux().getNom()
+                    + " sur " + tankVictoire.getTankDetruit().getNom());
             builder.setInverseBackgroundForced(true);
             builder.setPositiveButton(R.string.oui, new DialogInterface.OnClickListener() {
                 @Override
