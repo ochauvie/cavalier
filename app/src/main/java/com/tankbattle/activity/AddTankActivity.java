@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.tankbattle.R;
 import com.tankbattle.adapter.IDataSpinnerAdapter;
 import com.tankbattle.adapter.VictoireListAdapter;
+import com.tankbattle.data.InitDataBase;
 import com.tankbattle.listner.TankListener;
 import com.tankbattle.model.Genre;
 import com.tankbattle.model.IRefData;
@@ -39,7 +40,7 @@ public class AddTankActivity extends ListActivity implements MyDialogInterface.D
     private static final String A_DELETE_VICTOIRE = "A_DELETE_VICTOIRE";
 
     private Spinner spinnerNation, spinnerGenre;
-    private EditText editTextNom, editTextPv;
+    private EditText editTextNom, editTextPv, editTextImage;
     private TextView textVictoire, textEt, textDefaite;
     private Tank tank = null;
     private MyDialogInterface myInterface;
@@ -61,6 +62,7 @@ public class AddTankActivity extends ListActivity implements MyDialogInterface.D
 
         editTextNom = (EditText)  findViewById(R.id.editTextNom);
         editTextPv = (EditText)  findViewById(R.id.editTextPv);
+        editTextImage = (EditText)  findViewById(R.id.editTextImage);
         textVictoire = (TextView) findViewById(R.id.textVictoire);
         textEt = (TextView) findViewById(R.id.textEt);
         textDefaite = (TextView) findViewById(R.id.textDefaite);
@@ -159,6 +161,7 @@ public class AddTankActivity extends ListActivity implements MyDialogInterface.D
             if (tank!=null) {
                 editTextNom.setText(tank.getNom());
                 editTextPv.setText(String.valueOf(tank.getPv()));
+                editTextImage.setText(tank.getImage());
                 SpinnerTool.SelectSpinnerItemByValue(spinnerNation, tank.getNation().name());
                 SpinnerTool.SelectSpinnerItemByValue(spinnerGenre, tank.getGenre().name());
             }
@@ -170,6 +173,7 @@ public class AddTankActivity extends ListActivity implements MyDialogInterface.D
     private boolean onSave() {
         Editable edName = editTextNom.getText();
         Editable edPv = editTextPv.getText();
+        Editable edImage = editTextImage.getText();
         if (edName==null || "".equals(edName.toString())) {
             Toast.makeText(getBaseContext(), getString(R.string.nom_mandatory), Toast.LENGTH_LONG).show();
             return false;
@@ -179,11 +183,15 @@ public class AddTankActivity extends ListActivity implements MyDialogInterface.D
         } else {
             if (tank == null) {
                 tank = new Tank();
+                tank.setImage(InitDataBase.DEFAULT_IMAGE);
             }
             tank.setNation((Nation) spinnerNation.getSelectedItem());
             tank.setGenre((Genre) spinnerGenre.getSelectedItem());
             tank.setNom(edName.toString());
             tank.setPv(Integer.valueOf(edPv.toString()));
+            if (edImage!=null && !"".equals(edImage.toString())) {
+                tank.setImage(edImage.toString());
+            }
 
             tank.save();
             Toast.makeText(getBaseContext(), getString(R.string.tank_save), Toast.LENGTH_LONG).show();

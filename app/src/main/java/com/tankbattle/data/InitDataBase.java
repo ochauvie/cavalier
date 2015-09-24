@@ -15,12 +15,13 @@ import com.tankbattle.service.TankService;
  */
 public class InitDataBase {
 
+    public static final String DEFAULT_IMAGE = "default_tank";
+
     public static void initTankList(Context context) {
 
         TankService.deleteAllTanks();
-
         ContextWrapper cw = new ContextWrapper(context);
-        String DEFAULT_IMAGE = "default_tank";
+
 
         // Russe
         Tank tank = new Tank("KV-1", 10, Nation.RU, Genre.HEAVY, DEFAULT_IMAGE);

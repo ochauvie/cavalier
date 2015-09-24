@@ -92,7 +92,9 @@ public class TankListAdapter extends BaseAdapter {
         // Image du tank
         if (currentTank.getImage() != null) {
             int idImg = mContext.getResources().getIdentifier(currentTank.getImage(), "drawable", mContext.getPackageName());
-            imageTank.setImageResource(idImg);
+            if (idImg!=0) {
+                imageTank.setImageResource(idImg);
+            }
         }
 
         // On memorise la position  dans le composant textview
