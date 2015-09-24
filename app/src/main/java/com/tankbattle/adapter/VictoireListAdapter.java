@@ -6,13 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.tankbattle.R;
+import com.tankbattle.listner.TankListener;
 import com.tankbattle.model.TankVictoires;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,6 +27,7 @@ public class VictoireListAdapter extends BaseAdapter {
     private Context mContext;
     private LayoutInflater mInflater;
     private long ownerId;
+    private List<TankListener> listeners = new ArrayList<TankListener>();
 
 
     public VictoireListAdapter(Context mContext, List<TankVictoires> victoires, long ownerId) {
@@ -37,7 +41,18 @@ public class VictoireListAdapter extends BaseAdapter {
         super();
     }
 
+    /**
+     * Pour ajouter un listener sur notre adapter
+     */
+    public void addListener(TankListener aListener) {
+        listeners.add(aListener);
+    }
 
+    private void sendListenerToDeleteVictoire(TankVictoires item) {
+        for(int i = listeners.size()-1; i >= 0; i--) {
+            listeners.get(i).onDeleteVictoire(item);
+        }
+    }
 
     @Override
     public int getCount() {
@@ -65,6 +80,7 @@ public class VictoireListAdapter extends BaseAdapter {
         RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.activity_list_victoire_item, parent, false);
         TextView tv_nomBataille = (TextView)layoutItem.findViewById(R.id.nomBataille);
         TextView tv_tank = (TextView)layoutItem.findViewById(R.id.tank);
+        ImageButton butDelete = (ImageButton)layoutItem.findViewById(R.id.butDelete);
 
         TankVictoires victoire = victoires.get(position);
 
@@ -78,6 +94,21 @@ public class VictoireListAdapter extends BaseAdapter {
             tv_tank.setTextColor(Color.RED);
         }
 
+        butDelete.setTag(position);
+        butDelete.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Integer position = (Integer) v.getTag();
+                sendListenerToDeleteVictoire(victoires.get(position));
+            }
+
+        });
+
         return layoutItem;
+    }
+
+    public List<TankVictoires> getVictoires() {
+        return victoires;
     }
 }

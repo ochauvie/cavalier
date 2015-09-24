@@ -79,6 +79,7 @@
 
     <string name="tank_save">Le tank est sauvegardé</string>
     <string name="tank_delete">Le tank est supprimé</string>
+    <string name="tank_victoire">Ligne supprimée</string>
 
     <string name="equipe_save">L\'équipe est sauvegardé</string>
     <string name="equipe_notsave">Erreur à la sauvegarde de l\'équipe</string>

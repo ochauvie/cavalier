@@ -20,5 +20,17 @@
         android:layout_toRightOf="@+id/nomBataille">
     </TextView>
 
+    <ImageButton
+        android:id="@+id/butDelete"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:scaleX="1"
+        android:scaleY="1"
+        android:background="#00000000"
+        android:src="@drawable/delete"
+        android:layout_alignTop="@+id/tank"
+        android:layout_alignParentLeft="false"
+        android:layout_marginLeft="124dp"
+        android:layout_alignParentRight="true" />
 
 </RelativeLayout>

@@ -11,6 +11,7 @@ import com.tankbattle.R;
 import com.tankbattle.adapter.TankListAdapter;
 import com.tankbattle.listner.TankListener;
 import com.tankbattle.model.Tank;
+import com.tankbattle.model.TankVictoires;
 import com.tankbattle.service.TankService;
 
 import java.util.List;
@@ -67,7 +68,11 @@ public class ListTankActivity extends ListActivity implements TankListener{
         myIntent.putExtra(Tank.TANK_ID, tank.getId());
         startActivityForResult(myIntent, 0);
         finish();
+    }
 
+    @Override
+    public void onDeleteVictoire(TankVictoires item) {
+        // Nothings
     }
 
     @Override

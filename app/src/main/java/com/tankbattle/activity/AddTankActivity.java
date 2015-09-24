@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.tankbattle.R;
 import com.tankbattle.adapter.IDataSpinnerAdapter;
 import com.tankbattle.adapter.VictoireListAdapter;
+import com.tankbattle.listner.TankListener;
 import com.tankbattle.model.Genre;
 import com.tankbattle.model.IRefData;
 import com.tankbattle.model.Nation;
@@ -32,7 +33,9 @@ import com.tankbattle.tools.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddTankActivity extends ListActivity implements MyDialogInterface.DialogReturn {
+public class AddTankActivity extends ListActivity implements MyDialogInterface.DialogReturn, TankListener {
+
+    private static final String A_DELETE_VICTOIRE = "A_DELETE_VICTOIRE";
 
     private Spinner spinnerNation, spinnerGenre;
     private EditText editTextNom, editTextPv;
@@ -42,6 +45,7 @@ public class AddTankActivity extends ListActivity implements MyDialogInterface.D
     private ListView listView;
     private VictoireListAdapter victoireListAdapter;
     private List<TankVictoires> victoiresAndDefaites = new ArrayList<TankVictoires>();
+    private TankVictoires tankVictoires = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,7 @@ public class AddTankActivity extends ListActivity implements MyDialogInterface.D
         }
 
         victoireListAdapter = new VictoireListAdapter(this, victoiresAndDefaites, (tank!=null)?tank.getId():-1);
+        victoireListAdapter.addListener(this);
         setListAdapter(victoireListAdapter);
 
         // Hide keyboard
@@ -212,7 +217,12 @@ public class AddTankActivity extends ListActivity implements MyDialogInterface.D
 
     @Override
     public void onDialogCompleted(boolean answer, String type) {
-        if (answer && tank!=null) {
+        if (A_DELETE_VICTOIRE.equals(type) && answer && tankVictoires!=null) {
+            tankVictoires.delete();
+            victoireListAdapter.getVictoires().remove(tankVictoires);
+            victoireListAdapter.notifyDataSetChanged();
+            Toast.makeText(getBaseContext(), getString(R.string.tank_victoire), Toast.LENGTH_LONG).show();
+        } else if (answer && tank!=null) {
             tank.delete();
             Toast.makeText(getBaseContext(), getString(R.string.tank_delete), Toast.LENGTH_LONG).show();
             Intent listTankActivity = new Intent(getApplicationContext(), ListTankActivity.class);
@@ -225,4 +235,40 @@ public class AddTankActivity extends ListActivity implements MyDialogInterface.D
     public void onBackPressed() {
         // Nothings
     }
+
+    @Override
+    public void onClickTank(Tank item, int position) {
+        // Nothings
+    }
+
+    @Override
+    public void onDeleteVictoire(TankVictoires tankVictoire) {
+        if (tankVictoire != null) {
+            this.tankVictoires = tankVictoire;
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(true);
+            builder.setIcon(R.drawable.delete);
+            builder.setTitle(tankVictoire.getNomBataille());
+            builder.setMessage("Suppression de la vitoire: " + tankVictoire.getTankVictorieux().getNom()
+                    + " sur: " + tankVictoire.getTankDetruit().getNom());
+            builder.setInverseBackgroundForced(true);
+            builder.setPositiveButton(R.string.oui, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    myInterface.getListener().onDialogCompleted(true, A_DELETE_VICTOIRE);
+                    dialog.dismiss();
+                }
+            });
+            builder.setNegativeButton(R.string.non, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    myInterface.getListener().onDialogCompleted(false, A_DELETE_VICTOIRE);
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+    }
+
 }
