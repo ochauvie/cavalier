@@ -7,7 +7,6 @@ import com.tankbattle.model.Equipe;
 import com.tankbattle.model.EquipeTank;
 import com.tankbattle.model.Tank;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

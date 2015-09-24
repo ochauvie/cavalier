@@ -17,13 +17,10 @@ import com.activeandroid.ActiveAndroid;
 import com.tankbattle.R;
 import com.tankbattle.adapter.TankInEquipeListAdapter;
 import com.tankbattle.listner.MyDragListener;
-import com.tankbattle.model.Bataille;
 import com.tankbattle.model.Equipe;
 import com.tankbattle.model.EquipeTank;
-import com.tankbattle.model.Nation;
 import com.tankbattle.model.Tank;
 import com.tankbattle.service.BatailleService;
-import com.tankbattle.service.EquipeService;
 import com.tankbattle.service.TankService;
 import com.tankbattle.tools.Utils;
 
@@ -135,7 +132,7 @@ public class AddEquipeActivity extends Activity implements MyDialogInterface.Dia
 
                         // Supprime du hangar
                         for (Tank hTank:tanskInHangarList) {
-                            if (hTank.getId() == tank.getId()) {
+                            if (hTank.getId().equals(tank.getId())) {
                                 tanskInHangarList.remove(hTank);
                                 break;
                             }

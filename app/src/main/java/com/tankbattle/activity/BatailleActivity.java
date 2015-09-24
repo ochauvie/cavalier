@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.activeandroid.ActiveAndroid;
 import com.tankbattle.R;
 import com.tankbattle.adapter.TankInEquipeListAdapter;
-import com.tankbattle.adapter.TankListAdapter;
 import com.tankbattle.listner.TankInBatailleListener;
 import com.tankbattle.model.Bataille;
 import com.tankbattle.model.BatailleTank;
@@ -24,7 +23,6 @@ import com.tankbattle.tools.Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 

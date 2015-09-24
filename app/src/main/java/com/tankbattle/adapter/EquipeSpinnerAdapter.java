@@ -5,13 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.tankbattle.R;
 import com.tankbattle.model.Equipe;
-import com.tankbattle.model.IRefData;
 
 import java.util.List;
 

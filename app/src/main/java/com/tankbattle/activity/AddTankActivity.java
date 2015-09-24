@@ -31,6 +31,7 @@ import com.tankbattle.tools.SpinnerTool;
 import com.tankbattle.tools.Utils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class AddTankActivity extends ListActivity implements MyDialogInterface.DialogReturn, TankListener {
@@ -39,7 +40,7 @@ public class AddTankActivity extends ListActivity implements MyDialogInterface.D
 
     private Spinner spinnerNation, spinnerGenre;
     private EditText editTextNom, editTextPv;
-    private TextView textVictoire;
+    private TextView textVictoire, textEt, textDefaite;
     private Tank tank = null;
     private MyDialogInterface myInterface;
     private ListView listView;
@@ -61,6 +62,8 @@ public class AddTankActivity extends ListActivity implements MyDialogInterface.D
         editTextNom = (EditText)  findViewById(R.id.editTextNom);
         editTextPv = (EditText)  findViewById(R.id.editTextPv);
         textVictoire = (TextView) findViewById(R.id.textVictoire);
+        textEt = (TextView) findViewById(R.id.textEt);
+        textDefaite = (TextView) findViewById(R.id.textDefaite);
 
         myInterface = new MyDialogInterface();
         myInterface.setListener(this);
@@ -71,8 +74,12 @@ public class AddTankActivity extends ListActivity implements MyDialogInterface.D
 
         if (victoiresAndDefaites.size()>0) {
             textVictoire.setVisibility(View.VISIBLE);
+            textEt.setVisibility(View.VISIBLE);
+            textDefaite.setVisibility(View.VISIBLE);
         } else {
             textVictoire.setVisibility(View.GONE);
+            textEt.setVisibility(View.GONE);
+            textDefaite.setVisibility(View.GONE);
         }
 
         victoireListAdapter = new VictoireListAdapter(this, victoiresAndDefaites, (tank!=null)?tank.getId():-1);
@@ -133,17 +140,13 @@ public class AddTankActivity extends ListActivity implements MyDialogInterface.D
 
     private void loadSpinnerNation() {
         ArrayList<IRefData> list = new ArrayList<IRefData>();
-        for (Nation nation:Nation.values()) {
-            list.add(nation);
-        }
+        Collections.addAll(list, Nation.values());
         spinnerNation.setAdapter(new IDataSpinnerAdapter(this, list));
     }
 
     private void loadSpinnerGenre() {
         ArrayList<IRefData> list = new ArrayList<IRefData>();
-        for (Genre genre:Genre.values()) {
-            list.add(genre);
-        }
+        Collections.addAll(list, Genre.values());
         spinnerGenre.setAdapter(new IDataSpinnerAdapter(this, list));
     }
 
