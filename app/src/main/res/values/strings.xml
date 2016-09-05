@@ -88,6 +88,22 @@
 
     <string name="db_initialized">La base de données a été initialisée.</string>
 
+    <!-- CHEVAL -->
+
+    <!-- Genre -->
+    <string name="genre_etalon">Etalon</string>
+    <string name="genre_hongre">Hongre</string>
+    <string name="genre_jument">Jument</string>
+    <string name="genre_poulin">Poulin</string>
+    <string name="genre_masculin">Masculin</string>
+    <string name="genre_feminin">Féminin</string>
+
+    <!-- TYpe lieu -->
+    <string name="type_lieu_carriere">Carrière</string>
+    <string name="type_lieu_manege">Manège</string>
+    <string name="type_lieu_exterieur">Exterieur</string>
+    <string name="type_lieu_autre">Autre</string>
+
 
 
 
