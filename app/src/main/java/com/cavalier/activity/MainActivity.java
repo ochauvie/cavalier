@@ -15,13 +15,17 @@ import android.widget.Toast;
 
 import com.activeandroid.ActiveAndroid;
 import com.cavalier.data.InitDataBase;
+import com.cavalier.model.Personne;
+import com.cavalier.model.TypePersonne;
 import com.tankbattle.R;
+import com.tankbattle.activity.AddEquipeActivity;
 import com.tankbattle.activity.AddTankActivity;
 import com.tankbattle.activity.BatailleActivity;
 import com.tankbattle.activity.CreateBatailleActivity;
 import com.tankbattle.activity.ListEquipeActivity;
 import com.tankbattle.activity.ListTankActivity;
 import com.tankbattle.activity.MyDialogInterface;
+import com.tankbattle.model.Equipe;
 
 
 public class MainActivity extends Activity implements MyDialogInterface.DialogReturn {
@@ -59,7 +63,9 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         but1 = (Button) findViewById(R.id.button1);
         but1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivityForResult(new Intent(getApplicationContext(), ListTankActivity.class), 0);
+                Intent myIntent = new Intent(getApplicationContext(), ListPersonneActivity.class);
+                myIntent.putExtra(Personne.TYPE_PERSONNE, TypePersonne.MONITEUR.name());
+                startActivityForResult(myIntent, 0);
             }
         });
 
@@ -67,7 +73,9 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         but2 = (Button) findViewById(R.id.button2);
         but2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivityForResult(new Intent(getApplicationContext(), ListTankActivity.class), 0);
+                Intent myIntent = new Intent(getApplicationContext(), ListPersonneActivity.class);
+                myIntent.putExtra(Personne.TYPE_PERSONNE, TypePersonne.CAVALIER);
+                startActivityForResult(myIntent, 0);
             }
         });
 

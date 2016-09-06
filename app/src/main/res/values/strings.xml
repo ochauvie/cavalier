@@ -71,8 +71,7 @@
     <string name="title_activity_create_bataille">Bataille</string>
     <string name="title_activity_bataille">Bataille</string>
 
-    <!-- Mandatory -->
-    <string name="nom_mandatory">Le nom est obligatoire</string>
+
     <string name="pv_mandatory">Le nombre de point de vie est obligatoire</string>
     <string name="equipes_mandatory">Il faut choisir deux équipes différentes</string>
     <string name="equipes_ko">Les deux équipes ont des tanks en commun</string>
@@ -109,6 +108,13 @@
     <string name="type_personne_moniteur">Moniteur</string>
     <string name="type_personne_cavalier">Cavalier</string>
 
+    <!-- Mandatory -->
+    <string name="nom_mandatory">Le nom est obligatoire</string>
+    <string name="prenom_mandatory">Le prénom est obligatoire</string>
+
+    <!--Personne-->
+    <string name="personne_save">La personne est sauvegardée</string>
+    <string name="personne_delete">La personne est supprimée</string>
 
 
 </resources>

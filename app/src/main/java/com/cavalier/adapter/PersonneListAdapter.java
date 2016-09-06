@@ -5,15 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cavalier.listner.PersonneListener;
 import com.cavalier.model.Personne;
 import com.tankbattle.R;
-import com.tankbattle.listner.TankListener;
-import com.tankbattle.model.Tank;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,33 +70,22 @@ public class PersonneListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.activity_cavalier_list_personne_item, parent, false);
-        RelativeLayout layoutTank = (RelativeLayout)layoutItem.findViewById(R.id.item_tank);
-        ImageView imageNationFlag = (ImageView)layoutItem.findViewById(R.id.imageNationFlag);
-        ImageView imageGenreFlag = (ImageView)layoutItem.findViewById(R.id.imageGenreFlag);
         TextView tv_nom = (TextView)layoutItem.findViewById(R.id.nom);
-        TextView tv_pv = (TextView)layoutItem.findViewById(R.id.pv);
-        ImageView imageTank = (ImageView)layoutItem.findViewById(R.id.imageTank);
+        TextView tv_prenom = (TextView)layoutItem.findViewById(R.id.prenom);
+        TextView tv_sexe = (TextView)layoutItem.findViewById(R.id.sexe);
 
 
         // Renseignement des valeurs
         Personne current = personneList.get(position);
 
-        imageNationFlag.setImageDrawable(mContext.getResources().getDrawable(currentTank.getNation().getFlag()));
-        imageGenreFlag.setImageDrawable(mContext.getResources().getDrawable(currentTank.getGenre().getFlag()));
-        tv_nom.setText(currentTank.getNom());
-        tv_pv.setText(String.valueOf(currentTank.getPv()) + " PV et "+ currentTank.victoires().size() + " Vic.");
+        tv_nom.setText(current.getNom());
+        tv_prenom.setText(current.getPrenom());
+        tv_nom.setText(current.getSexe().getLabel());
 
-        // Image du tank
-        if (currentTank.getImage() != null) {
-            int idImg = mContext.getResources().getIdentifier(currentTank.getImage(), "drawable", mContext.getPackageName());
-            if (idImg!=0) {
-                imageTank.setImageResource(idImg);
-            }
-        }
 
         // On memorise la position  dans le composant textview
-        layoutTank.setTag(position);
-        layoutTank.setOnClickListener(new View.OnClickListener() {
+        layoutItem.setTag(position);
+        layoutItem.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -107,7 +93,7 @@ public class PersonneListAdapter extends BaseAdapter {
                 Integer position = (Integer) v.getTag();
 
                 //On previent les listeners qu'il y a eu un clic sur le tank.
-                sendListenerToUpdate(tankList.get(position), position);
+                sendListenerToUpdate(personneList.get(position), position);
             }
 
         });

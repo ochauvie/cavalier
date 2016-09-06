@@ -1,13 +1,15 @@
 package com.cavalier.model;
 
 
+import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "cours")
-public class Cours {
+public class Cours  extends Model implements Serializable {
 
     @Column(name = "moniteur")
     private Personne moniteur;

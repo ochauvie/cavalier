@@ -7,5 +7,4 @@ public interface PersonneListener {
 
     public void onClick(Personne item, int position);
 
-    public void onDelete(Personne item);
 }

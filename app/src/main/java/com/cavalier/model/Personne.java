@@ -11,6 +11,9 @@ import java.util.Date;
 @Table(name = "personne")
 public class Personne extends Model implements Serializable {
 
+    public static final String ID_PERSONNE = "ID_PERSONNE";
+    public static final String TYPE_PERSONNE = "TYPE_PERSONNE";
+
     @Column(name = "nom")
     private String nom;
 
@@ -25,6 +28,9 @@ public class Personne extends Model implements Serializable {
 
     @Column(name = "type")
     private TypePersonne type;
+
+    public Personne() {
+    }
 
     public Personne(String nom, String prenom, Date dateNaissance, Sexe sexe, TypePersonne type) {
         this.nom = nom;

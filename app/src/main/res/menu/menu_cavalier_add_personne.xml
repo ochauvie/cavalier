@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.tankbattle.activity.AddPersonneActivity">
+
+
+    <item android:id="@+id/action_add_personne"
+        android:title="@string/action_save"
+        app:icon="@drawable/smallsave"
+        app:showAsAction="ifRoom" />
+
+    <item android:id="@+id/action_close_personne"
+        android:title="@string/action_close"
+        app:icon="@drawable/smallclose"
+        app:showAsAction="ifRoom" />
+
+    <item android:id="@+id/action_delete_personne"
+        android:title="@string/action_delete"
+        app:icon="@drawable/delete"
+        app:showAsAction="ifRoom" />
+
+</menu>
