@@ -19,7 +19,7 @@ import com.tankbattle.model.BatailleTank;
 import com.tankbattle.model.Tank;
 import com.tankbattle.model.TankVictoires;
 import com.tankbattle.service.BatailleService;
-import com.tankbattle.tools.Utils;
+import com.cavalier.tools.Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

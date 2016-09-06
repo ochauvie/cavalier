@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.cavalier.listner.PersonneListener;
 import com.cavalier.model.Personne;
-import com.tankbattle.R;
+import com.cavalier.R;
 
 import java.util.ArrayList;
 import java.util.List;

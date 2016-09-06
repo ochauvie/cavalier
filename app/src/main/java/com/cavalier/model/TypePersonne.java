@@ -1,7 +1,7 @@
 package com.cavalier.model;
 
-import com.tankbattle.R;
-import com.tankbattle.model.IRefData;
+import com.cavalier.R;
+import com.cavalier.model.IRefData;
 
 public enum TypePersonne implements IRefData {
 

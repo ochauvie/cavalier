@@ -17,7 +17,7 @@ import com.activeandroid.ActiveAndroid;
 import com.cavalier.data.InitDataBase;
 import com.cavalier.model.Personne;
 import com.cavalier.model.TypePersonne;
-import com.tankbattle.R;
+import com.cavalier.R;
 import com.tankbattle.activity.AddEquipeActivity;
 import com.tankbattle.activity.AddTankActivity;
 import com.tankbattle.activity.BatailleActivity;

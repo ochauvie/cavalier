@@ -28,8 +28,8 @@ import com.tankbattle.model.Tank;
 import com.tankbattle.model.TankVictoires;
 import com.tankbattle.service.EquipeService;
 import com.tankbattle.service.TankService;
-import com.tankbattle.tools.SpinnerTool;
-import com.tankbattle.tools.Utils;
+import com.cavalier.tools.SpinnerTool;
+import com.cavalier.tools.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;

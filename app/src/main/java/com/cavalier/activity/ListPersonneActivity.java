@@ -12,14 +12,7 @@ import com.cavalier.listner.PersonneListener;
 import com.cavalier.model.Personne;
 import com.cavalier.model.TypePersonne;
 import com.cavalier.service.PersonneService;
-import com.tankbattle.R;
-import com.tankbattle.activity.AddTankActivity;
-import com.tankbattle.adapter.TankListAdapter;
-import com.tankbattle.listner.TankListener;
-import com.tankbattle.model.Tank;
-import com.tankbattle.model.TankVictoires;
-import com.tankbattle.service.TankService;
-import com.tankbattle.tools.SpinnerTool;
+import com.cavalier.R;
 
 import java.util.List;
 

@@ -22,7 +22,7 @@ import com.tankbattle.model.EquipeTank;
 import com.tankbattle.model.Tank;
 import com.tankbattle.service.BatailleService;
 import com.tankbattle.service.TankService;
-import com.tankbattle.tools.Utils;
+import com.cavalier.tools.Utils;
 
 import java.util.ArrayList;
 import java.util.List;

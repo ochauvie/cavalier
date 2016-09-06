@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -21,26 +20,16 @@ import com.cavalier.model.Personne;
 import com.cavalier.model.Sexe;
 import com.cavalier.model.TypePersonne;
 import com.cavalier.service.CoursService;
-import com.tankbattle.R;
+import com.cavalier.R;
 import com.tankbattle.activity.ListTankActivity;
 import com.tankbattle.activity.MyDialogInterface;
 import com.tankbattle.adapter.IDataSpinnerAdapter;
-import com.tankbattle.adapter.VictoireListAdapter;
-import com.tankbattle.data.InitDataBase;
-import com.tankbattle.listner.TankListener;
-import com.tankbattle.model.Genre;
-import com.tankbattle.model.IRefData;
-import com.tankbattle.model.Nation;
-import com.tankbattle.model.Tank;
-import com.tankbattle.model.TankVictoires;
-import com.tankbattle.service.EquipeService;
-import com.tankbattle.service.TankService;
-import com.tankbattle.tools.SpinnerTool;
-import com.tankbattle.tools.Utils;
+import com.cavalier.model.IRefData;
+import com.cavalier.tools.SpinnerTool;
+import com.cavalier.tools.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 public class AddPersonneActivity extends ListActivity implements MyDialogInterface.DialogReturn, PersonneListener {
 
