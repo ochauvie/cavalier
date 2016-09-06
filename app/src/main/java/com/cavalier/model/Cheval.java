@@ -7,7 +7,7 @@ import com.activeandroid.annotation.Table;
 import java.io.Serializable;
 import java.util.Date;
 
-@Table(name = "Cheval")
+@Table(name = "cheval")
 public class Cheval extends Model implements Serializable {
 
 

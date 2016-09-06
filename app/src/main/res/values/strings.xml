@@ -98,12 +98,16 @@
     <string name="genre_masculin">Masculin</string>
     <string name="genre_feminin">Féminin</string>
 
-    <!-- TYpe lieu -->
+    <!-- Type lieu -->
+    <string name="type_lieu_ecurie">Ecurie</string>
     <string name="type_lieu_carriere">Carrière</string>
     <string name="type_lieu_manege">Manège</string>
     <string name="type_lieu_exterieur">Exterieur</string>
     <string name="type_lieu_autre">Autre</string>
 
+    <!-- Type personne -->
+    <string name="type_personne_moniteur">Moniteur</string>
+    <string name="type_personne_cavalier">Cavalier</string>
 
 
 
