@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "cheval")
-public class Cheval extends Model implements Serializable {
+public class Monture extends Model implements Serializable {
 
 
     @Column(name = "nom")
@@ -23,7 +23,7 @@ public class Cheval extends Model implements Serializable {
     @Column(name = "dateNaissance")
     private Date dateNaissance;
 
-    public Cheval(String nom, Genre genre, String robe, Date dateNaissance) {
+    public Monture(String nom, Genre genre, String robe, Date dateNaissance) {
         this.nom = nom;
         this.genre = genre;
         this.robe = robe;

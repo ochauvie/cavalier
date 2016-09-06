@@ -2,44 +2,43 @@ package com.cavalier.service;
 
 import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
+import com.cavalier.model.Genre;
+import com.cavalier.model.Monture;
 import com.cavalier.model.Personne;
 import com.cavalier.model.TypePersonne;
-import com.tankbattle.model.Nation;
-import com.tankbattle.model.Tank;
-import com.tankbattle.model.TankVictoires;
 
 import java.util.List;
 
 /**
- * Service pour les Personnes
+ * Service pour les Montures
  */
-public class PersonneService {
+public class MontureService {
 
-    public static List<Personne> getAll() {
+    public static List<Monture> getAll() {
         return new Select()
-                .from(Personne.class)
+                .from(Monture.class)
                 .orderBy("nom ASC")
                 .execute();
     }
 
-    public static List<Personne> findByType(TypePersonne type) {
+    public static List<Monture> findByGenre(Genre genre) {
         return new Select()
-                .from(Personne.class)
-                .where("type = ?", type.name())
+                .from(Monture.class)
+                .where("genre = ?", genre.name())
                 .orderBy("nom ASC")
                 .execute();
     }
 
-    public static Personne getById(long id) {
+    public static Monture getById(long id) {
         return new Select()
-                .from(Personne.class)
+                .from(Monture.class)
                 .where("Id = ?", id)
                 .executeSingle();
     }
 
 
     public static void deleteAll() {
-        new Delete().from(Personne.class)
+        new Delete().from(Monture.class)
                     .execute();
     }
 

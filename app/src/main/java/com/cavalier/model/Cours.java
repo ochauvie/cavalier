@@ -15,8 +15,8 @@ public class Cours {
     @Column(name = "cavalier")
     private Personne cavalier;
 
-    @Column(name = "cheval")
-    private Cheval cheval;
+    @Column(name = "monture")
+    private Monture monture;
 
     @Column(name = "lieu")
     private Lieu lieu;
@@ -27,10 +27,10 @@ public class Cours {
     @Column(name = "duree")
     private Integer duree;
 
-    public Cours(Personne moniteur, Personne cavalier, Cheval cheval, Lieu lieu, Date date, Integer duree) {
+    public Cours(Personne moniteur, Personne cavalier, Monture monture, Lieu lieu, Date date, Integer duree) {
         this.moniteur = moniteur;
         this.cavalier = cavalier;
-        this.cheval = cheval;
+        this.monture = monture;
         this.lieu = lieu;
         this.date = date;
         this.duree = duree;
@@ -52,12 +52,12 @@ public class Cours {
         this.cavalier = cavalier;
     }
 
-    public Cheval getCheval() {
-        return cheval;
+    public Monture getCheval() {
+        return monture;
     }
 
-    public void setCheval(Cheval cheval) {
-        this.cheval = cheval;
+    public void setCheval(Monture monture) {
+        this.monture = monture;
     }
 
     public Lieu getLieu() {
