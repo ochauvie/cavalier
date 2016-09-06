@@ -16,8 +16,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cavalier.activity.MyDialogInterface;
 import com.tankbattle.R;
-import com.tankbattle.adapter.IDataSpinnerAdapter;
+import com.cavalier.adapter.IDataSpinnerAdapter;
 import com.tankbattle.adapter.VictoireListAdapter;
 import com.tankbattle.data.InitDataBase;
 import com.tankbattle.listner.TankListener;

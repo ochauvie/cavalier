@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.activeandroid.ActiveAndroid;
+import com.cavalier.activity.MyDialogInterface;
 import com.tankbattle.R;
 import com.tankbattle.adapter.TankInEquipeListAdapter;
 import com.tankbattle.listner.TankInBatailleListener;

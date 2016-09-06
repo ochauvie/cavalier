@@ -1,4 +1,4 @@
-package com.tankbattle.activity;
+package com.cavalier.activity;
 
 /**
  * Created by olivier on 11/09/15.

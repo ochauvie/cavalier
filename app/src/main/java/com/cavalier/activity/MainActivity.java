@@ -18,14 +18,11 @@ import com.cavalier.data.InitDataBase;
 import com.cavalier.model.Personne;
 import com.cavalier.model.TypePersonne;
 import com.cavalier.R;
-import com.tankbattle.activity.AddEquipeActivity;
 import com.tankbattle.activity.AddTankActivity;
 import com.tankbattle.activity.BatailleActivity;
 import com.tankbattle.activity.CreateBatailleActivity;
 import com.tankbattle.activity.ListEquipeActivity;
 import com.tankbattle.activity.ListTankActivity;
-import com.tankbattle.activity.MyDialogInterface;
-import com.tankbattle.model.Equipe;
 
 
 public class MainActivity extends Activity implements MyDialogInterface.DialogReturn {

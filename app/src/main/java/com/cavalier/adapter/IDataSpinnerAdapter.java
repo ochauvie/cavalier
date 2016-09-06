@@ -1,4 +1,4 @@
-package com.tankbattle.adapter;
+package com.cavalier.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.tankbattle.R;
-import com.tankbattle.model.IRefData;
+import com.cavalier.R;
+import com.cavalier.model.IRefData;
 
 import java.util.List;
 
