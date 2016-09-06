@@ -1,11 +1,4 @@
 <resources>
-    <string name="app_name">TankBattle</string>
-
-    <string name="action_settings">Settings</string>
-
-    <string name="oui">Oui</string>
-    <string name="non">Non</string>
-    <string name="fermer">Fermer</string>
 
     <!-- Nation -->
     <string name="nation_fr">Français</string>
@@ -58,10 +51,6 @@
     <!-- Action -->
     <string name="action_list_tank">List des tanks</string>
     <string name="action_add_tank">Ajouter un tank</string>
-    <string name="action_save">Sauvegarder</string>
-    <string name="action_close">Annuler</string>
-    <string name="action_delete">Supprimer</string>
-    <string name="action_init_data">Initialiser les données</string>
     <string name="action_close_bataille">Terminer la bataille</string>
 
     <string name="title_activity_list_tank">Hangar</string>
@@ -88,6 +77,30 @@
     <string name="db_initialized">La base de données a été initialisée.</string>
 
     <!-- CHEVAL -->
+
+    <string name="app_name">Cavalier</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="oui">Oui</string>
+    <string name="non">Non</string>
+    <string name="fermer">Fermer</string>
+
+    <!-- Action -->
+    <string name="action_save">Sauvegarder</string>
+    <string name="action_close">Annuler</string>
+    <string name="action_delete">Supprimer</string>
+    <string name="action_init_data">Initialiser les données</string>
+
+    <string name="title_activity_list_personne">Personnes</string>
+    <string name="title_activity_add_personne">Ajouter une personne</string>
+
+    <!--Home-->
+    <string name="title_home_moniteurs">Moniteurs</string>
+    <string name="title_home_cavaliers">Cavaliers</string>
+    <string name="title_home_montures">Montures</string>
+    <string name="title_home_add_cours">Ajouter un cours</string>
+    <string name="title_home_list_cours">Mes cours</string>
 
     <!-- Genre -->
     <string name="genre_etalon">Etalon</string>
