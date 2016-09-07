@@ -94,6 +94,9 @@
 
     <string name="title_activity_list_personne">Personnes</string>
     <string name="title_activity_add_personne">Ajouter une personne</string>
+    <string name="title_activity_list_monture">Montures</string>
+    <string name="title_activity_add_monture">Ajouter une monture</string>
+
 
     <!--Home-->
     <string name="title_home_moniteurs">Moniteurs</string>
@@ -128,6 +131,10 @@
     <!--Personne-->
     <string name="personne_save">La personne est sauvegardée</string>
     <string name="personne_delete">La personne est supprimée</string>
+
+    <!--Monture-->
+    <string name="monture_save">La monture est sauvegardée</string>
+    <string name="monture_delete">La monture est supprimée</string>
 
 
 </resources>

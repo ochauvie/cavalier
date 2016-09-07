@@ -40,10 +40,13 @@ public class InitDataBase {
     public static void initMontures() {
         MontureService.deleteAll();
 
-        Monture monture = new Monture("Soumoulou", Genre.JUMENT, "Baie", null);
+        Monture monture = new Monture("Soumoulou", Genre.JUMENT, "Bai", null);
         monture.save();
 
         monture = new Monture("Cyrano", Genre.ETALON, "Noir", null);
+        monture.save();
+
+        monture = new Monture("Bibop", Genre.JUMENT, "Pie", null);
         monture.save();
 
     }

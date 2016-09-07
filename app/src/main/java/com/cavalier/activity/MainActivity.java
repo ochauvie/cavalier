@@ -80,7 +80,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         but3 = (Button) findViewById(R.id.button3);
         but3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivityForResult(new Intent(getApplicationContext(), ListEquipeActivity.class), 0);
+                startActivityForResult(new Intent(getApplicationContext(), ListMontureActivity.class), 0);
             }
         });
 
@@ -88,7 +88,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         but4 = (Button) findViewById(R.id.button4);
         but4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivityForResult(new Intent(getApplicationContext(), CreateBatailleActivity.class), 0);
+                startActivityForResult(new Intent(getApplicationContext(), ListMontureActivity.class), 0);
             }
         });
         but4.startAnimation(blinkAnim);
@@ -97,7 +97,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         but5 = (Button) findViewById(R.id.button5);
         but5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivityForResult(new Intent(getApplicationContext(), BatailleActivity.class), 0);
+                startActivityForResult(new Intent(getApplicationContext(), ListMontureActivity.class), 0);
             }
         });
 

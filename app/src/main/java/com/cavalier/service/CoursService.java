@@ -4,6 +4,7 @@ import com.activeandroid.Model;
 import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 import com.cavalier.model.Cours;
+import com.cavalier.model.Monture;
 import com.cavalier.model.Personne;
 import com.cavalier.model.TypePersonne;
 import com.tankbattle.model.Equipe;
@@ -34,6 +35,17 @@ public class CoursService {
         List<Model> list = new Select()
                 .from(Cours.class)
                 .where(critere + " = ?", personne.getId())
+                .execute();
+        if (list!=null && list.size() > 0 ){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isMontureInCours(Monture monture) {
+        List<Model> list = new Select()
+                .from(Cours.class)
+                .where("monture = ?", monture.getId())
                 .execute();
         if (list!=null && list.size() > 0 ){
             return true;

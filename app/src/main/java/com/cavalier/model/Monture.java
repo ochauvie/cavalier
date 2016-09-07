@@ -10,6 +10,7 @@ import java.util.Date;
 @Table(name = "cheval")
 public class Monture extends Model implements Serializable {
 
+    public static final String ID_MONTURE = "ID_MONTURE";
 
     @Column(name = "nom")
     private String nom;

@@ -36,6 +36,16 @@
             android:icon="@drawable/cavalier"
             android:label="@string/title_activity_add_personne" >
         </activity>
+        <activity
+            android:name=".activity.ListMontureActivity"
+            android:icon="@drawable/cavalier"
+            android:label="@string/title_activity_list_monture" >
+        </activity>
+        <activity
+            android:name=".activity.AddMontureActivity"
+            android:icon="@drawable/cavalier"
+            android:label="@string/title_activity_add_monture" >
+        </activity>
 
     </application>
 
