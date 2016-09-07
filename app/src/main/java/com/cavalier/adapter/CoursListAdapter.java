@@ -1,0 +1,111 @@
+package com.cavalier.adapter;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.cavalier.R;
+import com.cavalier.listner.CoursListener;
+import com.cavalier.listner.MontureListener;
+import com.cavalier.model.Cours;
+import com.cavalier.model.Monture;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class CoursListAdapter extends BaseAdapter {
+
+    private List<Cours> coursList;
+    private Context mContext;
+    private LayoutInflater mInflater;
+    private List<CoursListener> listeners = new ArrayList<CoursListener>();
+
+    public CoursListAdapter(Context mContext, List<Cours> coursList) {
+        this.coursList = coursList;
+        this.mContext = mContext;
+        mInflater = LayoutInflater.from(mContext);
+    }
+
+    public CoursListAdapter() {
+        super();
+    }
+
+    /**
+     * Pour ajouter un listener sur notre adapter
+     */
+    public void addListener(CoursListener aListener) {
+        listeners.add(aListener);
+    }
+
+    private void sendListenerToUpdate(Cours item, int position) {
+        for(int i = listeners.size()-1; i >= 0; i--) {
+            listeners.get(i).onClick(item, position);
+        }
+    }
+
+    @Override
+    public int getCount() {
+        if (coursList!=null) {
+            return coursList.size();
+        }
+        return 0;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        if (coursList!=null) {
+            return coursList.get(position);
+        }
+        return null;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.activity_cavalier_list_cours_item, parent, false);
+        TextView tv_cavalier = (TextView)layoutItem.findViewById(R.id.cavalier);
+        TextView tv_monture = (TextView)layoutItem.findViewById(R.id.monture);
+        TextView tv_moniteur = (TextView)layoutItem.findViewById(R.id.moniteur);
+        TextView tv_lieu = (TextView)layoutItem.findViewById(R.id.lieu);
+        TextView tv_duree = (TextView)layoutItem.findViewById(R.id.duree);
+        TextView tv_date = (TextView)layoutItem.findViewById(R.id.date);
+
+
+        // Renseignement des valeurs
+        Cours current = coursList.get(position);
+
+        tv_cavalier.setText(current.getCavalier().getPrenom());
+        tv_monture.setText(current.getMonture().getNom());
+        tv_moniteur.setText(current.getMoniteur().getPrenom());
+        tv_lieu.setText(current.getTypeLieu().getLabel());
+        tv_duree.setText(String.valueOf(current.getDuree()));
+        //tv_date.setText(current.getDate().toString());
+
+
+        // On memorise la position  dans le composant textview
+        layoutItem.setTag(position);
+        layoutItem.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //Lorsque l'on clique sur le nom, on recupere la position de Site"
+                Integer position = (Integer) v.getTag();
+
+                //On previent les listeners qu'il y a eu un clic sur le tank.
+                sendListenerToUpdate(coursList.get(position), position);
+            }
+
+        });
+
+        return layoutItem;
+    }
+}

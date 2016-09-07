@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_filter">
+
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/tableLayout">
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monture"
+                android:textSize="20sp"
+                android:id="@+id/textView1"
+                android:layout_column="0"
+                />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spMonture"
+                android:spinnerMode="dialog"
+                android:textSize="20sp"
+                android:layout_column="1"
+                android:layout_centerVertical="true"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cavalier"
+                android:textSize="20sp"
+                android:id="@+id/textView4"
+                android:layout_column="0"
+                />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spCavalier"
+                android:spinnerMode="dialog"
+                android:textSize="20sp"
+                android:layout_column="1"
+                android:layout_centerVertical="true"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Moniteur"
+                android:textSize="20sp"
+                android:id="@+id/textView6"
+                android:layout_column="0"
+                />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spMoniteur"
+                android:spinnerMode="dialog"
+                android:textSize="20sp"
+                android:layout_column="1"
+                android:layout_centerVertical="true"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lieu"
+                android:textSize="20sp"
+                android:id="@+id/textView7"
+                android:layout_column="0"
+                />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spLieu"
+                android:spinnerMode="dialog"
+                android:textSize="20sp"
+                android:layout_column="1"
+                android:layout_centerVertical="true"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Durée"
+                android:textSize="20sp"
+                android:id="@+id/textView2"
+                android:layout_column="0" />
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:id="@+id/editTextDuree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textView2"
+                android:layout_toRightOf="@+id/textView2"
+                android:ems="10"
+                android:textSize="20sp"
+                android:inputType="textCapWords" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Observation"
+                android:textSize="20sp"
+                android:id="@+id/textView8"
+                android:layout_column="0" />
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:id="@+id/editTextObservation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textView8"
+                android:layout_toRightOf="@+id/textView8"
+                android:ems="10"
+                android:textSize="20sp"
+                android:inputType="textCapWords" />
+
+        </TableRow>
+
+
+
+    </TableLayout>
+
+
+</RelativeLayout>

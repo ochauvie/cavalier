@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textSize="20sp"
-        android:layout_marginLeft="260dp">
+        android:layout_marginLeft="320dp">
     </TextView>
 
     <TextView android:text="Lieu" android:id="@+id/lieu"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textSize="20sp"
-        android:layout_marginLeft="260dp">
+        android:layout_marginLeft="410dp">
     </TextView>
 
     <TextView android:text="Durée" android:id="@+id/duree"
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textSize="20sp"
-        android:layout_marginLeft="260dp">
+        android:layout_marginLeft="500dp">
     </TextView>
 
 </RelativeLayout>

@@ -8,6 +8,7 @@ import com.cavalier.model.Monture;
 import com.cavalier.model.Personne;
 import com.cavalier.model.Sexe;
 import com.cavalier.model.TypePersonne;
+import com.cavalier.service.CoursService;
 import com.cavalier.service.MontureService;
 import com.cavalier.service.PersonneService;
 
@@ -16,6 +17,11 @@ import java.util.Date;
 public class InitDataBase {
 
     public static final String DEFAULT_IMAGE = "default_tank";
+
+
+    public static void initCours() {
+        CoursService.deleteAll();
+    }
 
     public static void initPersonnes() {
 

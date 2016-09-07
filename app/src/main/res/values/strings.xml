@@ -96,7 +96,8 @@
     <string name="title_activity_add_personne">Ajouter une personne</string>
     <string name="title_activity_list_monture">Montures</string>
     <string name="title_activity_add_monture">Ajouter une monture</string>
-
+    <string name="title_activity_list_cours">Mes cours</string>
+    <string name="title_activity_add_cours">Ajouter un cours</string>
 
     <!--Home-->
     <string name="title_home_moniteurs">Moniteurs</string>
@@ -127,6 +128,7 @@
     <!-- Mandatory -->
     <string name="nom_mandatory">Le nom est obligatoire</string>
     <string name="prenom_mandatory">Le prénom est obligatoire</string>
+    <string name="duree_mandatory">Le durée est obligatoire</string>
 
     <!--Personne-->
     <string name="personne_save">La personne est sauvegardée</string>
@@ -135,6 +137,9 @@
     <!--Monture-->
     <string name="monture_save">La monture est sauvegardée</string>
     <string name="monture_delete">La monture est supprimée</string>
+
+    <!--Cours-->
+    <string name="cours_save">Le cours est sauvegardé</string>
 
 
 </resources>

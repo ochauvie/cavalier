@@ -83,7 +83,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         but4 = (Button) findViewById(R.id.button4);
         but4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivityForResult(new Intent(getApplicationContext(), ListMontureActivity.class), 0);
+                startActivityForResult(new Intent(getApplicationContext(), AddCoursActivity.class), 0);
             }
         });
         but4.startAnimation(blinkAnim);
@@ -92,7 +92,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         but5 = (Button) findViewById(R.id.button5);
         but5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivityForResult(new Intent(getApplicationContext(), ListMontureActivity.class), 0);
+                startActivityForResult(new Intent(getApplicationContext(), ListCoursActivity.class), 0);
             }
         });
 
@@ -157,6 +157,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
     public void onDialogCompleted(boolean answer, String type) {
         if (answer) {
             if ("INIT_BD".equals(type)) {
+                InitDataBase.initCours();
                 InitDataBase.initPersonnes();
                 InitDataBase.initMontures();
                 Toast.makeText(getBaseContext(), getString(R.string.db_initialized), Toast.LENGTH_LONG).show();
