@@ -32,7 +32,7 @@ public class CoursService {
     public static boolean isPersonneInCours(Personne personne) {
         String critere = personne.getType().name().toLowerCase();
         List<Model> list = new Select()
-                .from(EquipeTank.class)
+                .from(Cours.class)
                 .where(critere + " = ?", personne.getId())
                 .execute();
         if (list!=null && list.size() > 0 ){

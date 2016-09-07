@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.tankbattle.R;
+import com.cavalier.R;
 import com.tankbattle.model.Equipe;
 
 import java.util.List;

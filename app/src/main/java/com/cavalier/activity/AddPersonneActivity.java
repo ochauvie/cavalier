@@ -1,5 +1,6 @@
 package com.cavalier.activity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
@@ -30,13 +31,12 @@ import com.cavalier.tools.Utils;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class AddPersonneActivity extends ListActivity implements MyDialogInterface.DialogReturn, PersonneListener {
+public class AddPersonneActivity extends Activity implements MyDialogInterface.DialogReturn, PersonneListener {
 
     private Spinner spinnerSexe;
     private EditText editTextNom, editTextPrenom;
     private TextView textViewType;
     private MyDialogInterface myInterface;
-    private ListView listView;
     private Personne personne = null;
     private TypePersonne typePersonne;
 
@@ -48,16 +48,12 @@ public class AddPersonneActivity extends ListActivity implements MyDialogInterfa
         spinnerSexe = (Spinner) findViewById(R.id.spSexe);
         loadSpinnerSexe();
 
-
         editTextNom = (EditText)  findViewById(R.id.editTextNom);
         editTextPrenom = (EditText)  findViewById(R.id.editTextPrenom);
         textViewType = (TextView) findViewById(R.id.textViewType);
 
-
         myInterface = new MyDialogInterface();
         myInterface.setListener(this);
-
-        listView = getListView();
 
         initView();
 
@@ -93,20 +89,22 @@ public class AddPersonneActivity extends ListActivity implements MyDialogInterfa
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_add_tank:
+            case R.id.action_add_personne:
                 if (onSave()) {
-                    Intent listTankActivity = new Intent(getApplicationContext(), ListTankActivity.class);
-                    startActivity(listTankActivity);
+                    Intent listPersonneActivity = new Intent(getApplicationContext(), ListPersonneActivity.class);
+                    listPersonneActivity.putExtra(Personne.TYPE_PERSONNE, typePersonne.name());
+                    startActivity(listPersonneActivity);
                     finish();
                     return true;
                 }
                 return false;
-            case R.id.action_close_tank:
-                Intent listTankActivity = new Intent(getApplicationContext(), ListTankActivity.class);
-                startActivity(listTankActivity);
+            case R.id.action_close_personne:
+                Intent listPersonneActivity = new Intent(getApplicationContext(), ListPersonneActivity.class);
+                listPersonneActivity.putExtra(Personne.TYPE_PERSONNE, typePersonne.name());
+                startActivity(listPersonneActivity);
                 finish();
                 return true;
-            case R.id.action_delete_tank:
+            case R.id.action_delete_personne:
                 onDelete();
                 return false;
         }
@@ -132,9 +130,11 @@ public class AddPersonneActivity extends ListActivity implements MyDialogInterfa
                 editTextPrenom.setText(personne.getPrenom());
                 textViewType.setText(personne.getType().getLabel());
                 SpinnerTool.SelectSpinnerItemByValue(spinnerSexe, personne.getSexe().name());
+                typePersonne = personne.getType();
 
+            } else {
+                typePersonne = TypePersonne.valueOf(bundle.getString(Personne.TYPE_PERSONNE));
             }
-            typePersonne = TypePersonne.valueOf(bundle.getString(Personne.TYPE_PERSONNE));
 
         }
     }
@@ -195,8 +195,9 @@ public class AddPersonneActivity extends ListActivity implements MyDialogInterfa
         if (answer && personne!=null) {
             personne.delete();
             Toast.makeText(getBaseContext(), getString(R.string.personne_delete), Toast.LENGTH_LONG).show();
-            Intent listTankActivity = new Intent(getApplicationContext(), ListTankActivity.class);
-            startActivity(listTankActivity);
+            Intent listPersonneActivity = new Intent(getApplicationContext(), ListPersonneActivity.class);
+            listPersonneActivity.putExtra(Personne.TYPE_PERSONNE, typePersonne.name());
+            startActivity(listPersonneActivity);
             finish();
         }
     }

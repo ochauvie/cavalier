@@ -1,7 +1,7 @@
 package com.tankbattle.model;
 
 
-import com.tankbattle.R;
+import com.cavalier.R;
 
 public enum Nation implements IRefData {
 

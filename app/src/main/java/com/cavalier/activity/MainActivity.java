@@ -71,7 +71,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         but2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent myIntent = new Intent(getApplicationContext(), ListPersonneActivity.class);
-                myIntent.putExtra(Personne.TYPE_PERSONNE, TypePersonne.CAVALIER);
+                myIntent.putExtra(Personne.TYPE_PERSONNE, TypePersonne.CAVALIER.name());
                 startActivityForResult(myIntent, 0);
             }
         });

@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-import com.tankbattle.R;
+import com.cavalier.R;
 import com.tankbattle.adapter.TankListAdapter;
 import com.tankbattle.listner.TankListener;
 import com.tankbattle.model.Tank;

@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.tankbattle.R;
+import com.cavalier.R;
 import com.tankbattle.listner.MyTouchListener;
 import com.tankbattle.listner.TankInBatailleListener;
 import com.tankbattle.model.Tank;

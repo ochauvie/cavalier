@@ -11,7 +11,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.activeandroid.ActiveAndroid;
-import com.tankbattle.R;
+import com.cavalier.R;
 import com.tankbattle.adapter.EquipeSpinnerAdapter;
 import com.tankbattle.model.Bataille;
 import com.tankbattle.model.BatailleTank;

@@ -23,6 +23,9 @@ public class Monture extends Model implements Serializable {
     @Column(name = "dateNaissance")
     private Date dateNaissance;
 
+    public Monture() {
+    }
+
     public Monture(String nom, Genre genre, String robe, Date dateNaissance) {
         this.nom = nom;
         this.genre = genre;

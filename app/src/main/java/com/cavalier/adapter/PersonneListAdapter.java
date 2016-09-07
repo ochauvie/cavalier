@@ -72,7 +72,7 @@ public class PersonneListAdapter extends BaseAdapter {
         RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.activity_cavalier_list_personne_item, parent, false);
         TextView tv_nom = (TextView)layoutItem.findViewById(R.id.nom);
         TextView tv_prenom = (TextView)layoutItem.findViewById(R.id.prenom);
-        TextView tv_sexe = (TextView)layoutItem.findViewById(R.id.sexe);
+//        TextView tv_sexe = (TextView)layoutItem.findViewById(R.id.sexe);
 
 
         // Renseignement des valeurs
@@ -80,7 +80,7 @@ public class PersonneListAdapter extends BaseAdapter {
 
         tv_nom.setText(current.getNom());
         tv_prenom.setText(current.getPrenom());
-        tv_nom.setText(current.getSexe().getLabel());
+//        tv_sexe.setText(current.getSexe().getLabel());
 
 
         // On memorise la position  dans le composant textview

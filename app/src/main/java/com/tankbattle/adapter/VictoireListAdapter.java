@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.tankbattle.R;
+import com.cavalier.R;
 import com.tankbattle.listner.TankListener;
 import com.tankbattle.model.TankVictoires;
 

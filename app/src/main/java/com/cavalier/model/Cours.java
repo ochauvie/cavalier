@@ -29,6 +29,9 @@ public class Cours  extends Model implements Serializable {
     @Column(name = "duree")
     private Integer duree;
 
+    public Cours() {
+    }
+
     public Cours(Personne moniteur, Personne cavalier, Monture monture, Lieu lieu, Date date, Integer duree) {
         this.moniteur = moniteur;
         this.cavalier = cavalier;

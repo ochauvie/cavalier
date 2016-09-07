@@ -17,13 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cavalier.activity.MyDialogInterface;
-import com.tankbattle.R;
+import com.cavalier.R;
 import com.cavalier.adapter.IDataSpinnerAdapter;
 import com.tankbattle.adapter.VictoireListAdapter;
 import com.tankbattle.data.InitDataBase;
 import com.tankbattle.listner.TankListener;
 import com.tankbattle.model.Genre;
-import com.tankbattle.model.IRefData;
+import com.cavalier.model.IRefData;
 import com.tankbattle.model.Nation;
 import com.tankbattle.model.Tank;
 import com.tankbattle.model.TankVictoires;
@@ -143,13 +143,11 @@ public class AddTankActivity extends ListActivity implements MyDialogInterface.D
 
     private void loadSpinnerNation() {
         ArrayList<IRefData> list = new ArrayList<IRefData>();
-        Collections.addAll(list, Nation.values());
         spinnerNation.setAdapter(new IDataSpinnerAdapter(this, list));
     }
 
     private void loadSpinnerGenre() {
         ArrayList<IRefData> list = new ArrayList<IRefData>();
-        Collections.addAll(list, Genre.values());
         spinnerGenre.setAdapter(new IDataSpinnerAdapter(this, list));
     }
 

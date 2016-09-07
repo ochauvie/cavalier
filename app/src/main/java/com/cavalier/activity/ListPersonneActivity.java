@@ -25,7 +25,7 @@ public class ListPersonneActivity extends ListActivity implements PersonneListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_tank);
+        setContentView(R.layout.activity_cavalier_list_personne);
 
         initView();
 
