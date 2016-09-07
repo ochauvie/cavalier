@@ -18,11 +18,6 @@ import com.cavalier.data.InitDataBase;
 import com.cavalier.model.Personne;
 import com.cavalier.model.TypePersonne;
 import com.cavalier.R;
-import com.tankbattle.activity.AddTankActivity;
-import com.tankbattle.activity.BatailleActivity;
-import com.tankbattle.activity.CreateBatailleActivity;
-import com.tankbattle.activity.ListEquipeActivity;
-import com.tankbattle.activity.ListTankActivity;
 
 
 public class MainActivity extends Activity implements MyDialogInterface.DialogReturn {
@@ -116,17 +111,17 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_init_data:
-                //InitDataBase.initTankList(getApplicationContext());
-                Toast.makeText(getBaseContext(), getString(R.string.db_initialized), Toast.LENGTH_LONG).show();
-                return true;
-            case R.id.action_show_list_tank:
-                startActivityForResult(new Intent(getApplicationContext(), ListTankActivity.class), 0);
-
-                return true;
-            case R.id.action_show_add_tank:
-                startActivityForResult(new Intent(getApplicationContext(), AddTankActivity.class), 0);
-                return true;
+//            case R.id.action_init_data:
+//                //InitDataBase.initTankList(getApplicationContext());
+//                Toast.makeText(getBaseContext(), getString(R.string.db_initialized), Toast.LENGTH_LONG).show();
+//                return true;
+//            case R.id.action_show_list_tank:
+//                startActivityForResult(new Intent(getApplicationContext(), ListTankActivity.class), 0);
+//
+//                return true;
+//            case R.id.action_show_add_tank:
+//                startActivityForResult(new Intent(getApplicationContext(), AddTankActivity.class), 0);
+//                return true;
         }
         return false;
     }
