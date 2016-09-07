@@ -1,13 +1,18 @@
 package com.cavalier.activity;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cavalier.R;
@@ -25,14 +30,21 @@ import com.cavalier.service.MontureService;
 import com.cavalier.service.PersonneService;
 import com.cavalier.tools.Utils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.Locale;
 
-public class AddCoursActivity extends Activity implements CoursListener {
+public class AddCoursActivity extends Activity implements CoursListener, DatePickerDialog.OnDateSetListener {
 
     private Spinner spinnerMoniteur, spinnerCavalier, spinnerMonture, spinnerLieu;
     private EditText editTextDuree, editTextObservation;
+    private TextView textDate;
+    private ImageButton selectDate;
+    private DatePickerDialog datePickerDialog = null;
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
     private Cours cours = null;
 
     @Override
@@ -40,10 +52,10 @@ public class AddCoursActivity extends Activity implements CoursListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cavalier_add_cours);
 
-        spinnerCavalier = (Spinner) findViewById(R.id.spMoniteur);
-        loadSpinnerMoniteur(spinnerCavalier);
-        spinnerMoniteur = (Spinner) findViewById(R.id.spCavalier);
-        loadSpinnerCavalier(spinnerMoniteur);
+        spinnerCavalier = (Spinner) findViewById(R.id.spCavalier);
+        loadSpinnerCavalier(spinnerCavalier);
+        spinnerMoniteur = (Spinner) findViewById(R.id.spMoniteur);
+        loadSpinnerMoniteur(spinnerMoniteur);
         spinnerMonture = (Spinner) findViewById(R.id.spMonture);
         loadSpinnerMonture(spinnerMonture);
         spinnerLieu = (Spinner) findViewById(R.id.spLieu);
@@ -52,7 +64,23 @@ public class AddCoursActivity extends Activity implements CoursListener {
 
         editTextDuree = (EditText)  findViewById(R.id.editTextDuree);
         editTextObservation = (EditText)  findViewById(R.id.editTextObservation);
+        textDate = (TextView)  findViewById(R.id.textViewDate);
+        textDate.setEnabled(false);
+        textDate.setText(sdf.format(new Date()));
 
+        selectDate = (ImageButton) findViewById(R.id.selectDate);
+        selectDate.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String sDate = textDate.getText().toString();
+                String[] ssDate = sDate.split("/");
+                datePickerDialog = new DatePickerDialog(v.getContext(),
+                        AddCoursActivity.this,
+                        Integer.parseInt(ssDate[2]),
+                        Integer.parseInt(ssDate[1])-1,
+                        Integer.parseInt(ssDate[0]));
+                datePickerDialog.show();
+            }
+        });
         // Hide keyboard
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
@@ -119,7 +147,11 @@ public class AddCoursActivity extends Activity implements CoursListener {
             if (cours == null) {
                 cours = new Cours();
             }
-            cours.setDate(new Date());
+            try {
+                cours.setDate(sdf.parse(textDate.getText().toString()));
+            } catch (ParseException pe) {
+                cours.setDate(new Date());
+            }
             cours.setCavalier((Personne) spinnerCavalier.getSelectedItem());
             cours.setMoniteur((Personne) spinnerMoniteur.getSelectedItem());
             cours.setMonture((Monture) spinnerMonture.getSelectedItem());
@@ -132,7 +164,17 @@ public class AddCoursActivity extends Activity implements CoursListener {
         }
         return true;
     }
-
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+        String day = String.valueOf(dayOfMonth);
+        if (day.length()<2) {day = "0" + day;}
+        String month = String.valueOf(monthOfYear+1);
+        if (month.length()<2) {month = "0" + month;}
+        String y = String.valueOf(year);
+        if (y.length()<2) {y = "0" + y;}
+        textDate.setText(day + "/" + month + "/" + y);
+        datePickerDialog.hide();
+    }
 
     @Override
     public void onBackPressed() {

@@ -14,8 +14,10 @@ import com.cavalier.listner.MontureListener;
 import com.cavalier.model.Cours;
 import com.cavalier.model.Monture;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class CoursListAdapter extends BaseAdapter {
@@ -24,6 +26,7 @@ public class CoursListAdapter extends BaseAdapter {
     private Context mContext;
     private LayoutInflater mInflater;
     private List<CoursListener> listeners = new ArrayList<CoursListener>();
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
 
     public CoursListAdapter(Context mContext, List<Cours> coursList) {
         this.coursList = coursList;
@@ -83,12 +86,19 @@ public class CoursListAdapter extends BaseAdapter {
         // Renseignement des valeurs
         Cours current = coursList.get(position);
 
+        tv_date.setText(sdf.format(current.getDate()));
         tv_cavalier.setText(current.getCavalier().getPrenom());
         tv_monture.setText(current.getMonture().getNom());
-        tv_moniteur.setText(current.getMoniteur().getPrenom());
-        tv_lieu.setText(current.getTypeLieu().getLabel());
-        tv_duree.setText(String.valueOf(current.getDuree()));
-        //tv_date.setText(current.getDate().toString());
+        // Landscape only
+        if (tv_moniteur != null) {
+            tv_moniteur.setText(current.getMoniteur().getPrenom());
+        }
+        if (tv_lieu != null) {
+            tv_lieu.setText(current.getTypeLieu().getLabel());
+        }
+        if (tv_duree != null) {
+            tv_duree.setText(String.valueOf(current.getDuree()));
+        }
 
 
         // On memorise la position  dans le composant textview

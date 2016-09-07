@@ -11,6 +11,30 @@
         android:layout_alignParentTop="true"
         android:id="@+id/tableLayout">
 
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date"
+                android:textSize="20sp"
+                android:id="@+id/textViewDate"
+                android:layout_column="0"
+                />
+
+            <ImageButton
+                android:id="@+id/selectDate"
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_centerVertical="true"
+                android:contentDescription="Date"
+                android:background="#00000000"
+                android:src="@drawable/calendrier" />
+        </TableRow>
 
         <TableRow
             android:layout_width="fill_parent"
@@ -116,10 +140,11 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Durée"
+                android:text="Durée (H)"
                 android:textSize="20sp"
                 android:id="@+id/textView2"
-                android:layout_column="0" />
+                android:layout_column="0"
+                />
 
             <EditText
                 android:layout_marginTop="10dp"
@@ -130,7 +155,7 @@
                 android:layout_toRightOf="@+id/textView2"
                 android:ems="10"
                 android:textSize="20sp"
-                android:inputType="textCapWords" />
+                android:inputType="number"/>
 
         </TableRow>
 
