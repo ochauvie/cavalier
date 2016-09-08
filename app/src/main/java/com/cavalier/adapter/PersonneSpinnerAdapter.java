@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -58,15 +59,10 @@ public class PersonneSpinnerAdapter extends BaseAdapter {
     }
 
     public View getCustomView(int position, View convertView, ViewGroup parent) {
-        RelativeLayout mySpinner  = (RelativeLayout) mInflater.inflate(R.layout.custom_spinner, parent, false);
-
+        RelativeLayout mySpinner  = (RelativeLayout) mInflater.inflate(R.layout.light_custom_spinner, parent, false);
         Personne item = dataList.get(position);
-
         TextView main_text = (TextView) mySpinner .findViewById(R.id.text_main_seen);
         main_text.setText(item.getPrenom() + " " + item.getNom());
-
-
         return mySpinner;
-
     }
 }

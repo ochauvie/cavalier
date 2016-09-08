@@ -149,13 +149,14 @@
             <EditText
                 android:layout_marginTop="10dp"
                 android:id="@+id/editTextDuree"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/textView2"
                 android:layout_toRightOf="@+id/textView2"
                 android:ems="10"
                 android:textSize="20sp"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:focusableInTouchMode="false" />
 
         </TableRow>
 

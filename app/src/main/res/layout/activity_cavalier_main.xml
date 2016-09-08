@@ -20,42 +20,9 @@
             android:layout_marginTop="30px"
             android:layout_width="400px"
             android:layout_height="80px"
-            android:text="@string/title_home_moniteurs"
-            android:id="@+id/button1"
-            android:textSize="20sp"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal" />
-
-        <Button
-            android:layout_marginTop="30px"
-            android:layout_width="400px"
-            android:layout_height="80px"
-            android:text="@string/title_home_cavaliers"
-            android:id="@+id/button2"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal" />
-
-        <Button
-            android:layout_marginTop="30px"
-            android:layout_width="400px"
-            android:layout_height="80px"
-            android:text="@string/title_home_montures"
-            android:id="@+id/button3"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal" />
-
-        <Button
-            android:layout_marginTop="30px"
-            android:layout_width="400px"
-            android:layout_height="80px"
             android:text="@string/title_home_add_cours"
             android:id="@+id/button4"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal" />
@@ -66,10 +33,45 @@
             android:layout_height="80px"
             android:text="@string/title_home_list_cours"
             android:id="@+id/button5"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal" />
+
+
+        <Button
+            android:layout_marginTop="30px"
+            android:layout_width="400px"
+            android:layout_height="80px"
+            android:text="@string/title_home_moniteurs"
+            android:id="@+id/button1"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:layout_marginTop="30px"
+            android:layout_width="400px"
+            android:layout_height="80px"
+            android:text="@string/title_home_cavaliers"
+            android:id="@+id/button2"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:layout_marginTop="30px"
+            android:layout_width="400px"
+            android:layout_height="80px"
+            android:text="@string/title_home_montures"
+            android:id="@+id/button3"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal" />
+
 
         <Button
             android:layout_marginTop="30px"
@@ -78,7 +80,7 @@
             android:text="@string/action_init_data"
             android:id="@+id/button0"
             android:textSize="10sp"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal" />
 

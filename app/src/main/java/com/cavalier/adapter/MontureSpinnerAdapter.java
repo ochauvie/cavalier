@@ -58,7 +58,7 @@ public class MontureSpinnerAdapter extends BaseAdapter {
     }
 
     public View getCustomView(int position, View convertView, ViewGroup parent) {
-        RelativeLayout mySpinner  = (RelativeLayout) mInflater.inflate(R.layout.custom_spinner, parent, false);
+        RelativeLayout mySpinner  = (RelativeLayout) mInflater.inflate(R.layout.light_custom_spinner, parent, false);
 
         Monture item = dataList.get(position);
 

@@ -3,9 +3,7 @@ package com.cavalier.tools;
 import android.widget.BaseAdapter;
 import android.widget.Spinner;
 
-/**
- * Created by Olivier on 09/09/15.
- */
+
 public class SpinnerTool {
 
     public static void SelectSpinnerItemByValue(Spinner spnr, Object value)

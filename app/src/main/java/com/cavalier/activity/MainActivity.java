@@ -86,7 +86,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
                 startActivityForResult(new Intent(getApplicationContext(), AddCoursActivity.class), 0);
             }
         });
-        but4.startAnimation(blinkAnim);
+        //but4.startAnimation(blinkAnim);
 
         // Mes cours
         but5 = (Button) findViewById(R.id.button5);

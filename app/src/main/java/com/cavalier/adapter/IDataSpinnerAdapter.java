@@ -69,8 +69,8 @@ public class IDataSpinnerAdapter extends BaseAdapter {
         TextView main_text = (TextView) mySpinner .findViewById(R.id.text_main_seen);
         main_text.setText(item.getLabel());
 
-        ImageView left_icon = (ImageView)
-        mySpinner .findViewById(R.id.left_pic);
+
+        ImageView left_icon = (ImageView) mySpinner.findViewById(R.id.left_pic);
         left_icon.setImageResource(item.getFlag());
 
         return mySpinner;

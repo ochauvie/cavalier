@@ -63,6 +63,7 @@ public class AddCoursActivity extends Activity implements CoursListener, DatePic
 
 
         editTextDuree = (EditText)  findViewById(R.id.editTextDuree);
+        editTextDuree.setText("1");
         editTextObservation = (EditText)  findViewById(R.id.editTextObservation);
         textDate = (TextView)  findViewById(R.id.textViewDate);
         textDate.setEnabled(false);
