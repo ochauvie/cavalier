@@ -66,7 +66,7 @@ public class AddCoursActivity extends Activity implements CoursListener, DatePic
         editTextDuree.setText("1");
         editTextObservation = (EditText)  findViewById(R.id.editTextObservation);
         textDate = (TextView)  findViewById(R.id.textViewDate);
-        textDate.setEnabled(false);
+        //textDate.setEnabled(false);
         textDate.setText(sdf.format(new Date()));
 
         selectDate = (ImageButton) findViewById(R.id.selectDate);
@@ -134,7 +134,7 @@ public class AddCoursActivity extends Activity implements CoursListener, DatePic
     private void loadSpinnerLieu(Spinner spinner) {
         ArrayList<IRefData> list = new ArrayList<IRefData>();
         Collections.addAll(list, TypeLieu.values());
-        spinner.setAdapter(new IDataSpinnerAdapter(this, list));
+        spinner.setAdapter(new IDataSpinnerAdapter(this, list, R.layout.light_custom_spinner));
     }
 
 
@@ -158,7 +158,7 @@ public class AddCoursActivity extends Activity implements CoursListener, DatePic
             cours.setMonture((Monture) spinnerMonture.getSelectedItem());
             cours.setTypeLieu((TypeLieu) spinnerLieu.getSelectedItem());
             cours.setDuree(Integer.valueOf(edDuree.toString()));
-            cours.setObservation(editTextObservation.toString());
+            cours.setObservation(editTextObservation.getText().toString());
 
             cours.save();
             Toast.makeText(getBaseContext(), getString(R.string.cours_save), Toast.LENGTH_LONG).show();

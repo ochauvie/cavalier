@@ -63,7 +63,7 @@ public class MontureSpinnerAdapter extends BaseAdapter {
         Monture item = dataList.get(position);
 
         TextView main_text = (TextView) mySpinner .findViewById(R.id.text_main_seen);
-        main_text.setText(item.getNom() + " " + item.getRobe());
+        main_text.setText(item.getNom() + " (" + item.getRobe() + ")");
 
 
         return mySpinner;

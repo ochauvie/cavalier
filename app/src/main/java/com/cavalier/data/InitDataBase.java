@@ -55,6 +55,9 @@ public class InitDataBase {
         monture = new Monture("Bibop", Genre.JUMENT, "Pie", null);
         monture.save();
 
+        monture = new Monture("Phuribon", Genre.ETALON, "Alzan", null);
+        monture.save();
+
     }
 
 

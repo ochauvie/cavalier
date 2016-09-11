@@ -111,7 +111,7 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
     private void loadSpinnerSexe() {
         ArrayList<IRefData> list = new ArrayList<IRefData>();
         Collections.addAll(list, Sexe.values());
-        spinnerSexe.setAdapter(new IDataSpinnerAdapter(this, list));
+        spinnerSexe.setAdapter(new IDataSpinnerAdapter(this, list, R.layout.light_custom_spinner));
     }
 
 
@@ -131,6 +131,7 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
 
             } else {
                 typePersonne = TypePersonne.valueOf(bundle.getString(Personne.TYPE_PERSONNE));
+                textViewType.setText(typePersonne.getLabel());
             }
 
         }

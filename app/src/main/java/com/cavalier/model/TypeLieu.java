@@ -5,11 +5,11 @@ import com.cavalier.model.IRefData;
 
 public enum TypeLieu implements IRefData {
 
-    ECURIE(R.string.type_lieu_ecurie, R.drawable.genre_heavy),
-    CARRIERE(R.string.type_lieu_carriere, R.drawable.genre_heavy),
-    MANEGE(R.string.type_lieu_manege, R.drawable.genre_medium),
-    EXTERIEUR(R.string.type_lieu_exterieur, R.drawable.genre_destroyer),
-    AUTRE(R.string.type_lieu_autre, R.drawable.genre_destroyer),;
+    ECURIE(R.string.type_lieu_ecurie, 0),
+    CARRIERE(R.string.type_lieu_carriere, 0),
+    MANEGE(R.string.type_lieu_manege, 0),
+    EXTERIEUR(R.string.type_lieu_exterieur, 0),
+    AUTRE(R.string.type_lieu_autre, 0),;
 
     private final int label;
     private final int flag;

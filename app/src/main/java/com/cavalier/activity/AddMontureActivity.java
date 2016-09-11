@@ -104,7 +104,7 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
     private void loadSpinnerGenre() {
         ArrayList<IRefData> list = new ArrayList<IRefData>();
         Collections.addAll(list, Genre.values());
-        spinnerGenre.setAdapter(new IDataSpinnerAdapter(this, list));
+        spinnerGenre.setAdapter(new IDataSpinnerAdapter(this, list, R.layout.light_custom_spinner));
     }
 
 

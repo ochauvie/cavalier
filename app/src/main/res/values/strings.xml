@@ -111,6 +111,7 @@
     <string name="genre_hongre">Hongre</string>
     <string name="genre_jument">Jument</string>
     <string name="genre_poulin">Poulin</string>
+    <string name="genre_pouliche">Pouliche</string>
     <string name="genre_masculin">Masculin</string>
     <string name="genre_feminin">Féminin</string>
 
@@ -140,6 +141,7 @@
 
     <!--Cours-->
     <string name="cours_save">Le cours est sauvegardé</string>
+    <string name="cours_delete">Le cours est Supprimer</string>
 
 
 </resources>

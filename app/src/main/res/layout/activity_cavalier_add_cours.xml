@@ -67,7 +67,7 @@
             <TextView
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="Cavalier"
                 android:textSize="20sp"
                 android:id="@+id/textView4"
@@ -149,14 +149,15 @@
             <EditText
                 android:layout_marginTop="10dp"
                 android:id="@+id/editTextDuree"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/textView2"
                 android:layout_toRightOf="@+id/textView2"
                 android:ems="10"
                 android:textSize="20sp"
                 android:inputType="number"
-                android:focusableInTouchMode="false" />
+                android:focusableInTouchMode="false"
+                android:layout_column="1"/>
 
         </TableRow>
 
@@ -173,20 +174,17 @@
                 android:id="@+id/textView8"
                 android:layout_column="0" />
 
-            <EditText
-                android:layout_marginTop="10dp"
-                android:id="@+id/editTextObservation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/textView8"
-                android:layout_toRightOf="@+id/textView8"
-                android:ems="10"
-                android:textSize="20sp"
-                android:inputType="textCapWords" />
-
         </TableRow>
 
-
+        <EditText
+            android:layout_marginTop="10dp"
+            android:id="@+id/editTextObservation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:textSize="20sp"
+            android:inputType="textMultiLine|textCapWords"
+            android:lines="2" />
 
     </TableLayout>
 

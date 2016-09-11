@@ -23,11 +23,13 @@ public class IDataSpinnerAdapter extends BaseAdapter {
     private List<IRefData> dataList;
     private Context mContext;
     private LayoutInflater mInflater;
+    private int layoutId;
 
-    public IDataSpinnerAdapter(Context mContext, List<IRefData> dataList) {
+    public IDataSpinnerAdapter(Context mContext, List<IRefData> dataList, int layoutId) {
         this.dataList = dataList;
         this.mContext = mContext;
-        mInflater = LayoutInflater.from(mContext);
+        this.mInflater = LayoutInflater.from(mContext);
+        this.layoutId = layoutId;
     }
 
     @Override
@@ -62,16 +64,17 @@ public class IDataSpinnerAdapter extends BaseAdapter {
 
 
     public View getCustomView(int position, View convertView, ViewGroup parent) {
-        RelativeLayout mySpinner  = (RelativeLayout) mInflater.inflate(R.layout.custom_spinner, parent, false);
+        RelativeLayout mySpinner  = (RelativeLayout) mInflater.inflate(layoutId, parent, false);
 
         IRefData item = dataList.get(position);
 
         TextView main_text = (TextView) mySpinner .findViewById(R.id.text_main_seen);
         main_text.setText(item.getLabel());
 
-
-        ImageView left_icon = (ImageView) mySpinner.findViewById(R.id.left_pic);
-        left_icon.setImageResource(item.getFlag());
+        if (layoutId == R.layout.custom_spinner) {
+            ImageView left_icon = (ImageView) mySpinner.findViewById(R.id.left_pic);
+            left_icon.setImageResource(item.getFlag());
+        }
 
         return mySpinner;
 

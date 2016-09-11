@@ -5,8 +5,8 @@ import com.cavalier.model.IRefData;
 
 public enum Sexe implements IRefData {
 
-    MASCULIN(R.string.genre_masculin, R.drawable.genre_heavy),
-    FEMININ(R.string.genre_feminin, R.drawable.genre_medium);
+    MASCULIN(R.string.genre_masculin, 0),
+    FEMININ(R.string.genre_feminin, 0);
 
     private final int label;
     private final int flag;

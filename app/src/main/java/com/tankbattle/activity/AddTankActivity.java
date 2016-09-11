@@ -143,12 +143,12 @@ public class AddTankActivity extends ListActivity implements MyDialogInterface.D
 
     private void loadSpinnerNation() {
         ArrayList<IRefData> list = new ArrayList<IRefData>();
-        spinnerNation.setAdapter(new IDataSpinnerAdapter(this, list));
+        spinnerNation.setAdapter(new IDataSpinnerAdapter(this, list, R.layout.custom_spinner));
     }
 
     private void loadSpinnerGenre() {
         ArrayList<IRefData> list = new ArrayList<IRefData>();
-        spinnerGenre.setAdapter(new IDataSpinnerAdapter(this, list));
+        spinnerGenre.setAdapter(new IDataSpinnerAdapter(this, list, R.layout.custom_spinner));
     }
 
     private void initView() {
