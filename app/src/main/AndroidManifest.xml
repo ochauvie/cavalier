@@ -28,22 +28,22 @@
         </activity>
         <activity
             android:name=".activity.ListPersonneActivity"
-            android:icon="@drawable/cavalier"
-            android:label="@string/title_activity_list_personne" >
+            android:icon="@drawable/bombe"
+            android:label="@string/title_activity_list_cavalier" >
         </activity>
         <activity
             android:name=".activity.AddPersonneActivity"
-            android:icon="@drawable/cavalier"
+            android:icon="@drawable/bombe"
             android:label="@string/title_activity_add_personne" >
         </activity>
         <activity
             android:name=".activity.ListMontureActivity"
-            android:icon="@drawable/cavalier"
+            android:icon="@drawable/cheval"
             android:label="@string/title_activity_list_monture" >
         </activity>
         <activity
             android:name=".activity.AddMontureActivity"
-            android:icon="@drawable/cavalier"
+            android:icon="@drawable/cheval"
             android:label="@string/title_activity_add_monture" >
         </activity>
         <activity

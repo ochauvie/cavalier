@@ -1,79 +1,5 @@
 <resources>
 
-    <!-- Nation -->
-    <string name="nation_fr">Français</string>
-    <string name="nation_ru">Russe</string>
-    <string name="nation_us">Americain</string>
-    <string name="nation_en">Anglais</string>
-    <string name="nation_de">Allemand</string>
-    <string name="nation_it">Italien</string>
-    <string name="nation_jp">Japonais</string>
-
-    <!-- Genre -->
-    <string name="genre_lourd">Lourd</string>
-    <string name="genre_moyen">Moyen</string>
-    <string name="genre_leger">Léger</string>
-    <string name="genre_anti_char">Anti char</string>
-    <string name="genre_cam">Artillerie</string>
-
-
-    <!-- Fiche Tank -->
-    <string name="nation">Nation</string>
-    <string name="genre">Genre</string>
-    <string name="nom">Nom</string>
-    <string name="pv">Pv</string>
-    <string name="image">Image</string>
-    <string name="victoire">Victoire</string>
-    <string name="victoires">Victoires</string>
-    <string name="et">et</string>
-    <string name="defaites">défaites</string>
-    <string name="nb_tank">Nombres de tanks</string>
-
-    <!-- Fiche Equipe -->
-    <string name="tank_equipe">Tanks de l\'équipe</string>
-
-    <!-- Fiche Bataille -->
-    <string name="equipe1">Equipe 1</string>
-    <string name="equipe2">Equipe 2</string>
-    <string name="date_creation">Date de début</string>
-    <string name="date_fin">Date de fin</string>
-    <string name="bataille">Bataille</string>
-    <string name="start_bataille">Démarrer la bataille</string>
-    <string name="return_bataille">Continuer la bataille</string>
-    <string name="action_end_bataille">Terminer la baraille</string>
-    <string name="bataille_save">La bataille est crée</string>
-    <string name="current_bataille_save">La bataille est sauvegardée</string>
-    <string name="current_bataille_end">La bataille est terminée</string>
-    <string name="no_current_bataille">Aucune bataille en cours. Il faut en créer une.</string>
-    <string name="victoire_save">Victoire sauvegardée</string>
-
-
-    <!-- Action -->
-    <string name="action_list_tank">List des tanks</string>
-    <string name="action_add_tank">Ajouter un tank</string>
-    <string name="action_close_bataille">Terminer la bataille</string>
-
-    <string name="title_activity_list_tank">Hangar</string>
-    <string name="title_activity_add_tank">Ajouter un tank</string>
-    <string name="title_activity_list_equipe">Equipes</string>
-    <string name="title_activity_add_equipe">Equipe</string>
-    <string name="title_activity_create_bataille">Bataille</string>
-    <string name="title_activity_bataille">Bataille</string>
-
-
-    <string name="pv_mandatory">Le nombre de point de vie est obligatoire</string>
-    <string name="equipes_mandatory">Il faut choisir deux équipes différentes</string>
-    <string name="equipes_ko">Les deux équipes ont des tanks en commun</string>
-
-
-    <string name="tank_save">Le tank est sauvegardé</string>
-    <string name="tank_delete">Le tank est supprimé</string>
-    <string name="tank_victoire">Ligne supprimée</string>
-
-    <string name="equipe_save">L\'équipe est sauvegardé</string>
-    <string name="equipe_notsave">Erreur à la sauvegarde de l\'équipe</string>
-    <string name="equipe_delete">L\'équipe est supprimé</string>
-
     <string name="db_initialized">La base de données a été initialisée.</string>
 
     <!-- CHEVAL -->
@@ -92,10 +18,11 @@
     <string name="action_delete">Supprimer</string>
     <string name="action_init_data">Initialiser les données</string>
 
-    <string name="title_activity_list_personne">Personnes</string>
-    <string name="title_activity_add_personne">Ajouter une personne</string>
+    <string name="title_activity_list_moniteur">Moniteurs</string>
+    <string name="title_activity_list_cavalier">Cavaliers</string>
+    <string name="title_activity_add_personne">Personne</string>
     <string name="title_activity_list_monture">Montures</string>
-    <string name="title_activity_add_monture">Ajouter une monture</string>
+    <string name="title_activity_add_monture">Monture</string>
     <string name="title_activity_list_cours">Mes cours</string>
     <string name="title_activity_add_cours">Ajouter un cours</string>
 

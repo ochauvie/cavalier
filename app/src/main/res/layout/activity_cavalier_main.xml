@@ -22,8 +22,8 @@
             android:layout_height="80px"
             android:text="@string/title_home_add_cours"
             android:id="@+id/button4"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="25sp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal" />
 
@@ -33,8 +33,8 @@
             android:layout_height="80px"
             android:text="@string/title_home_list_cours"
             android:id="@+id/button5"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="25sp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal" />
 
@@ -45,8 +45,8 @@
             android:layout_height="80px"
             android:text="@string/title_home_moniteurs"
             android:id="@+id/button1"
-            android:textSize="20sp"
-            android:textColor="@android:color/black"
+            android:textSize="25sp"
+            android:textColor="@android:color/holo_red_dark"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal" />
 
@@ -56,8 +56,8 @@
             android:layout_height="80px"
             android:text="@string/title_home_cavaliers"
             android:id="@+id/button2"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="25sp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal" />
 
@@ -67,8 +67,8 @@
             android:layout_height="80px"
             android:text="@string/title_home_montures"
             android:id="@+id/button3"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="25sp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal" />
 

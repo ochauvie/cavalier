@@ -8,15 +8,5 @@
         android:title="@string/action_init_data"
         app:showAsAction="never" />
 
-    <item
-        android:id="@+id/action_show_list_tank"
-        android:title="@string/action_list_tank"
-        app:showAsAction="never" />
-
-
-    <item
-        android:id="@+id/action_show_add_tank"
-        android:title="@string/action_add_tank"
-        app:showAsAction="never" />
 
 </menu>

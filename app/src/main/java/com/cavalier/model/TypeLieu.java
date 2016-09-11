@@ -5,10 +5,10 @@ import com.cavalier.model.IRefData;
 
 public enum TypeLieu implements IRefData {
 
-    ECURIE(R.string.type_lieu_ecurie, 0),
     CARRIERE(R.string.type_lieu_carriere, 0),
     MANEGE(R.string.type_lieu_manege, 0),
     EXTERIEUR(R.string.type_lieu_exterieur, 0),
+    ECURIE(R.string.type_lieu_ecurie, 0),
     AUTRE(R.string.type_lieu_autre, 0),;
 
     private final int label;

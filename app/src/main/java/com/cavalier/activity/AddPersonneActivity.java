@@ -133,7 +133,6 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
                 typePersonne = TypePersonne.valueOf(bundle.getString(Personne.TYPE_PERSONNE));
                 textViewType.setText(typePersonne.getLabel());
             }
-
         }
     }
 

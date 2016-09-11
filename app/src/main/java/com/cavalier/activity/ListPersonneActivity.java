@@ -46,6 +46,11 @@ public class ListPersonneActivity extends ListActivity implements PersonneListen
         Bundle bundle = getIntent().getExtras();
         if (bundle!=null) {
             this.typePersonne = TypePersonne.valueOf(bundle.getString(Personne.TYPE_PERSONNE));
+            if (TypePersonne.CAVALIER.equals(this.typePersonne)) {
+                this.setTitle(R.string.title_activity_list_cavalier);
+            } else {
+                this.setTitle(R.string.title_activity_list_moniteur);
+            }
         }
     }
 

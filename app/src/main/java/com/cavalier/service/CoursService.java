@@ -6,10 +6,6 @@ import com.activeandroid.query.Select;
 import com.cavalier.model.Cours;
 import com.cavalier.model.Monture;
 import com.cavalier.model.Personne;
-import com.cavalier.model.TypePersonne;
-import com.tankbattle.model.Equipe;
-import com.tankbattle.model.EquipeTank;
-import com.tankbattle.model.Tank;
 
 import java.util.List;
 
@@ -21,7 +17,7 @@ public class CoursService {
     public static List<Cours> getAll() {
         return new Select()
                 .from(Cours.class)
-                .orderBy("cavalier ASC")
+                .orderBy("date ASC")
                 .execute();
     }
 
