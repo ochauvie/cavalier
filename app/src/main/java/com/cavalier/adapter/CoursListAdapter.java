@@ -1,10 +1,12 @@
 package com.cavalier.adapter;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -51,6 +53,12 @@ public class CoursListAdapter extends BaseAdapter {
         }
     }
 
+    private void sendListenerToDelete(Cours item, int position) {
+        for(int i = listeners.size()-1; i >= 0; i--) {
+            listeners.get(i).onDelete(item, position);
+        }
+    }
+
     @Override
     public int getCount() {
         if (coursList!=null) {
@@ -81,6 +89,7 @@ public class CoursListAdapter extends BaseAdapter {
         TextView tv_lieu = (TextView)layoutItem.findViewById(R.id.lieu);
         TextView tv_duree = (TextView)layoutItem.findViewById(R.id.duree);
         TextView tv_date = (TextView)layoutItem.findViewById(R.id.date);
+        ImageButton img_delete = (ImageButton) layoutItem.findViewById(R.id.deleteCours);
 
 
         // Renseignement des valeurs
@@ -114,6 +123,13 @@ public class CoursListAdapter extends BaseAdapter {
                 sendListenerToUpdate(coursList.get(position), position);
             }
 
+        });
+
+        img_delete.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Integer position = (Integer) v.getTag();
+                sendListenerToDelete(coursList.get(position), position);
+            }
         });
 
         return layoutItem;

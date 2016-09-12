@@ -187,6 +187,9 @@ public class AddCoursActivity extends Activity implements CoursListener, DatePic
         // Nothings
     }
 
-
+    @Override
+    public void onDelete(Cours item, int position) {
+        // Nothings
+    }
 
 }

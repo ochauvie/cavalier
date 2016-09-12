@@ -7,4 +7,6 @@ public interface CoursListener {
 
     public void onClick(Cours item, int position);
 
+    public void onDelete(Cours item, int position);
+
 }

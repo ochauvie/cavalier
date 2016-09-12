@@ -82,13 +82,8 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
         showDetail(cours);
     }
 
-
     @Override
-    public void onBackPressed() {
-        // Nothings
-    }
-
-    private boolean showDetail(Cours cours) {
+    public void onDelete(Cours cours, int position) {
         if (cours != null) {
             selectedCours = cours;
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -114,7 +109,33 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
             });
             AlertDialog alert = builder.create();
             alert.show();
+        }
+    }
 
+    @Override
+    public void onBackPressed() {
+        // Nothings
+    }
+
+    private boolean showDetail(Cours cours) {
+        if (cours != null) {
+            selectedCours = cours;
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(true);
+            builder.setIcon(R.drawable.details);
+            builder.setTitle(sdf.format(cours.getDate()) + " - "
+                    + cours.getCavalier().getPrenom()
+                    + " - " + cours.getMonture().getNom());
+            builder.setMessage("Observation: " + cours.getObservation());
+            builder.setInverseBackgroundForced(true);
+            builder.setNegativeButton(R.string.action_close, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
         }
         return true;
     }

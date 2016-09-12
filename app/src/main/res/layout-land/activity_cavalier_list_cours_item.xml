@@ -53,4 +53,14 @@
         android:layout_marginLeft="510dp">
     </TextView>
 
+    <ImageButton
+        android:id="@+id/deleteCours"
+        android:layout_width="32dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="530dp"
+        android:contentDescription="Supprimer"
+        android:background="#00000000"
+        android:src="@drawable/delete" />
+
 </RelativeLayout>
