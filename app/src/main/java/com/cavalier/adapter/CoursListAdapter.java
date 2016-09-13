@@ -125,6 +125,7 @@ public class CoursListAdapter extends BaseAdapter {
 
         });
 
+        img_delete.setTag(position);
         img_delete.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Integer position = (Integer) v.getTag();
