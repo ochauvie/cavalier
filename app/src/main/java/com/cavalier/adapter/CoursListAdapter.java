@@ -28,7 +28,7 @@ public class CoursListAdapter extends BaseAdapter {
     private Context mContext;
     private LayoutInflater mInflater;
     private List<CoursListener> listeners = new ArrayList<CoursListener>();
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE);
 
     public CoursListAdapter(Context mContext, List<Cours> coursList) {
         this.coursList = coursList;
@@ -47,15 +47,34 @@ public class CoursListAdapter extends BaseAdapter {
         listeners.add(aListener);
     }
 
-    private void sendListenerToUpdate(Cours item, int position) {
+    private void sendListenerToObservation(Cours item, int position) {
         for(int i = listeners.size()-1; i >= 0; i--) {
-            listeners.get(i).onClick(item, position);
+            listeners.get(i).onShowObservation(item, position);
         }
     }
+
 
     private void sendListenerToDelete(Cours item, int position) {
         for(int i = listeners.size()-1; i >= 0; i--) {
             listeners.get(i).onDelete(item, position);
+        }
+    }
+
+    private void sendListenerToCavalier(Cours item, int position) {
+        for(int i = listeners.size()-1; i >= 0; i--) {
+            listeners.get(i).onSelectCavalier(item, position);
+        }
+    }
+
+    private void sendListenerToMonture(Cours item, int position) {
+        for(int i = listeners.size()-1; i >= 0; i--) {
+            listeners.get(i).onSelectMonture(item, position);
+        }
+    }
+
+    private void sendListenerToDate(Cours item, int position) {
+        for(int i = listeners.size()-1; i >= 0; i--) {
+            listeners.get(i).onSelectDate(item, position);
         }
     }
 
@@ -90,7 +109,7 @@ public class CoursListAdapter extends BaseAdapter {
         TextView tv_duree = (TextView)layoutItem.findViewById(R.id.duree);
         TextView tv_date = (TextView)layoutItem.findViewById(R.id.date);
         ImageButton img_delete = (ImageButton) layoutItem.findViewById(R.id.deleteCours);
-
+        ImageButton img_observation = (ImageButton) layoutItem.findViewById(R.id.obsCours);
 
         // Renseignement des valeurs
         Cours current = coursList.get(position);
@@ -98,31 +117,24 @@ public class CoursListAdapter extends BaseAdapter {
         tv_date.setText(sdf.format(current.getDate()));
         tv_cavalier.setText(current.getCavalier().getPrenom());
         tv_monture.setText(current.getMonture().getNom());
+
         // Landscape only
-        if (tv_moniteur != null) {
-            tv_moniteur.setText(current.getMoniteur().getPrenom());
-        }
-        if (tv_lieu != null) {
-            tv_lieu.setText(current.getTypeLieu().getLabel());
-        }
-        if (tv_duree != null) {
-            tv_duree.setText(String.valueOf(current.getDuree()));
-        }
-
-
-        // On memorise la position  dans le composant textview
-        layoutItem.setTag(position);
-        layoutItem.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                //Lorsque l'on clique sur le nom, on recupere la position de Site"
-                Integer position = (Integer) v.getTag();
-
-                //On previent les listeners qu'il y a eu un clic sur le tank.
-                sendListenerToUpdate(coursList.get(position), position);
+            if (tv_moniteur != null) {
+                tv_moniteur.setText(current.getMoniteur().getPrenom());
+            }
+            if (tv_lieu != null) {
+                tv_lieu.setText(current.getTypeLieu().getLabel());
+            }
+            if (tv_duree != null) {
+                tv_duree.setText(String.valueOf(current.getDuree()));
             }
 
+        img_observation.setTag(position);
+        img_observation.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Integer position = (Integer) v.getTag();
+                sendListenerToObservation(coursList.get(position), position);
+            }
         });
 
         img_delete.setTag(position);
@@ -130,6 +142,30 @@ public class CoursListAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Integer position = (Integer) v.getTag();
                 sendListenerToDelete(coursList.get(position), position);
+            }
+        });
+
+        tv_cavalier.setTag(position);
+        tv_cavalier.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Integer position = (Integer) v.getTag();
+                sendListenerToCavalier(coursList.get(position), position);
+            }
+        });
+
+        tv_monture.setTag(position);
+        tv_monture.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Integer position = (Integer) v.getTag();
+                sendListenerToMonture(coursList.get(position), position);
+            }
+        });
+
+        tv_date.setTag(position);
+        tv_date.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Integer position = (Integer) v.getTag();
+                sendListenerToDate(coursList.get(position), position);
             }
         });
 

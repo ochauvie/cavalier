@@ -183,12 +183,27 @@ public class AddCoursActivity extends Activity implements CoursListener, DatePic
     }
 
     @Override
-    public void onClick(Cours item, int position) {
+    public void onSelectDate(Cours item, int position) {
+        // TODO
+    }
+
+    @Override
+    public void onShowObservation(Cours item, int position) {
         // Nothings
     }
 
     @Override
     public void onDelete(Cours item, int position) {
+        // Nothings
+    }
+
+    @Override
+    public void onSelectCavalier(Cours item, int position) {
+        // Nothings
+    }
+
+    @Override
+    public void onSelectMonture(Cours item, int position) {
         // Nothings
     }
 

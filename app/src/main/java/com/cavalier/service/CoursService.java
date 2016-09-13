@@ -6,7 +6,9 @@ import com.activeandroid.query.Select;
 import com.cavalier.model.Cours;
 import com.cavalier.model.Monture;
 import com.cavalier.model.Personne;
+import com.cavalier.model.TypeLieu;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,6 +25,41 @@ public class CoursService {
 
     public static void deleteAll() {
         new Delete().from(Cours.class)
+                .execute();
+    }
+
+    public static List<Cours> getByCavalier(Personne personne) {
+        return new Select()
+                .from(Cours.class)
+                .where("cavalier = ?", personne.getId())
+                .execute();
+    }
+
+    public static List<Cours> getByMonture(Monture monture) {
+        return new Select()
+                .from(Cours.class)
+                .where("monture = ?", monture.getId())
+                .execute();
+    }
+
+    public static List<Cours> getByMoniteur(Personne personne) {
+        return new Select()
+                .from(Cours.class)
+                .where("moniteur = ?", personne.getId())
+                .execute();
+    }
+
+    public static List<Cours> getByTypeLieu(TypeLieu typeLieu) {
+        return new Select()
+                .from(Cours.class)
+                .where("typeLieu = ?", typeLieu.name())
+                .execute();
+    }
+
+    public static List<Cours> getByDate(Date date) {
+        return new Select()
+                .from(Cours.class)
+                .where("date = ?", date)
                 .execute();
     }
 

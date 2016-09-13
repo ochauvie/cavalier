@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textSize="15sp"
-        android:layout_marginLeft="100dp">
+        android:layout_marginLeft="80dp">
     </TextView>
 
     <TextView android:text="Monture" android:id="@+id/monture"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textSize="15sp"
-        android:layout_marginLeft="200dp">
+        android:layout_marginLeft="170dp">
     </TextView>
 
     <TextView android:text="Moniteur" android:id="@+id/moniteur"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textSize="15sp"
-        android:layout_marginLeft="300dp">
+        android:layout_marginLeft="270dp">
     </TextView>
 
     <TextView android:text="Lieu" android:id="@+id/lieu"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textSize="15sp"
-        android:layout_marginLeft="400dp">
+        android:layout_marginLeft="380dp">
     </TextView>
 
     <TextView android:text="Durée" android:id="@+id/duree"
@@ -50,8 +50,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textSize="15sp"
-        android:layout_marginLeft="490dp">
+        android:layout_marginLeft="460dp">
     </TextView>
+
+    <ImageButton
+        android:id="@+id/obsCours"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:scaleType="fitCenter"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="480dp"
+        android:contentDescription="Observation"
+        android:background="#00000000"
+        android:src="@drawable/details" />
 
     <ImageButton
         android:id="@+id/deleteCours"

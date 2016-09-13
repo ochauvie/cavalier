@@ -19,7 +19,7 @@
         android:layout_alignParentLeft="true"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginLeft="100dp">
+        android:layout_marginLeft="80dp">
     </TextView>
 
     <TextView android:text="Monture" android:id="@+id/monture"
@@ -28,7 +28,7 @@
         android:layout_alignParentLeft="true"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginLeft="190dp">
+        android:layout_marginLeft="170dp">
     </TextView>
 
 </RelativeLayout>

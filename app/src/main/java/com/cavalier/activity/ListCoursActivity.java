@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +19,7 @@ import com.cavalier.adapter.MontureListAdapter;
 import com.cavalier.listner.CoursListener;
 import com.cavalier.listner.MontureListener;
 import com.cavalier.model.Cours;
+import com.cavalier.model.CoursFilter;
 import com.cavalier.model.Monture;
 import com.cavalier.service.CoursService;
 import com.cavalier.service.MontureService;
@@ -26,22 +28,33 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
-public class ListCoursActivity extends ListActivity implements MyDialogInterface.DialogReturn, CoursListener{
+public class ListCoursActivity extends ListActivity implements MyDialogInterface.DialogReturn, CoursListener, View.OnClickListener {
 
+    private View header;
     private ListView listView;
-    private TextView totalText;
+    private TextView totalText, headerMonture, headerCavalier, headerDate;
     private CoursListAdapter coursListAdapter;
     private MyDialogInterface myInterface;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
     private Cours selectedCours;
+    List<Cours> coursList;
+    private CoursFilter coursFilter = new CoursFilter();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cavalier_list_cours);
 
-        List<Cours> coursList = CoursService.getAll();
+        coursList = CoursService.getAll();
         listView = getListView();
+
+        header = findViewById(R.id.header_layout);
+        headerMonture = (TextView) header.findViewById(R.id.monture);
+        headerCavalier = (TextView) header.findViewById(R.id.cavalier);
+        headerDate = (TextView) header.findViewById(R.id.date);
+        header.setOnClickListener(this);
 
         View footer = findViewById(R.id.footer_layout);
         totalText = (TextView) footer.findViewById(R.id.totalText);
@@ -56,7 +69,6 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
 
         //Initialisation de la liste avec les donnees
         setListAdapter(coursListAdapter);
-
     }
 
 
@@ -73,16 +85,69 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
                 finish();
                 return true;
         }
-
         return false;
     }
 
     @Override
-    public void onClick(Cours cours, int position) {
+    public void onShowObservation(Cours cours, int position) {
         showDetail(cours);
     }
 
     @Override
+    public void onSelectCavalier(Cours item, int position) {
+        if (coursList!=null) {
+            for (int i=coursList.size()-1; i>=0; i--) {
+                coursList.remove(i);
+            }
+        }
+        coursListAdapter.notifyDataSetChanged();
+        coursList.addAll(CoursService.getByCavalier(item.getCavalier()));
+
+        headerCavalier.setTextColor(Color.rgb(219, 23, 2));
+        headerDate.setTextColor(Color.WHITE);
+        headerMonture.setTextColor(Color.WHITE);
+
+        coursListAdapter.notifyDataSetChanged();
+        totalText.setText(String.valueOf(coursList.size()));
+    }
+
+    @Override
+    public void onSelectMonture(Cours item, int position) {
+        if (coursList!=null) {
+            for (int i=coursList.size()-1; i>=0; i--) {
+                coursList.remove(i);
+            }
+        }
+        coursListAdapter.notifyDataSetChanged();
+        coursList.addAll(CoursService.getByMonture(item.getMonture()));
+
+        headerCavalier.setTextColor(Color.WHITE);
+        headerDate.setTextColor(Color.WHITE);
+        headerMonture.setTextColor(Color.rgb(219, 23, 2));
+
+        coursListAdapter.notifyDataSetChanged();
+        totalText.setText(String.valueOf(coursList.size()));
+    }
+
+    @Override
+    public void onSelectDate(Cours item, int position) {
+        if (coursList!=null) {
+            for (int i=coursList.size()-1; i>=0; i--) {
+                coursList.remove(i);
+            }
+        }
+        coursListAdapter.notifyDataSetChanged();
+        coursList.addAll(CoursService.getByDate(item.getDate()));
+
+        headerCavalier.setTextColor(Color.WHITE);
+        headerDate.setTextColor(Color.rgb(219, 23, 2));
+        headerMonture.setTextColor(Color.WHITE);
+
+        coursListAdapter.notifyDataSetChanged();
+        totalText.setText(String.valueOf(coursList.size()));
+    }
+
+        @Override
     public void onDelete(Cours cours, int position) {
         if (cours != null) {
             selectedCours = cours;
@@ -149,5 +214,23 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
             startActivity(listActivity);
             finish();
         }
+    }
+
+    @Override
+    // Suppression des filtres
+    public void onClick(View v) {
+        if (coursList!=null) {
+            for (int i=coursList.size()-1; i>=0; i--) {
+                coursList.remove(i);
+            }
+        }
+        coursListAdapter.notifyDataSetChanged();
+        coursList.addAll(CoursService.getAll());
+        coursListAdapter.notifyDataSetChanged();
+
+        headerCavalier.setTextColor(Color.WHITE);
+        headerDate.setTextColor(Color.WHITE);
+        headerMonture.setTextColor(Color.WHITE);
+        totalText.setText(String.valueOf(coursList.size()));
     }
 }
