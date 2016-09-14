@@ -28,8 +28,6 @@ import java.util.Random;
 
 public class Chart {
 
-    public static final String CHART_TIME = "TIME";
-    public static final String CHART_NB = "NB";
     public static final String CHART_BY_CAVALIER = "CAVALIER";
     public static final String CHART_BY_MONTURE = "MONTURE";
 
