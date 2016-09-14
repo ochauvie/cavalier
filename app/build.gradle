@@ -1,9 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        cavalier {
+            keyAlias 'cavalier'
+            keyPassword 'x37db7t7'
+            storeFile file('/usr/local/workspace/cavalier/keystore.jks')
+            storePassword 'x37db7t7'
+        }
+    }
     compileSdkVersion 16
     buildToolsVersion "23.0.1"
-
     defaultConfig {
         applicationId "com.cavalier"
         minSdkVersion 16
