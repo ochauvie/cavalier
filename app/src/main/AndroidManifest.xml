@@ -58,7 +58,7 @@
         </activity>
         <activity
             android:name="org.achartengine.GraphicalActivity"
-            android:label="@string/title_activity_chart_time"
+            android:label="@string/menu_chart"
             android:icon="@drawable/chart"
             android:parentActivityName=".activity.ListCoursActivity" >
             <!-- Parent activity meta-data to support API level 7+ -->

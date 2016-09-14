@@ -20,16 +20,16 @@
                 android:icon="@drawable/rep"
                 />
 
-            <!--<item android:id="@+id/pieChartByNb"-->
-            <!--android:title="@string/menu_piechartbynb"-->
-            <!--android:icon="@drawable/piechart"-->
-            <!--/>-->
+            <item android:id="@+id/piechartbycavalier"
+            android:title="@string/menu_piechartbycavalier"
+            android:icon="@drawable/piechart"
+            />
 
 
-            <!--<item android:id="@+id/pieChartByTotal"-->
-                <!--android:title="@string/menu_piechartbytotal"-->
-                <!--android:icon="@drawable/chart"-->
-                <!--/>-->
+            <item android:id="@+id/piechartbymonture"
+                android:title="@string/menu_piechartbymonture"
+                android:icon="@drawable/chart"
+                />
 
 
         </menu>

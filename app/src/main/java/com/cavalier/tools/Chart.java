@@ -8,6 +8,8 @@ import android.graphics.Paint;
 
 import com.cavalier.R;
 import com.cavalier.model.Cours;
+import com.cavalier.model.Monture;
+import com.cavalier.model.Personne;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.chart.BarChart;
@@ -17,9 +19,12 @@ import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 public class Chart {
 
@@ -44,136 +49,57 @@ public class Chart {
      * Return pie chart
      * @return
      */
-//    public Intent getIntentPieChart() {
-//        CategorySeries distributionSeries = new CategorySeries(" Cours ");
-//        double dataPlaneur = 0;
-//        double dataAvion = 0;
-//        double dataParamoteur = 0;
-//        double dataHelico = 0;
-//        double dataAuto = 0;
-//        double dataDivers = 0;
-//        double dataAutre = 0;
-//
-//        if (coursList !=null) {
-//            for (Vol vol : coursList) {
-//                if (vol.getType()!=null) {
-//                    TypeAeronef type = TypeAeronef.valueOf(vol.getType());
-//                    if (TypeAeronef.PLANEUR.equals(type)) {
-//                        if (Chart.CHART_TIME.equals(chartType)) {
-//                            dataPlaneur = dataPlaneur + vol.getMinutesVol();
-//                        } else {
-//                            dataPlaneur++;
-//                        }
-//                    } else if (TypeAeronef.AVION.equals(type)) {
-//                        if (Chart.CHART_TIME.equals(chartType)) {
-//                            dataAvion = dataAvion + vol.getMinutesVol();
-//                        } else {
-//                            dataAvion++;
-//                        }
-//                    } else if (TypeAeronef.PARAMOTEUR.equals(type)) {
-//                        if (Chart.CHART_TIME.equals(chartType)) {
-//                            dataParamoteur = dataParamoteur + vol.getMinutesVol();
-//                        } else {
-//                            dataParamoteur++;
-//                        }
-//
-//                    } else if (TypeAeronef.HELICO.equals(type)) {
-//                        if (Chart.CHART_TIME.equals(chartType)) {
-//                            dataHelico = dataHelico + vol.getMinutesVol();
-//                        } else {
-//                            dataHelico++;
-//                        }
-//                    } else if (TypeAeronef.AUTO.equals(type)) {
-//                        if (Chart.CHART_TIME.equals(chartType)) {
-//                            dataAuto = dataAuto + vol.getMinutesVol();
-//                        } else {
-//                            dataAuto++;
-//                        }
-//                    } else if (TypeAeronef.DIVERS.equals(type)) {
-//                        if (Chart.CHART_TIME.equals(chartType)) {
-//                            dataDivers = dataDivers + vol.getMinutesVol();
-//                        } else {
-//                            dataDivers++;
-//                        }
-//                    } else {
-//                        if (Chart.CHART_TIME.equals(chartType)) {
-//                            dataAutre = dataAutre + vol.getMinutesVol();
-//                        } else {
-//                            dataAutre++;
-//                        }
-//                    }
-//                } else {
-//                    if (Chart.CHART_TIME.equals(chartType)) {
-//                        dataAutre = dataAutre + vol.getMinutesVol();
-//                    } else {
-//                        dataAutre++;
-//                    }
-//                }
-//            }
-//        }
-//
-//        // Instantiating a renderer for the Pie Chart
-//        DefaultRenderer defaultRenderer  = new DefaultRenderer();
-//        defaultRenderer.setChartTitle(context.getString(R.string.title_activity_chart_time));
-//        defaultRenderer.setChartTitleTextSize(25);
-//        defaultRenderer.setZoomButtonsVisible(true);
-//        defaultRenderer.setShowLabels(false);
-//        defaultRenderer.setLabelsTextSize(25);
-//        defaultRenderer.setLegendTextSize(25);
-//        defaultRenderer.setDisplayValues(true);
-//
-//        if (dataPlaneur>0) {
-//            distributionSeries.add(context.getString(TypeAeronef.PLANEUR.getLabel()), dataPlaneur);
-//            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
-//            seriesRenderer.setColor(TypeAeronef.PLANEUR.getColor());
-//            seriesRenderer.setDisplayChartValues(true);
-//            defaultRenderer.addSeriesRenderer(seriesRenderer);
-//        }
-//        if (dataAvion>0) {
-//            distributionSeries.add(context.getString(TypeAeronef.AVION.getLabel()), dataAvion);
-//            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
-//            seriesRenderer.setColor(TypeAeronef.AVION.getColor());
-//            seriesRenderer.setDisplayChartValues(true);
-//            defaultRenderer.addSeriesRenderer(seriesRenderer);
-//        }
-//        if (dataParamoteur>0) {
-//            distributionSeries.add(context.getString(TypeAeronef.PARAMOTEUR.getLabel()), dataParamoteur);
-//            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
-//            seriesRenderer.setColor(TypeAeronef.PARAMOTEUR.getColor());
-//            seriesRenderer.setDisplayChartValues(true);
-//            defaultRenderer.addSeriesRenderer(seriesRenderer);
-//        }
-//        if (dataHelico>0) {
-//            distributionSeries.add(context.getString(TypeAeronef.HELICO.getLabel()), dataHelico);
-//            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
-//            seriesRenderer.setColor(TypeAeronef.HELICO.getColor());
-//            seriesRenderer.setDisplayChartValues(true);
-//            defaultRenderer.addSeriesRenderer(seriesRenderer);
-//        }
-//        if (dataAuto>0) {
-//            distributionSeries.add(context.getString(TypeAeronef.AUTO.getLabel()), dataAuto);
-//            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
-//            seriesRenderer.setColor(TypeAeronef.AUTO.getColor());
-//            seriesRenderer.setDisplayChartValues(true);
-//            defaultRenderer.addSeriesRenderer(seriesRenderer);
-//        }
-//        if (dataDivers>0) {
-//            distributionSeries.add(context.getString(TypeAeronef.DIVERS.getLabel()), dataDivers);
-//            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
-//            seriesRenderer.setColor(TypeAeronef.DIVERS.getColor());
-//            seriesRenderer.setDisplayChartValues(true);
-//            defaultRenderer.addSeriesRenderer(seriesRenderer);
-//        }
-//        if (dataAutre>0) {
-//            distributionSeries.add(context.getString(R.string.opt_inconnu), dataAutre);
-//            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
-//            seriesRenderer.setColor(Color.rgb(47, 30, 14));
-//            seriesRenderer.setDisplayChartValues(true);
-//            defaultRenderer.addSeriesRenderer(seriesRenderer);
-//        }
-//
-//        return ChartFactory.getPieChartIntent(context, distributionSeries, defaultRenderer, chartTitle);
-//    }
+    public Intent getIntentPieChart() {
+        CategorySeries distributionSeries = new CategorySeries(" Cours ");
+        Map<Personne, Double> cavalierMap = new HashMap<>();
+        Map<Monture, Double> montureMap = new HashMap<>();
+
+        if (coursList !=null) {
+            for (Cours cours : coursList) {
+                if (cavalierMap.containsKey(cours.getCavalier())) {
+                    cavalierMap.put(cours.getCavalier(), cavalierMap.get(cours.getCavalier()) + 1);
+                } else {
+                    cavalierMap.put(cours.getCavalier(), Double.valueOf(1));
+                }
+                if (montureMap.containsKey(cours.getMonture())) {
+                    montureMap.put(cours.getMonture(), montureMap.get(cours.getMonture()) + 1);
+                } else {
+                    montureMap.put(cours.getMonture(), Double.valueOf(1));
+                }
+
+            }
+        }
+
+        // Instantiating a renderer for the Pie Chart
+        DefaultRenderer defaultRenderer  = new DefaultRenderer();
+        defaultRenderer.setChartTitle(context.getString(R.string.menu_chart));
+        defaultRenderer.setChartTitleTextSize(25);
+        defaultRenderer.setZoomButtonsVisible(true);
+        defaultRenderer.setShowLabels(false);
+        defaultRenderer.setLabelsTextSize(25);
+        defaultRenderer.setLegendTextSize(25);
+        defaultRenderer.setDisplayValues(true);
+
+        if (CHART_BY_CAVALIER.equals(chartType)) {
+            for (Personne personne : cavalierMap.keySet()) {
+                distributionSeries.add(personne.getPrenom() + " " + personne.getNom(), cavalierMap.get(personne));
+                SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
+                seriesRenderer.setColor(randomColor());
+                seriesRenderer.setDisplayChartValues(true);
+                defaultRenderer.addSeriesRenderer(seriesRenderer);
+            }
+        } else {
+            for (Monture monture : montureMap.keySet()) {
+                distributionSeries.add(monture.getNom(), montureMap.get(monture));
+                SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
+                seriesRenderer.setColor(randomColor());
+                seriesRenderer.setDisplayChartValues(true);
+                defaultRenderer.addSeriesRenderer(seriesRenderer);
+            }
+        }
+
+        return ChartFactory.getPieChartIntent(context, distributionSeries, defaultRenderer, chartTitle);
+    }
 
 
     /**
@@ -250,6 +176,15 @@ public class Chart {
 
         // Creating an intent to plot bar chart using dataset and multipleRenderer
         return ChartFactory.getBarChartIntent(context, dataSet, defaultRenderer, BarChart.Type.DEFAULT, chartTitle);
+    }
+
+    private int randomColor()
+    {
+        Random random=new Random();
+        int red=random.nextInt(256);
+        int green=random.nextInt(256);
+        int blue=random.nextInt(256);
+        return Color.rgb(red, green, blue);
     }
 
 }

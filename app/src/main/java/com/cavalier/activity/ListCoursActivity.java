@@ -93,6 +93,12 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
             case R.id.barchartbymonture:
                 viewBarChart(Chart.CHART_BY_MONTURE);
                 return true;
+            case R.id.piechartbycavalier:
+                viewPieChart(Chart.CHART_BY_CAVALIER);
+                return true;
+            case R.id.piechartbymonture:
+                viewPieChart(Chart.CHART_BY_MONTURE);
+                return true;
         }
         return false;
     }
@@ -320,17 +326,16 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
         startActivity(chart.getIntentChart());
     }
 
-
     /**
      * Make pie chart
      * @param chartType
      */
     private void viewPieChart(String chartType) {
-//        String title = getString(R.string.title_activity_chart_nb);
-//        if (Chart.CHART_TIME.equals(chartType)) {
-//            title = getString(R.string.title_activity_chart_time);
-//        }
-//        Chart chart = new Chart(getBaseContext(), coursList, chartType, title);
-//        startActivity(chart.getIntentPieChart());
+        String title = getString(R.string.title_activity_chart_cavalier);
+        if (Chart.CHART_BY_MONTURE.equals(chartType)) {
+            title = getString(R.string.title_activity_chart_monture);
+        }
+        Chart chart = new Chart(getBaseContext(), coursList, chartType, title);
+        startActivity(chart.getIntentPieChart());
     }
 }
