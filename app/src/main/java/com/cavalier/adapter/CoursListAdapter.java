@@ -72,6 +72,18 @@ public class CoursListAdapter extends BaseAdapter {
         }
     }
 
+    private void sendListenerToMoniteur(Cours item, int position) {
+        for(int i = listeners.size()-1; i >= 0; i--) {
+            listeners.get(i).onSelectMoniteur(item, position);
+        }
+    }
+
+    private void sendListenerToLieu(Cours item, int position) {
+        for(int i = listeners.size()-1; i >= 0; i--) {
+            listeners.get(i).onSelectLieu(item, position);
+        }
+    }
+
     private void sendListenerToDate(Cours item, int position) {
         for(int i = listeners.size()-1; i >= 0; i--) {
             listeners.get(i).onSelectDate(item, position);
@@ -121,9 +133,24 @@ public class CoursListAdapter extends BaseAdapter {
         // Landscape only
             if (tv_moniteur != null) {
                 tv_moniteur.setText(current.getMoniteur().getPrenom());
+                tv_moniteur.setTag(position);
+                tv_moniteur.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Integer position = (Integer) v.getTag();
+                        sendListenerToMoniteur(coursList.get(position), position);
+                    }
+                });
+
             }
             if (tv_lieu != null) {
                 tv_lieu.setText(current.getTypeLieu().getLabel());
+                tv_lieu.setTag(position);
+                tv_lieu.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Integer position = (Integer) v.getTag();
+                        sendListenerToLieu(coursList.get(position), position);
+                    }
+                });
             }
             if (tv_duree != null) {
                 tv_duree.setText(String.valueOf(current.getDuree()));
@@ -168,6 +195,8 @@ public class CoursListAdapter extends BaseAdapter {
                 sendListenerToDate(coursList.get(position), position);
             }
         });
+
+
 
         return layoutItem;
     }

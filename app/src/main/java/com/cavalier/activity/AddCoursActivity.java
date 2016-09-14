@@ -207,4 +207,13 @@ public class AddCoursActivity extends Activity implements CoursListener, DatePic
         // Nothings
     }
 
+    @Override
+    public void onSelectMoniteur(Cours item, int position) {
+
+    }
+
+    @Override
+    public void onSelectLieu(Cours item, int position) {
+
+    }
 }

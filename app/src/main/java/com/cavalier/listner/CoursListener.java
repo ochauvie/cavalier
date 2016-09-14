@@ -13,6 +13,10 @@ public interface CoursListener {
 
     public void onSelectMonture(Cours item, int position);
 
+    public void onSelectMoniteur(Cours item, int position);
+
+    public void onSelectLieu(Cours item, int position);
+
     public void onSelectDate(Cours item, int position);
 
 }

@@ -32,7 +32,7 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
 
     private View header;
     private ListView listView;
-    private TextView totalText, headerMonture, headerCavalier, headerDate;
+    private TextView totalText, headerMonture, headerCavalier, headerDate, headerMoniteur, headerLieu;
     private CoursListAdapter coursListAdapter;
     private MyDialogInterface myInterface;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
@@ -53,6 +53,8 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
         header = findViewById(R.id.header_layout);
         headerMonture = (TextView) header.findViewById(R.id.monture);
         headerCavalier = (TextView) header.findViewById(R.id.cavalier);
+        headerMoniteur = (TextView) header.findViewById(R.id.moniteur);
+        headerLieu = (TextView) header.findViewById(R.id.lieu);
         headerDate = (TextView) header.findViewById(R.id.date);
         header.setOnClickListener(this);
 
@@ -106,6 +108,12 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
         headerCavalier.setTextColor(Color.rgb(219, 23, 2));
         headerDate.setTextColor(Color.WHITE);
         headerMonture.setTextColor(Color.WHITE);
+        if (headerMoniteur != null) {
+            headerMoniteur.setTextColor(Color.WHITE);
+        }
+        if (headerLieu != null) {
+            headerLieu.setTextColor(Color.WHITE);
+        }
 
         coursListAdapter.notifyDataSetChanged();
         totalText.setText(String.valueOf(coursList.size()));
@@ -124,6 +132,52 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
         headerCavalier.setTextColor(Color.WHITE);
         headerDate.setTextColor(Color.WHITE);
         headerMonture.setTextColor(Color.rgb(219, 23, 2));
+        if (headerMoniteur != null) {
+            headerMoniteur.setTextColor(Color.WHITE);
+        }
+        if (headerLieu != null) {
+            headerLieu.setTextColor(Color.WHITE);
+        }
+
+        coursListAdapter.notifyDataSetChanged();
+        totalText.setText(String.valueOf(coursList.size()));
+    }
+
+    @Override
+    public void onSelectMoniteur(Cours item, int position) {
+        if (coursList!=null) {
+            for (int i=coursList.size()-1; i>=0; i--) {
+                coursList.remove(i);
+            }
+        }
+        coursListAdapter.notifyDataSetChanged();
+        coursList.addAll(CoursService.getByMoniteur(item.getMoniteur()));
+
+        headerMoniteur.setTextColor(Color.rgb(219, 23, 2));
+        headerLieu.setTextColor(Color.WHITE);
+        headerCavalier.setTextColor(Color.WHITE);
+        headerDate.setTextColor(Color.WHITE);
+        headerMonture.setTextColor(Color.WHITE);
+
+        coursListAdapter.notifyDataSetChanged();
+        totalText.setText(String.valueOf(coursList.size()));
+    }
+
+    @Override
+    public void onSelectLieu(Cours item, int position) {
+        if (coursList!=null) {
+            for (int i=coursList.size()-1; i>=0; i--) {
+                coursList.remove(i);
+            }
+        }
+        coursListAdapter.notifyDataSetChanged();
+        coursList.addAll(CoursService.getByTypeLieu(item.getTypeLieu()));
+
+        headerMoniteur.setTextColor(Color.WHITE);
+        headerLieu.setTextColor(Color.rgb(219, 23, 2));
+        headerCavalier.setTextColor(Color.WHITE);
+        headerDate.setTextColor(Color.WHITE);
+        headerMonture.setTextColor(Color.WHITE);
 
         coursListAdapter.notifyDataSetChanged();
         totalText.setText(String.valueOf(coursList.size()));
@@ -142,6 +196,12 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
         headerCavalier.setTextColor(Color.WHITE);
         headerDate.setTextColor(Color.rgb(219, 23, 2));
         headerMonture.setTextColor(Color.WHITE);
+        if (headerMoniteur != null) {
+            headerMoniteur.setTextColor(Color.WHITE);
+        }
+        if (headerLieu != null) {
+            headerLieu.setTextColor(Color.WHITE);
+        }
 
         coursListAdapter.notifyDataSetChanged();
         totalText.setText(String.valueOf(coursList.size()));
@@ -231,6 +291,12 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
         headerCavalier.setTextColor(Color.WHITE);
         headerDate.setTextColor(Color.WHITE);
         headerMonture.setTextColor(Color.WHITE);
+        if (headerMoniteur != null) {
+            headerMoniteur.setTextColor(Color.WHITE);
+        }
+        if (headerLieu != null) {
+            headerLieu.setTextColor(Color.WHITE);
+        }
         totalText.setText(String.valueOf(coursList.size()));
     }
 }

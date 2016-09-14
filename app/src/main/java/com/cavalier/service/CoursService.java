@@ -59,7 +59,7 @@ public class CoursService {
     public static List<Cours> getByDate(Date date) {
         return new Select()
                 .from(Cours.class)
-                .where("date = ?", date)
+                .where("date = ?", date.getTime())
                 .execute();
     }
 
