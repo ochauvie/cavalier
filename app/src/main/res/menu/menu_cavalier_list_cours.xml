@@ -3,11 +3,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.tankbattle.activity.ListMontureActivity">
 
+    <item android:id="@+id/chart"
+        android:icon="@drawable/rep"
+        android:title="@string/menu_chart"
+        android:showAsAction="always">
+
+        <menu>
+
+            <item android:id="@+id/barchartbycavalier"
+                android:title="@string/menu_barchartbycavalier"
+                android:icon="@drawable/barchart"
+                />
+
+            <item android:id="@+id/barchartbymonture"
+                android:title="@string/menu_barchartbymonture"
+                android:icon="@drawable/rep"
+                />
+
+            <!--<item android:id="@+id/pieChartByNb"-->
+            <!--android:title="@string/menu_piechartbynb"-->
+            <!--android:icon="@drawable/piechart"-->
+            <!--/>-->
+
+
+            <!--<item android:id="@+id/pieChartByTotal"-->
+                <!--android:title="@string/menu_piechartbytotal"-->
+                <!--android:icon="@drawable/chart"-->
+                <!--/>-->
+
+
+        </menu>
+    </item>
 
     <item android:id="@+id/action_close_list"
         android:title="@string/action_close"
         app:icon="@drawable/smallexit"
         app:showAsAction="ifRoom" />
-
 
 </menu>

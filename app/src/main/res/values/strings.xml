@@ -73,6 +73,18 @@
     <!--Graphique-->
     <string name="title_activity_chart_time">Cumul en heures</string>
     <string name="title_activity_chart_nb">Nombre d\'utilisation</string>
+
+    <string name="title_activity_chart_cavalier">Par cavalier</string>
+    <string name="title_activity_chart_monture">Par monture</string>
+
+    <string name="menu_chart">Graphiques</string>
+
+    <string name="menu_barchartbycavalier">Cours par cavalier</string>
+    <string name="menu_barchartbymonture">Cours par monture</string>
+
+    <string name="menu_piechartbytotal">Temps de vol par type</string>
+    <string name="menu_barchartbytotal">Temps de vol par machine</string>
+
     <string name="opt_inconnu">Inconnu</string>
 
 </resources>

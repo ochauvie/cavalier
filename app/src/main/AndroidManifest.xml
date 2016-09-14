@@ -56,6 +56,16 @@
             android:icon="@drawable/cavalier"
             android:label="@string/title_activity_add_cours" >
         </activity>
+        <activity
+            android:name="org.achartengine.GraphicalActivity"
+            android:label="@string/title_activity_chart_time"
+            android:icon="@drawable/chart"
+            android:parentActivityName=".activity.ListCoursActivity" >
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.ListCoursActivity" />
+        </activity>
 
 
     </application>

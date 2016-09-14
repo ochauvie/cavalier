@@ -17,7 +17,6 @@ import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
@@ -26,15 +25,17 @@ public class Chart {
 
     public static final String CHART_TIME = "TIME";
     public static final String CHART_NB = "NB";
+    public static final String CHART_BY_CAVALIER = "CAVALIER";
+    public static final String CHART_BY_MONTURE = "MONTURE";
 
     private Context context;
-    private List<Cours> cours;
+    private List<Cours> coursList;
     private String chartType;
     private String chartTitle;
 
-    public Chart(Context context, List<Cours> cours, String chartType, String chartTitle) {
+    public Chart(Context context, List<Cours> coursList, String chartType, String chartTitle) {
         this.context = context;
-        this.cours = cours;
+        this.coursList = coursList;
         this.chartType = chartType;
         this.chartTitle = chartTitle;
     }
@@ -43,143 +44,143 @@ public class Chart {
      * Return pie chart
      * @return
      */
-    public Intent getIntentPieChart() {
-        CategorySeries distributionSeries = new CategorySeries(" Cours ");
-        double dataPlaneur = 0;
-        double dataAvion = 0;
-        double dataParamoteur = 0;
-        double dataHelico = 0;
-        double dataAuto = 0;
-        double dataDivers = 0;
-        double dataAutre = 0;
-
-        if (cours !=null) {
-            for (Vol vol : cours) {
-                if (vol.getType()!=null) {
-                    TypeAeronef type = TypeAeronef.valueOf(vol.getType());
-                    if (TypeAeronef.PLANEUR.equals(type)) {
-                        if (Chart.CHART_TIME.equals(chartType)) {
-                            dataPlaneur = dataPlaneur + vol.getMinutesVol();
-                        } else {
-                            dataPlaneur++;
-                        }
-                    } else if (TypeAeronef.AVION.equals(type)) {
-                        if (Chart.CHART_TIME.equals(chartType)) {
-                            dataAvion = dataAvion + vol.getMinutesVol();
-                        } else {
-                            dataAvion++;
-                        }
-                    } else if (TypeAeronef.PARAMOTEUR.equals(type)) {
-                        if (Chart.CHART_TIME.equals(chartType)) {
-                            dataParamoteur = dataParamoteur + vol.getMinutesVol();
-                        } else {
-                            dataParamoteur++;
-                        }
-
-                    } else if (TypeAeronef.HELICO.equals(type)) {
-                        if (Chart.CHART_TIME.equals(chartType)) {
-                            dataHelico = dataHelico + vol.getMinutesVol();
-                        } else {
-                            dataHelico++;
-                        }
-                    } else if (TypeAeronef.AUTO.equals(type)) {
-                        if (Chart.CHART_TIME.equals(chartType)) {
-                            dataAuto = dataAuto + vol.getMinutesVol();
-                        } else {
-                            dataAuto++;
-                        }
-                    } else if (TypeAeronef.DIVERS.equals(type)) {
-                        if (Chart.CHART_TIME.equals(chartType)) {
-                            dataDivers = dataDivers + vol.getMinutesVol();
-                        } else {
-                            dataDivers++;
-                        }
-                    } else {
-                        if (Chart.CHART_TIME.equals(chartType)) {
-                            dataAutre = dataAutre + vol.getMinutesVol();
-                        } else {
-                            dataAutre++;
-                        }
-                    }
-                } else {
-                    if (Chart.CHART_TIME.equals(chartType)) {
-                        dataAutre = dataAutre + vol.getMinutesVol();
-                    } else {
-                        dataAutre++;
-                    }
-                }
-            }
-        }
-
-        // Instantiating a renderer for the Pie Chart
-        DefaultRenderer defaultRenderer  = new DefaultRenderer();
-        defaultRenderer.setChartTitle(context.getString(R.string.title_activity_chart_time));
-        defaultRenderer.setChartTitleTextSize(25);
-        defaultRenderer.setZoomButtonsVisible(true);
-        defaultRenderer.setShowLabels(false);
-        defaultRenderer.setLabelsTextSize(25);
-        defaultRenderer.setLegendTextSize(25);
-        defaultRenderer.setDisplayValues(true);
-
-        if (dataPlaneur>0) {
-            distributionSeries.add(context.getString(TypeAeronef.PLANEUR.getLabel()), dataPlaneur);
-            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
-            seriesRenderer.setColor(TypeAeronef.PLANEUR.getColor());
-            seriesRenderer.setDisplayChartValues(true);
-            defaultRenderer.addSeriesRenderer(seriesRenderer);
-        }
-        if (dataAvion>0) {
-            distributionSeries.add(context.getString(TypeAeronef.AVION.getLabel()), dataAvion);
-            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
-            seriesRenderer.setColor(TypeAeronef.AVION.getColor());
-            seriesRenderer.setDisplayChartValues(true);
-            defaultRenderer.addSeriesRenderer(seriesRenderer);
-        }
-        if (dataParamoteur>0) {
-            distributionSeries.add(context.getString(TypeAeronef.PARAMOTEUR.getLabel()), dataParamoteur);
-            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
-            seriesRenderer.setColor(TypeAeronef.PARAMOTEUR.getColor());
-            seriesRenderer.setDisplayChartValues(true);
-            defaultRenderer.addSeriesRenderer(seriesRenderer);
-        }
-        if (dataHelico>0) {
-            distributionSeries.add(context.getString(TypeAeronef.HELICO.getLabel()), dataHelico);
-            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
-            seriesRenderer.setColor(TypeAeronef.HELICO.getColor());
-            seriesRenderer.setDisplayChartValues(true);
-            defaultRenderer.addSeriesRenderer(seriesRenderer);
-        }
-        if (dataAuto>0) {
-            distributionSeries.add(context.getString(TypeAeronef.AUTO.getLabel()), dataAuto);
-            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
-            seriesRenderer.setColor(TypeAeronef.AUTO.getColor());
-            seriesRenderer.setDisplayChartValues(true);
-            defaultRenderer.addSeriesRenderer(seriesRenderer);
-        }
-        if (dataDivers>0) {
-            distributionSeries.add(context.getString(TypeAeronef.DIVERS.getLabel()), dataDivers);
-            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
-            seriesRenderer.setColor(TypeAeronef.DIVERS.getColor());
-            seriesRenderer.setDisplayChartValues(true);
-            defaultRenderer.addSeriesRenderer(seriesRenderer);
-        }
-        if (dataAutre>0) {
-            distributionSeries.add(context.getString(R.string.opt_inconnu), dataAutre);
-            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
-            seriesRenderer.setColor(Color.rgb(47, 30, 14));
-            seriesRenderer.setDisplayChartValues(true);
-            defaultRenderer.addSeriesRenderer(seriesRenderer);
-        }
-
-        return ChartFactory.getPieChartIntent(context, distributionSeries, defaultRenderer, chartTitle);
-    }
+//    public Intent getIntentPieChart() {
+//        CategorySeries distributionSeries = new CategorySeries(" Cours ");
+//        double dataPlaneur = 0;
+//        double dataAvion = 0;
+//        double dataParamoteur = 0;
+//        double dataHelico = 0;
+//        double dataAuto = 0;
+//        double dataDivers = 0;
+//        double dataAutre = 0;
+//
+//        if (coursList !=null) {
+//            for (Vol vol : coursList) {
+//                if (vol.getType()!=null) {
+//                    TypeAeronef type = TypeAeronef.valueOf(vol.getType());
+//                    if (TypeAeronef.PLANEUR.equals(type)) {
+//                        if (Chart.CHART_TIME.equals(chartType)) {
+//                            dataPlaneur = dataPlaneur + vol.getMinutesVol();
+//                        } else {
+//                            dataPlaneur++;
+//                        }
+//                    } else if (TypeAeronef.AVION.equals(type)) {
+//                        if (Chart.CHART_TIME.equals(chartType)) {
+//                            dataAvion = dataAvion + vol.getMinutesVol();
+//                        } else {
+//                            dataAvion++;
+//                        }
+//                    } else if (TypeAeronef.PARAMOTEUR.equals(type)) {
+//                        if (Chart.CHART_TIME.equals(chartType)) {
+//                            dataParamoteur = dataParamoteur + vol.getMinutesVol();
+//                        } else {
+//                            dataParamoteur++;
+//                        }
+//
+//                    } else if (TypeAeronef.HELICO.equals(type)) {
+//                        if (Chart.CHART_TIME.equals(chartType)) {
+//                            dataHelico = dataHelico + vol.getMinutesVol();
+//                        } else {
+//                            dataHelico++;
+//                        }
+//                    } else if (TypeAeronef.AUTO.equals(type)) {
+//                        if (Chart.CHART_TIME.equals(chartType)) {
+//                            dataAuto = dataAuto + vol.getMinutesVol();
+//                        } else {
+//                            dataAuto++;
+//                        }
+//                    } else if (TypeAeronef.DIVERS.equals(type)) {
+//                        if (Chart.CHART_TIME.equals(chartType)) {
+//                            dataDivers = dataDivers + vol.getMinutesVol();
+//                        } else {
+//                            dataDivers++;
+//                        }
+//                    } else {
+//                        if (Chart.CHART_TIME.equals(chartType)) {
+//                            dataAutre = dataAutre + vol.getMinutesVol();
+//                        } else {
+//                            dataAutre++;
+//                        }
+//                    }
+//                } else {
+//                    if (Chart.CHART_TIME.equals(chartType)) {
+//                        dataAutre = dataAutre + vol.getMinutesVol();
+//                    } else {
+//                        dataAutre++;
+//                    }
+//                }
+//            }
+//        }
+//
+//        // Instantiating a renderer for the Pie Chart
+//        DefaultRenderer defaultRenderer  = new DefaultRenderer();
+//        defaultRenderer.setChartTitle(context.getString(R.string.title_activity_chart_time));
+//        defaultRenderer.setChartTitleTextSize(25);
+//        defaultRenderer.setZoomButtonsVisible(true);
+//        defaultRenderer.setShowLabels(false);
+//        defaultRenderer.setLabelsTextSize(25);
+//        defaultRenderer.setLegendTextSize(25);
+//        defaultRenderer.setDisplayValues(true);
+//
+//        if (dataPlaneur>0) {
+//            distributionSeries.add(context.getString(TypeAeronef.PLANEUR.getLabel()), dataPlaneur);
+//            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
+//            seriesRenderer.setColor(TypeAeronef.PLANEUR.getColor());
+//            seriesRenderer.setDisplayChartValues(true);
+//            defaultRenderer.addSeriesRenderer(seriesRenderer);
+//        }
+//        if (dataAvion>0) {
+//            distributionSeries.add(context.getString(TypeAeronef.AVION.getLabel()), dataAvion);
+//            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
+//            seriesRenderer.setColor(TypeAeronef.AVION.getColor());
+//            seriesRenderer.setDisplayChartValues(true);
+//            defaultRenderer.addSeriesRenderer(seriesRenderer);
+//        }
+//        if (dataParamoteur>0) {
+//            distributionSeries.add(context.getString(TypeAeronef.PARAMOTEUR.getLabel()), dataParamoteur);
+//            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
+//            seriesRenderer.setColor(TypeAeronef.PARAMOTEUR.getColor());
+//            seriesRenderer.setDisplayChartValues(true);
+//            defaultRenderer.addSeriesRenderer(seriesRenderer);
+//        }
+//        if (dataHelico>0) {
+//            distributionSeries.add(context.getString(TypeAeronef.HELICO.getLabel()), dataHelico);
+//            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
+//            seriesRenderer.setColor(TypeAeronef.HELICO.getColor());
+//            seriesRenderer.setDisplayChartValues(true);
+//            defaultRenderer.addSeriesRenderer(seriesRenderer);
+//        }
+//        if (dataAuto>0) {
+//            distributionSeries.add(context.getString(TypeAeronef.AUTO.getLabel()), dataAuto);
+//            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
+//            seriesRenderer.setColor(TypeAeronef.AUTO.getColor());
+//            seriesRenderer.setDisplayChartValues(true);
+//            defaultRenderer.addSeriesRenderer(seriesRenderer);
+//        }
+//        if (dataDivers>0) {
+//            distributionSeries.add(context.getString(TypeAeronef.DIVERS.getLabel()), dataDivers);
+//            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
+//            seriesRenderer.setColor(TypeAeronef.DIVERS.getColor());
+//            seriesRenderer.setDisplayChartValues(true);
+//            defaultRenderer.addSeriesRenderer(seriesRenderer);
+//        }
+//        if (dataAutre>0) {
+//            distributionSeries.add(context.getString(R.string.opt_inconnu), dataAutre);
+//            SimpleSeriesRenderer seriesRenderer = new SimpleSeriesRenderer();
+//            seriesRenderer.setColor(Color.rgb(47, 30, 14));
+//            seriesRenderer.setDisplayChartValues(true);
+//            defaultRenderer.addSeriesRenderer(seriesRenderer);
+//        }
+//
+//        return ChartFactory.getPieChartIntent(context, distributionSeries, defaultRenderer, chartTitle);
+//    }
 
 
     /**
      * Retrun bar chart
      * @return
      */
-    public Intent getIntentChartByMachine() {
+    public Intent getIntentChart() {
 
         // Instantiating a renderer
         XYMultipleSeriesRenderer defaultRenderer  = new XYMultipleSeriesRenderer ();
@@ -198,7 +199,7 @@ public class Chart {
 
 
         SimpleSeriesRenderer r = new SimpleSeriesRenderer();
-        if (Chart.CHART_TIME.equals(chartType)) {
+        if (Chart.CHART_BY_MONTURE.equals(chartType)) {
             r.setColor(Color.rgb(219,23,2));
         } else {
             r.setColor(Color.rgb(31,160,85));
@@ -210,34 +211,31 @@ public class Chart {
 
         XYMultipleSeriesDataset dataSet = new XYMultipleSeriesDataset();
         CategorySeries series = new CategorySeries("");
-        Hashtable hashVols = new Hashtable();
+        Hashtable hashItems = new Hashtable();
 
-        if (cours !=null) {
-            for (Vol vol : cours) {
-                String aeronef = vol.getAeronef();
-                int value = 0;
-                if (Chart.CHART_TIME.equals(chartType)) {
-                    value =  vol.getMinutesVol();
-                } else {
-                    value++;
+        if (coursList !=null) {
+            for (Cours cours : coursList) {
+                String key = cours.getCavalier().getPrenom() + " - " + cours.getCavalier().getNom();
+                if (CHART_BY_MONTURE.equals(chartType)) {
+                    key = cours.getMonture().getNom();
                 }
-                if (hashVols.containsKey(aeronef)) {
-                    int old = (Integer) hashVols.get(aeronef);
-                    hashVols.put(aeronef, value + old);
+                if (hashItems.containsKey(key)) {
+                    int old = (Integer) hashItems.get(key);
+                    hashItems.put(key, 1 + old);
 
                 } else {
-                    hashVols.put(aeronef, value);
+                    hashItems.put(key, 1);
                 }
             }
         }
 
-        Iterator iter = hashVols.keySet().iterator();
+        Iterator iter = hashItems.keySet().iterator();
         int i=0;
         int maxY = 0;
         while (iter.hasNext())
         {
             String clef = (String)iter.next();
-            int value = (Integer) hashVols.get(clef);
+            int value = (Integer) hashItems.get(clef);
             if (value>maxY) {
                 maxY = value;
             }
@@ -246,16 +244,12 @@ public class Chart {
             defaultRenderer.addXTextLabel(i, clef);
             defaultRenderer.setXLabelsAngle(45);
         }
-        defaultRenderer.setXAxisMax(hashVols.size()+1);
+        defaultRenderer.setXAxisMax(hashItems.size()+1);
         defaultRenderer.setYAxisMax(maxY + 10 * maxY / 100);
         dataSet.addSeries(series.toXYSeries());
 
         // Creating an intent to plot bar chart using dataset and multipleRenderer
         return ChartFactory.getBarChartIntent(context, dataSet, defaultRenderer, BarChart.Type.DEFAULT, chartTitle);
     }
-
-
-
-
 
 }

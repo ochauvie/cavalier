@@ -87,6 +87,12 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
             case R.id.action_close_list:
                 finish();
                 return true;
+            case R.id.barchartbycavalier:
+                viewBarChart(Chart.CHART_BY_CAVALIER);
+                return true;
+            case R.id.barchartbymonture:
+                viewBarChart(Chart.CHART_BY_MONTURE);
+                return true;
         }
         return false;
     }
@@ -302,29 +308,29 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
     }
 
     /**
-     * Make pie chart for char type
+     * Make bar chart
      * @param chartType
      */
-    private void viewPieChart(String chartType) {
-        String title = getString(R.string.title_activity_chart_nb);
-        if (Chart.CHART_TIME.equals(chartType)) {
-            title = getString(R.string.title_activity_chart_time);
+    private void viewBarChart(String chartType) {
+        String title = getString(R.string.title_activity_chart_cavalier);
+        if (Chart.CHART_BY_MONTURE.equals(chartType)) {
+            title = getString(R.string.title_activity_chart_monture);
         }
         Chart chart = new Chart(getBaseContext(), coursList, chartType, title);
-        startActivity(chart.getIntentPieChart());
+        startActivity(chart.getIntentChart());
     }
 
 
     /**
-     * Make bar chart by machine
+     * Make pie chart
      * @param chartType
      */
-    private void viewChartByMachine(String chartType) {
-        String title = getString(R.string.title_activity_chart_nb);
-        if (Chart.CHART_TIME.equals(chartType)) {
-            title = getString(R.string.title_activity_chart_time);
-        }
-        Chart chart = new Chart(getBaseContext(), coursList, chartType, title);
-        startActivity(chart.getIntentChartByMachine());
+    private void viewPieChart(String chartType) {
+//        String title = getString(R.string.title_activity_chart_nb);
+//        if (Chart.CHART_TIME.equals(chartType)) {
+//            title = getString(R.string.title_activity_chart_time);
+//        }
+//        Chart chart = new Chart(getBaseContext(), coursList, chartType, title);
+//        startActivity(chart.getIntentPieChart());
     }
 }
