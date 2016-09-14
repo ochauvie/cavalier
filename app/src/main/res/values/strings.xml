@@ -70,5 +70,9 @@
     <string name="cours_save">Le cours est sauvegardé</string>
     <string name="cours_delete">Le cours est Supprimer</string>
 
+    <!--Graphique-->
+    <string name="title_activity_chart_time">Cumul en heures</string>
+    <string name="title_activity_chart_nb">Nombre d\'utilisation</string>
+    <string name="opt_inconnu">Inconnu</string>
 
 </resources>

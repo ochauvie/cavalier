@@ -23,6 +23,7 @@ import com.cavalier.model.CoursFilter;
 import com.cavalier.model.Monture;
 import com.cavalier.service.CoursService;
 import com.cavalier.service.MontureService;
+import com.cavalier.tools.Chart;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -298,5 +299,32 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
             headerLieu.setTextColor(Color.WHITE);
         }
         totalText.setText(String.valueOf(coursList.size()));
+    }
+
+    /**
+     * Make pie chart for char type
+     * @param chartType
+     */
+    private void viewPieChart(String chartType) {
+        String title = getString(R.string.title_activity_chart_nb);
+        if (Chart.CHART_TIME.equals(chartType)) {
+            title = getString(R.string.title_activity_chart_time);
+        }
+        Chart chart = new Chart(getBaseContext(), coursList, chartType, title);
+        startActivity(chart.getIntentPieChart());
+    }
+
+
+    /**
+     * Make bar chart by machine
+     * @param chartType
+     */
+    private void viewChartByMachine(String chartType) {
+        String title = getString(R.string.title_activity_chart_nb);
+        if (Chart.CHART_TIME.equals(chartType)) {
+            title = getString(R.string.title_activity_chart_time);
+        }
+        Chart chart = new Chart(getBaseContext(), coursList, chartType, title);
+        startActivity(chart.getIntentChartByMachine());
     }
 }
