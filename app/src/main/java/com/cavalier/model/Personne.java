@@ -4,28 +4,34 @@ package com.cavalier.model;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "personne")
-public class Personne extends Model implements Serializable {
+public class Personne extends Model  {
 
     public static final String ID_PERSONNE = "ID_PERSONNE";
     public static final String TYPE_PERSONNE = "TYPE_PERSONNE";
 
+    @Expose
     @Column(name = "nom")
     private String nom;
 
+    @Expose
     @Column(name = "prenom")
     private String prenom;
 
+    @Expose
     @Column(name = "dateNaissance")
     private Date dateNaissance;
 
+    @Expose
     @Column(name = "sexe")
     private Sexe sexe;
 
+    @Expose
     @Column(name = "type")
     private TypePersonne type;
 

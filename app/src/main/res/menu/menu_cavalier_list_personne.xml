@@ -13,5 +13,11 @@
         app:icon="@drawable/smallexit"
         app:showAsAction="ifRoom" />
 
+    <item android:id="@+id/action_import"
+        android:title="Import"
+        app:icon="@drawable/import_data"
+        app:showAsAction="ifRoom" />
+
+
 
 </menu>

@@ -57,6 +57,11 @@
             android:label="@string/title_activity_add_cours" >
         </activity>
         <activity
+            android:name=".activity.ExportActivity"
+            android:icon="@drawable/backup"
+            android:label="@string/menu_export_db" >
+        </activity>
+        <activity
             android:name="org.achartengine.GraphicalActivity"
             android:label="@string/menu_chart"
             android:icon="@drawable/chart"

@@ -103,29 +103,20 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-        return false;
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-//            case R.id.action_init_data:
-//                //InitDataBase.initTankList(getApplicationContext());
-//                Toast.makeText(getBaseContext(), getString(R.string.db_initialized), Toast.LENGTH_LONG).show();
-//                return true;
-//            case R.id.action_show_list_tank:
-//                startActivityForResult(new Intent(getApplicationContext(), ListTankActivity.class), 0);
-//
-//                return true;
-//            case R.id.action_show_add_tank:
-//                startActivityForResult(new Intent(getApplicationContext(), AddTankActivity.class), 0);
-//                return true;
+            case R.id.export_db:
+                Intent exportActivity = new Intent(MainActivity.this, ExportActivity.class);
+                startActivityForResult(exportActivity, 0);
+                return true;
         }
         return false;
     }
-
 
     private boolean onInitDb() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

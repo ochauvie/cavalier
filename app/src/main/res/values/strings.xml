@@ -81,4 +81,9 @@
 
     <string name="opt_inconnu">Inconnu</string>
 
+    <!--Export-->
+    <string name="menu_export_db">Exporter la base de données</string>
+    <string name="menu_import_ok">Import du fichier réussi</string>
+    <string name="import_reload_list">Rafraichissez la page</string>
+
 </resources>

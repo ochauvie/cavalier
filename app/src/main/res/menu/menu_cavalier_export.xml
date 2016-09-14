@@ -3,20 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.tankbattle.activity.ListMontureActivity">
 
-    <item android:id="@+id/action_create_monture"
-        android:title="Ajouter une monture"
-        app:icon="@drawable/smalladd"
-        app:showAsAction="ifRoom" />
-
-    <item android:id="@+id/action_close_list"
+    <item android:id="@+id/action_close"
         android:title="@string/action_close"
         app:icon="@drawable/smallexit"
         app:showAsAction="ifRoom" />
-
-    <item android:id="@+id/action_import"
-        android:title="Import"
-        app:icon="@drawable/import_data"
-        app:showAsAction="ifRoom" />
-
 
 </menu>

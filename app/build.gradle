@@ -5,7 +5,7 @@ android {
         cavalier {
             keyAlias 'cavalier'
             keyPassword 'x37db7t7'
-            storeFile file('/usr/local/workspace/cavalier/keystore.jks')
+            storeFile file('D:/Android/cavalier/keystore.jks')
             storePassword 'x37db7t7'
         }
     }
@@ -40,6 +40,8 @@ dependencies {
     compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
     compile 'com.android.support:support-v4:23.0.1'
     compile files('libs/achartengine-1.1.0.jar')
+    compile 'com.google.code.gson:gson:2.4'
+    compile 'com.android.volley:volley:1.0.0'
 }
 
 

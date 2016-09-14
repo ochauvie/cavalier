@@ -4,8 +4,9 @@
     tools:context=".MainActivity">
 
     <item
-        android:id="@+id/action_init_data"
-        android:title="@string/action_init_data"
+        android:id="@+id/export_db"
+        android:title="@string/menu_export_db"
+        app:icon="@drawable/backup"
         app:showAsAction="never" />
 
 

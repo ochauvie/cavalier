@@ -6,14 +6,18 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.cavalier.adapter.PersonneListAdapter;
 import com.cavalier.listner.PersonneListener;
 import com.cavalier.model.Personne;
 import com.cavalier.model.TypePersonne;
+import com.cavalier.service.ImportService;
 import com.cavalier.service.PersonneService;
 import com.cavalier.R;
+import com.cavalier.tools.SimpleFileDialog;
 
+import java.io.File;
 import java.util.List;
 
 public class ListPersonneActivity extends ListActivity implements PersonneListener{
@@ -21,6 +25,7 @@ public class ListPersonneActivity extends ListActivity implements PersonneListen
     private ListView listView;
     private PersonneListAdapter personneListAdapter;
     private TypePersonne typePersonne;
+    private List<Personne> personneList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +33,7 @@ public class ListPersonneActivity extends ListActivity implements PersonneListen
         setContentView(R.layout.activity_cavalier_list_personne);
 
         initView();
-
-        List<Personne> personneList = PersonneService.findByType(typePersonne);
+        personneList = PersonneService.findByType(typePersonne);
 
         listView = getListView();
 
@@ -73,6 +77,9 @@ public class ListPersonneActivity extends ListActivity implements PersonneListen
             case R.id.action_close_list:
                 finish();
                 return true;
+            case R.id.action_import:
+                importPersonne();
+                return true;
         }
 
         return false;
@@ -90,5 +97,43 @@ public class ListPersonneActivity extends ListActivity implements PersonneListen
     @Override
     public void onBackPressed() {
         // Nothings
+    }
+
+    private void importPersonne() {
+        SimpleFileDialog FileOpenDialog = new SimpleFileDialog(this, "FileOpen",
+                new SimpleFileDialog.SimpleFileDialogListener() {
+                    @Override public void onChosenDir(String chosenDir) {
+                        // The code in this function will be executed when the dialog OK button is pushed
+                        File file = new File(chosenDir);
+                        // Initiate the upload
+                        ImportService importService = new ImportService(ListPersonneActivity.this);
+                        String result = importService.importPersonne(file);
+                        if (result!=null) {
+                            Toast.makeText(ListPersonneActivity.this, result, Toast.LENGTH_LONG).show();
+                        } else {
+                            // Update the list
+                            refreshList();
+                            Toast.makeText(ListPersonneActivity.this, getString(R.string.menu_import_ok), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+        FileOpenDialog.Default_File_Name = "";
+        FileOpenDialog.chooseFile_or_Dir();
+    }
+
+    private void refreshList() {
+        if (personneList!=null) {
+            for (int i=personneList.size()-1; i>=0; i--) {
+                personneList.remove(i);
+            }
+        }
+        personneListAdapter.notifyDataSetChanged();
+        if (personneList!=null) {
+            personneList.addAll(PersonneService.findByType(typePersonne));
+            personneListAdapter.notifyDataSetChanged();
+        } else {
+            Toast.makeText(ListPersonneActivity.this, getString(R.string.import_reload_list), Toast.LENGTH_LONG).show();
+        }
     }
 }
