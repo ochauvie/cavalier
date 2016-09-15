@@ -29,6 +29,13 @@ public class MontureService {
                 .execute();
     }
 
+    public static Monture findByNom(String nom) {
+        return new Select()
+                .from(Monture.class)
+                .where("nom = ?", nom)
+                .executeSingle();
+    }
+
     public static Monture getById(long id) {
         return new Select()
                 .from(Monture.class)

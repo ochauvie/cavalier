@@ -34,6 +34,14 @@ public class PersonneService {
                 .executeSingle();
     }
 
+    public static Personne findByNomPrenom(String nom, String prenom) {
+        return new Select()
+                .from(Personne.class)
+                .where("nom = ?", nom)
+                .where("prenom = ?", prenom)
+                .executeSingle();
+    }
+
 
     public static void deleteAll() {
         new Delete().from(Personne.class)

@@ -2,8 +2,10 @@ package com.cavalier.service;
 
 import android.content.Context;
 
+import com.cavalier.model.Cours;
 import com.cavalier.model.Monture;
 import com.cavalier.model.Personne;
+import com.cavalier.model.TypePersonne;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
@@ -71,6 +73,40 @@ public class ImportService {
             if (personnes!=null) {
                 for (Personne personne:personnes) {
                     personne.save();
+                }
+            }
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+        return null;
+    }
+
+    public String importCours(File file) {
+        try {
+            String json = getJson(file);
+            Cours[] coursList = gson.fromJson(json, Cours[].class);
+            if (coursList!=null) {
+                for (Cours cours:coursList) {
+
+                    int ctrl = 0;
+                    Monture monture = MontureService.findByNom(cours.getMonture().getNom());
+                    if (monture != null) {
+                        cours.setMonture(monture);;
+                        ctrl++;
+                    }
+                    Personne cavalier = PersonneService.findByNomPrenom(cours.getCavalier().getNom(), cours.getCavalier().getPrenom());
+                    if (cavalier != null && TypePersonne.CAVALIER.equals(cavalier.getType())) {
+                        cours.setCavalier(cavalier);;
+                        ctrl++;
+                    }
+                    Personne moniteur = PersonneService.findByNomPrenom(cours.getMoniteur().getNom(), cours.getMoniteur().getPrenom());
+                    if (moniteur != null && TypePersonne.MONITEUR.equals(moniteur.getType())) {
+                        cours.setMoniteur(moniteur);;
+                        ctrl++;
+                    }
+                    if (ctrl == 3) {
+                        cours.save();
+                    }
                 }
             }
         } catch (Exception e) {

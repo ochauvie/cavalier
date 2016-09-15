@@ -22,9 +22,12 @@ import com.cavalier.model.Cours;
 import com.cavalier.model.CoursFilter;
 import com.cavalier.model.Monture;
 import com.cavalier.service.CoursService;
+import com.cavalier.service.ImportService;
 import com.cavalier.service.MontureService;
 import com.cavalier.tools.Chart;
+import com.cavalier.tools.SimpleFileDialog;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
@@ -98,6 +101,9 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
                 return true;
             case R.id.piechartbymonture:
                 viewPieChart(Chart.CHART_BY_MONTURE);
+                return true;
+            case R.id.action_import:
+                importCours();
                 return true;
         }
         return false;
@@ -292,6 +298,10 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
     @Override
     // Suppression des filtres
     public void onClick(View v) {
+        reloadList();
+    }
+
+    private void reloadList() { {
         if (coursList!=null) {
             for (int i=coursList.size()-1; i>=0; i--) {
                 coursList.remove(i);
@@ -311,6 +321,8 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
             headerLieu.setTextColor(Color.WHITE);
         }
         totalText.setText(String.valueOf(coursList.size()));
+    }
+
     }
 
     /**
@@ -337,5 +349,25 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
         }
         Chart chart = new Chart(getBaseContext(), coursList, chartType, title);
         startActivity(chart.getIntentPieChart());
+    }
+
+    private void importCours() {
+        SimpleFileDialog FileOpenDialog = new SimpleFileDialog(this, "FileOpen",
+                new SimpleFileDialog.SimpleFileDialogListener() {
+                    @Override public void onChosenDir(String chosenDir) {
+                        File file = new File(chosenDir);
+                        ImportService importService = new ImportService(ListCoursActivity.this);
+                        String result = importService.importCours(file);
+                        if (result!=null) {
+                            Toast.makeText(ListCoursActivity.this, result, Toast.LENGTH_LONG).show();
+                        } else {
+                            reloadList();
+                            Toast.makeText(ListCoursActivity.this, getString(R.string.menu_import_ok), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+        FileOpenDialog.Default_File_Name = "";
+        FileOpenDialog.chooseFile_or_Dir();
     }
 }
