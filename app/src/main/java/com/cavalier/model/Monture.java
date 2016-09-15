@@ -29,14 +29,19 @@ public class Monture extends Model  {
     @Column(name = "dateNaissance")
     private Date dateNaissance;
 
+    @Expose
+    @Column(name = "img")
+    private byte[] img;
+
     public Monture() {
     }
 
-    public Monture(String nom, Genre genre, String robe, Date dateNaissance) {
+    public Monture(String nom, Genre genre, String robe, Date dateNaissance, byte[] img) {
         this.nom = nom;
         this.genre = genre;
         this.robe = robe;
         this.dateNaissance = dateNaissance;
+        this.img = img;
     }
 
     public String getNom() {
@@ -69,5 +74,13 @@ public class Monture extends Model  {
 
     public void setDateNaissance(Date dateNaissance) {
         this.dateNaissance = dateNaissance;
+    }
+
+    public byte[] getImg() {
+        return img;
+    }
+
+    public void setImg(byte[] img) {
+        this.img = img;
     }
 }

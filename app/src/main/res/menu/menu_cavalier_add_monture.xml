@@ -15,9 +15,14 @@
         app:icon="@drawable/smallexit"
         app:showAsAction="always" />
 
-    <item android:id="@+id/action_picture"
-        android:title="Photo"
+    <item android:id="@+id/action_take_picture"
+        android:title="Prendre une photo"
         app:icon="@drawable/camera"
+        app:showAsAction="ifRoom" />
+
+    <item android:id="@+id/action_select_picture"
+        android:title="Choisir une photo"
+        app:icon="@drawable/file"
         app:showAsAction="ifRoom" />
 
 

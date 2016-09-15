@@ -71,7 +71,7 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
         if (personne != null) {
             if (CoursService.isPersonneInCours(personne)) {
                 Utils.disableItem(itemD);
-                Utils.disableItem(itemS);
+                Utils.enableItem(itemS);
             } else {
                 Utils.enableItem(itemD);
                 Utils.enableItem(itemS);

@@ -23,6 +23,7 @@ import com.cavalier.model.Genre;
 import com.cavalier.model.IRefData;
 import com.cavalier.model.Monture;
 import com.cavalier.service.CoursService;
+import com.cavalier.tools.PictureUtils;
 import com.cavalier.tools.SpinnerTool;
 import com.cavalier.tools.Utils;
 
@@ -32,6 +33,7 @@ import java.util.Collections;
 public class AddMontureActivity extends Activity implements MyDialogInterface.DialogReturn, MontureListener {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_IMAGE_SELECT = 2;
 
     private Spinner spinnerGenre;
     private EditText editTextNom, editTextRobe;
@@ -73,7 +75,7 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
         if (monture != null) {
             if (CoursService.isMontureInCours(monture)) {
                 Utils.disableItem(itemD);
-                Utils.disableItem(itemS);
+                Utils.enableItem(itemS);
             } else {
                 Utils.enableItem(itemD);
                 Utils.enableItem(itemS);
@@ -104,8 +106,11 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
             case R.id.action_delete_monture:
                 onDelete();
                 return false;
-            case R.id.action_picture:
-                dispatchTakePictureIntent();
+            case R.id.action_take_picture:
+                takeChevalPictureIntent();
+                return true;
+            case R.id.action_select_picture:
+                selectChevalPictureIntent();
                 return true;
         }
         return false;
@@ -117,8 +122,6 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
         spinnerGenre.setAdapter(new IDataSpinnerAdapter(this, list, R.layout.light_custom_spinner));
     }
 
-
-
     private void initView() {
         Bundle bundle = getIntent().getExtras();
         if (bundle!=null) {
@@ -128,6 +131,9 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
                 editTextNom.setText(monture.getNom());
                 editTextRobe.setText(monture.getRobe());
                 SpinnerTool.SelectSpinnerItemByValue(spinnerGenre, monture.getGenre().name());
+                if (monture.getImg() != null) {
+                    imageView.setImageBitmap(PictureUtils.getImage(monture.getImg()));
+                }
             }
         }
     }
@@ -145,6 +151,12 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
             monture.setGenre((Genre) spinnerGenre.getSelectedItem());
             monture.setNom(edName.toString());
             monture.setRobe(edRobe.toString());
+
+            imageView.buildDrawingCache();
+            Bitmap imageBitmap = imageView.getDrawingCache();
+            if (imageBitmap != null) {
+                monture.setImg(PictureUtils.getBitmapAsByteArray(imageBitmap));
+            }
 
             monture.save();
             Toast.makeText(getBaseContext(), getString(R.string.monture_save), Toast.LENGTH_LONG).show();
@@ -200,11 +212,25 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
         // Nothings
     }
 
-    private void dispatchTakePictureIntent() {
+    private void takeChevalPictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
+    }
+
+    private void selectChevalPictureIntent() {
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        intent.setType("image/*");
+        intent.putExtra("crop", "true");
+        intent.putExtra("scale", true);
+        intent.putExtra("outputX", 256);
+        intent.putExtra("outputY", 280);
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        intent.putExtra("return-data", true);
+        startActivityForResult(intent, REQUEST_IMAGE_SELECT);
     }
 
     @Override
@@ -214,42 +240,12 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             imageView.setImageBitmap(imageBitmap);
         }
+        if (requestCode == REQUEST_IMAGE_SELECT && resultCode == RESULT_OK) {
+            final Bundle extras = data.getExtras();
+            if (extras != null) {
+                Bitmap imageBitmap = extras.getParcelable("data");
+                imageView.setImageBitmap(imageBitmap);
+            }
+        }
     }
-
-//    public void insertImg(int id , Bitmap img ) {
-//
-//
-//        byte[] data = getBitmapAsByteArray(img); // this is a function
-//
-//        insertStatement_logo.bindLong(1, id);
-//        insertStatement_logo.bindBlob(2, data);
-//
-//        insertStatement_logo.executeInsert();
-//        insertStatement_logo.clearBindings() ;
-//
-//    }
-//
-//    public static byte[] getBitmapAsByteArray(Bitmap bitmap) {
-//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-//        bitmap.compress(CompressFormat.PNG, 0, outputStream);
-//        return outputStream.toByteArray();
-//    }
-//
-//    public Bitmap getImage(int i){
-//
-//        String qu = "select img  from table where feedid=" + i ;
-//        Cursor cur = db.rawQuery(qu, null);
-//
-//        if (cur.moveToFirst()){
-//            byte[] imgByte = cur.getBlob(0);
-//            cur.close();
-//            return BitmapFactory.decodeByteArray(imgByte, 0, imgByte.length);
-//        }
-//        if (cur != null && !cur.isClosed()) {
-//            cur.close();
-//        }
-//
-//        return null ;
-//    }
-
 }
