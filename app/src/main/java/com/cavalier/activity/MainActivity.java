@@ -50,6 +50,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
 
             }
         });
+        but0.setVisibility(View.INVISIBLE);
 
         // Moniteurs
         but1 = (Button) findViewById(R.id.button1);
