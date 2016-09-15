@@ -88,12 +88,13 @@
 
         </TableRow>
 
-
-
-
-
-
     </TableLayout>
+
+    <ImageView android:id="@+id/cheval_pic"
+        android:layout_width="400px"
+        android:layout_height="400px"
+        android:layout_below="@+id/tableLayout"
+        android:layout_centerHorizontal="true"/>
 
 
 </RelativeLayout>

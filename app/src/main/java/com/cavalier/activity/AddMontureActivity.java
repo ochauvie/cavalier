@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -28,8 +31,11 @@ import java.util.Collections;
 
 public class AddMontureActivity extends Activity implements MyDialogInterface.DialogReturn, MontureListener {
 
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
     private Spinner spinnerGenre;
     private EditText editTextNom, editTextRobe;
+    private ImageView imageView;
     private MyDialogInterface myInterface;
     private Monture monture = null;
 
@@ -43,6 +49,7 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
 
         editTextNom = (EditText)  findViewById(R.id.editTextNom);
         editTextRobe = (EditText)  findViewById(R.id.editTextRobe);
+        imageView = (ImageView) findViewById(R.id.cheval_pic);
 
         myInterface = new MyDialogInterface();
         myInterface.setListener(this);
@@ -97,6 +104,9 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
             case R.id.action_delete_monture:
                 onDelete();
                 return false;
+            case R.id.action_picture:
+                dispatchTakePictureIntent();
+                return true;
         }
         return false;
     }
@@ -190,6 +200,56 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
         // Nothings
     }
 
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imageView.setImageBitmap(imageBitmap);
+        }
+    }
+
+//    public void insertImg(int id , Bitmap img ) {
+//
+//
+//        byte[] data = getBitmapAsByteArray(img); // this is a function
+//
+//        insertStatement_logo.bindLong(1, id);
+//        insertStatement_logo.bindBlob(2, data);
+//
+//        insertStatement_logo.executeInsert();
+//        insertStatement_logo.clearBindings() ;
+//
+//    }
+//
+//    public static byte[] getBitmapAsByteArray(Bitmap bitmap) {
+//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//        bitmap.compress(CompressFormat.PNG, 0, outputStream);
+//        return outputStream.toByteArray();
+//    }
+//
+//    public Bitmap getImage(int i){
+//
+//        String qu = "select img  from table where feedid=" + i ;
+//        Cursor cur = db.rawQuery(qu, null);
+//
+//        if (cur.moveToFirst()){
+//            byte[] imgByte = cur.getBlob(0);
+//            cur.close();
+//            return BitmapFactory.decodeByteArray(imgByte, 0, imgByte.length);
+//        }
+//        if (cur != null && !cur.isClosed()) {
+//            cur.close();
+//        }
+//
+//        return null ;
+//    }
 
 }
