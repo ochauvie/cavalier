@@ -116,12 +116,12 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
                 Intent exportActivity = new Intent(MainActivity.this, ExportActivity.class);
                 startActivityForResult(exportActivity, 0);
                 return true;
-            case R.id.hippologie:
-                openHippologie();
-                return true;
-            case R.id.kath:
-                openKathEquitation();
-                return true;
+//            case R.id.hippologie:
+//                openHippologie();
+//                return true;
+//            case R.id.kath:
+//                openKathEquitation();
+//                return true;
         }
         return false;
     }
