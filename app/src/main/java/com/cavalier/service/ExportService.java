@@ -84,6 +84,12 @@ public class ExportService {
         OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
 
         List<Cours> coursList = CoursService.getAll();
+
+        // Remove img to light export
+        for (Cours cours:coursList) {
+            cours.getMonture().setImg(null);
+        }
+
         Type type = new TypeToken<List<Monture>>() {}.getType();
         String json = gson.toJson(coursList, type);
         myOutWriter.append(json);

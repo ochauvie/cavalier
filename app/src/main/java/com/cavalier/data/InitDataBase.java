@@ -46,16 +46,16 @@ public class InitDataBase {
     public static void initMontures() {
         MontureService.deleteAll();
 
-        Monture monture = new Monture("Soumoulou", Genre.JUMENT, "Bai", null, null);
+        Monture monture = new Monture("Soumoulou", Genre.JUMENT, "Bai", null, null, null);
         monture.save();
 
-        monture = new Monture("Cyrano", Genre.ETALON, "Noir", null, null);
+        monture = new Monture("Cyrano", Genre.ETALON, "Noir", null, null, null);
         monture.save();
 
-        monture = new Monture("Bibop", Genre.JUMENT, "Pie", null, null);
+        monture = new Monture("Bibop", Genre.JUMENT, "Pie", null, null, null);
         monture.save();
 
-        monture = new Monture("Phuribon", Genre.ETALON, "Alzan", null, null);
+        monture = new Monture("Phuribon", Genre.ETALON, "Alzan", null, null, null);
         monture.save();
 
     }

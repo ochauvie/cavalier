@@ -23,15 +23,15 @@
     <string name="title_activity_add_personne">Personne</string>
     <string name="title_activity_list_monture">Montures</string>
     <string name="title_activity_add_monture">Monture</string>
-    <string name="title_activity_list_cours">Mes cours</string>
-    <string name="title_activity_add_cours">Ajouter un cours</string>
+    <string name="title_activity_list_cours">Mes reprises</string>
+    <string name="title_activity_add_cours">Nouvelle reprise</string>
 
     <!--Home-->
     <string name="title_home_moniteurs">Moniteurs</string>
     <string name="title_home_cavaliers">Cavaliers</string>
     <string name="title_home_montures">Montures</string>
-    <string name="title_home_add_cours">Ajouter un cours</string>
-    <string name="title_home_list_cours">Mes cours</string>
+    <string name="title_home_add_cours">Nouvelle reprise</string>
+    <string name="title_home_list_cours">Mes reprises</string>
 
     <!-- Genre -->
     <string name="genre_etalon">Etalon</string>

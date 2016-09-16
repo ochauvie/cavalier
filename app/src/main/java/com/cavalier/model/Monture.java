@@ -22,6 +22,10 @@ public class Monture extends Model  {
     private Genre genre;
 
     @Expose
+    @Column(name = "race")
+    private String race;
+
+    @Expose
     @Column(name = "robe")
     private String robe;
 
@@ -30,18 +34,23 @@ public class Monture extends Model  {
     private Date dateNaissance;
 
     @Expose
+    @Column(name = "caracteristique")
+    private String caracteristique;
+
+    @Expose
     @Column(name = "img")
     private byte[] img;
 
     public Monture() {
     }
 
-    public Monture(String nom, Genre genre, String robe, Date dateNaissance, byte[] img) {
+    public Monture(String nom, Genre genre, String robe, Date dateNaissance, byte[] img, String race) {
         this.nom = nom;
         this.genre = genre;
         this.robe = robe;
         this.dateNaissance = dateNaissance;
         this.img = img;
+        this.race = race;
     }
 
     public String getNom() {
@@ -82,5 +91,21 @@ public class Monture extends Model  {
 
     public void setImg(byte[] img) {
         this.img = img;
+    }
+
+    public String getRace() {
+        return race;
+    }
+
+    public void setRace(String race) {
+        this.race = race;
+    }
+
+    public String getCaracteristique() {
+        return caracteristique;
+    }
+
+    public void setCaracteristique(String caracteristique) {
+        this.caracteristique = caracteristique;
     }
 }

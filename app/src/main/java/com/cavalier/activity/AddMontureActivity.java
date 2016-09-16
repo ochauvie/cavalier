@@ -36,7 +36,7 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
     static final int REQUEST_IMAGE_SELECT = 2;
 
     private Spinner spinnerGenre;
-    private EditText editTextNom, editTextRobe;
+    private EditText editTextNom, editTextRobe, editTextRace, editTextCaracteristique;
     private ImageView imageView;
     private MyDialogInterface myInterface;
     private Monture monture = null;
@@ -51,6 +51,8 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
 
         editTextNom = (EditText)  findViewById(R.id.editTextNom);
         editTextRobe = (EditText)  findViewById(R.id.editTextRobe);
+        editTextRace = (EditText)  findViewById(R.id.editTextRace);
+        editTextCaracteristique = (EditText)  findViewById(R.id.editTextCaracteristique);
         imageView = (ImageView) findViewById(R.id.cheval_pic);
 
         myInterface = new MyDialogInterface();
@@ -130,6 +132,8 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
             if (monture != null) {
                 editTextNom.setText(monture.getNom());
                 editTextRobe.setText(monture.getRobe());
+                editTextCaracteristique.setText(monture.getCaracteristique());
+                editTextRace.setText(monture.getRace());
                 SpinnerTool.SelectSpinnerItemByValue(spinnerGenre, monture.getGenre().name());
                 if (monture.getImg() != null) {
                     imageView.setImageBitmap(PictureUtils.getImage(monture.getImg()));
@@ -141,6 +145,8 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
     private boolean onSave() {
         Editable edName = editTextNom.getText();
         Editable edRobe = editTextRobe.getText();
+        Editable edCaracteristique =  editTextCaracteristique.getText();
+        Editable edRace = editTextRace.getText();
         if (edName==null || "".equals(edName.toString())) {
             Toast.makeText(getBaseContext(), getString(R.string.nom_mandatory), Toast.LENGTH_LONG).show();
             return false;
@@ -151,6 +157,8 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
             monture.setGenre((Genre) spinnerGenre.getSelectedItem());
             monture.setNom(edName.toString());
             monture.setRobe(edRobe.toString());
+            monture.setCaracteristique(edCaracteristique.toString());
+            monture.setRace(edRace.toString());
 
             imageView.buildDrawingCache();
             Bitmap imageBitmap = imageView.getDrawingCache();
