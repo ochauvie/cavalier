@@ -67,17 +67,17 @@
     <string name="monture_delete">La monture est supprimée</string>
 
     <!--Cours-->
-    <string name="cours_save">Le cours est sauvegardé</string>
-    <string name="cours_delete">Le cours est Supprimer</string>
+    <string name="cours_save">La reprise est sauvegardée</string>
+    <string name="cours_delete">La reprise est supprimée</string>
 
     <!--Graphique-->
     <string name="title_activity_chart_cavalier">Par cavalier</string>
     <string name="title_activity_chart_monture">Par monture</string>
     <string name="menu_chart">Graphiques</string>
-    <string name="menu_barchartbycavalier">Cours par cavalier</string>
-    <string name="menu_barchartbymonture">Cours par monture</string>
-    <string name="menu_piechartbycavalier">Cours par cavalier</string>
-    <string name="menu_piechartbymonture">Cours par monture</string>
+    <string name="menu_barchartbycavalier">Reprises par cavalier</string>
+    <string name="menu_barchartbymonture">Reprises par monture</string>
+    <string name="menu_piechartbycavalier">Reprises par cavalier</string>
+    <string name="menu_piechartbymonture">Reprises par monture</string>
 
     <string name="opt_inconnu">Inconnu</string>
 
@@ -85,5 +85,9 @@
     <string name="menu_export_db">Exporter la base de données</string>
     <string name="menu_import_ok">Import du fichier réussi</string>
     <string name="import_reload_list">Rafraichissez la page</string>
+
+    <!--URL-->
+    <string name="menu_kath">Kath Equitation</string>
+    <string name="menu_hippologie">http://www.hippologie.fr/</string>
 
 </resources>

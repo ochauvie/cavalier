@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -115,6 +116,12 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
                 Intent exportActivity = new Intent(MainActivity.this, ExportActivity.class);
                 startActivityForResult(exportActivity, 0);
                 return true;
+            case R.id.hippologie:
+                openHippologie();
+                return true;
+            case R.id.kath:
+                openKathEquitation();
+                return true;
         }
         return false;
     }
@@ -161,6 +168,23 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
     protected void onResume() {
         super.onResume();
     }
+
+
+    private void openHippologie() {
+        Uri uri = Uri.parse("http://www.hippologie.fr/");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
+
+    private void openKathEquitation() {
+        Uri uri = Uri.parse("https://www.facebook.com/people/Kath%C3%A9quitation-Mary/100010372802263");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
+
+
+
+
 }
 
 
