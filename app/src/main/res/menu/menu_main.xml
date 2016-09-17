@@ -4,17 +4,17 @@
     tools:context=".MainActivity">
 
 
-    <!--<item-->
-        <!--android:id="@+id/kath"-->
-        <!--android:title="@string/menu_kath"-->
-        <!--app:icon="@drawable/cheval"-->
-        <!--app:showAsAction="never" />-->
+    <item
+        android:id="@+id/kath"
+        android:title="@string/menu_kath"
+        app:icon="@drawable/cheval"
+        app:showAsAction="never" />
 
-    <!--<item-->
-        <!--android:id="@+id/hippologie"-->
-        <!--android:title="@string/menu_hippologie"-->
-        <!--app:icon="@drawable/cheval"-->
-        <!--app:showAsAction="never" />-->
+    <item
+        android:id="@+id/hippologie"
+        android:title="@string/menu_hippologie"
+        app:icon="@drawable/cheval"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/export_db"

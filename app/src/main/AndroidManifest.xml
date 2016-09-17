@@ -65,6 +65,11 @@
             android:label="@string/menu_export_db" >
         </activity>
         <activity
+            android:name=".activity.HttpActivity"
+            android:icon="@drawable/link"
+            android:label="@string/menu_http" >
+        </activity>
+        <activity
             android:name="org.achartengine.GraphicalActivity"
             android:label="@string/menu_chart"
             android:icon="@drawable/chart"
