@@ -2,55 +2,49 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        tools:context=".MainActivity">
-
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
-            android:weightSum="1"
-            android:background="@drawable/cavalier_home">
+            android:weightSum="1">
 
             <Button
                 android:layout_marginTop="30px"
                 android:layout_width="400px"
-                android:layout_height="80px"
+                android:layout_height="70px"
                 android:text="@string/title_home_add_cours"
                 android:id="@+id/button4"
                 android:textColor="@android:color/holo_red_dark"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/home"
+                android:layout_gravity="center"
+                android:layout_marginTop="30px" />
 
             <Button
                 android:layout_marginTop="30px"
                 android:layout_width="400px"
-                android:layout_height="80px"
+                android:layout_height="70px"
                 android:text="@string/title_home_list_cours"
                 android:id="@+id/button5"
                 android:textColor="@android:color/holo_red_dark"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal" />
-
 
             <Button
                 android:layout_marginTop="30px"
                 android:layout_width="400px"
-                android:layout_height="80px"
+                android:layout_height="70px"
                 android:text="@string/title_home_moniteurs"
                 android:id="@+id/button1"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textColor="@android:color/holo_red_dark"
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal" />
@@ -58,22 +52,22 @@
             <Button
                 android:layout_marginTop="30px"
                 android:layout_width="400px"
-                android:layout_height="80px"
+                android:layout_height="70px"
                 android:text="@string/title_home_cavaliers"
                 android:id="@+id/button2"
                 android:textColor="@android:color/holo_red_dark"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal" />
 
             <Button
                 android:layout_marginTop="30px"
                 android:layout_width="400px"
-                android:layout_height="80px"
+                android:layout_height="70px"
                 android:text="@string/title_home_montures"
                 android:id="@+id/button3"
                 android:textColor="@android:color/holo_red_dark"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal" />
 
@@ -91,5 +85,6 @@
 
         </LinearLayout>
 
-    </RelativeLayout>
+
+
 </ScrollView>

@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cavalier.R;
 import com.cavalier.model.Monture;
+import com.cavalier.tools.PictureUtils;
 
 import java.util.List;
 
@@ -58,13 +60,15 @@ public class MontureSpinnerAdapter extends BaseAdapter {
     }
 
     public View getCustomView(int position, View convertView, ViewGroup parent) {
-        RelativeLayout mySpinner  = (RelativeLayout) mInflater.inflate(R.layout.light_custom_spinner, parent, false);
+        RelativeLayout mySpinner  = (RelativeLayout) mInflater.inflate(R.layout.custom_spinner, parent, false);
 
         Monture item = dataList.get(position);
 
-        TextView main_text = (TextView) mySpinner .findViewById(R.id.text_main_seen);
+        TextView main_text = (TextView) mySpinner.findViewById(R.id.text_main_seen);
         main_text.setText(item.getNom() + " (" + item.getRobe() + ")");
 
+        ImageView left_pic = (ImageView) mySpinner.findViewById(R.id.left_pic);
+        left_pic.setImageBitmap(PictureUtils.getImage(item.getImg()));
 
         return mySpinner;
 

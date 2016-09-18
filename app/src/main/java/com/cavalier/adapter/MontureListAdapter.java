@@ -73,7 +73,7 @@ public class MontureListAdapter extends BaseAdapter {
         TextView tv_nom = (TextView)layoutItem.findViewById(R.id.nom);
         TextView tv_genre = (TextView)layoutItem.findViewById(R.id.genre);
         TextView tv_robe = (TextView)layoutItem.findViewById(R.id.robe);
-
+        TextView tv_race = (TextView)layoutItem.findViewById(R.id.race);
 
         // Renseignement des valeurs
         Monture current = montureList.get(position);
@@ -81,6 +81,9 @@ public class MontureListAdapter extends BaseAdapter {
         tv_nom.setText(current.getNom());
         tv_genre.setText(current.getGenre().getLabel());
         tv_robe.setText(current.getRobe());
+        if (tv_race != null) {
+            tv_race.setText(current.getRace());
+        }
 
         // On memorise la position  dans le composant textview
         layoutItem.setTag(position);

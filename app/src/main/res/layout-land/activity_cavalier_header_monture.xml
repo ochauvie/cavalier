@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:id="@+id/header_cours"
+    android:background="@android:color/holo_blue_light">
+
+
+    <TextView android:text="Nom" android:id="@+id/nom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="5dp"
+        android:textColor="@android:color/black">
+    </TextView>
+
+
+    <TextView android:text="Genre" android:id="@+id/genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="140dp">
+    </TextView>
+
+    <TextView android:text="Robe" android:id="@+id/robe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="230dp">
+    </TextView>
+
+    <TextView android:text="Race" android:id="@+id/race"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="320dp">
+    </TextView>
+
+</RelativeLayout>
