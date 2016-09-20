@@ -35,6 +35,10 @@ public class Personne extends Model  {
     @Column(name = "type")
     private TypePersonne type;
 
+    @Expose
+    @Column(name = "img")
+    private byte[] img;
+
     public Personne() {
     }
 
@@ -82,7 +86,17 @@ public class Personne extends Model  {
         return type;
     }
 
+    public byte[] getImg() {
+        return img;
+    }
+
+    public void setImg(byte[] img) {
+        this.img = img;
+    }
+
     public void setType(TypePersonne type) {
         this.type = type;
     }
+
+
 }

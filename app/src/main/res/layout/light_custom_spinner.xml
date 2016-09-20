@@ -11,7 +11,7 @@
         android:layout_marginLeft="5px"
         android:layout_marginTop="2px"
         android:padding="3px"
-        android:textSize="30px"
+        android:textSize="25px"
         android:textStyle="bold"
         android:layout_centerVertical="true"/>
 

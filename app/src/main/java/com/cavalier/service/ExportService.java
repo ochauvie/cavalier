@@ -88,6 +88,8 @@ public class ExportService {
         // Remove img to light export
         for (Cours cours:coursList) {
             cours.getMonture().setImg(null);
+            cours.getCavalier().setImg(null);
+            cours.getMoniteur().setImg(null);
         }
 
         Type type = new TypeToken<List<Monture>>() {}.getType();

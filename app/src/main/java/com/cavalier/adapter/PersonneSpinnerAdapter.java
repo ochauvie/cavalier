@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.cavalier.R;
 import com.cavalier.model.Personne;
+import com.cavalier.tools.PictureUtils;
 
 import java.util.List;
 
@@ -59,10 +60,14 @@ public class PersonneSpinnerAdapter extends BaseAdapter {
     }
 
     public View getCustomView(int position, View convertView, ViewGroup parent) {
-        RelativeLayout mySpinner  = (RelativeLayout) mInflater.inflate(R.layout.light_custom_spinner, parent, false);
+        RelativeLayout mySpinner  = (RelativeLayout) mInflater.inflate(R.layout.custom_spinner, parent, false);
         Personne item = dataList.get(position);
         TextView main_text = (TextView) mySpinner .findViewById(R.id.text_main_seen);
         main_text.setText(item.getPrenom() + " " + item.getNom());
+
+        ImageView left_pic = (ImageView) mySpinner.findViewById(R.id.left_pic);
+        left_pic.setImageBitmap(PictureUtils.getImage(item.getImg()));
+
         return mySpinner;
     }
 }

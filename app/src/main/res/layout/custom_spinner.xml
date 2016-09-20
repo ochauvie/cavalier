@@ -16,7 +16,7 @@
         android:layout_marginTop="2px"
         android:layout_toRightOf="@+id/left_pic"
         android:padding="3px"
-        android:textSize="30px"
+        android:textSize="25px"
         android:textStyle="bold"
         android:layout_centerVertical="true"/>
 

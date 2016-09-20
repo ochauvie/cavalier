@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +25,7 @@ import com.cavalier.service.CoursService;
 import com.cavalier.R;
 import com.cavalier.adapter.IDataSpinnerAdapter;
 import com.cavalier.model.IRefData;
+import com.cavalier.tools.PictureUtils;
 import com.cavalier.tools.SpinnerTool;
 import com.cavalier.tools.Utils;
 
@@ -30,9 +34,13 @@ import java.util.Collections;
 
 public class AddPersonneActivity extends Activity implements MyDialogInterface.DialogReturn, PersonneListener {
 
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_IMAGE_SELECT = 2;
+
     private Spinner spinnerSexe;
     private EditText editTextNom, editTextPrenom;
     private TextView textViewType;
+    private ImageView imageView;
     private MyDialogInterface myInterface;
     private Personne personne = null;
     private TypePersonne typePersonne;
@@ -48,6 +56,8 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
         editTextNom = (EditText)  findViewById(R.id.editTextNom);
         editTextPrenom = (EditText)  findViewById(R.id.editTextPrenom);
         textViewType = (TextView) findViewById(R.id.textViewType);
+        imageView = (ImageView) findViewById(R.id.personne_pic);
+
 
         myInterface = new MyDialogInterface();
         myInterface.setListener(this);
@@ -111,6 +121,12 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
             case R.id.action_delete_personne:
                 onDelete();
                 return false;
+            case R.id.action_take_picture:
+                takePersonnePictureIntent();
+                return true;
+            case R.id.action_select_picture:
+                selectPersonnePictureIntent();
+                return true;
         }
         return false;
     }
@@ -135,6 +151,9 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
                 textViewType.setText(personne.getType().getLabel());
                 SpinnerTool.SelectSpinnerItemByValue(spinnerSexe, personne.getSexe().name());
                 typePersonne = personne.getType();
+                if (personne.getImg() != null) {
+                    imageView.setImageBitmap(PictureUtils.getImage(personne.getImg()));
+                }
 
             } else {
                 typePersonne = TypePersonne.valueOf(bundle.getString(Personne.TYPE_PERSONNE));
@@ -160,6 +179,12 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
             personne.setSexe((Sexe) spinnerSexe.getSelectedItem());
             personne.setNom(edName.toString());
             personne.setPrenom(edPrenom.toString());
+
+            imageView.buildDrawingCache();
+            Bitmap imageBitmap = imageView.getDrawingCache();
+            if (imageBitmap != null) {
+                personne.setImg(PictureUtils.getBitmapAsByteArray(imageBitmap));
+            }
 
             personne.save();
             Toast.makeText(getBaseContext(), getString(R.string.personne_save), Toast.LENGTH_LONG).show();
@@ -203,6 +228,43 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
             listPersonneActivity.putExtra(Personne.TYPE_PERSONNE, typePersonne.name());
             startActivity(listPersonneActivity);
             finish();
+        }
+    }
+
+    private void takePersonnePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    private void selectPersonnePictureIntent() {
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        intent.setType("image/*");
+        intent.putExtra("crop", "true");
+        intent.putExtra("scale", true);
+        intent.putExtra("outputX", 256);
+        intent.putExtra("outputY", 280);
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        intent.putExtra("return-data", true);
+        startActivityForResult(intent, REQUEST_IMAGE_SELECT);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imageView.setImageBitmap(imageBitmap);
+        }
+        if (requestCode == REQUEST_IMAGE_SELECT && resultCode == RESULT_OK) {
+            final Bundle extras = data.getExtras();
+            if (extras != null) {
+                Bitmap imageBitmap = extras.getParcelable("data");
+                imageView.setImageBitmap(imageBitmap);
+            }
         }
     }
 
