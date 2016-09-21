@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textSize="20sp"
-        android:layout_marginLeft="80dp">
+        android:layout_marginLeft="80dp"
+        android:layout_centerVertical="true">
     </TextView>
 
 
@@ -24,7 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textSize="20sp"
-        android:layout_marginLeft="210dp">
+        android:layout_marginLeft="210dp"
+        android:layout_centerVertical="true">
     </TextView>
 
 </RelativeLayout>
