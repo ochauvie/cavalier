@@ -11,20 +11,10 @@
         android:layout_alignParentLeft="true"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="80dp"
         android:textColor="@android:color/black">
     </TextView>
 
-
-    <TextView android:text="Genre" android:id="@+id/genre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:layout_marginLeft="140dp">
-    </TextView>
 
     <TextView android:text="Robe" android:id="@+id/robe"
         android:layout_width="wrap_content"
@@ -33,7 +23,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@android:color/black"
-        android:layout_marginLeft="230dp">
+        android:layout_marginLeft="210dp">
     </TextView>
 
 </RelativeLayout>

@@ -5,12 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cavalier.listner.PersonneListener;
 import com.cavalier.model.Personne;
 import com.cavalier.R;
+import com.cavalier.tools.PictureUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +74,7 @@ public class PersonneListAdapter extends BaseAdapter {
         RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.activity_cavalier_list_personne_item, parent, false);
         TextView tv_nom = (TextView)layoutItem.findViewById(R.id.nom);
         TextView tv_prenom = (TextView)layoutItem.findViewById(R.id.prenom);
+        ImageView imageView = (ImageView)layoutItem.findViewById(R.id.pic);
 //        TextView tv_sexe = (TextView)layoutItem.findViewById(R.id.sexe);
 
 
@@ -81,6 +84,9 @@ public class PersonneListAdapter extends BaseAdapter {
         tv_nom.setText(current.getNom());
         tv_prenom.setText(current.getPrenom());
 //        tv_sexe.setText(current.getSexe().getLabel());
+        if (current.getImg() != null) {
+            imageView.setImageBitmap(PictureUtils.getImage(current.getImg()));
+        }
 
 
         // On memorise la position  dans le composant textview

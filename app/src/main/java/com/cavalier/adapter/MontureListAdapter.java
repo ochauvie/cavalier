@@ -5,12 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cavalier.R;
 import com.cavalier.listner.MontureListener;
 import com.cavalier.model.Monture;
+import com.cavalier.tools.PictureUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,15 +76,21 @@ public class MontureListAdapter extends BaseAdapter {
         TextView tv_genre = (TextView)layoutItem.findViewById(R.id.genre);
         TextView tv_robe = (TextView)layoutItem.findViewById(R.id.robe);
         TextView tv_race = (TextView)layoutItem.findViewById(R.id.race);
+        ImageView imageView = (ImageView)layoutItem.findViewById(R.id.pic);
 
         // Renseignement des valeurs
         Monture current = montureList.get(position);
 
         tv_nom.setText(current.getNom());
-        tv_genre.setText(current.getGenre().getLabel());
+        if (tv_genre != null) {
+            tv_genre.setText(current.getGenre().getLabel());
+        }
         tv_robe.setText(current.getRobe());
         if (tv_race != null) {
             tv_race.setText(current.getRace());
+        }
+        if (imageView != null && current.getImg() != null) {
+            imageView.setImageBitmap(PictureUtils.getImage(current.getImg()));
         }
 
         // On memorise la position  dans le composant textview

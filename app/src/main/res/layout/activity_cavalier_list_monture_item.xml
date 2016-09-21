@@ -4,29 +4,27 @@
     android:id="@+id/item_personne">
 
 
+    <ImageView android:id="@+id/pic"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp"/>
+
     <TextView android:text="Nom" android:id="@+id/nom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textSize="20sp"
-        android:layout_marginLeft="5dp">
+        android:layout_marginLeft="80dp">
     </TextView>
 
-
-    <TextView android:text="Genre" android:id="@+id/genre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:textSize="20sp"
-        android:layout_marginLeft="140dp">
-    </TextView>
 
     <TextView android:text="Robe" android:id="@+id/robe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textSize="20sp"
-        android:layout_marginLeft="230dp">
+        android:layout_marginLeft="210dp">
     </TextView>
 
 </RelativeLayout>
