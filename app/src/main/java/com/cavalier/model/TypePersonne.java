@@ -5,8 +5,8 @@ import com.cavalier.model.IRefData;
 
 public enum TypePersonne implements IRefData {
 
-    MONITEUR(R.string.type_personne_moniteur, 0),
-    CAVALIER(R.string.type_personne_cavalier, 0);
+    MONITEUR(R.string.type_personne_moniteur, R.drawable.bombe),
+    CAVALIER(R.string.type_personne_cavalier, R.drawable.coach);
 
     private final int label;
     private final int flag;
