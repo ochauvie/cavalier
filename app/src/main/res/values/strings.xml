@@ -91,4 +91,13 @@
     <string name="menu_kath">Kath Equitation</string>
     <string name="menu_hippologie">http://www.hippologie.fr/</string>
 
+    <string name="galop0">Débutant</string>
+    <string name="galop1">Galop 1</string>
+    <string name="galop2">Galop 2</string>
+    <string name="galop3">Galop 3</string>
+    <string name="galop4">Galop 4</string>
+    <string name="galop5">Galop 5</string>
+    <string name="galop6">Galop 6</string>
+    <string name="galop7">Galop 7</string>
+
 </resources>

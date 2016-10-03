@@ -104,6 +104,30 @@
                 android:layout_centerVertical="true"/>
         </TableRow>
 
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Niveau"
+                android:textSize="20sp"
+                android:id="@+id/textView4"
+                android:layout_column="0"
+                />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spGalop"
+                android:spinnerMode="dialog"
+                android:textSize="20sp"
+                android:layout_column="1"
+                android:layout_centerVertical="true"/>
+        </TableRow>
+
     </TableLayout>
 
     <ImageView android:id="@+id/personne_pic"

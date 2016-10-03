@@ -76,6 +76,7 @@ public class PersonneListAdapter extends BaseAdapter {
         TextView tv_prenom = (TextView)layoutItem.findViewById(R.id.prenom);
         ImageView imageView = (ImageView)layoutItem.findViewById(R.id.pic);
 //        TextView tv_sexe = (TextView)layoutItem.findViewById(R.id.sexe);
+        TextView galop =  (TextView)layoutItem.findViewById(R.id.galop);
 
 
         // Renseignement des valeurs
@@ -87,7 +88,9 @@ public class PersonneListAdapter extends BaseAdapter {
         if (current.getImg() != null) {
             imageView.setImageBitmap(PictureUtils.getImage(current.getImg()));
         }
-
+        if (galop != null && current.getGalop() != null) {
+            galop.setText(current.getGalop().getLabel());
+        }
 
         // On memorise la position  dans le composant textview
         layoutItem.setTag(position);

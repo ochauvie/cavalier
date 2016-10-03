@@ -39,6 +39,10 @@ public class Personne extends Model  {
     @Column(name = "img")
     private byte[] img;
 
+    @Expose
+    @Column(name = "galop")
+    private Galop galop;
+
     public Personne() {
     }
 
@@ -98,5 +102,11 @@ public class Personne extends Model  {
         this.type = type;
     }
 
+    public Galop getGalop() {
+        return galop;
+    }
 
+    public void setGalop(Galop galop) {
+        this.galop = galop;
+    }
 }

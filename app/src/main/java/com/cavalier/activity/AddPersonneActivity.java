@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cavalier.listner.PersonneListener;
+import com.cavalier.model.Galop;
 import com.cavalier.model.Personne;
 import com.cavalier.model.Sexe;
 import com.cavalier.model.TypePersonne;
@@ -37,7 +38,7 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_IMAGE_SELECT = 2;
 
-    private Spinner spinnerSexe;
+    private Spinner spinnerSexe, spinnerGalop;
     private EditText editTextNom, editTextPrenom;
     private TextView textViewType;
     private ImageView imageView;
@@ -52,6 +53,9 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
 
         spinnerSexe = (Spinner) findViewById(R.id.spSexe);
         loadSpinnerSexe();
+
+        spinnerGalop = (Spinner) findViewById(R.id.spGalop);
+        loadSpinnerGalop();
 
         editTextNom = (EditText)  findViewById(R.id.editTextNom);
         editTextPrenom = (EditText)  findViewById(R.id.editTextPrenom);
@@ -137,7 +141,11 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
         spinnerSexe.setAdapter(new IDataSpinnerAdapter(this, list, R.layout.light_custom_spinner));
     }
 
-
+    private void loadSpinnerGalop() {
+        ArrayList<IRefData> list = new ArrayList<IRefData>();
+        Collections.addAll(list, Galop.values());
+        spinnerGalop.setAdapter(new IDataSpinnerAdapter(this, list, R.layout.light_custom_spinner));
+    }
 
     private void initView() {
         Bundle bundle = getIntent().getExtras();
@@ -150,6 +158,9 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
                 editTextPrenom.setText(personne.getPrenom());
                 textViewType.setText(personne.getType().getLabel());
                 SpinnerTool.SelectSpinnerItemByValue(spinnerSexe, personne.getSexe().name());
+                if (personne.getGalop() != null) {
+                    SpinnerTool.SelectSpinnerItemByValue(spinnerGalop, personne.getGalop().name());
+                }
                 typePersonne = personne.getType();
                 if (personne.getImg() != null) {
                     imageView.setImageBitmap(PictureUtils.getImage(personne.getImg()));
@@ -177,6 +188,7 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
                 personne.setType(typePersonne);
             }
             personne.setSexe((Sexe) spinnerSexe.getSelectedItem());
+            personne.setGalop((Galop) spinnerGalop.getSelectedItem());
             personne.setNom(edName.toString());
             personne.setPrenom(edPrenom.toString());
 
