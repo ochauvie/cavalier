@@ -32,6 +32,7 @@ public class CoursService {
         return new Select()
                 .from(Cours.class)
                 .where("cavalier = ?", personne.getId())
+                .orderBy("date DESC")
                 .execute();
     }
 
@@ -39,6 +40,7 @@ public class CoursService {
         return new Select()
                 .from(Cours.class)
                 .where("monture = ?", monture.getId())
+                .orderBy("date DESC")
                 .execute();
     }
 
@@ -46,6 +48,7 @@ public class CoursService {
         return new Select()
                 .from(Cours.class)
                 .where("moniteur = ?", personne.getId())
+                .orderBy("date DESC")
                 .execute();
     }
 
@@ -53,6 +56,7 @@ public class CoursService {
         return new Select()
                 .from(Cours.class)
                 .where("typeLieu = ?", typeLieu.name())
+                .orderBy("date DESC")
                 .execute();
     }
 
@@ -60,6 +64,7 @@ public class CoursService {
         return new Select()
                 .from(Cours.class)
                 .where("date = ?", date.getTime())
+                .orderBy("date DESC")
                 .execute();
     }
 
