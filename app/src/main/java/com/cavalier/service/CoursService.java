@@ -19,7 +19,7 @@ public class CoursService {
     public static List<Cours> getAll() {
         return new Select()
                 .from(Cours.class)
-                .orderBy("date ASC")
+                .orderBy("date DESC")
                 .execute();
     }
 
