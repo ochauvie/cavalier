@@ -16,9 +16,6 @@ import java.util.Date;
 
 public class InitDataBase {
 
-    public static final String DEFAULT_IMAGE = "default_tank";
-
-
     public static void initCours() {
         CoursService.deleteAll();
     }
