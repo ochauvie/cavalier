@@ -65,7 +65,11 @@ public class MontureSpinnerAdapter extends BaseAdapter {
         Monture item = dataList.get(position);
 
         TextView main_text = (TextView) mySpinner.findViewById(R.id.text_main_seen);
-        main_text.setText(item.getNom() + " (" + item.getRobe() + ")");
+        if (item.getRobe() != null && !"".equals(item.getRobe())) {
+            main_text.setText(item.getNom() + " (" + item.getRobe() + ")");
+        } else {
+            main_text.setText(item.getNom());
+        }
 
         ImageView left_pic = (ImageView) mySpinner.findViewById(R.id.left_pic);
         left_pic.setImageBitmap(PictureUtils.getImage(item.getImg()));

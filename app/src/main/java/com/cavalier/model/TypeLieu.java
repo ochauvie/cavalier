@@ -9,6 +9,7 @@ public enum TypeLieu implements IRefData {
     MANEGE(R.string.type_lieu_manege, 0),
     EXTERIEUR(R.string.type_lieu_exterieur, 0),
     ECURIE(R.string.type_lieu_ecurie, 0),
+    CLUB_HOUSE(R.string.type_lieu_club_house, 0),
     AUTRE(R.string.type_lieu_autre, 0),;
 
     private final int label;

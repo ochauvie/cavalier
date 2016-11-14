@@ -47,6 +47,7 @@
     <string name="type_lieu_carriere">Carrière</string>
     <string name="type_lieu_manege">Manège</string>
     <string name="type_lieu_exterieur">Exterieur</string>
+    <string name="type_lieu_club_house">Club house</string>
     <string name="type_lieu_autre">Autre</string>
 
     <!-- Type personne -->
