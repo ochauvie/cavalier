@@ -4,6 +4,7 @@ import com.activeandroid.Model;
 import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 import com.cavalier.model.Cours;
+import com.cavalier.model.CoursFilter;
 import com.cavalier.model.Monture;
 import com.cavalier.model.Personne;
 import com.cavalier.model.TypeLieu;
@@ -91,5 +92,31 @@ public class CoursService {
         return false;
     }
 
+    public static List<Cours> getByFilter(CoursFilter coursFilter) {
+        List<Cours> coursList = getAll();
+        for (int i = coursList.size() - 1; i >= 0 ; i--) {
+            Cours cours = coursList.get(i);
+            boolean toRemove = false;
+            if (coursFilter.getCavalierId() != null && !cours.getCavalier().getId().equals(coursFilter.getCavalierId())) {
+                toRemove = true;
+            }
+            if (coursFilter.getMoniteurId() != null && !cours.getMoniteur().getId().equals(coursFilter.getMoniteurId())) {
+                toRemove = true;
+            }
+            if (coursFilter.getMontureId() != null && !cours.getMonture().getId().equals(coursFilter.getMontureId())) {
+                toRemove = true;
+            }
+            if (coursFilter.getStartDate() != null && coursFilter.getStartDate().after(cours.getDate())) {
+                toRemove = true;
+            }
+            if (coursFilter.getEndDate() != null && coursFilter.getEndDate().before(cours.getDate())) {
+                toRemove = true;
+            }
+            if (toRemove) {
+                coursList.remove(cours);
+            }
+        }
+        return coursList;
+    }
 
 }

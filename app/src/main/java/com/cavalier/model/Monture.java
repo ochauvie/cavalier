@@ -44,6 +44,10 @@ public class Monture extends Model  {
     public Monture() {
     }
 
+    public Monture(String nom) {
+        this.nom = nom;
+    }
+
     public Monture(String nom, Genre genre, String robe, Date dateNaissance, byte[] img, String race) {
         this.nom = nom;
         this.genre = genre;

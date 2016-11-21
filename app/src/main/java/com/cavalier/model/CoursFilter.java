@@ -1,57 +1,58 @@
 package com.cavalier.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class CoursFilter {
+public class CoursFilter implements Serializable {
 
-    private Personne moniteur;
+    private Long moniteurId;
 
-    private Personne cavalier;
+    private Long cavalierId;
 
-    private Monture monture;
+    private Long montureId;
 
-    private TypeLieu typeLieu;
+    private Date startDate;
 
-    private Date date;
+    private Date endDate;
 
 
-    public Personne getMoniteur() {
-        return moniteur;
+    public Long getMoniteurId() {
+        return moniteurId;
     }
 
-    public void setMoniteur(Personne moniteur) {
-        this.moniteur = moniteur;
+    public void setMoniteurId(Long moniteurId) {
+        this.moniteurId = moniteurId;
     }
 
-    public Personne getCavalier() {
-        return cavalier;
+    public Long getCavalierId() {
+        return cavalierId;
     }
 
-    public void setCavalier(Personne cavalier) {
-        this.cavalier = cavalier;
+    public void setCavalierId(Long cavalierId) {
+        this.cavalierId = cavalierId;
     }
 
-    public Monture getMonture() {
-        return monture;
+    public Long getMontureId() {
+        return montureId;
     }
 
-    public void setMonture(Monture monture) {
-        this.monture = monture;
+    public void setMontureId(Long montureId) {
+        this.montureId = montureId;
     }
 
-    public TypeLieu getTypeLieu() {
-        return typeLieu;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setTypeLieu(TypeLieu typeLieu) {
-        this.typeLieu = typeLieu;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 }

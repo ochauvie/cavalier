@@ -17,6 +17,8 @@
     <string name="action_close">Annuler</string>
     <string name="action_delete">Supprimer</string>
     <string name="action_init_data">Initialiser les données</string>
+    <string name="action_filter">Filtrer</string>
+    <string name="action_applay">Appliquer</string>
 
     <string name="title_activity_list_moniteur">Moniteurs</string>
     <string name="title_activity_list_cavalier">Cavaliers</string>
@@ -25,6 +27,7 @@
     <string name="title_activity_add_monture">Monture</string>
     <string name="title_activity_list_cours">Mes reprises</string>
     <string name="title_activity_add_cours">Nouvelle reprise</string>
+    <string name="title_activity_filter">Filtrer</string>
 
     <!--Home-->
     <string name="title_home_moniteurs">Moniteurs</string>

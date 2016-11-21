@@ -60,6 +60,11 @@
             android:label="@string/title_activity_add_cours" >
         </activity>
         <activity
+            android:name=".activity.FilterActivity"
+            android:icon="@drawable/filter"
+            android:label="@string/title_activity_filter" >
+        </activity>
+        <activity
             android:name=".activity.ExportActivity"
             android:icon="@drawable/backup"
             android:label="@string/menu_export_db" >

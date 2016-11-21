@@ -40,6 +40,11 @@
         app:icon="@drawable/smallexit"
         app:showAsAction="ifRoom" />
 
+    <item android:id="@+id/action_filter_list"
+        android:title="@string/action_filter"
+        app:icon="@drawable/filter"
+        app:showAsAction="ifRoom" />
+
     <item android:id="@+id/action_import"
         android:title="Import"
         app:icon="@drawable/import_data"

@@ -21,6 +21,8 @@ import com.cavalier.listner.MontureListener;
 import com.cavalier.model.Cours;
 import com.cavalier.model.CoursFilter;
 import com.cavalier.model.Monture;
+import com.cavalier.model.Personne;
+import com.cavalier.model.TypePersonne;
 import com.cavalier.service.CoursService;
 import com.cavalier.service.ImportService;
 import com.cavalier.service.MontureService;
@@ -51,7 +53,13 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cavalier_list_cours);
 
-        coursList = CoursService.getAll();
+        CoursFilter coursFilter = (CoursFilter)getIntent().getSerializableExtra("CoursFilter");
+        if (coursFilter != null) {
+            coursList = CoursService.getByFilter(coursFilter);
+        } else {
+            coursList = CoursService.getAll();
+        }
+
         listView = getListView();
 
         header = findViewById(R.id.header_layout);
@@ -104,6 +112,10 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
                 return true;
             case R.id.action_import:
                 importCours();
+                return true;
+            case R.id.action_filter_list:
+                startActivity(new Intent(getApplicationContext(), FilterActivity.class));
+                finish();
                 return true;
         }
         return false;
@@ -301,7 +313,7 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
         reloadList();
     }
 
-    private void reloadList() { {
+    private void reloadList() {
         if (coursList!=null) {
             for (int i=coursList.size()-1; i>=0; i--) {
                 coursList.remove(i);
@@ -321,8 +333,6 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
             headerLieu.setTextColor(Color.WHITE);
         }
         totalText.setText(String.valueOf(coursList.size()));
-    }
-
     }
 
     /**
@@ -370,4 +380,5 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
         FileOpenDialog.Default_File_Name = "";
         FileOpenDialog.chooseFile_or_Dir();
     }
+
 }
