@@ -44,16 +44,14 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
     private Cours selectedCours;
     List<Cours> coursList;
-    private CoursFilter coursFilter = new CoursFilter();
-
-
+    private CoursFilter coursFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cavalier_list_cours);
 
-        CoursFilter coursFilter = (CoursFilter)getIntent().getSerializableExtra("CoursFilter");
+        coursFilter = (CoursFilter)getIntent().getSerializableExtra("CoursFilter");
         if (coursFilter != null) {
             coursList = CoursService.getByFilter(coursFilter);
         } else {
@@ -114,7 +112,7 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
                 importCours();
                 return true;
             case R.id.action_filter_list:
-                startActivity(new Intent(getApplicationContext(), FilterActivity.class));
+                filterList();
                 finish();
                 return true;
         }
@@ -379,6 +377,14 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
 
         FileOpenDialog.Default_File_Name = "";
         FileOpenDialog.chooseFile_or_Dir();
+    }
+
+    private void filterList() {
+        Intent intent = new Intent(getApplicationContext(), FilterActivity.class);
+        if (coursFilter != null) {
+            intent.putExtra("CoursFilter", coursFilter);
+        }
+        startActivity(intent);
     }
 
 }

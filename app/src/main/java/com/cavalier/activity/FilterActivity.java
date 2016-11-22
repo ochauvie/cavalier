@@ -22,6 +22,7 @@ import com.cavalier.model.Personne;
 import com.cavalier.model.TypePersonne;
 import com.cavalier.service.MontureService;
 import com.cavalier.service.PersonneService;
+import com.cavalier.tools.SpinnerTool;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,7 +37,7 @@ public class FilterActivity extends Activity implements DatePickerDialog.OnDateS
     private ImageButton startDate, endDate, deleteStartDate, deleteEndDate;
     private DatePickerDialog datePickerDialog = null;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
-    private CoursFilter coursFilter = new CoursFilter();
+    private CoursFilter coursFilter;
 
     private String DATE_START = "start";
     private String DATE_END = "end";
@@ -58,18 +59,7 @@ public class FilterActivity extends Activity implements DatePickerDialog.OnDateS
         startDate = (ImageButton) findViewById(R.id.startDate);
         startDate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String sDate = "01/01/2016";
-                if (textStartDate.getText() != null && !"".equals(textStartDate.getText())) {
-                    sDate = textStartDate.getText().toString();
-                }
-                String[] ssDate = sDate.split("/");
-                datePickerDialog = new DatePickerDialog(v.getContext(),
-                        FilterActivity.this,
-                        Integer.parseInt(ssDate[2]),
-                        Integer.parseInt(ssDate[1])-1,
-                        Integer.parseInt(ssDate[0]));
-                datePickerDialog.getDatePicker().setTag(DATE_START);
-                datePickerDialog.show();
+                onClickDateListener(v, DATE_START);
             }
         });
         deleteStartDate = (ImageButton) findViewById(R.id.deleteStartDate);
@@ -83,18 +73,7 @@ public class FilterActivity extends Activity implements DatePickerDialog.OnDateS
         endDate = (ImageButton) findViewById(R.id.endDate);
         endDate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String sDate = "01/01/2016";
-                if (textEndDate.getText() != null && !"".equals(textEndDate.getText())) {
-                    sDate = textEndDate.getText().toString();
-                }
-                String[] ssDate = sDate.split("/");
-                datePickerDialog = new DatePickerDialog(v.getContext(),
-                        FilterActivity.this,
-                        Integer.parseInt(ssDate[2]),
-                        Integer.parseInt(ssDate[1])-1,
-                        Integer.parseInt(ssDate[0]));
-                datePickerDialog.getDatePicker().setTag(DATE_END);
-                datePickerDialog.show();
+                onClickDateListener(v, DATE_END);
             }
         });
         deleteEndDate = (ImageButton) findViewById(R.id.deleteEndDate);
@@ -103,6 +82,8 @@ public class FilterActivity extends Activity implements DatePickerDialog.OnDateS
                 textEndDate.setText("");
             }
         });
+
+        initFilter();
 
         // Hide keyboard
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -157,12 +138,19 @@ public class FilterActivity extends Activity implements DatePickerDialog.OnDateS
     }
 
     private boolean onApplay() {
+        if (coursFilter == null) {
+            coursFilter = new CoursFilter();
+        }
         try {
             if (textStartDate.getText() != null && !"".equals(textStartDate.getText())) {
                 coursFilter.setStartDate(sdf.parse(textStartDate.getText().toString()));
+            } else {
+                coursFilter.setStartDate(null);
             }
             if (textEndDate.getText() != null && !"".equals(textEndDate.getText())) {
                 coursFilter.setEndDate(sdf.parse(textEndDate.getText().toString()));
+            } else {
+                coursFilter.setEndDate(null);
             }
         } catch (ParseException pe) {
             // Nothings
@@ -189,10 +177,49 @@ public class FilterActivity extends Activity implements DatePickerDialog.OnDateS
         datePickerDialog.hide();
     }
 
+    private void onClickDateListener(View v, String typeDate) {
+        String sDate = "01/01/2016";
+        if (DATE_START.equals(typeDate) && textStartDate.getText() != null && !"".equals(textStartDate.getText())) {
+                sDate = textStartDate.getText().toString();
+
+        } else if (textEndDate.getText() != null && !"".equals(textEndDate.getText())) {
+            sDate = textEndDate.getText().toString();
+
+        }
+        String[] ssDate = sDate.split("/");
+        datePickerDialog = new DatePickerDialog(v.getContext(),
+                FilterActivity.this,
+                Integer.parseInt(ssDate[2]),
+                Integer.parseInt(ssDate[1])-1,
+                Integer.parseInt(ssDate[0]));
+        datePickerDialog.getDatePicker().setTag(typeDate);
+        datePickerDialog.show();
+    }
+
     @Override
     public void onBackPressed() {
         // Nothings
     }
 
+    private void initFilter() {
+        coursFilter = (CoursFilter)getIntent().getSerializableExtra("CoursFilter");
+        if (coursFilter != null) {
+            if (coursFilter.getCavalierId() != null && !"".equals(coursFilter.getCavalierId())) {
+                SpinnerTool.SelectSpinnerItemByValue(spinnerCavalier, PersonneService.getById(coursFilter.getCavalierId()));
+            }
+            if (coursFilter.getMoniteurId() != null && !"".equals(coursFilter.getMoniteurId())) {
+                SpinnerTool.SelectSpinnerItemByValue(spinnerMoniteur, PersonneService.getById(coursFilter.getMoniteurId()));
+            }
+            if (coursFilter.getMontureId() != null && !"".equals(coursFilter.getMontureId())) {
+                SpinnerTool.SelectSpinnerItemByValue(spinnerMonture, MontureService.getById(coursFilter.getMontureId()));
+            }
+            if (coursFilter.getStartDate() != null) {
+                textStartDate.setText(sdf.format(coursFilter.getStartDate()));
+            }
+            if (coursFilter.getEndDate() != null) {
+                textEndDate.setText(sdf.format(coursFilter.getEndDate()));
+            }
+        }
+    }
 
 }
