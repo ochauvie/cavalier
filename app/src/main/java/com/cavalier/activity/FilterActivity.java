@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.format.DateUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,7 +36,11 @@ public class FilterActivity extends Activity implements DatePickerDialog.OnDateS
     private ImageButton startDate, endDate, deleteStartDate, deleteEndDate;
     private DatePickerDialog datePickerDialog = null;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
-    private CoursFilter coursFilter = null;
+    private CoursFilter coursFilter = new CoursFilter();
+
+    private String DATE_START = "start";
+    private String DATE_END = "end";
+    private String EMPTY_FILTER = "Tous";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +68,7 @@ public class FilterActivity extends Activity implements DatePickerDialog.OnDateS
                         Integer.parseInt(ssDate[2]),
                         Integer.parseInt(ssDate[1])-1,
                         Integer.parseInt(ssDate[0]));
-                datePickerDialog.getDatePicker().setTag("start");
+                datePickerDialog.getDatePicker().setTag(DATE_START);
                 datePickerDialog.show();
             }
         });
@@ -90,7 +93,7 @@ public class FilterActivity extends Activity implements DatePickerDialog.OnDateS
                         Integer.parseInt(ssDate[2]),
                         Integer.parseInt(ssDate[1])-1,
                         Integer.parseInt(ssDate[0]));
-                datePickerDialog.getDatePicker().setTag("end");
+                datePickerDialog.getDatePicker().setTag(DATE_END);
                 datePickerDialog.show();
             }
         });
@@ -134,29 +137,26 @@ public class FilterActivity extends Activity implements DatePickerDialog.OnDateS
 
     private void loadSpinnerCavalier(Spinner spinner) {
         List<Personne> personnes = new ArrayList<>();
-        personnes.add(new Personne("", "Aucun", null, null, null));
+        personnes.add(new Personne("", EMPTY_FILTER, null, null, null));
         personnes.addAll(PersonneService.findByType(TypePersonne.CAVALIER));
         spinner.setAdapter(new PersonneSpinnerAdapter(this, personnes));
     }
 
     private void loadSpinnerMoniteur(Spinner spinner) {
         List<Personne> personnes = new ArrayList<>();
-        personnes.add(new Personne("", "Aucun", null, null, null));
+        personnes.add(new Personne("", EMPTY_FILTER, null, null, null));
         personnes.addAll(PersonneService.findByType(TypePersonne.MONITEUR));
         spinner.setAdapter(new PersonneSpinnerAdapter(this, personnes));
     }
 
     private void loadSpinnerMonture(Spinner spinner) {
         List<Monture> montures = new ArrayList<>();
-        montures.add(new Monture("Aucun"));
+        montures.add(new Monture(EMPTY_FILTER));
         montures.addAll(MontureService.getAll());
         spinner.setAdapter(new MontureSpinnerAdapter(this, montures));
     }
 
     private boolean onApplay() {
-        if (coursFilter == null) {
-            coursFilter = new CoursFilter();
-        }
         try {
             if (textStartDate.getText() != null && !"".equals(textStartDate.getText())) {
                 coursFilter.setStartDate(sdf.parse(textStartDate.getText().toString()));
@@ -181,7 +181,7 @@ public class FilterActivity extends Activity implements DatePickerDialog.OnDateS
         if (month.length()<2) {month = "0" + month;}
         String y = String.valueOf(year);
         if (y.length()<2) {y = "0" + y;}
-        if ("start".equals(view.getTag())) {
+        if (DATE_START.equals(view.getTag())) {
             textStartDate.setText(day + "/" + month + "/" + y);
         } else {
             textEndDate.setText(day + "/" + month + "/" + y);
