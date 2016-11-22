@@ -34,7 +34,7 @@ public class FilterActivity extends Activity implements DatePickerDialog.OnDateS
 
     private Spinner spinnerMoniteur, spinnerCavalier, spinnerMonture;
     private TextView textStartDate, textEndDate;
-    private ImageButton startDate, endDate;
+    private ImageButton startDate, endDate, deleteStartDate, deleteEndDate;
     private DatePickerDialog datePickerDialog = null;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
     private CoursFilter coursFilter = null;
@@ -69,8 +69,8 @@ public class FilterActivity extends Activity implements DatePickerDialog.OnDateS
                 datePickerDialog.show();
             }
         });
-
-        textStartDate.setOnClickListener(new View.OnClickListener() {
+        deleteStartDate = (ImageButton) findViewById(R.id.deleteStartDate);
+        deleteStartDate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 textStartDate.setText("");
             }
@@ -94,8 +94,8 @@ public class FilterActivity extends Activity implements DatePickerDialog.OnDateS
                 datePickerDialog.show();
             }
         });
-
-        textEndDate.setOnClickListener(new View.OnClickListener() {
+        deleteEndDate = (ImageButton) findViewById(R.id.deleteEndDate);
+        deleteEndDate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 textEndDate.setText("");
             }
