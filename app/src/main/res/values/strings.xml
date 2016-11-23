@@ -25,7 +25,7 @@
     <string name="title_activity_add_personne">Personne</string>
     <string name="title_activity_list_monture">Montures</string>
     <string name="title_activity_add_monture">Monture</string>
-    <string name="title_activity_list_cours">Mes reprises</string>
+    <string name="title_activity_list_cours">Reprises</string>
     <string name="title_activity_add_cours">Nouvelle reprise</string>
     <string name="title_activity_filter">Filtrer</string>
 
@@ -34,7 +34,7 @@
     <string name="title_home_cavaliers">Cavaliers</string>
     <string name="title_home_montures">Montures</string>
     <string name="title_home_add_cours">Nouvelle reprise</string>
-    <string name="title_home_list_cours">Mes reprises</string>
+    <string name="title_home_list_cours">Reprises</string>
 
     <!-- Genre -->
     <string name="genre_etalon">Etalon</string>
@@ -45,6 +45,10 @@
     <string name="genre_masculin">Masculin</string>
     <string name="genre_feminin">Féminin</string>
 
+    <!-- Unite -->
+    <string name="unite_kg">Kg</string>
+    <string name="unite_litre">L</string>
+
     <!-- Type lieu -->
     <string name="type_lieu_ecurie">Ecurie</string>
     <string name="type_lieu_carriere">Carrière</string>
@@ -52,6 +56,12 @@
     <string name="type_lieu_exterieur">Exterieur</string>
     <string name="type_lieu_club_house">Club house</string>
     <string name="type_lieu_autre">Autre</string>
+
+    <!-- Type evenement -->
+    <string name="type_evenement_ferrage">Ferrage</string>
+    <string name="type_evenement_parage">Patage</string>
+    <string name="type_evenement_vaccin">Vaccin</string>
+    <string name="type_evenement_autre">Autre</string>
 
     <!-- Type personne -->
     <string name="type_personne_moniteur">Moniteur</string>

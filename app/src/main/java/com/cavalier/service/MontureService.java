@@ -2,10 +2,10 @@ package com.cavalier.service;
 
 import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
+import com.cavalier.model.EvenementMonture;
 import com.cavalier.model.Genre;
 import com.cavalier.model.Monture;
-import com.cavalier.model.Personne;
-import com.cavalier.model.TypePersonne;
+import com.cavalier.model.Ration;
 
 import java.util.List;
 
@@ -47,6 +47,22 @@ public class MontureService {
     public static void deleteAll() {
         new Delete().from(Monture.class)
                     .execute();
+    }
+
+
+    public static List<EvenementMonture> findEvenementByMonture(Monture monture) {
+        return new Select()
+                .from(EvenementMonture.class)
+                .where("monture = ?", monture.getId())
+                .orderBy("date DESC")
+                .execute();
+    }
+
+    public static List<Ration> findRationByMonture(Monture monture) {
+        return new Select()
+                .from(Ration.class)
+                .where("monture = ?", monture.getId())
+                .execute();
     }
 
 }
