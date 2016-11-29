@@ -17,18 +17,24 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.cavalier.R;
+import com.cavalier.adapter.EvenementListAdapter;
 import com.cavalier.adapter.IDataSpinnerAdapter;
 import com.cavalier.listner.MontureListener;
+import com.cavalier.model.EvenementMonture;
 import com.cavalier.model.Genre;
 import com.cavalier.model.IRefData;
 import com.cavalier.model.Monture;
 import com.cavalier.service.CoursService;
+import com.cavalier.service.MontureService;
 import com.cavalier.tools.PictureUtils;
 import com.cavalier.tools.SpinnerTool;
 import com.cavalier.tools.Utils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
 
 public class AddMontureActivity extends Activity implements MyDialogInterface.DialogReturn, MontureListener {
 
@@ -40,6 +46,12 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
     private ImageView imageView;
     private MyDialogInterface myInterface;
     private Monture monture = null;
+
+    private List<EvenementMonture> evenementList = new ArrayList<>();
+    private EvenementListAdapter evenementListAdapter;
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE);
+    private EvenementMonture selectedEvenementMonture;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +70,14 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
         myInterface = new MyDialogInterface();
         myInterface.setListener(this);
 
+
         initView();
+
+        if (monture != null) {
+            evenementList = MontureService.findEvenementByMonture(monture);
+        }
+        evenementListAdapter = new EvenementListAdapter(this, evenementList);
+        evenementListAdapter.addListener(this);
 
         // Hide keyboard
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -182,14 +201,14 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
             builder.setPositiveButton(R.string.oui, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    myInterface.getListener().onDialogCompleted(true, null);
+                    myInterface.getListener().onDialogCompleted(true, "monture");
                     dialog.dismiss();
                 }
             });
             builder.setNegativeButton(R.string.non, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    myInterface.getListener().onDialogCompleted(false, null);
+                    myInterface.getListener().onDialogCompleted(false, "monture");
                     dialog.dismiss();
                 }
             });
@@ -201,12 +220,23 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
 
     @Override
     public void onDialogCompleted(boolean answer, String type) {
-        if (answer && monture!=null) {
+        if ("monture".equals(type) && answer && monture!=null) {
             monture.delete();
             Toast.makeText(getBaseContext(), getString(R.string.monture_delete), Toast.LENGTH_LONG).show();
             Intent listActivity = new Intent(getApplicationContext(), ListMontureActivity.class);
             startActivity(listActivity);
             finish();
+        }
+        if ("evenement".equals(type) && answer && selectedEvenementMonture!=null) {
+            selectedEvenementMonture.delete();
+            Toast.makeText(getBaseContext(), getString(R.string.evenement_delete), Toast.LENGTH_LONG).show();
+            if (evenementList!=null) {
+                for (int i=evenementList.size()-1; i>=0; i--) {
+                    evenementList.remove(i);
+                }
+            }
+            evenementList.addAll(MontureService.findEvenementByMonture(monture));
+            evenementListAdapter.notifyDataSetChanged();
         }
     }
 
@@ -218,6 +248,34 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
     @Override
     public void onClick(Monture item, int position) {
         // Nothings
+    }
+
+    @Override
+    public void onDeleteEvenement(EvenementMonture item, int position) {
+        if (item != null) {
+            selectedEvenementMonture = item;
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(true);
+            builder.setIcon(R.drawable.delete);
+            builder.setTitle(getString(item.getType().getLabel()) + " - " + sdf.format(item.getDate()) );
+            builder.setInverseBackgroundForced(true);
+            builder.setPositiveButton(R.string.oui, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    myInterface.getListener().onDialogCompleted(true, "evenement");
+                    dialog.dismiss();
+                }
+            });
+            builder.setNegativeButton(R.string.non, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    myInterface.getListener().onDialogCompleted(false, "evenement");
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
     }
 
     private void takeChevalPictureIntent() {

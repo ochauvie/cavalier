@@ -79,6 +79,7 @@
     <!--Monture-->
     <string name="monture_save">La monture est sauvegardée</string>
     <string name="monture_delete">La monture est supprimée</string>
+    <string name="evenement_delete">Evénement supprimé</string>
 
     <!--Cours-->
     <string name="cours_save">La reprise est sauvegardée</string>
