@@ -14,6 +14,7 @@ import com.cavalier.adapter.MontureListAdapter;
 import com.cavalier.adapter.PersonneListAdapter;
 import com.cavalier.listner.MontureListener;
 import com.cavalier.listner.PersonneListener;
+import com.cavalier.model.EvenementMonture;
 import com.cavalier.model.Monture;
 import com.cavalier.model.Personne;
 import com.cavalier.model.TypePersonne;
@@ -126,5 +127,10 @@ public class ListMontureActivity extends ListActivity implements MontureListener
             Toast.makeText(ListMontureActivity.this, getString(R.string.import_reload_list), Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    @Override
+    public void onDeleteEvenement(EvenementMonture item, int position) {
+        // Nothings
     }
 }
