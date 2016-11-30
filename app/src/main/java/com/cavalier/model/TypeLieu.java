@@ -15,7 +15,7 @@ public enum TypeLieu implements IRefData {
     private final int label;
     private final int flag;
 
-    private TypeLieu(int label, int flag) {
+    TypeLieu(int label, int flag) {
         this.label = label;
         this.flag = flag;
     }

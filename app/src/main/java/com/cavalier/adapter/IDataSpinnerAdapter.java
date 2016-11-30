@@ -14,9 +14,6 @@ import com.cavalier.model.IRefData;
 
 import java.util.List;
 
-/**
- * Created by olivier on 10/09/15.
- */
 public class IDataSpinnerAdapter extends BaseAdapter {
 
 

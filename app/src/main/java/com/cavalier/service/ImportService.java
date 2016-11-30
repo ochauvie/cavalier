@@ -40,7 +40,7 @@ public class ImportService {
                         try
                         {
                             System.out.println(json.getAsString());
-                            return sdf.parse(((JsonPrimitive) json).getAsString());
+                            return sdf.parse((json).getAsString());
                         }
                         catch (ParseException e)
                         {
@@ -91,17 +91,17 @@ public class ImportService {
                     int ctrl = 0;
                     Monture monture = MontureService.findByNom(cours.getMonture().getNom());
                     if (monture != null) {
-                        cours.setMonture(monture);;
+                        cours.setMonture(monture);
                         ctrl++;
                     }
                     Personne cavalier = PersonneService.findByNomPrenom(cours.getCavalier().getNom(), cours.getCavalier().getPrenom());
                     if (cavalier != null && TypePersonne.CAVALIER.equals(cavalier.getType())) {
-                        cours.setCavalier(cavalier);;
+                        cours.setCavalier(cavalier);
                         ctrl++;
                     }
                     Personne moniteur = PersonneService.findByNomPrenom(cours.getMoniteur().getNom(), cours.getMoniteur().getPrenom());
                     if (moniteur != null && TypePersonne.MONITEUR.equals(moniteur.getType())) {
-                        cours.setMoniteur(moniteur);;
+                        cours.setMoniteur(moniteur);
                         ctrl++;
                     }
                     if (ctrl == 3) {

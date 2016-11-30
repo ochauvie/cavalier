@@ -48,55 +48,61 @@ public class ExportService {
 
     private void doBackupMonture(String filePath) throws Exception  {
         File myFile = new File(filePath + "AppCavalier_Montures.json");
-        myFile.createNewFile();
-        FileOutputStream fOut = new FileOutputStream(myFile);
-        OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+        if (myFile.createNewFile()) {
+            FileOutputStream fOut = new FileOutputStream(myFile);
+            OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
 
-        List<Monture> montures = MontureService.getAll();
+            List<Monture> montures = MontureService.getAll();
 
-        Type type = new TypeToken<List<Monture>>() {}.getType();
-        String json = gson.toJson(montures, type);
+            Type type = new TypeToken<List<Monture>>() {
+            }.getType();
+            String json = gson.toJson(montures, type);
 
-        myOutWriter.append(json);
-        myOutWriter.close();
-        fOut.close();
+            myOutWriter.append(json);
+            myOutWriter.close();
+            fOut.close();
+        }
     }
 
     private void doBackupPersonne(String filePath) throws Exception  {
         File myFile = new File(filePath + "AppCavalier_Personnes.json");
-        myFile.createNewFile();
-        FileOutputStream fOut = new FileOutputStream(myFile);
-        OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+        if (myFile.createNewFile()) {
+            FileOutputStream fOut = new FileOutputStream(myFile);
+            OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
 
-        List<Personne> personnes = PersonneService.getAll();
-        Type type = new TypeToken<List<Monture>>() {}.getType();
-        String json = gson.toJson(personnes, type);
-        myOutWriter.append(json);
+            List<Personne> personnes = PersonneService.getAll();
+            Type type = new TypeToken<List<Monture>>() {
+            }.getType();
+            String json = gson.toJson(personnes, type);
+            myOutWriter.append(json);
 
-        myOutWriter.close();
-        fOut.close();
+            myOutWriter.close();
+            fOut.close();
+        }
     }
 
     private void doBackupCours(String filePath) throws Exception  {
         File myFile = new File(filePath + "AppCavalier_Cours.json");
-        myFile.createNewFile();
-        FileOutputStream fOut = new FileOutputStream(myFile);
-        OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+        if (myFile.createNewFile()) {
+            FileOutputStream fOut = new FileOutputStream(myFile);
+            OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
 
-        List<Cours> coursList = CoursService.getAll();
+            List<Cours> coursList = CoursService.getAll();
 
-        // Remove img to light export
-        for (Cours cours:coursList) {
-            cours.getMonture().setImg(null);
-            cours.getCavalier().setImg(null);
-            cours.getMoniteur().setImg(null);
+            // Remove img to light export
+            for (Cours cours : coursList) {
+                cours.getMonture().setImg(null);
+                cours.getCavalier().setImg(null);
+                cours.getMoniteur().setImg(null);
+            }
+
+            Type type = new TypeToken<List<Monture>>() {
+            }.getType();
+            String json = gson.toJson(coursList, type);
+            myOutWriter.append(json);
+
+            myOutWriter.close();
+            fOut.close();
         }
-
-        Type type = new TypeToken<List<Monture>>() {}.getType();
-        String json = gson.toJson(coursList, type);
-        myOutWriter.append(json);
-
-        myOutWriter.close();
-        fOut.close();
     }
 }

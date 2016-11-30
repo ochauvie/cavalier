@@ -67,11 +67,16 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
         myInterface.setListener(this);
 
         initView();
+
         if (TypePersonne.CAVALIER == typePersonne) {
-            getActionBar().setIcon(R.drawable.bombe);
+            if (getActionBar() != null) {
+                getActionBar().setIcon(R.drawable.bombe);
+            }
             setTitle("Cavalier");
         } else {
-            getActionBar().setIcon(R.drawable.coach);
+            if (getActionBar() != null) {
+                getActionBar().setIcon(R.drawable.coach);
+            }
             setTitle("Moniteur");
         }
 

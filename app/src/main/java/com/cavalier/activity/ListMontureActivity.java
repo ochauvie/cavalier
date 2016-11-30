@@ -2,7 +2,6 @@ package com.cavalier.activity;
 
 import android.app.ListActivity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,16 +10,11 @@ import android.widget.Toast;
 
 import com.cavalier.R;
 import com.cavalier.adapter.MontureListAdapter;
-import com.cavalier.adapter.PersonneListAdapter;
 import com.cavalier.listner.MontureListener;
-import com.cavalier.listner.PersonneListener;
 import com.cavalier.model.EvenementMonture;
 import com.cavalier.model.Monture;
-import com.cavalier.model.Personne;
-import com.cavalier.model.TypePersonne;
 import com.cavalier.service.ImportService;
 import com.cavalier.service.MontureService;
-import com.cavalier.service.PersonneService;
 import com.cavalier.tools.SimpleFileDialog;
 
 import java.io.File;

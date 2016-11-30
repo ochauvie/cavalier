@@ -1,7 +1,5 @@
 package com.cavalier.data;
 
-import android.content.Context;
-import android.content.ContextWrapper;
 
 import com.cavalier.model.Genre;
 import com.cavalier.model.Monture;
@@ -11,8 +9,6 @@ import com.cavalier.model.TypePersonne;
 import com.cavalier.service.CoursService;
 import com.cavalier.service.MontureService;
 import com.cavalier.service.PersonneService;
-
-import java.util.Date;
 
 public class InitDataBase {
 

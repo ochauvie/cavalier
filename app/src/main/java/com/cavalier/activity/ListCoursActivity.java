@@ -15,17 +15,11 @@ import android.widget.Toast;
 
 import com.cavalier.R;
 import com.cavalier.adapter.CoursListAdapter;
-import com.cavalier.adapter.MontureListAdapter;
 import com.cavalier.listner.CoursListener;
-import com.cavalier.listner.MontureListener;
 import com.cavalier.model.Cours;
 import com.cavalier.model.CoursFilter;
-import com.cavalier.model.Monture;
-import com.cavalier.model.Personne;
-import com.cavalier.model.TypePersonne;
 import com.cavalier.service.CoursService;
 import com.cavalier.service.ImportService;
-import com.cavalier.service.MontureService;
 import com.cavalier.tools.Chart;
 import com.cavalier.tools.SimpleFileDialog;
 
@@ -335,7 +329,7 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
 
     /**
      * Make bar chart
-     * @param chartType
+     * @param chartType type de graphique
      */
     private void viewBarChart(String chartType) {
         String title = getString(R.string.title_activity_chart_cavalier);
@@ -348,7 +342,7 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
 
     /**
      * Make pie chart
-     * @param chartType
+     * @param chartType type de graphique
      */
     private void viewPieChart(String chartType) {
         String title = getString(R.string.title_activity_chart_cavalier);

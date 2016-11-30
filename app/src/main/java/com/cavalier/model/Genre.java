@@ -14,7 +14,7 @@ public enum Genre implements IRefData {
     private final int label;
     private final int flag;
 
-    private Genre(int label, int flag) {
+    Genre(int label, int flag) {
         this.label = label;
         this.flag = flag;
     }

@@ -1,6 +1,5 @@
 package com.cavalier.adapter;
 
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +11,7 @@ import android.widget.TextView;
 
 import com.cavalier.R;
 import com.cavalier.listner.CoursListener;
-import com.cavalier.listner.MontureListener;
 import com.cavalier.model.Cours;
-import com.cavalier.model.Monture;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

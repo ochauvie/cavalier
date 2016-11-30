@@ -15,7 +15,7 @@ public enum TypeEvenement implements IRefData {
     private final int label;
     private final int flag;
 
-    private TypeEvenement(int label, int flag) {
+    TypeEvenement(int label, int flag) {
         this.label = label;
         this.flag = flag;
     }

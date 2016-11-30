@@ -11,7 +11,7 @@ public enum TypePersonne implements IRefData {
     private final int label;
     private final int flag;
 
-    private TypePersonne(int label, int flag) {
+    TypePersonne(int label, int flag) {
         this.label = label;
         this.flag = flag;
     }

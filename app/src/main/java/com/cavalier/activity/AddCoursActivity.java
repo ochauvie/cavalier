@@ -140,7 +140,6 @@ public class AddCoursActivity extends Activity implements CoursListener, DatePic
 
     private boolean onSave() {
         Editable edDuree = editTextDuree.getText();
-        Editable edObservation = editTextObservation.getText();
         if (edDuree==null || "".equals(edDuree.toString())) {
             Toast.makeText(getBaseContext(), getString(R.string.duree_mandatory), Toast.LENGTH_LONG).show();
             return false;

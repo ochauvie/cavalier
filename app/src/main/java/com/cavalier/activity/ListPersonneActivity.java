@@ -52,10 +52,14 @@ public class ListPersonneActivity extends ListActivity implements PersonneListen
             this.typePersonne = TypePersonne.valueOf(bundle.getString(Personne.TYPE_PERSONNE));
             if (TypePersonne.CAVALIER.equals(this.typePersonne)) {
                 this.setTitle(R.string.title_activity_list_cavalier);
-                getActionBar().setIcon(R.drawable.bombe);
+                if (getActionBar() != null) {
+                    getActionBar().setIcon(R.drawable.bombe);
+                }
             } else {
                 this.setTitle(R.string.title_activity_list_moniteur);
-                getActionBar().setIcon(R.drawable.coach);
+                if (getActionBar() != null) {
+                    getActionBar().setIcon(R.drawable.coach);
+                }
             }
         }
     }

@@ -10,7 +10,7 @@ public enum Unite implements IRefData {
     private final int label;
     private final int flag;
 
-    private Unite(int label, int flag) {
+    Unite(int label, int flag) {
         this.label = label;
         this.flag = flag;
     }

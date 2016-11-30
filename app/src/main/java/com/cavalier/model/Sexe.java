@@ -11,7 +11,7 @@ public enum Sexe implements IRefData {
     private final int label;
     private final int flag;
 
-    private Sexe(int label, int flag) {
+    Sexe(int label, int flag) {
         this.label = label;
         this.flag = flag;
     }

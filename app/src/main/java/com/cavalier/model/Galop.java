@@ -16,7 +16,7 @@ public enum Galop implements IRefData {
     private final int label;
     private final int flag;
 
-    private Galop(int label, int flag) {
+    Galop(int label, int flag) {
         this.label = label;
         this.flag = flag;
     }
