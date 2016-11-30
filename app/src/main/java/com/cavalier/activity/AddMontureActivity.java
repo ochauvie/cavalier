@@ -2,6 +2,7 @@ package com.cavalier.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,9 +11,12 @@ import android.provider.MediaStore;
 import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -36,17 +40,18 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-public class AddMontureActivity extends Activity implements MyDialogInterface.DialogReturn, MontureListener {
+public class AddMontureActivity extends ListActivity implements MyDialogInterface.DialogReturn, MontureListener {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_IMAGE_SELECT = 2;
 
     private Spinner spinnerGenre;
     private EditText editTextNom, editTextRobe, editTextRace, editTextCaracteristique;
-    private ImageView imageView;
+    private ImageView imageView, eventAdd;
     private MyDialogInterface myInterface;
     private Monture monture = null;
 
+    private ListView listView;
     private List<EvenementMonture> evenementList = new ArrayList<>();
     private EvenementListAdapter evenementListAdapter;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE);
@@ -66,18 +71,35 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
         editTextRace = (EditText)  findViewById(R.id.editTextRace);
         editTextCaracteristique = (EditText)  findViewById(R.id.editTextCaracteristique);
         imageView = (ImageView) findViewById(R.id.cheval_pic);
+        eventAdd = (ImageView) findViewById(R.id.event_add);
+
+        eventAdd.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                addEvenement();
+            }
+        });
 
         myInterface = new MyDialogInterface();
         myInterface.setListener(this);
 
-
         initView();
 
+        // Liste évènements
+        listView = getListView();
         if (monture != null) {
             evenementList = MontureService.findEvenementByMonture(monture);
         }
         evenementListAdapter = new EvenementListAdapter(this, evenementList);
         evenementListAdapter.addListener(this);
+        setListAdapter(evenementListAdapter);
+
+        // Scrool to top
+        final ScrollView scrollview = (ScrollView)findViewById(R.id.main_scrollView);
+        scrollview.post(new Runnable() {
+            public void run() {
+                scrollview.scrollTo(0, 0);
+            }
+        });
 
         // Hide keyboard
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -314,4 +336,13 @@ public class AddMontureActivity extends Activity implements MyDialogInterface.Di
             }
         }
     }
+
+    private void addEvenement() {
+        Intent myIntent = new Intent(getApplicationContext(), AddEvenementActivity.class);
+        myIntent.putExtra(Monture.ID_MONTURE, monture.getId());
+        startActivity(myIntent);
+        finish();
+    }
+
+
 }

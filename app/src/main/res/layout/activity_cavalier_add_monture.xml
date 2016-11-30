@@ -2,7 +2,8 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:id="@+id/main_scrollView">
 
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -148,6 +149,46 @@
             android:layout_height="400px"
             android:layout_below="@+id/editTextCaracteristique"
             android:layout_centerHorizontal="true"/>
+
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventLayout"
+            android:layout_below="@+id/cheval_pic">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Evènements"
+                    android:textSize="20sp"
+                    android:id="@+id/textView9"
+                    android:layout_column="0" />
+
+                <ImageView android:id="@+id/event_add"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:scaleType="fitStart"
+                    android:src="@drawable/small_add"
+                    android:layout_column="1"
+                    android:baselineAlignBottom="false" />
+
+            </TableRow>
+        </TableLayout>
+
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="400px"
+            android:layout_below="@+id/eventLayout">
+        </ListView>
 
 
     </RelativeLayout>

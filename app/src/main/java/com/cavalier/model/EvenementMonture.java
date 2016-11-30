@@ -27,6 +27,9 @@ public class EvenementMonture extends Model  {
     @Column(name = "observation")
     private String observation;
 
+    public EvenementMonture() {
+    }
+
     public EvenementMonture(Monture monture, TypeEvenement type, Date date, String observation) {
         this.monture = monture;
         this.type = type;

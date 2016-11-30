@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layout_event">
+
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:id="@+id/tableLayout">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:textSize="15sp"
+                    android:id="@+id/textViewDate"
+                    android:layout_column="0"
+                    />
+
+                <ImageButton
+                    android:id="@+id/selectDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:background="#00000000"
+                    android:src="@drawable/calendar"
+
+                    android:layout_gravity="bottom|left"
+                    android:layout_marginLeft="20dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Monture"
+                    android:textSize="15sp"
+                    android:id="@+id/textView1"
+                    android:layout_column="0"
+                    />
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spMonture"
+                    android:spinnerMode="dialog"
+                    android:textSize="15sp"
+                    android:layout_column="1"
+                    android:layout_centerVertical="true"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Type"
+                    android:textSize="15sp"
+                    android:id="@+id/textView7"
+                    android:layout_column="0"
+                    />
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spType"
+                    android:spinnerMode="dialog"
+                    android:textSize="15sp"
+                    android:layout_column="1"
+                    android:layout_centerVertical="true"/>
+            </TableRow>
+
+        </TableLayout>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Observations"
+            android:textSize="15sp"
+            android:id="@+id/textView8"
+            android:layout_below="@+id/tableLayout" />
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:id="@+id/editTextObservation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:textSize="15sp"
+            android:inputType="textMultiLine"
+            android:layout_below="@+id/textView8"
+            android:lines="2" />
+
+
+    </RelativeLayout>
+</ScrollView>

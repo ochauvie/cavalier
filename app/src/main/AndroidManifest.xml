@@ -18,7 +18,7 @@
             android:value="Cavalier.db" />
         <meta-data
             android:name="AA_DB_VERSION"
-            android:value="1" />
+            android:value="2" />
 
         <activity
             android:name=".activity.MainActivity"
@@ -48,6 +48,11 @@
             android:name=".activity.AddMontureActivity"
             android:icon="@drawable/cheval"
             android:label="@string/title_activity_add_monture" >
+        </activity>
+        <activity
+            android:name=".activity.AddEvenementActivity"
+            android:icon="@drawable/event"
+            android:label="@string/title_activity_add_evenement" >
         </activity>
         <activity
             android:name=".activity.ListCoursActivity"
