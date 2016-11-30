@@ -28,7 +28,7 @@
     <string name="title_activity_list_cours">Reprises</string>
     <string name="title_activity_add_cours">Nouvelle reprise</string>
     <string name="title_activity_filter">Filtrer</string>
-    <string name="title_activity_add_evenement">Evènement</string>
+    <string name="title_activity_add_evenement">Soin</string>
 
     <!--Home-->
     <string name="title_home_moniteurs">Moniteurs</string>
@@ -62,6 +62,9 @@
     <string name="type_evenement_ferrage">Ferrage</string>
     <string name="type_evenement_parage">Parage</string>
     <string name="type_evenement_vaccin">Vaccin</string>
+    <string name="type_evenement_vermifuge">Vermifuge</string>
+    <string name="type_evenement_dent">Dentiste</string>
+    <string name="type_evenement_ostheopathie">Ostheopathie</string>
     <string name="type_evenement_autre">Autre</string>
 
     <!-- Type personne -->
@@ -80,8 +83,8 @@
     <!--Monture-->
     <string name="monture_save">La monture est sauvegardée</string>
     <string name="monture_delete">La monture est supprimée</string>
-    <string name="evenement_delete">Evénement supprimé</string>
-    <string name="evenement_save">Evénement sauvegardé</string>
+    <string name="evenement_delete">Soin supprimé</string>
+    <string name="evenement_save">Soin sauvegardé</string>
 
     <!--Cours-->
     <string name="cours_save">La reprise est sauvegardée</string>

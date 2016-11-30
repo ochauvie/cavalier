@@ -7,6 +7,9 @@ public enum TypeEvenement implements IRefData {
     FERRAGE(R.string.type_evenement_ferrage, R.drawable.event),
     PARAGE(R.string.type_evenement_parage, R.drawable.event),
     VACCIN(R.string.type_evenement_vaccin, R.drawable.vaccin),
+    VERMIFUGE(R.string.type_evenement_vermifuge, R.drawable.vermifuge),
+    DENT(R.string.type_evenement_dent, R.drawable.dent),
+    OSTHEOPATHIE(R.string.type_evenement_ostheopathie, R.drawable.ostheopathe),
     AUTE(R.string.type_evenement_autre, R.drawable.autre);
 
     private final int label;
