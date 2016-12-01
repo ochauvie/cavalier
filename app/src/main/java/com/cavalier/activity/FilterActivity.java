@@ -39,9 +39,9 @@ public class FilterActivity extends Activity implements DatePickerDialog.OnDateS
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
     private CoursFilter coursFilter;
 
-    private String DATE_START = "start";
-    private String DATE_END = "end";
-    private String EMPTY_FILTER = "Tous";
+    private final String DATE_START = "start";
+    private final String DATE_END = "end";
+    private final String EMPTY_FILTER = "Tous";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -35,7 +35,7 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
     private TextView totalText, headerMonture, headerCavalier, headerDate, headerMoniteur, headerLieu;
     private CoursListAdapter coursListAdapter;
     private MyDialogInterface myInterface;
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
+    private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
     private Cours selectedCours;
     List<Cours> coursList;
     private CoursFilter coursFilter;

@@ -44,8 +44,9 @@ public class AddCoursActivity extends Activity implements CoursListener, DatePic
     private TextView textDate;
     private ImageButton selectDate;
     private DatePickerDialog datePickerDialog = null;
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
     private Cours cours = null;
+    private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

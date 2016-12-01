@@ -40,8 +40,8 @@ public class AddEvenementActivity extends Activity implements DatePickerDialog.O
     private TextView textDate;
     private ImageButton selectDate;
     private DatePickerDialog datePickerDialog = null;
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
     private Monture monture;
+    private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

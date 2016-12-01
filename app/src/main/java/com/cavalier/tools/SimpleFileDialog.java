@@ -24,9 +24,9 @@ import java.util.Comparator;
 import java.util.List;
 
 public class SimpleFileDialog {
-    private int FileOpen     = 0;
-    private int FileSave     = 1;
-    private int FolderChoose = 2;
+    private final int FileOpen     = 0;
+    private final int FileSave     = 1;
+    private final int FolderChoose = 2;
     private int Select_type = FileSave;
     private String m_sdcardDirectory = "";
     private Context m_context;

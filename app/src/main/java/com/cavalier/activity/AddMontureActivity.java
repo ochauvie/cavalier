@@ -53,8 +53,9 @@ public class AddMontureActivity extends ListActivity implements MyDialogInterfac
     private ListView listView;
     private List<EvenementMonture> evenementList = new ArrayList<>();
     private EvenementListAdapter evenementListAdapter;
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE);
     private EvenementMonture selectedEvenementMonture;
+
+    private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE);
 
 
     @Override

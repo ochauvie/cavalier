@@ -25,7 +25,7 @@ public class CoursListAdapter extends BaseAdapter {
     private Context mContext;
     private LayoutInflater mInflater;
     private List<CoursListener> listeners = new ArrayList<>();
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE);
+    private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE);
 
     public CoursListAdapter(Context mContext, List<Cours> coursList) {
         this.coursList = coursList;

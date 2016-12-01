@@ -24,9 +24,8 @@ import java.util.Date;
 import java.util.Locale;
 
 public class ImportService {
-    private Gson gson;
-
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
+    private final Gson gson;
+    private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
 
     public ImportService(Context context) {
         gson = new GsonBuilder().serializeNulls()
