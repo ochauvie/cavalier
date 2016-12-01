@@ -75,10 +75,7 @@ public class CoursService {
                 .from(Cours.class)
                 .where(critere + " = ?", personne.getId())
                 .execute();
-        if (list!=null && list.size() > 0 ){
-            return true;
-        }
-        return false;
+        return list != null && list.size() > 0;
     }
 
     public static boolean isMontureInCours(Monture monture) {
@@ -86,10 +83,7 @@ public class CoursService {
                 .from(Cours.class)
                 .where("monture = ?", monture.getId())
                 .execute();
-        if (list!=null && list.size() > 0 ){
-            return true;
-        }
-        return false;
+        return list != null && list.size() > 0;
     }
 
     public static List<Cours> getByFilter(CoursFilter coursFilter) {

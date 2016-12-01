@@ -46,7 +46,7 @@ public class SimpleFileDialog {
     //////////////////////////////////////////////////////
     public interface SimpleFileDialogListener
     {
-        public void onChosenDir(String chosenDir);
+        void onChosenDir(String chosenDir);
     }
 
     public SimpleFileDialog(Context context, String file_select_type, SimpleFileDialogListener SimpleFileDialogListener)

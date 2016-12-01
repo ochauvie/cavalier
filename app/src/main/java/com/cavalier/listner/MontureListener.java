@@ -6,8 +6,8 @@ import com.cavalier.model.Monture;
 
 public interface MontureListener {
 
-    public void onClick(Monture item, int position);
+    void onClick(Monture item, int position);
 
-    public void onDeleteEvenement(EvenementMonture item, int position);
+    void onDeleteEvenement(EvenementMonture item, int position);
 
 }
