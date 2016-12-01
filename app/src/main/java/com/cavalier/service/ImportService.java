@@ -73,7 +73,12 @@ public class ImportService {
             EvenementMonture[] events = gson.fromJson(json, EvenementMonture[].class);
             if (events!=null) {
                 for (EvenementMonture event:events) {
-                    event.save();
+
+                    Monture monture = MontureService.findByNom(event.getMonture().getNom());
+                    if (monture != null) {
+                        event.setMonture(monture);
+                        event.save();
+                    }
                 }
             }
         } catch (Exception e) {
