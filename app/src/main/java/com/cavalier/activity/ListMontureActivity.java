@@ -62,8 +62,11 @@ public class ListMontureActivity extends ListActivity implements MontureListener
             case R.id.action_close_list:
                 finish();
                 return true;
-            case R.id.action_import:
+            case R.id.action_import_monture:
                 importMonture();
+                return true;
+            case R.id.action_import_evenement:
+                importEvenement();
                 return true;
         }
 
@@ -106,6 +109,28 @@ public class ListMontureActivity extends ListActivity implements MontureListener
         FileOpenDialog.Default_File_Name = "";
         FileOpenDialog.chooseFile_or_Dir();
     }
+
+    private void importEvenement() {
+        SimpleFileDialog FileOpenDialog = new SimpleFileDialog(this, "FileOpen",
+                new SimpleFileDialog.SimpleFileDialogListener() {
+                    @Override public void onChosenDir(String chosenDir) {
+                        // The code in this function will be executed when the dialog OK button is pushed
+                        File file = new File(chosenDir);
+                        // Initiate the upload
+                        ImportService importService = new ImportService(ListMontureActivity.this);
+                        String result = importService.importEvenement(file);
+                        if (result!=null) {
+                            Toast.makeText(ListMontureActivity.this, result, Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(ListMontureActivity.this, getString(R.string.menu_import_ok), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+        FileOpenDialog.Default_File_Name = "";
+        FileOpenDialog.chooseFile_or_Dir();
+    }
+
 
     private void refreshList() {
         if (montureList!=null) {

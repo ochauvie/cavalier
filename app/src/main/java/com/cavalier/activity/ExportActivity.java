@@ -36,9 +36,7 @@ public class ExportActivity extends Activity implements MyDialogInterface.Dialog
                 backupDb();
             }
         });
-
     }
-
 
     private void backupDb() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -70,12 +68,14 @@ public class ExportActivity extends Activity implements MyDialogInterface.Dialog
             CheckBox expMonture = (CheckBox) findViewById(R.id.exp_monture);
             CheckBox expPersonne = (CheckBox) findViewById(R.id.exp_personne);
             CheckBox expCours = (CheckBox) findViewById(R.id.exp_cours);
+            CheckBox expEvenements = (CheckBox) findViewById(R.id.exp_evenement);
 
-            if (expMonture.isChecked() || expPersonne.isChecked() || expCours.isChecked() ) {
+            if (expMonture.isChecked() || expPersonne.isChecked() || expCours.isChecked() || expEvenements.isChecked()) {
                 ExportService exportService = new ExportService(this,
                         expMonture.isChecked(),
                         expPersonne.isChecked(),
-                        expCours.isChecked());
+                        expCours.isChecked(),
+                        expEvenements.isChecked());
 
                 try {
                     String filePath = Environment.getExternalStorageDirectory().getPath() + "/";

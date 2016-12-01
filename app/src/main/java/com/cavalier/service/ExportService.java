@@ -4,6 +4,7 @@ package com.cavalier.service;
 import android.content.Context;
 
 import com.cavalier.model.Cours;
+import com.cavalier.model.EvenementMonture;
 import com.cavalier.model.Monture;
 import com.cavalier.model.Personne;
 import com.google.gson.Gson;
@@ -18,14 +19,15 @@ import java.util.List;
 
 public class ExportService {
 
-    private boolean addMonture, addPersonne, addCours;
+    private boolean addMonture, addPersonne, addCours, addEvenements;
     private Gson gson;
 
 
-    public ExportService(Context context, boolean addMonture, boolean addPersonne, boolean addCours) {
+    public ExportService(Context context, boolean addMonture, boolean addPersonne, boolean addCours, boolean addEvenements) {
         this.addMonture = addMonture;
         this.addPersonne = addPersonne;
         this.addCours = addCours;
+        this.addEvenements = addEvenements;
 
         gson = new GsonBuilder().serializeNulls()
                 .excludeFieldsWithoutExposeAnnotation()
@@ -43,6 +45,9 @@ public class ExportService {
         }
         if (addCours) {
             doBackupCours(filePath);
+        }
+        if (addEvenements) {
+            doBackupEvenements(filePath);
         }
     }
 
@@ -101,6 +106,27 @@ public class ExportService {
             String json = gson.toJson(coursList, type);
             myOutWriter.append(json);
 
+            myOutWriter.close();
+            fOut.close();
+        }
+    }
+
+    private void doBackupEvenements(String filePath) throws Exception  {
+        File myFile = new File(filePath + "AppCavalier_Soins.json");
+        if (myFile.createNewFile()) {
+            FileOutputStream fOut = new FileOutputStream(myFile);
+            OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+
+            List<Monture> montures = MontureService.getAll();
+            if (montures != null) {
+                for (Monture monture:montures) {
+                    List<EvenementMonture> events = MontureService.findEvenementByMonture(monture);
+                    Type type = new TypeToken<List<EvenementMonture>>() {
+                    }.getType();
+                    String json = gson.toJson(events, type);
+                    myOutWriter.append(json);
+                }
+            }
             myOutWriter.close();
             fOut.close();
         }

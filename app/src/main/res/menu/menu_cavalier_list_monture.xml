@@ -13,10 +13,14 @@
         app:icon="@drawable/smallexit"
         app:showAsAction="ifRoom" />
 
-    <item android:id="@+id/action_import"
-        android:title="Import"
+    <item android:id="@+id/action_import_monture"
+        android:title="Import montures"
         app:icon="@drawable/import_data"
         app:showAsAction="ifRoom" />
 
+    <item android:id="@+id/action_import_evenement"
+        android:title="Import soins"
+        app:icon="@drawable/import_data"
+        app:showAsAction="ifRoom" />
 
 </menu>

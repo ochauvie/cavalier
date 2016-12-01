@@ -36,7 +36,6 @@ public class Monture extends Model  {
     @Column(name = "caracteristique")
     private String caracteristique;
 
-    @Expose
     @Column(name = "img")
     private byte[] img;
 

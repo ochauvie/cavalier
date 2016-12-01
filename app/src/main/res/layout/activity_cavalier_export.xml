@@ -13,6 +13,12 @@
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Soins"
+        android:id="@+id/exp_evenement" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Personnes"
         android:id="@+id/exp_personne" />
 

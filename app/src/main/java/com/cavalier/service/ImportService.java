@@ -3,6 +3,7 @@ package com.cavalier.service;
 import android.content.Context;
 
 import com.cavalier.model.Cours;
+import com.cavalier.model.EvenementMonture;
 import com.cavalier.model.Monture;
 import com.cavalier.model.Personne;
 import com.cavalier.model.TypePersonne;
@@ -58,6 +59,21 @@ public class ImportService {
             if (montures!=null) {
                 for (Monture monture:montures) {
                     monture.save();
+                }
+            }
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+        return null;
+    }
+
+    public String importEvenement(File file) {
+        try {
+            String json = getJson(file);
+            EvenementMonture[] events = gson.fromJson(json, EvenementMonture[].class);
+            if (events!=null) {
+                for (EvenementMonture event:events) {
+                    event.save();
                 }
             }
         } catch (Exception e) {

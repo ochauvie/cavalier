@@ -34,7 +34,6 @@ public class Personne extends Model  {
     @Column(name = "type")
     private TypePersonne type;
 
-    @Expose
     @Column(name = "img")
     private byte[] img;
 
