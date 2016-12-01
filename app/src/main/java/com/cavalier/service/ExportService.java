@@ -56,16 +56,17 @@ public class ExportService {
         if (myFile.createNewFile()) {
             FileOutputStream fOut = new FileOutputStream(myFile);
             OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+            try {
+                List<Monture> montures = MontureService.getAll();
 
-            List<Monture> montures = MontureService.getAll();
-
-            Type type = new TypeToken<List<Monture>>() {
-            }.getType();
-            String json = gson.toJson(montures, type);
-
-            myOutWriter.append(json);
-            myOutWriter.close();
-            fOut.close();
+                Type type = new TypeToken<List<Monture>>() {
+                }.getType();
+                String json = gson.toJson(montures, type);
+                myOutWriter.append(json);
+            } finally {
+                myOutWriter.close();
+                fOut.close();
+            }
         }
     }
 
@@ -75,14 +76,16 @@ public class ExportService {
             FileOutputStream fOut = new FileOutputStream(myFile);
             OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
 
-            List<Personne> personnes = PersonneService.getAll();
-            Type type = new TypeToken<List<Monture>>() {
-            }.getType();
-            String json = gson.toJson(personnes, type);
-            myOutWriter.append(json);
-
-            myOutWriter.close();
-            fOut.close();
+            try {
+                List<Personne> personnes = PersonneService.getAll();
+                Type type = new TypeToken<List<Monture>>() {
+                }.getType();
+                String json = gson.toJson(personnes, type);
+                myOutWriter.append(json);
+            } finally {
+                myOutWriter.close();
+                fOut.close();
+            }
         }
     }
 
@@ -91,23 +94,25 @@ public class ExportService {
         if (myFile.createNewFile()) {
             FileOutputStream fOut = new FileOutputStream(myFile);
             OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+            try {
+                List<Cours> coursList = CoursService.getAll();
 
-            List<Cours> coursList = CoursService.getAll();
+                // Remove img to light export
+                for (Cours cours : coursList) {
+                    cours.getMonture().setImg(null);
+                    cours.getCavalier().setImg(null);
+                    cours.getMoniteur().setImg(null);
+                }
 
-            // Remove img to light export
-            for (Cours cours : coursList) {
-                cours.getMonture().setImg(null);
-                cours.getCavalier().setImg(null);
-                cours.getMoniteur().setImg(null);
+                Type type = new TypeToken<List<Monture>>() {
+                }.getType();
+                String json = gson.toJson(coursList, type);
+                myOutWriter.append(json);
+
+            } finally {
+                myOutWriter.close();
+                fOut.close();
             }
-
-            Type type = new TypeToken<List<Monture>>() {
-            }.getType();
-            String json = gson.toJson(coursList, type);
-            myOutWriter.append(json);
-
-            myOutWriter.close();
-            fOut.close();
         }
     }
 
@@ -116,23 +121,25 @@ public class ExportService {
         if (myFile.createNewFile()) {
             FileOutputStream fOut = new FileOutputStream(myFile);
             OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+            try {
+                Type type = new TypeToken<List<EvenementMonture>>() {
+                }.getType();
 
-            Type type = new TypeToken<List<EvenementMonture>>() {
-            }.getType();
+                List<Monture> montures = MontureService.getAll();
+                if (montures != null) {
+                    for (Monture monture:montures) {
+                        List<EvenementMonture> events = MontureService.findEvenementByMonture(monture);
 
-            List<Monture> montures = MontureService.getAll();
-            if (montures != null) {
-                for (Monture monture:montures) {
-                    List<EvenementMonture> events = MontureService.findEvenementByMonture(monture);
-
-                    if (events != null && events.size()>0) {
-                        String json = gson.toJson(events, type);
-                        myOutWriter.append(json);
+                        if (events != null && events.size()>0) {
+                            String json = gson.toJson(events, type);
+                            myOutWriter.append(json);
+                        }
                     }
                 }
+            } finally {
+                myOutWriter.close();
+                fOut.close();
             }
-            myOutWriter.close();
-            fOut.close();
         }
     }
 }
