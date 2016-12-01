@@ -265,7 +265,7 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
         // Nothings
     }
 
-    private boolean showDetail(Cours cours) {
+    private void showDetail(Cours cours) {
         if (cours != null) {
             selectedCours = cours;
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -285,7 +285,6 @@ public class ListCoursActivity extends ListActivity implements MyDialogInterface
             AlertDialog alert = builder.create();
             alert.show();
         }
-        return true;
     }
 
     @Override

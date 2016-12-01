@@ -23,7 +23,7 @@ public class MontureListAdapter extends BaseAdapter {
     private List<Monture> montureList;
     private Context mContext;
     private LayoutInflater mInflater;
-    private List<MontureListener> listeners = new ArrayList<MontureListener>();
+    private List<MontureListener> listeners = new ArrayList<>();
 
     public MontureListAdapter(Context mContext, List<Monture> montureList) {
         this.montureList = montureList;

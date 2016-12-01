@@ -8,7 +8,7 @@
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/layout_filter">
 
 
@@ -145,6 +145,7 @@
             android:lines="2" />
 
         <ImageView android:id="@+id/cheval_pic"
+            android:contentDescription="Photo"
             android:layout_width="400px"
             android:layout_height="400px"
             android:layout_below="@+id/editTextCaracteristique"
@@ -171,6 +172,7 @@
                     android:layout_column="0" />
 
                 <ImageView android:id="@+id/event_add"
+                    android:contentDescription="Ajouter"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_width="22dp"

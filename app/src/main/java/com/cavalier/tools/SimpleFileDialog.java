@@ -173,7 +173,7 @@ public class SimpleFileDialog {
 
     private List<String> getDirectories(String dir)
     {
-        List<String> dirs = new ArrayList<String>();
+        List<String> dirs = new ArrayList<>();
         try
         {
             File dirFile = new File(dir);

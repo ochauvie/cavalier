@@ -134,7 +134,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         return false;
     }
 
-    private boolean onInitDb() {
+    private void onInitDb() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setIcon(R.drawable.smallsave);
@@ -157,7 +157,6 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         });
         AlertDialog alert = builder.create();
         alert.show();
-        return true;
     }
 
     @Override
@@ -170,11 +169,6 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
                 Toast.makeText(getBaseContext(), getString(R.string.db_initialized), Toast.LENGTH_LONG).show();
             }
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 
 

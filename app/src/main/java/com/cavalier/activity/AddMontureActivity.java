@@ -159,7 +159,7 @@ public class AddMontureActivity extends ListActivity implements MyDialogInterfac
     }
 
     private void loadSpinnerGenre() {
-        ArrayList<IRefData> list = new ArrayList<IRefData>();
+        ArrayList<IRefData> list = new ArrayList<>();
         Collections.addAll(list, Genre.values());
         spinnerGenre.setAdapter(new IDataSpinnerAdapter(this, list, R.layout.light_custom_spinner));
     }
@@ -212,7 +212,7 @@ public class AddMontureActivity extends ListActivity implements MyDialogInterfac
         return true;
     }
 
-    private boolean onDelete() {
+    private void onDelete() {
         if (monture != null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(true);
@@ -236,7 +236,6 @@ public class AddMontureActivity extends ListActivity implements MyDialogInterfac
             AlertDialog alert = builder.create();
             alert.show();
         }
-        return true;
     }
 
     @Override

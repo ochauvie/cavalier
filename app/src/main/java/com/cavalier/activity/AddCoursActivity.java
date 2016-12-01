@@ -132,7 +132,7 @@ public class AddCoursActivity extends Activity implements CoursListener, DatePic
     }
 
     private void loadSpinnerLieu(Spinner spinner) {
-        ArrayList<IRefData> list = new ArrayList<IRefData>();
+        ArrayList<IRefData> list = new ArrayList<>();
         Collections.addAll(list, TypeLieu.values());
         spinner.setAdapter(new IDataSpinnerAdapter(this, list, R.layout.light_custom_spinner));
     }

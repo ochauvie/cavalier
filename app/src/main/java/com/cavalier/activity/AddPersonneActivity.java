@@ -141,13 +141,13 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
     }
 
     private void loadSpinnerSexe() {
-        ArrayList<IRefData> list = new ArrayList<IRefData>();
+        ArrayList<IRefData> list = new ArrayList<>();
         Collections.addAll(list, Sexe.values());
         spinnerSexe.setAdapter(new IDataSpinnerAdapter(this, list, R.layout.light_custom_spinner));
     }
 
     private void loadSpinnerGalop() {
-        ArrayList<IRefData> list = new ArrayList<IRefData>();
+        ArrayList<IRefData> list = new ArrayList<>();
         Collections.addAll(list, Galop.values());
         spinnerGalop.setAdapter(new IDataSpinnerAdapter(this, list, R.layout.light_custom_spinner));
     }
@@ -209,7 +209,7 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
         return true;
     }
 
-    private boolean onDelete() {
+    private void onDelete() {
         if (personne != null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(true);
@@ -233,7 +233,6 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
             AlertDialog alert = builder.create();
             alert.show();
         }
-        return true;
     }
 
     @Override

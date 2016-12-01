@@ -2,9 +2,6 @@ package com.cavalier.tools;
 
 import android.view.MenuItem;
 
-/**
- * Created by olivier on 16/09/15.
- */
 public class Utils {
 
     public static void enableItem (MenuItem item) {

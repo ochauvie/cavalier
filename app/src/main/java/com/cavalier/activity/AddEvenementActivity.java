@@ -126,7 +126,7 @@ public class AddEvenementActivity extends Activity implements DatePickerDialog.O
     }
 
     private void loadSpinnerType(Spinner spinner) {
-        ArrayList<IRefData> list = new ArrayList<IRefData>();
+        ArrayList<IRefData> list = new ArrayList<>();
         Collections.addAll(list, TypeEvenement.values());
         spinner.setAdapter(new IDataSpinnerAdapter(this, list, R.layout.custom_spinner));
     }

@@ -1,8 +1,5 @@
 package com.cavalier.activity;
 
-/**
- * Created by olivier on 11/09/15.
- */
 public class MyDialogInterface {
     DialogReturn dialogReturn;
 

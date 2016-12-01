@@ -24,7 +24,7 @@ public class EvenementListAdapter extends BaseAdapter {
     private List<EvenementMonture> evenementList;
     private Context mContext;
     private LayoutInflater mInflater;
-    private List<MontureListener> listeners = new ArrayList<MontureListener>();
+    private List<MontureListener> listeners = new ArrayList<>();
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE);
 
     public EvenementListAdapter(Context mContext, List<EvenementMonture> evenementList) {

@@ -6,7 +6,7 @@
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/layout_filter">
 
 
@@ -43,6 +43,7 @@
                     />
 
                 <ImageButton
+                    android:contentDescription="Calendrier"
                     android:id="@+id/startDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -53,6 +54,7 @@
                     android:layout_marginLeft="20dp" />
 
                 <ImageButton
+                    android:contentDescription="Calendrier"
                     android:id="@+id/deleteStartDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -90,6 +92,7 @@
                     />
 
                 <ImageButton
+                    android:contentDescription="Calendrier"
                     android:id="@+id/endDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -100,6 +103,7 @@
                     android:layout_marginLeft="20dp" />
 
                 <ImageButton
+                    android:contentDescription="Calendrier"
                     android:id="@+id/deleteEndDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
