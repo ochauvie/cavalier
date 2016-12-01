@@ -117,14 +117,18 @@ public class ExportService {
             FileOutputStream fOut = new FileOutputStream(myFile);
             OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
 
+            Type type = new TypeToken<List<EvenementMonture>>() {
+            }.getType();
+
             List<Monture> montures = MontureService.getAll();
             if (montures != null) {
                 for (Monture monture:montures) {
                     List<EvenementMonture> events = MontureService.findEvenementByMonture(monture);
-                    Type type = new TypeToken<List<EvenementMonture>>() {
-                    }.getType();
-                    String json = gson.toJson(events, type);
-                    myOutWriter.append(json);
+
+                    if (events != null && events.size()>0) {
+                        String json = gson.toJson(events, type);
+                        myOutWriter.append(json);
+                    }
                 }
             }
             myOutWriter.close();
