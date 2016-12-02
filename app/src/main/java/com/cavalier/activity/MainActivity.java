@@ -114,21 +114,8 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
             case R.id.hippologie:
                 openHippologie();
                 return true;
-            case R.id.kath:
-                openKathEquitation();
-                return true;
-//            case R.id.moniteur:
-//                Intent myIntent = new Intent(getApplicationContext(), ListPersonneActivity.class);
-//                myIntent.putExtra(Personne.TYPE_PERSONNE, TypePersonne.MONITEUR.name());
-//                startActivityForResult(myIntent, 0);
-//                return true;
-//            case R.id.cavalier:
-//                Intent newIntent = new Intent(getApplicationContext(), ListPersonneActivity.class);
-//                newIntent.putExtra(Personne.TYPE_PERSONNE, TypePersonne.CAVALIER.name());
-//                startActivityForResult(newIntent, 0);
-//                return true;
-//            case R.id.monture:
-//                startActivityForResult(new Intent(getApplicationContext(), ListMontureActivity.class), 0);
+//            case R.id.kath:
+//                openKathEquitation();
 //                return true;
         }
         return false;
@@ -178,11 +165,11 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         startActivity(myIntent);
     }
 
-    private void openKathEquitation() {
-        Intent myIntent = new Intent(getApplicationContext(), HttpActivity.class);
-        myIntent.putExtra("URL", "https://www.facebook.com/people/Kath%C3%A9quitation-Mary/100010372802263");
-        startActivity(myIntent);
-    }
+//    private void openKathEquitation() {
+//        Intent myIntent = new Intent(getApplicationContext(), HttpActivity.class);
+//        myIntent.putExtra("URL", "https://www.facebook.com/people/Kath%C3%A9quitation-Mary/100010372802263");
+//        startActivity(myIntent);
+//    }
 
 }
 

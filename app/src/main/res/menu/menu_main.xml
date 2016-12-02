@@ -3,32 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
 
-    <!--<item android:id="@+id/moniteur"-->
-        <!--android:icon="@drawable/coach"-->
-        <!--android:title="Moniteurs"-->
-        <!--android:showAsAction="ifRoom">-->
-    <!--</item>-->
-    <!--<item android:id="@+id/cavalier"-->
-        <!--android:icon="@drawable/bombe"-->
-        <!--android:title="Cavaliers"-->
-        <!--android:showAsAction="ifRoom">-->
-    <!--</item>-->
-    <!--<item android:id="@+id/monture"-->
-        <!--android:icon="@drawable/cheval"-->
-        <!--android:title="Montures"-->
-        <!--android:showAsAction="ifRoom">-->
-    <!--</item>-->
-
     <item android:id="@+id/link"
         android:icon="@drawable/link"
         android:title="@string/menu_http"
         android:showAsAction="ifRoom">
 
         <menu>
-            <item
-                android:id="@+id/kath"
-                android:title="@string/menu_kath"
-                app:icon="@drawable/link"/>
+            <!--<item-->
+                <!--android:id="@+id/kath"-->
+                <!--android:title="@string/menu_kath"-->
+                <!--app:icon="@drawable/link"/>-->
 
             <item
                 android:id="@+id/hippologie"
