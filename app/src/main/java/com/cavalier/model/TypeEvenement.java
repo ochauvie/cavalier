@@ -10,6 +10,7 @@ public enum TypeEvenement implements IRefData {
     VERMIFUGE(R.string.type_evenement_vermifuge, R.drawable.vermifuge),
     DENT(R.string.type_evenement_dent, R.drawable.dent),
     OSTHEOPATHIE(R.string.type_evenement_ostheopathie, R.drawable.ostheopathe),
+    GOUDRON(R.string.type_evenement_goudron, R.drawable.goudron),
     AUTE(R.string.type_evenement_autre, R.drawable.autre);
 
     private final int label;

@@ -65,6 +65,7 @@
     <string name="type_evenement_vermifuge">Vermifuge</string>
     <string name="type_evenement_dent">Dentiste</string>
     <string name="type_evenement_ostheopathie">Ostheopathie</string>
+    <string name="type_evenement_goudron">Goudron et graisse</string>
     <string name="type_evenement_autre">Autre</string>
 
     <!-- Type personne -->
