@@ -6,12 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cavalier.R;
 import com.cavalier.listner.MontureListener;
 import com.cavalier.model.EvenementMonture;
+import com.cavalier.tools.PictureUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -76,15 +78,19 @@ public class EvenementListAdapter extends BaseAdapter {
         RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.activity_cavalier_list_evenement_item, parent, false);
         TextView tv_type = (TextView)layoutItem.findViewById(R.id.type);
         TextView tv_date = (TextView)layoutItem.findViewById(R.id.date);
-        TextView tv_observation = (TextView)layoutItem.findViewById(R.id.observation);
         ImageButton img_delete = (ImageButton) layoutItem.findViewById(R.id.delete);
+        ImageView imageView = (ImageView)layoutItem.findViewById(R.id.pic);
 
         // Renseignement des valeurs
         EvenementMonture current = evenementList.get(position);
 
+        imageView.setImageResource(current.getType().getFlag());
         tv_type.setText(current.getType().getLabel());
+        if (!"".equals(current.getObservation()) && current.getObservation() != null) {
+            tv_type.setText(tv_type.getText() + "\n" + current.getObservation());
+            tv_type.setLines(2);
+        }
         tv_date.setText(sdf.format(current.getDate()));
-        tv_observation.setText(current.getObservation());
 
         img_delete.setTag(position);
         img_delete.setOnClickListener(new View.OnClickListener() {

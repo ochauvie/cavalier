@@ -9,9 +9,9 @@
             android:weightSum="1">
 
             <Button
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:layout_width="200dp"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:text="@string/title_home_add_cours"
                 android:id="@+id/button4"
                 android:textColor="@android:color/holo_red_dark"
@@ -21,16 +21,16 @@
 
             <ImageView
                 android:contentDescription="Cavalier"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:src="@drawable/home"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="8dp" />
 
             <Button
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:layout_width="200dp"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:text="@string/title_home_list_cours"
                 android:id="@+id/button5"
                 android:textColor="@android:color/holo_red_dark"
@@ -39,9 +39,9 @@
                 android:layout_gravity="center_horizontal" />
 
             <Button
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:layout_width="200dp"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:text="@string/title_home_moniteurs"
                 android:id="@+id/button1"
                 android:textSize="20sp"
@@ -50,9 +50,9 @@
                 android:layout_gravity="center_horizontal" />
 
             <Button
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:layout_width="200dp"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:text="@string/title_home_cavaliers"
                 android:id="@+id/button2"
                 android:textColor="@android:color/holo_red_dark"
@@ -61,9 +61,9 @@
                 android:layout_gravity="center_horizontal" />
 
             <Button
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:layout_width="200dp"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:text="@string/title_home_montures"
                 android:id="@+id/button3"
                 android:textColor="@android:color/holo_red_dark"
@@ -73,9 +73,9 @@
 
 
             <Button
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:layout_width="400dp"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:text="@string/action_init_data"
                 android:id="@+id/button0"
                 android:textSize="12sp"
