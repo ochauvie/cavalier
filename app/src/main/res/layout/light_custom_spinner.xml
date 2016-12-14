@@ -3,15 +3,15 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="3px" >
+    android:padding="3dp" >
 
     <TextView android:id="@+id/text_main_seen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5px"
-        android:layout_marginTop="2px"
-        android:padding="3px"
-        android:textSize="25px"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="2dp"
+        android:padding="3dp"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:layout_centerVertical="true"/>
 
