@@ -100,8 +100,7 @@
                 android:id="@+id/spSexe"
                 android:spinnerMode="dialog"
                 android:textSize="20sp"
-                android:layout_column="1"
-                android:layout_centerVertical="true"/>
+                android:layout_column="1"/>
         </TableRow>
 
         <TableRow
@@ -124,16 +123,15 @@
                 android:id="@+id/spGalop"
                 android:spinnerMode="dialog"
                 android:textSize="20sp"
-                android:layout_column="1"
-                android:layout_centerVertical="true"/>
+                android:layout_column="1"/>
         </TableRow>
 
     </TableLayout>
 
     <ImageView android:id="@+id/personne_pic"
         android:contentDescription="Photo"
-        android:layout_width="400px"
-        android:layout_height="400px"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
         android:layout_below="@+id/tableLayout"
         android:layout_centerHorizontal="true"/>
 

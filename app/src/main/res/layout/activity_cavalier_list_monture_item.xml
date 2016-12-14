@@ -6,8 +6,8 @@
 
     <ImageView android:id="@+id/pic"
         android:contentDescription="Photo"
-        android:layout_width="100px"
-        android:layout_height="100px"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="5dp"/>
 
@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textSize="20sp"
-        android:layout_marginLeft="80dp"
+        android:layout_marginLeft="85dp"
         android:layout_centerVertical="true">
     </TextView>
 

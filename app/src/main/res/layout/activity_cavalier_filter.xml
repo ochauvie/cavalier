@@ -143,8 +143,7 @@
                     android:id="@+id/spMonture"
                     android:spinnerMode="dialog"
                     android:textSize="15sp"
-                    android:layout_column="1"
-                    android:layout_centerVertical="true"/>
+                    android:layout_column="1"/>
             </TableRow>
 
             <TableRow
@@ -167,8 +166,7 @@
                     android:id="@+id/spCavalier"
                     android:spinnerMode="dialog"
                     android:textSize="15sp"
-                    android:layout_column="1"
-                    android:layout_centerVertical="true"/>
+                    android:layout_column="1"/>
             </TableRow>
 
             <TableRow
@@ -191,8 +189,7 @@
                     android:id="@+id/spMoniteur"
                     android:spinnerMode="dialog"
                     android:textSize="15sp"
-                    android:layout_column="1"
-                    android:layout_centerVertical="true"/>
+                    android:layout_column="1"/>
             </TableRow>
 
         </TableLayout>

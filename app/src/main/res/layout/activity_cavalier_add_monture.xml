@@ -146,8 +146,8 @@
 
         <ImageView android:id="@+id/cheval_pic"
             android:contentDescription="Photo"
-            android:layout_width="400px"
-            android:layout_height="400px"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
             android:layout_below="@+id/editTextCaracteristique"
             android:layout_centerHorizontal="true"/>
 
@@ -188,7 +188,7 @@
         <ListView
             android:id="@android:id/list"
             android:layout_width="match_parent"
-            android:layout_height="400px"
+            android:layout_height="400dp"
             android:layout_below="@+id/eventLayout">
         </ListView>
 
