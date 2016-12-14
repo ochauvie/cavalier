@@ -5,7 +5,7 @@ android {
         cavalier {
             keyAlias 'cavalier'
             keyPassword 'x37db7t7'
-            storeFile file('D:/Android/cavalier/keystore.jks')
+            storeFile file('/usr/local/workspace/cavalier/keystore.jks')
             storePassword 'x37db7t7'
         }
     }
@@ -15,8 +15,8 @@ android {
         applicationId "com.cavalier"
         minSdkVersion 16
         targetSdkVersion 16
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.2"
     }
     buildTypes {
         release {
