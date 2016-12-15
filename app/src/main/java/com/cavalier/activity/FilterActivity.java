@@ -204,13 +204,13 @@ public class FilterActivity extends Activity implements DatePickerDialog.OnDateS
     private void initFilter() {
         coursFilter = (CoursFilter)getIntent().getSerializableExtra("CoursFilter");
         if (coursFilter != null) {
-            if (coursFilter.getCavalierId() != null && !"".equals(coursFilter.getCavalierId())) {
+            if (coursFilter.getCavalierId() != null) {
                 SpinnerTool.SelectSpinnerItemByValue(spinnerCavalier, PersonneService.getById(coursFilter.getCavalierId()));
             }
-            if (coursFilter.getMoniteurId() != null && !"".equals(coursFilter.getMoniteurId())) {
+            if (coursFilter.getMoniteurId() != null) {
                 SpinnerTool.SelectSpinnerItemByValue(spinnerMoniteur, PersonneService.getById(coursFilter.getMoniteurId()));
             }
-            if (coursFilter.getMontureId() != null && !"".equals(coursFilter.getMontureId())) {
+            if (coursFilter.getMontureId() != null) {
                 SpinnerTool.SelectSpinnerItemByValue(spinnerMonture, MontureService.getById(coursFilter.getMontureId()));
             }
             if (coursFilter.getStartDate() != null) {

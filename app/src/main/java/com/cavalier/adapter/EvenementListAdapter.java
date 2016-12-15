@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.cavalier.R;
 import com.cavalier.listner.MontureListener;
 import com.cavalier.model.EvenementMonture;
-import com.cavalier.tools.PictureUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

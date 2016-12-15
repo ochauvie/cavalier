@@ -9,7 +9,7 @@
             android:weightSum="1">
 
             <Button
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
                 android:layout_width="200dp"
                 android:layout_height="45dp"
                 android:text="@string/title_home_add_cours"
@@ -25,10 +25,10 @@
                 android:layout_height="200dp"
                 android:src="@drawable/home"
                 android:layout_gravity="center"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="6dp" />
 
             <Button
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
                 android:layout_width="200dp"
                 android:layout_height="45dp"
                 android:text="@string/title_home_list_cours"
@@ -39,7 +39,7 @@
                 android:layout_gravity="center_horizontal" />
 
             <Button
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
                 android:layout_width="200dp"
                 android:layout_height="45dp"
                 android:text="@string/title_home_moniteurs"
@@ -50,7 +50,7 @@
                 android:layout_gravity="center_horizontal" />
 
             <Button
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
                 android:layout_width="200dp"
                 android:layout_height="45dp"
                 android:text="@string/title_home_cavaliers"
@@ -61,7 +61,7 @@
                 android:layout_gravity="center_horizontal" />
 
             <Button
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
                 android:layout_width="200dp"
                 android:layout_height="45dp"
                 android:text="@string/title_home_montures"
@@ -73,7 +73,7 @@
 
 
             <Button
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
                 android:layout_width="400dp"
                 android:layout_height="45dp"
                 android:text="@string/action_init_data"

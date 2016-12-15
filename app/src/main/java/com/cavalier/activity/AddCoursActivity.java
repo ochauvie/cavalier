@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -85,6 +86,15 @@ public class AddCoursActivity extends Activity implements CoursListener, DatePic
         });
         // Hide keyboard
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+        // Scrool to top
+        final ScrollView scrollview = (ScrollView)findViewById(R.id.cours_scrollView);
+        scrollview.post(new Runnable() {
+            public void run() {
+                scrollview.scrollTo(0, 0);
+            }
+        });
+
     }
 
     @Override

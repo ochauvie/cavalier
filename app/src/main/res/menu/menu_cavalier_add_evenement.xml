@@ -1,7 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
+    xmlns:app="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/action_add"
         android:title="@string/action_save"
@@ -12,7 +10,5 @@
         android:title="@string/action_close"
         app:icon="@drawable/smallexit"
         app:showAsAction="ifRoom" />
-
-
 
 </menu>
