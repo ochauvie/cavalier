@@ -14,8 +14,13 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.activeandroid.ActiveAndroid;
+import com.activeandroid.Configuration;
 import com.cavalier.data.InitDataBase;
+import com.cavalier.model.Cours;
+import com.cavalier.model.EvenementMonture;
+import com.cavalier.model.Monture;
 import com.cavalier.model.Personne;
+import com.cavalier.model.Ration;
 import com.cavalier.model.TypePersonne;
 import com.cavalier.R;
 
@@ -31,7 +36,10 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         super.onCreate(savedInstanceState);
 
         // Ouvre la BD
-        ActiveAndroid.initialize(this);
+        Configuration.Builder config = new Configuration.Builder(this);
+        config.addModelClasses(Personne.class, Monture.class, Cours.class, EvenementMonture.class, Ration.class);
+        ActiveAndroid.initialize(config.create());
+
 
         setContentView(R.layout.activity_cavalier_main);
 

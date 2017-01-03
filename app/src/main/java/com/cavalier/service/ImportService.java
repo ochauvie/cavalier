@@ -17,6 +17,7 @@ import com.google.gson.JsonParseException;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,6 +32,8 @@ public class ImportService {
         gson = new GsonBuilder().serializeNulls()
                 .setExclusionStrategies(new MyExclusionStrategy(null))
                 .setDateFormat("dd/MM/yyyy")
+                .excludeFieldsWithModifiers(Modifier.FINAL, Modifier.TRANSIENT, Modifier.STATIC)
+                .excludeFieldsWithoutExposeAnnotation()
                 .registerTypeAdapter(Date.class, new JsonDeserializer()
                 {
                     public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
@@ -49,6 +52,7 @@ public class ImportService {
                 }).create();
 
     }
+
 
     public String importMonture(File file) {
         try {

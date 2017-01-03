@@ -44,6 +44,16 @@ public class Personne extends Model  {
     public Personne() {
     }
 
+    public Personne(String nom, String prenom, Date dateNaissance, Sexe sexe, TypePersonne type, byte[] img, Galop galop) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
+        this.sexe = sexe;
+        this.type = type;
+        this.img = img;
+        this.galop = galop;
+    }
+
     public Personne(String nom, String prenom, Date dateNaissance, Sexe sexe, TypePersonne type) {
         this.nom = nom;
         this.prenom = prenom;

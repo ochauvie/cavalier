@@ -33,7 +33,17 @@ public class Ration extends Model {
     @Column(name = "observation")
     private String observation;
 
+    public Ration() {
+    }
 
+    public Ration(Monture monture, String type, float quantite, Unite unite, String frequence, String observation) {
+        this.monture = monture;
+        this.type = type;
+        this.quantite = quantite;
+        this.unite = unite;
+        this.frequence = frequence;
+        this.observation = observation;
+    }
 }
 
 
