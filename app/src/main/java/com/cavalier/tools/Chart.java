@@ -74,8 +74,8 @@ public class Chart {
         defaultRenderer.setChartTitleTextSize(25);
         defaultRenderer.setZoomButtonsVisible(true);
         defaultRenderer.setShowLabels(false);
-        defaultRenderer.setLabelsTextSize(25);
-        defaultRenderer.setLegendTextSize(25);
+        defaultRenderer.setLabelsTextSize(45);
+        defaultRenderer.setLegendTextSize(45);
         defaultRenderer.setDisplayValues(true);
 
         if (CHART_BY_CAVALIER.equals(chartType)) {
@@ -109,7 +109,7 @@ public class Chart {
         // Instantiating a renderer
         XYMultipleSeriesRenderer defaultRenderer  = new XYMultipleSeriesRenderer ();
         defaultRenderer.setZoomButtonsVisible(false);
-        defaultRenderer.setLabelsTextSize(25);
+        defaultRenderer.setLabelsTextSize(45);
         defaultRenderer.setShowLegend(false);
         defaultRenderer.setMargins(new int[]{20, 30, 15, 0});
         defaultRenderer.setBarSpacing(0.1);
@@ -129,7 +129,7 @@ public class Chart {
             r.setColor(Color.rgb(31,160,85));
         }
         r.setDisplayChartValues(true);
-        r.setChartValuesTextSize(25);
+        r.setChartValuesTextSize(45);
         r.setChartValuesTextAlign(Paint.Align.CENTER);
         defaultRenderer.addSeriesRenderer(r);
 
