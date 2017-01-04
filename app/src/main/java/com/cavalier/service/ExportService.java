@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExportService {
@@ -126,16 +127,23 @@ public class ExportService {
                 }.getType();
 
                 List<Monture> montures = MontureService.getAll();
+                List<String> jsonList = new ArrayList<>();
                 if (montures != null) {
                     for (Monture monture:montures) {
                         List<EvenementMonture> events = MontureService.findEvenementByMonture(monture);
-
                         if (events != null && events.size()>0) {
-                            String json = gson.toJson(events, type);
-                            myOutWriter.append(json);
+                            jsonList.add(gson.toJson(events, type));
                         }
                     }
                 }
+
+                for (int i = 0; i < jsonList.size(); i++) {
+                    myOutWriter.append(jsonList.get(i));
+                    if (i < jsonList.size()-1) {
+                        myOutWriter.append(',');
+                    }
+                }
+
             } finally {
                 myOutWriter.close();
                 fOut.close();
