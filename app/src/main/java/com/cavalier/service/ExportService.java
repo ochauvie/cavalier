@@ -54,100 +54,101 @@ public class ExportService {
 
     private void doBackupMonture(String filePath) throws Exception  {
         File myFile = new File(filePath + "AppCavalier_Montures.json");
-        if (myFile.createNewFile()) {
-            FileOutputStream fOut = new FileOutputStream(myFile);
-            OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
-            try {
-                List<Monture> montures = MontureService.getAll();
+        FileOutputStream fOut = new FileOutputStream(myFile, false);
+        OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+        try {
+            List<Monture> montures = MontureService.getAll();
 
-                Type type = new TypeToken<List<Monture>>() {
-                }.getType();
-                String json = gson.toJson(montures, type);
-                myOutWriter.append(json);
-            } finally {
-                myOutWriter.close();
-                fOut.close();
-            }
+            Type type = new TypeToken<List<Monture>>() {
+            }.getType();
+            String json = gson.toJson(montures, type);
+            myOutWriter.append(json);
+        } finally {
+            myOutWriter.close();
+            fOut.close();
         }
     }
 
     private void doBackupPersonne(String filePath) throws Exception  {
         File myFile = new File(filePath + "AppCavalier_Personnes.json");
-        if (myFile.createNewFile()) {
-            FileOutputStream fOut = new FileOutputStream(myFile);
-            OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+        FileOutputStream fOut = new FileOutputStream(myFile, false);
+        OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
 
-            try {
-                List<Personne> personnes = PersonneService.getAll();
-                Type type = new TypeToken<List<Monture>>() {
-                }.getType();
-                String json = gson.toJson(personnes, type);
-                myOutWriter.append(json);
-            } finally {
-                myOutWriter.close();
-                fOut.close();
-            }
+        try {
+            List<Personne> personnes = PersonneService.getAll();
+            Type type = new TypeToken<List<Monture>>() {
+            }.getType();
+            String json = gson.toJson(personnes, type);
+            myOutWriter.append(json);
+        } finally {
+            myOutWriter.close();
+            fOut.close();
         }
     }
 
     private void doBackupCours(String filePath) throws Exception  {
         File myFile = new File(filePath + "AppCavalier_Cours.json");
-        if (myFile.createNewFile()) {
-            FileOutputStream fOut = new FileOutputStream(myFile);
-            OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
-            try {
-                List<Cours> coursList = CoursService.getAll();
 
-                // Remove img to light export
-                for (Cours cours : coursList) {
-                    cours.getMonture().setImg(null);
-                    cours.getCavalier().setImg(null);
-                    cours.getMoniteur().setImg(null);
-                }
+        FileOutputStream fOut = new FileOutputStream(myFile, false);
+        OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+        try {
+            List<Cours> coursList = CoursService.getAll();
 
-                Type type = new TypeToken<List<Monture>>() {
-                }.getType();
-                String json = gson.toJson(coursList, type);
-                myOutWriter.append(json);
-
-            } finally {
-                myOutWriter.close();
-                fOut.close();
+            // Remove img to light export
+            for (Cours cours : coursList) {
+                cours.getMonture().setImg(null);
+                cours.getCavalier().setImg(null);
+                cours.getMoniteur().setImg(null);
             }
+
+            Type type = new TypeToken<List<Monture>>() {
+            }.getType();
+            String json = gson.toJson(coursList, type);
+            myOutWriter.append(json);
+
+        } finally {
+            myOutWriter.close();
+            fOut.close();
         }
+
     }
 
-    private void doBackupEvenements(String filePath) throws Exception  {
+    private void doBackupEvenements(String filePath) throws Exception {
         File myFile = new File(filePath + "AppCavalier_Soins.json");
-        if (myFile.createNewFile()) {
-            FileOutputStream fOut = new FileOutputStream(myFile);
-            OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
-            try {
-                Type type = new TypeToken<List<EvenementMonture>>() {
-                }.getType();
 
-                List<Monture> montures = MontureService.getAll();
-                List<String> jsonList = new ArrayList<>();
-                if (montures != null) {
-                    for (Monture monture:montures) {
-                        List<EvenementMonture> events = MontureService.findEvenementByMonture(monture);
-                        if (events != null && events.size()>0) {
-                            jsonList.add(gson.toJson(events, type));
+        FileOutputStream fOut = new FileOutputStream(myFile, false);
+        OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+        try {
+            Type type = new TypeToken<EvenementMonture>() {
+            }.getType();
+
+            List<Monture> montures = MontureService.getAll();
+            List<String> jsonList = new ArrayList<>();
+            if (montures != null) {
+                for (Monture monture:montures) {
+                    List<EvenementMonture> events = MontureService.findEvenementByMonture(monture);
+                    if (events != null && events.size()>0) {
+                        for (EvenementMonture event:events) {
+                            jsonList.add(gson.toJson(event, type));
                         }
+
                     }
                 }
-
-                for (int i = 0; i < jsonList.size(); i++) {
-                    myOutWriter.append(jsonList.get(i));
-                    if (i < jsonList.size()-1) {
-                        myOutWriter.append(',');
-                    }
-                }
-
-            } finally {
-                myOutWriter.close();
-                fOut.close();
             }
+
+            myOutWriter.append('[');
+            for (int i = 0; i < jsonList.size(); i++) {
+                myOutWriter.append(jsonList.get(i));
+                if (i < jsonList.size()-1) {
+                    myOutWriter.append(',');
+                }
+            }
+            myOutWriter.append(']');
+
+        } finally {
+            myOutWriter.close();
+            fOut.close();
         }
+
     }
 }
