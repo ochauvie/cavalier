@@ -1,6 +1,7 @@
 package com.cavalier.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.cavalier.model.Monture;
 import com.cavalier.tools.PictureUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -24,11 +26,13 @@ public class MontureListAdapter extends BaseAdapter {
     private Context mContext;
     private LayoutInflater mInflater;
     private List<MontureListener> listeners = new ArrayList<>();
+    HashMap<Long, Bitmap> bitmaps = new HashMap<>();
 
     public MontureListAdapter(Context mContext, List<Monture> montureList) {
         this.montureList = montureList;
         this.mContext = mContext;
         mInflater = LayoutInflater.from(mContext);
+        loadBitmaps();
     }
 
     public MontureListAdapter() {
@@ -69,6 +73,14 @@ public class MontureListAdapter extends BaseAdapter {
         return null;
     }
 
+    private void loadBitmaps() {
+        for (Monture item:montureList) {
+            if (item.getImg() != null) {
+                bitmaps.put(item.getId(), PictureUtils.getImage(item.getImg()));
+            }
+        }
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.activity_cavalier_list_monture_item, parent, false);
@@ -90,7 +102,7 @@ public class MontureListAdapter extends BaseAdapter {
             tv_race.setText(current.getRace());
         }
         if (imageView != null && current.getImg() != null) {
-            imageView.setImageBitmap(PictureUtils.getImage(current.getImg()));
+            imageView.setImageBitmap(bitmaps.get(current.getId()));
         }
 
         // On memorise la position  dans le composant textview

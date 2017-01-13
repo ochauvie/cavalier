@@ -1,6 +1,7 @@
 package com.cavalier.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.cavalier.R;
 import com.cavalier.model.Personne;
 import com.cavalier.tools.PictureUtils;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -22,11 +24,13 @@ public class PersonneSpinnerAdapter extends BaseAdapter {
     private List<Personne> dataList;
     private Context mContext;
     private LayoutInflater mInflater;
+    HashMap<Long, Bitmap> bitmaps = new HashMap<>();
 
     public PersonneSpinnerAdapter(Context mContext, List<Personne> dataList) {
         this.dataList = dataList;
         this.mContext = mContext;
         mInflater = LayoutInflater.from(mContext);
+        loadBitmaps();
     }
 
     @Override
@@ -59,6 +63,12 @@ public class PersonneSpinnerAdapter extends BaseAdapter {
         return getCustomView(position, cnvtView, prnt);
     }
 
+    private void loadBitmaps() {
+        for (Personne item:dataList) {
+            bitmaps.put(item.getId(), PictureUtils.getImage(item.getImg()));
+        }
+    }
+
     public View getCustomView(int position, View convertView, ViewGroup parent) {
         RelativeLayout mySpinner  = (RelativeLayout) mInflater.inflate(R.layout.custom_spinner, parent, false);
         Personne item = dataList.get(position);
@@ -66,7 +76,7 @@ public class PersonneSpinnerAdapter extends BaseAdapter {
         main_text.setText(item.getPrenom() + " " + item.getNom());
 
         ImageView left_pic = (ImageView) mySpinner.findViewById(R.id.left_pic);
-        left_pic.setImageBitmap(PictureUtils.getImage(item.getImg()));
+        left_pic.setImageBitmap(bitmaps.get(item.getId()));
 
         return mySpinner;
     }

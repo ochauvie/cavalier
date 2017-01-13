@@ -1,6 +1,7 @@
 package com.cavalier.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.cavalier.R;
 import com.cavalier.tools.PictureUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -24,11 +26,13 @@ public class PersonneListAdapter extends BaseAdapter {
     private Context mContext;
     private LayoutInflater mInflater;
     private List<PersonneListener> listeners = new ArrayList<>();
+    HashMap<Long, Bitmap> bitmaps = new HashMap<>();
 
     public PersonneListAdapter(Context mContext, List<Personne> personneList) {
         this.personneList = personneList;
         this.mContext = mContext;
         mInflater = LayoutInflater.from(mContext);
+        loadBitmaps();
     }
 
     public PersonneListAdapter() {
@@ -69,6 +73,14 @@ public class PersonneListAdapter extends BaseAdapter {
         return null;
     }
 
+    private void loadBitmaps() {
+        for (Personne item:personneList) {
+            if (item.getImg() != null) {
+                bitmaps.put(item.getId(), PictureUtils.getImage(item.getImg()));
+            }
+        }
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.activity_cavalier_list_personne_item, parent, false);
@@ -86,7 +98,7 @@ public class PersonneListAdapter extends BaseAdapter {
         tv_prenom.setText(current.getPrenom());
 //        tv_sexe.setText(current.getSexe().getLabel());
         if (current.getImg() != null) {
-            imageView.setImageBitmap(PictureUtils.getImage(current.getImg()));
+            imageView.setImageBitmap(bitmaps.get(current.getId()));
         }
         if (galop != null && current.getGalop() != null) {
             galop.setText(current.getGalop().getLabel());
