@@ -29,6 +29,13 @@ public class CoursService {
                 .execute();
     }
 
+    public static Cours getById(Long id) {
+        return new Select()
+                .from(Cours.class)
+                .where("id = ?", id)
+                .executeSingle();
+    }
+
     public static List<Cours> getByCavalier(Personne personne) {
         return new Select()
                 .from(Cours.class)

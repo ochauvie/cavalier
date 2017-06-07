@@ -1,6 +1,8 @@
 package com.cavalier.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.RectF;
 import android.os.Bundle;
@@ -88,8 +90,26 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
 
     @Override
     public void onEventClick(WeekViewEvent event, RectF eventRect) {
-        Toast.makeText(this, "onEventClick event: " + event.getName(), Toast.LENGTH_SHORT).show();
+        Cours cours = CoursService.getById(event.getId());
+        if (cours != null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(true);
+            builder.setIcon(R.drawable.details);
+            builder.setTitle(cours.getCavalier().getPrenom()
+                    + " - " + cours.getMonture().getNom());
+            builder.setMessage("Observation: " + cours.getObservation());
+            builder.setInverseBackgroundForced(true);
+            builder.setNegativeButton(R.string.action_close, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
 
+        //Toast.makeText(this, "onEventClick event: " + event.getName(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -104,10 +124,6 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
     }
 
     protected String getEventTitle(Calendar time) {
-
-
-
         return String.format("Event of %02d:%02d %s/%d", time.get(Calendar.HOUR_OF_DAY), time.get(Calendar.MINUTE), time.get(Calendar.MONTH)+1, time.get(Calendar.DAY_OF_MONTH));
-
     }
 }
