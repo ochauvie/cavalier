@@ -10,6 +10,7 @@ import android.provider.MediaStore;
 import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -176,6 +177,13 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
                 textViewType.setText(typePersonne.getLabel());
             }
         }
+
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                onClickImageListener();
+            }
+        });
     }
 
     private boolean onSave() {
@@ -219,14 +227,40 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
             builder.setPositiveButton(R.string.oui, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    myInterface.getListener().onDialogCompleted(true, null);
+                    myInterface.getListener().onDialogCompleted(true, "DELETE");
                     dialog.dismiss();
                 }
             });
             builder.setNegativeButton(R.string.non, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    myInterface.getListener().onDialogCompleted(false, null);
+                    myInterface.getListener().onDialogCompleted(false, "DELETE");
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+    }
+
+    private void onClickImageListener() {
+        if (personne != null && personne.getImg() != null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(true);
+            builder.setIcon(R.drawable.delete);
+            builder.setTitle(R.string.image_delete);
+            builder.setInverseBackgroundForced(true);
+            builder.setPositiveButton(R.string.oui, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    myInterface.getListener().onDialogCompleted(true, "IMAGE");
+                    dialog.dismiss();
+                }
+            });
+            builder.setNegativeButton(R.string.non, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    myInterface.getListener().onDialogCompleted(false, "IMAGE");
                     dialog.dismiss();
                 }
             });
@@ -237,13 +271,17 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
 
     @Override
     public void onDialogCompleted(boolean answer, String type) {
-        if (answer && personne!=null) {
+        if (answer && personne!=null && "DELETE".equals(type)) {
             personne.delete();
             Toast.makeText(getBaseContext(), getString(R.string.personne_delete), Toast.LENGTH_LONG).show();
             Intent listPersonneActivity = new Intent(getApplicationContext(), ListPersonneActivity.class);
             listPersonneActivity.putExtra(Personne.TYPE_PERSONNE, typePersonne.name());
             startActivity(listPersonneActivity);
             finish();
+        }
+        if (answer && personne!=null && "IMAGE".equals(type)) {
+            personne.setImg(null);
+            imageView.setImageBitmap(null);
         }
     }
 

@@ -93,6 +93,12 @@ public class AddMontureActivity extends ListActivity implements MyDialogInterfac
         evenementListAdapter.addListener(this);
         setListAdapter(evenementListAdapter);
 
+        imageView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                onClickImageListener();
+            }
+        });
+
         // Scrool to top
         final ScrollView scrollview = (ScrollView)findViewById(R.id.main_scrollView);
         scrollview.post(new Runnable() {
@@ -259,6 +265,10 @@ public class AddMontureActivity extends ListActivity implements MyDialogInterfac
             evenementList.addAll(MontureService.findEvenementByMonture(monture));
             evenementListAdapter.notifyDataSetChanged();
         }
+        if (answer && monture!=null && "image".equals(type)) {
+            monture.setImg(null);
+            imageView.setImageBitmap(null);
+        }
     }
 
     @Override
@@ -342,6 +352,33 @@ public class AddMontureActivity extends ListActivity implements MyDialogInterfac
         startActivity(myIntent);
         finish();
     }
+
+    private void onClickImageListener() {
+        if (monture != null && monture.getImg() != null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(true);
+            builder.setIcon(R.drawable.delete);
+            builder.setTitle(R.string.image_delete);
+            builder.setInverseBackgroundForced(true);
+            builder.setPositiveButton(R.string.oui, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    myInterface.getListener().onDialogCompleted(true, "image");
+                    dialog.dismiss();
+                }
+            });
+            builder.setNegativeButton(R.string.non, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    myInterface.getListener().onDialogCompleted(false, "image");
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+    }
+
 
 
 }

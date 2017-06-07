@@ -19,6 +19,7 @@
     <string name="action_init_data">Initialiser les données</string>
     <string name="action_filter">Filtrer</string>
     <string name="action_applay">Appliquer</string>
+    <string name="action_planning">Planning</string>
 
     <string name="title_activity_list_moniteur">Moniteurs</string>
     <string name="title_activity_list_cavalier">Cavaliers</string>
@@ -80,6 +81,8 @@
     <!--Personne-->
     <string name="personne_save">La personne est sauvegardée</string>
     <string name="personne_delete">La personne est supprimée</string>
+    <string name="image_delete">Suppression de l\'image ?</string>
+
 
     <!--Monture-->
     <string name="monture_save">La monture est sauvegardée</string>
