@@ -78,6 +78,11 @@
             android:label="@string/menu_export_db" >
         </activity>
         <activity
+            android:name=".activity.PlanningActivity"
+            android:icon="@drawable/planning"
+            android:label="@string/action_planning" >
+        </activity>
+        <activity
             android:name=".activity.HttpActivity"
             android:icon="@drawable/link"
             android:label="@string/menu_http" >

@@ -27,7 +27,7 @@ import com.cavalier.R;
 
 public class MainActivity extends Activity implements MyDialogInterface.DialogReturn {
 
-    private Button but0, but1, but2, but3, but4, but5;
+    private Button but0, but1, but2, but3, but4, but5, but6;
     private MyDialogInterface myInterface;
     private Animation blinkAnim;
 
@@ -102,6 +102,14 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         but5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivityForResult(new Intent(getApplicationContext(), ListCoursActivity.class), 0);
+            }
+        });
+
+        // Planning
+        but6 = (Button) findViewById(R.id.button6);
+        but6.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivityForResult(new Intent(getApplicationContext(), PlanningActivity.class), 0);
             }
         });
     }
