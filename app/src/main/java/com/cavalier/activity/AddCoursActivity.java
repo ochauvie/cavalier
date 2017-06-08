@@ -2,6 +2,7 @@ package com.cavalier.activity;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.Menu;
@@ -22,6 +23,7 @@ import com.cavalier.adapter.MontureSpinnerAdapter;
 import com.cavalier.adapter.PersonneSpinnerAdapter;
 import com.cavalier.listner.CoursListener;
 import com.cavalier.model.Cours;
+import com.cavalier.model.Heure;
 import com.cavalier.model.IRefData;
 import com.cavalier.model.Monture;
 import com.cavalier.model.Personne;
@@ -40,13 +42,14 @@ import java.util.Locale;
 
 public class AddCoursActivity extends Activity implements CoursListener, DatePickerDialog.OnDateSetListener {
 
-    private Spinner spinnerMoniteur, spinnerCavalier, spinnerMonture, spinnerLieu;
+    private Spinner spinnerMoniteur, spinnerCavalier, spinnerMonture, spinnerLieu, spinnerHeure;
     private EditText editTextDuree, editTextObservation;
     private TextView textDate;
     private ImageButton selectDate;
     private DatePickerDialog datePickerDialog = null;
     private Cours cours = null;
     private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
+    private final SimpleDateFormat sdfh = new SimpleDateFormat("dd/MM/yyyy hh", Locale.FRANCE);
 
 
     @Override
@@ -62,6 +65,8 @@ public class AddCoursActivity extends Activity implements CoursListener, DatePic
         loadSpinnerMonture(spinnerMonture);
         spinnerLieu = (Spinner) findViewById(R.id.spLieu);
         loadSpinnerLieu(spinnerLieu);
+        spinnerHeure = (Spinner) findViewById(R.id.spHeure);
+        loadSpinnerHeure(spinnerHeure);
 
 
         editTextDuree = (EditText)  findViewById(R.id.editTextDuree);
@@ -148,6 +153,12 @@ public class AddCoursActivity extends Activity implements CoursListener, DatePic
         spinner.setAdapter(new IDataSpinnerAdapter(this, list, R.layout.light_custom_spinner));
     }
 
+    private void loadSpinnerHeure(Spinner spinner) {
+        ArrayList<IRefData> list = new ArrayList<>();
+        Collections.addAll(list, Heure.values());
+        spinnerHeure.setAdapter(new IDataSpinnerAdapter(this, list, R.layout.light_custom_spinner));
+    }
+
 
     private boolean onSave() {
         Editable edDuree = editTextDuree.getText();
@@ -159,10 +170,13 @@ public class AddCoursActivity extends Activity implements CoursListener, DatePic
                 cours = new Cours();
             }
             try {
-                cours.setDate(sdf.parse(textDate.getText().toString()));
+                int h = ((Heure) spinnerHeure.getSelectedItem()).getValue();
+                cours.setDate(sdfh.parse(textDate.getText().toString() + " " + h));
             } catch (ParseException pe) {
                 cours.setDate(new Date());
             }
+
+
             cours.setCavalier((Personne) spinnerCavalier.getSelectedItem());
             cours.setMoniteur((Personne) spinnerMoniteur.getSelectedItem());
             cours.setMonture((Monture) spinnerMonture.getSelectedItem());

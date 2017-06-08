@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:id="@+id/tableLayout">
+            android:id="@+id/tableLayoutDate">
 
             <TableRow
                 android:layout_width="fill_parent"
@@ -42,7 +42,34 @@
 
                     android:layout_gravity="bottom|left"
                     android:layout_marginLeft="20dp" />
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Heure"
+                    android:textSize="15sp"
+                    android:id="@+id/textViewHaure"
+                    android:layout_column="0"
+                    />
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spHeure"
+                    android:spinnerMode="dialog"
+                    android:textSize="15sp"
+                    android:layout_column="1"/>
+
             </TableRow>
+
+        </TableLayout>
+
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tableLayoutDate">
 
             <TableRow
                 android:layout_width="fill_parent"
@@ -158,33 +185,49 @@
                     android:ems="10"
                     android:textSize="15sp"
                     android:inputType="number"
-                    android:focusableInTouchMode="false"
                     android:layout_column="1"/>
 
             </TableRow>
 
         </TableLayout>
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Observations"
-            android:textSize="15sp"
-            android:id="@+id/textView8"
-            android:layout_below="@+id/tableLayout" />
-
-        <EditText
-            android:layout_marginTop="10dp"
-            android:id="@+id/editTextObservation"
+        <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:textSize="15sp"
-            android:inputType="textMultiLine"
-            android:layout_below="@+id/textView8"
-            android:lines="2" />
+            android:id="@+id/tableLayoutObs"
+            android:layout_below="@+id/tableLayout">
 
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Observations"
+                    android:textSize="15sp"
+                    android:id="@+id/textView8"
+                    android:layout_below="@+id/tableLayout" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/editTextObservation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="15sp"
+                    android:inputType="textMultiLine"
+                    android:lines="2"
+                    android:layout_alignParentBottom="true" />
+            </TableRow>
+
+        </TableLayout>
 
     </RelativeLayout>
 </ScrollView>
