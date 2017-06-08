@@ -11,59 +11,29 @@
         android:id="@+id/layout_filter">
 
 
-        <TableLayout
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:weightSum="100"
             android:layout_alignParentTop="true"
             android:id="@+id/tableLayoutDate">
 
-            <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_marginTop="20dp"
+                <DatePicker
+                    android:id="@+id/datePicker"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Date"
-                    android:textSize="15sp"
-                    android:id="@+id/textViewDate"
-                    android:layout_column="0"
-                    />
+                    android:layout_weight="40"
+                    android:spinnersShown="true"
+                    android:calendarViewShown="false"/>
 
-                <ImageButton
-                    android:contentDescription="Calendrier"
-                    android:id="@+id/selectDate"
+                <TimePicker
+                    android:id="@+id/timePicker"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:background="#00000000"
-                    android:src="@drawable/calendar"
+                    android:layout_weight="50"
+                    android:timePickerMode="spinner"/>
 
-                    android:layout_gravity="bottom|left"
-                    android:layout_marginLeft="20dp" />
-
-                <TextView
-                    android:layout_marginTop="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Heure"
-                    android:textSize="15sp"
-                    android:id="@+id/textViewHaure"
-                    android:layout_column="0"
-                    />
-
-                <Spinner
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/spHeure"
-                    android:spinnerMode="dialog"
-                    android:textSize="15sp"
-                    android:layout_column="1"/>
-
-            </TableRow>
-
-        </TableLayout>
+        </LinearLayout>
 
         <TableLayout
             android:id="@+id/tableLayout"

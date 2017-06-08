@@ -1,20 +1,16 @@
 package com.cavalier.activity;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.cavalier.R;
@@ -23,7 +19,6 @@ import com.cavalier.adapter.MontureSpinnerAdapter;
 import com.cavalier.adapter.PersonneSpinnerAdapter;
 import com.cavalier.listner.CoursListener;
 import com.cavalier.model.Cours;
-import com.cavalier.model.Heure;
 import com.cavalier.model.IRefData;
 import com.cavalier.model.Monture;
 import com.cavalier.model.Personne;
@@ -33,23 +28,22 @@ import com.cavalier.service.MontureService;
 import com.cavalier.service.PersonneService;
 import com.cavalier.tools.Utils;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 
-public class AddCoursActivity extends Activity implements CoursListener, DatePickerDialog.OnDateSetListener {
+public class AddCoursActivity extends Activity implements CoursListener {
 
-    private Spinner spinnerMoniteur, spinnerCavalier, spinnerMonture, spinnerLieu, spinnerHeure;
+    private Spinner spinnerMoniteur, spinnerCavalier, spinnerMonture, spinnerLieu;
+    private DatePicker datePicker;
+    private TimePicker timePicker;
     private EditText editTextDuree, editTextObservation;
-    private TextView textDate;
-    private ImageButton selectDate;
-    private DatePickerDialog datePickerDialog = null;
     private Cours cours = null;
     private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
-    private final SimpleDateFormat sdfh = new SimpleDateFormat("dd/MM/yyyy hh", Locale.FRANCE);
+    private final SimpleDateFormat sdfh = new SimpleDateFormat("dd/MM/yyyy hh:mm", Locale.FRANCE);
 
 
     @Override
@@ -65,30 +59,17 @@ public class AddCoursActivity extends Activity implements CoursListener, DatePic
         loadSpinnerMonture(spinnerMonture);
         spinnerLieu = (Spinner) findViewById(R.id.spLieu);
         loadSpinnerLieu(spinnerLieu);
-        spinnerHeure = (Spinner) findViewById(R.id.spHeure);
-        loadSpinnerHeure(spinnerHeure);
+
+        timePicker = (TimePicker) findViewById(R.id.timePicker);
+        timePicker.setIs24HourView(true);
+
+        datePicker = (DatePicker) findViewById(R.id.datePicker);
 
 
         editTextDuree = (EditText)  findViewById(R.id.editTextDuree);
         editTextDuree.setText("1");
         editTextObservation = (EditText)  findViewById(R.id.editTextObservation);
-        textDate = (TextView)  findViewById(R.id.textViewDate);
-        //textDate.setEnabled(false);
-        textDate.setText(sdf.format(new Date()));
 
-        selectDate = (ImageButton) findViewById(R.id.selectDate);
-        selectDate.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String sDate = textDate.getText().toString();
-                String[] ssDate = sDate.split("/");
-                datePickerDialog = new DatePickerDialog(v.getContext(),
-                        AddCoursActivity.this,
-                        Integer.parseInt(ssDate[2]),
-                        Integer.parseInt(ssDate[1])-1,
-                        Integer.parseInt(ssDate[0]));
-                datePickerDialog.show();
-            }
-        });
         // Hide keyboard
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
@@ -153,12 +134,6 @@ public class AddCoursActivity extends Activity implements CoursListener, DatePic
         spinner.setAdapter(new IDataSpinnerAdapter(this, list, R.layout.light_custom_spinner));
     }
 
-    private void loadSpinnerHeure(Spinner spinner) {
-        ArrayList<IRefData> list = new ArrayList<>();
-        Collections.addAll(list, Heure.values());
-        spinnerHeure.setAdapter(new IDataSpinnerAdapter(this, list, R.layout.light_custom_spinner));
-    }
-
 
     private boolean onSave() {
         Editable edDuree = editTextDuree.getText();
@@ -169,13 +144,13 @@ public class AddCoursActivity extends Activity implements CoursListener, DatePic
             if (cours == null) {
                 cours = new Cours();
             }
-            try {
-                int h = ((Heure) spinnerHeure.getSelectedItem()).getValue();
-                cours.setDate(sdfh.parse(textDate.getText().toString() + " " + h));
-            } catch (ParseException pe) {
-                cours.setDate(new Date());
-            }
-
+            int hour = timePicker.getCurrentHour();
+            int min = timePicker.getCurrentMinute();
+            int day = datePicker.getDayOfMonth();
+            int month = (datePicker.getMonth());
+            int year = datePicker.getYear();
+            Date date = new GregorianCalendar(year, month, day, hour, min).getTime();
+            cours.setDate(date);
 
             cours.setCavalier((Personne) spinnerCavalier.getSelectedItem());
             cours.setMoniteur((Personne) spinnerMoniteur.getSelectedItem());
@@ -188,17 +163,6 @@ public class AddCoursActivity extends Activity implements CoursListener, DatePic
             Toast.makeText(getBaseContext(), getString(R.string.cours_save), Toast.LENGTH_LONG).show();
         }
         return true;
-    }
-    @Override
-    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-        String day = String.valueOf(dayOfMonth);
-        if (day.length()<2) {day = "0" + day;}
-        String month = String.valueOf(monthOfYear+1);
-        if (month.length()<2) {month = "0" + month;}
-        String y = String.valueOf(year);
-        if (y.length()<2) {y = "0" + y;}
-        textDate.setText(day + "/" + month + "/" + y);
-        datePickerDialog.hide();
     }
 
     @Override
