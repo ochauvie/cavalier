@@ -5,6 +5,8 @@ import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
@@ -12,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -32,6 +35,8 @@ import com.cavalier.service.MontureService;
 import com.cavalier.tools.PictureUtils;
 import com.cavalier.tools.SpinnerTool;
 import com.cavalier.tools.Utils;
+import com.turkialkhateeb.materialcolorpicker.ColorChooserDialog;
+import com.turkialkhateeb.materialcolorpicker.ColorListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -47,6 +52,7 @@ public class AddMontureActivity extends ListActivity implements MyDialogInterfac
     private Spinner spinnerGenre;
     private EditText editTextNom, editTextRobe, editTextRace, editTextCaracteristique;
     private ImageView imageView, eventAdd;
+    private Button colorPicker;
     private MyDialogInterface myInterface;
     private Monture monture = null;
 
@@ -72,10 +78,17 @@ public class AddMontureActivity extends ListActivity implements MyDialogInterfac
         editTextCaracteristique = (EditText)  findViewById(R.id.editTextCaracteristique);
         imageView = (ImageView) findViewById(R.id.cheval_pic);
         eventAdd = (ImageView) findViewById(R.id.event_add);
+        colorPicker = (Button) findViewById(R.id.colorPicker);
 
         eventAdd.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 addEvenement();
+            }
+        });
+
+        colorPicker.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                choosePlanningColor();
             }
         });
 
@@ -185,6 +198,9 @@ public class AddMontureActivity extends ListActivity implements MyDialogInterfac
                 if (monture.getImg() != null) {
                     imageView.setImageBitmap(PictureUtils.getImage(monture.getImg()));
                 }
+                colorPicker.setBackgroundColor(monture.getPlanningColor());
+            } else {
+                colorPicker.setBackgroundColor(Color.RED);
             }
         }
     }
@@ -206,6 +222,7 @@ public class AddMontureActivity extends ListActivity implements MyDialogInterfac
             monture.setRobe(edRobe.toString());
             monture.setCaracteristique(edCaracteristique.toString());
             monture.setRace(edRace.toString());
+            monture.setPlanningColor(((ColorDrawable)colorPicker.getBackground()).getColor());
 
             imageView.buildDrawingCache();
             Bitmap imageBitmap = imageView.getDrawingCache();
@@ -378,6 +395,19 @@ public class AddMontureActivity extends ListActivity implements MyDialogInterfac
             alert.show();
         }
     }
+
+    private void choosePlanningColor() {
+        ColorChooserDialog dialog = new ColorChooserDialog(this);
+        dialog.setTitle(R.string.monture_color);
+        dialog.setColorListener(new ColorListener() {
+            @Override
+            public void OnColorClick(View v, int color) {
+                colorPicker.setBackgroundColor(color);;
+            }
+        });
+        dialog.show();
+    }
+
 
 
 

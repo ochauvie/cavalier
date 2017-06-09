@@ -114,6 +114,31 @@
 
             </TableRow>
 
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Couleur"
+                    android:textSize="20sp"
+                    android:id="@+id/textView7"
+                    android:layout_column="0" />
+
+                <Button
+                    android:layout_marginTop="6dp"
+                    android:layout_width="200dp"
+                    android:layout_height="45dp"
+                    android:text="Choisir"
+                    android:id="@+id/colorPicker"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal" />
+
+            </TableRow>
+
         </TableLayout>
 
         <TextView

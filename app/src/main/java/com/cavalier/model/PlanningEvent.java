@@ -8,7 +8,7 @@ import com.google.gson.annotations.Expose;
 
 import java.util.Date;
 
-@Table(name = "planning")
+//@Table(name = "planning")
 public class PlanningEvent extends Model  {
 
     @Expose

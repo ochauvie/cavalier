@@ -39,7 +39,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         Configuration.Builder config = new Configuration.Builder(this);
         config.addModelClasses(Personne.class, Monture.class, Cours.class, EvenementMonture.class, Ration.class);
         ActiveAndroid.initialize(config.create());
-
+        updateDatabase();
 
         setContentView(R.layout.activity_cavalier_main);
 
@@ -186,6 +186,9 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
 //        myIntent.putExtra("URL", "https://www.facebook.com/people/Kath%C3%A9quitation-Mary/100010372802263");
 //        startActivity(myIntent);
 //    }
+
+    private void updateDatabase() {}
+
 
 }
 

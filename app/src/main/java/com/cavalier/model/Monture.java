@@ -39,10 +39,13 @@ public class Monture extends Model  {
     @Column(name = "img")
     private byte[] img;
 
+    @Column(name = "planningColor")
+    private int planningColor;
+
     public Monture() {
     }
 
-    public Monture(String nom, byte[] img, String caracteristique, Date dateNaissance, String robe, String race, Genre genre) {
+    public Monture(String nom, byte[] img, String caracteristique, Date dateNaissance, String robe, String race, Genre genre, int planningColor) {
         this.nom = nom;
         this.img = img;
         this.caracteristique = caracteristique;
@@ -50,6 +53,7 @@ public class Monture extends Model  {
         this.robe = robe;
         this.race = race;
         this.genre = genre;
+        this.planningColor = planningColor;
     }
 
     public Monture(String nom) {
@@ -119,5 +123,13 @@ public class Monture extends Model  {
 
     public void setCaracteristique(String caracteristique) {
         this.caracteristique = caracteristique;
+    }
+
+    public int getPlanningColor() {
+        return planningColor;
+    }
+
+    public void setPlanningColor(int planningColor) {
+        this.planningColor = planningColor;
     }
 }

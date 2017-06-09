@@ -86,7 +86,7 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
                 weekViewEvent.setName("Reprise\n" + cours.getCavalier().getPrenom() + "\n" + cours.getMonture().getNom());
                 weekViewEvent.setStartTime(deb);
                 weekViewEvent.setEndTime(fin);
-                weekViewEvent.setColor(Color.RED);
+                weekViewEvent.setColor(cours.getMonture().getPlanningColor());
                 //weekViewEvent.setLocation(cours.getTypeLieu().name());
                 events.add(weekViewEvent);
             }

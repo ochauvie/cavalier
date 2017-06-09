@@ -89,6 +89,7 @@
     <string name="monture_delete">La monture est supprimée</string>
     <string name="evenement_delete">Soin supprimé</string>
     <string name="evenement_save">Soin sauvegardé</string>
+    <string name="monture_color">Couleur pour le planning</string>
 
     <!--Cours-->
     <string name="cours_save">La reprise est sauvegardée</string>
