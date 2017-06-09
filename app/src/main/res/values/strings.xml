@@ -125,5 +125,11 @@
     <string name="galop6">Galop 6</string>
     <string name="galop7">Galop 7</string>
 
+    <!--Planning-->
+    <string name="planning_save">L\'évènement est sauvegardé</string>
+    <string name="planning_delete">L\'évènement est supprimé</string>
+    <string name="title_activity_add_planning">Ajouter un évènement</string>
+
+
 
 </resources>

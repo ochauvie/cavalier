@@ -8,7 +8,7 @@ import com.google.gson.annotations.Expose;
 
 import java.util.Date;
 
-//@Table(name = "planning")
+@Table(name = "planningEvent")
 public class PlanningEvent extends Model  {
 
     @Expose
@@ -24,12 +24,16 @@ public class PlanningEvent extends Model  {
     private Monture monture;
 
     @Expose
-    @Column(name = "typeLieu")
+    @Column(name = "type")
     private TypeLieu typeLieu;
 
     @Expose
-    @Column(name = "date")
-    private Date date;
+    @Column(name = "dateDebut")
+    private Date dateDebut;
+
+    @Expose
+    @Column(name = "dateFin")
+    private Date dateFin;
 
     @Expose
     @Column(name = "observation")
@@ -38,12 +42,13 @@ public class PlanningEvent extends Model  {
     public PlanningEvent() {
     }
 
-    public PlanningEvent(Personne moniteur, Personne cavalier, Monture monture, TypeLieu typeLieu, Date date, String observation) {
+    public PlanningEvent(Personne moniteur, Personne cavalier, Monture monture, TypeLieu typeLieu, Date dateDebut, Date dateFin, String observation) {
         this.moniteur = moniteur;
         this.cavalier = cavalier;
         this.monture = monture;
         this.typeLieu = typeLieu;
-        this.date = date;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
         this.observation = observation;
     }
 
@@ -71,12 +76,20 @@ public class PlanningEvent extends Model  {
         this.typeLieu = typeLieu;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDateDebut() {
+        return dateDebut;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateDebut(Date dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    public Date getDateFin() {
+        return dateFin;
+    }
+
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
     }
 
     public String getObservation() {

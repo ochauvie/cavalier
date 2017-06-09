@@ -3,6 +3,7 @@ package com.cavalier.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.RectF;
 import android.os.Bundle;
@@ -21,8 +22,11 @@ import com.alamkanak.weekview.WeekViewEvent;
 import com.cavalier.R;
 import com.cavalier.model.Cours;
 import com.cavalier.model.Personne;
+import com.cavalier.model.PlanningEvent;
+import com.cavalier.model.TypePersonne;
 import com.cavalier.service.CoursService;
 import com.cavalier.service.PersonneService;
+import com.cavalier.service.PlanningEventService;
 import com.cavalier.tools.PictureUtils;
 
 import java.util.ArrayList;
@@ -35,6 +39,7 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
     private LinearLayout linearlayout;
     private WeekView mWeekView;
     private List<Cours> coursList;
+    private List<PlanningEvent> planningEventList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +49,9 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
         linearlayout = (LinearLayout) findViewById(R.id.planning);
         linearlayout.setBackgroundColor(Color.WHITE);
 
-//        Personne cavalier = PersonneService.findByNomPrenom("Chauvie", "Olivier");
-//        coursList = CoursService.getByCavalier(cavalier);
         coursList = CoursService.getAll();
+
+        planningEventList = PlanningEventService.getAll();
 
         // Get a reference for the week view in the layout.
         mWeekView = (WeekView) findViewById(R.id.weekView);
@@ -92,6 +97,23 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
             }
         }
 
+        for (PlanningEvent planningEvent:planningEventList) {
+            Calendar deb = Calendar.getInstance();
+            Calendar fin = Calendar.getInstance();
+            deb.setTime(planningEvent.getDateDebut());
+            fin.setTime(planningEvent.getDateFin());
+            if (deb.get(Calendar.YEAR) == newYear && (deb.get(Calendar.MONTH)+1) == newMonth) {
+                WeekViewEvent weekViewEvent = new WeekViewEvent();
+                weekViewEvent.setId(planningEvent.getId());
+                weekViewEvent.setName("Evènement\n" + planningEvent.getCavalier().getPrenom() + "\n" + planningEvent.getMonture().getNom());
+                weekViewEvent.setStartTime(deb);
+                weekViewEvent.setEndTime(fin);
+                weekViewEvent.setColor(planningEvent.getMonture().getPlanningColor());
+                //weekViewEvent.setLocation(cours.getTypeLieu().name());
+                events.add(weekViewEvent);
+            }
+        }
+
         return events;
     }
 
@@ -99,9 +121,13 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
     public void onEventClick(WeekViewEvent event, RectF eventRect) {
         Cours cours = CoursService.getById(event.getId());
         if (cours != null) {
-            showEventCours(cours);
+            showCoursEvent(cours);
+        } else {
+            PlanningEvent plannigEvent = PlanningEventService.getById(event.getId());
+            if (plannigEvent != null) {
+                showPlannigEvent(plannigEvent);
+            }
         }
-
     }
 
     @Override
@@ -112,14 +138,17 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
 
     @Override
     public void onEmptyViewLongPress(Calendar time) {
-        Toast.makeText(this, "Empty view long pressed: " + getEventTitle(time), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Empty view long pressed: " + getEventTitle(time), Toast.LENGTH_SHORT).show();
+        Intent myIntent = new Intent(getApplicationContext(), AddPlanningEventActivity.class);
+        myIntent.putExtra("Calendar", time);
+        startActivityForResult(myIntent, 200);
     }
 
     protected String getEventTitle(Calendar time) {
         return String.format("Event of %02d:%02d %s/%d", time.get(Calendar.HOUR_OF_DAY), time.get(Calendar.MINUTE), time.get(Calendar.MONTH)+1, time.get(Calendar.DAY_OF_MONTH));
     }
 
-    private void showEventCours(Cours cours) {
+    private void showCoursEvent(Cours cours) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater factory = LayoutInflater.from(this);
         final View view = factory.inflate(R.layout.activity_cours_viewer, null);
@@ -167,6 +196,24 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
         alert.show();
     }
 
+    private void showPlannigEvent(PlanningEvent planningEvent) {
+        Intent myIntent = new Intent(getApplicationContext(), AddPlanningEventActivity.class);
+        myIntent.putExtra("PlanningEvent", planningEvent.getId());
+        startActivityForResult(myIntent, 100);
+    }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 100) {
+            planningEventList = PlanningEventService.getAll();
+            mWeekView.notifyDatasetChanged();
+        }
+        // Add planningEvent
+        if (requestCode == 200) {
+            planningEventList = PlanningEventService.getAll();
+            mWeekView.notifyDatasetChanged();
+        }
+    }
 
 }
