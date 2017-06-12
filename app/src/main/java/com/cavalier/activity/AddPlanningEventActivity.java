@@ -40,6 +40,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class AddPlanningEventActivity extends Activity implements MyDialogInterface.DialogReturn {
 
@@ -49,6 +50,7 @@ public class AddPlanningEventActivity extends Activity implements MyDialogInterf
     private EditText editTextObservation;
     private PlanningEvent planningEvent = null;
     private MyDialogInterface myInterface;
+    private Menu menu = null;
 
 
     @Override
@@ -106,9 +108,9 @@ public class AddPlanningEventActivity extends Activity implements MyDialogInterf
             planningEvent = PlanningEvent.load(PlanningEvent.class, planningEventId);
             if (planningEvent != null) {
                 editTextObservation.setText(planningEvent.getObservation());
-                SpinnerTool.SelectSpinnerItemByValue(spinnerCavalier, planningEvent.getCavalier().getId());
-                SpinnerTool.SelectSpinnerItemByValue(spinnerMoniteur, planningEvent.getMoniteur().getId());
-                SpinnerTool.SelectSpinnerItemByValue(spinnerMonture, planningEvent.getMonture().getId());
+                SpinnerTool.SelectSpinnerItemByValue(spinnerCavalier, planningEvent.getCavalier());
+                SpinnerTool.SelectSpinnerItemByValue(spinnerMoniteur, planningEvent.getMoniteur());
+                SpinnerTool.SelectSpinnerItemByValue(spinnerMonture, planningEvent.getMonture());
                 SpinnerTool.SelectSpinnerItemByValue(spinnerLieu, planningEvent.getTypeLieu().name());
 
                 Calendar deb = Calendar.getInstance();
@@ -122,6 +124,15 @@ public class AddPlanningEventActivity extends Activity implements MyDialogInterf
                 dateFinPicker.updateDate(fin.get(Calendar.YEAR), fin.get(Calendar.MONTH), fin.get(Calendar.DAY_OF_MONTH));
                 timeFinPicker.setCurrentHour(fin.get(Calendar.HOUR_OF_DAY));
                 timeFinPicker.setCurrentMinute(fin.get(Calendar.MINUTE));
+                if (menu != null) {
+                    MenuItem item = menu.findItem(R.id.action_transform_reprise);
+                    Utils.enableItem(item);
+                }
+            } else {
+                if (menu != null) {
+                    MenuItem item = menu.findItem(R.id.action_transform_reprise);
+                    Utils.disableItem(item);
+                }
             }
         }
     }
@@ -129,9 +140,18 @@ public class AddPlanningEventActivity extends Activity implements MyDialogInterf
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_cavalier_add_planning, menu);
+        this.menu = menu;
         return true;
     }
 
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.action_transform_reprise);
+        if (planningEvent == null) {
+            Utils.disableItem(item);
+        }
+        return true;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -147,6 +167,9 @@ public class AddPlanningEventActivity extends Activity implements MyDialogInterf
                 return true;
             case R.id.action_delete_planning:
                 onDelete();
+                return true;
+            case R.id.action_transform_reprise:
+                onTransformCours();
                 return true;
         }
         return false;
@@ -227,6 +250,32 @@ public class AddPlanningEventActivity extends Activity implements MyDialogInterf
         }
     }
 
+    private void onTransformCours() {
+        if (planningEvent != null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(true);
+            builder.setIcon(R.drawable.selle);
+            builder.setTitle(R.string.action_transform_reprise);
+            builder.setInverseBackgroundForced(true);
+            builder.setPositiveButton(R.string.oui, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    myInterface.getListener().onDialogCompleted(true, "createCours");
+                    dialog.dismiss();
+                }
+            });
+            builder.setNegativeButton(R.string.non, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    myInterface.getListener().onDialogCompleted(false, "createCours");
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+    }
+
     @Override
     public void onBackPressed() {
         // Nothings
@@ -235,13 +284,26 @@ public class AddPlanningEventActivity extends Activity implements MyDialogInterf
 
     @Override
     public void onDialogCompleted(boolean answer, String type) {
-        if ("planningEvent".equals(type) && answer && planningEvent!=null) {
+        if ("planningEvent".equals(type) && answer && planningEvent != null) {
             planningEvent.delete();
             Toast.makeText(getBaseContext(), getString(R.string.planning_delete), Toast.LENGTH_LONG).show();
-//            Intent activity = new Intent(getApplicationContext(), PlanningActivity.class);
-//            startActivity(activity);
             finish();
         }
+        if ("createCours".equals(type) && answer && planningEvent != null) {
+            long intervalle = planningEvent.getDateFin().getTime() - planningEvent.getDateDebut().getTime();
+            int duree = (int) TimeUnit.HOURS.convert(intervalle, TimeUnit.MILLISECONDS);
 
+            Cours cours = new Cours(planningEvent.getMoniteur(),
+                    planningEvent.getCavalier(),
+                    planningEvent.getMonture(),
+                    planningEvent.getTypeLieu(),
+                    planningEvent.getDateDebut(),
+                    duree,
+                    planningEvent.getObservation());
+            cours.save();
+            planningEvent.delete();
+            Toast.makeText(getBaseContext(), getString(R.string.action_transform_reprise_ok), Toast.LENGTH_LONG).show();
+            finish();
+        }
     }
 }

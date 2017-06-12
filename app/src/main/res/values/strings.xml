@@ -134,6 +134,8 @@
     <string name="action_day_view">Aujourd\'hui</string>
     <string name="action_three_day_view">Vue 3 jours</string>
     <string name="action_week_view">Vue hebdomadaire</string>
+    <string name="action_transform_reprise">Transformer en reprise</string>
+    <string name="action_transform_reprise_ok">Reprise sauvegarder</string>
 
 
 </resources>

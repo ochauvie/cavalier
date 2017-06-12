@@ -6,6 +6,11 @@
         app:icon="@drawable/smallsave"
         app:showAsAction="ifRoom" />
 
+    <item android:id="@+id/action_transform_reprise"
+        android:title="@string/action_transform_reprise"
+        app:icon="@drawable/cheval"
+        app:showAsAction="ifRoom" />
+
     <item android:id="@+id/action_close_planning"
         android:title="@string/action_close"
         app:icon="@drawable/smallexit"

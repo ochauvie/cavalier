@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.RectF;
 import android.os.Bundle;
+import android.support.v4.graphics.ColorUtils;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -115,7 +116,11 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
                 weekViewEvent.setName("Evènement\n" + planningEvent.getCavalier().getPrenom() + "\n" + planningEvent.getMonture().getNom());
                 weekViewEvent.setStartTime(deb);
                 weekViewEvent.setEndTime(fin);
-                weekViewEvent.setColor(planningEvent.getMonture().getPlanningColor());
+
+                int alpha = 85;
+                weekViewEvent.setColor(ColorUtils.setAlphaComponent(planningEvent.getMonture().getPlanningColor(), alpha));
+
+                //weekViewEvent.setColor(planningEvent.getMonture().getPlanningColor());
                 //weekViewEvent.setLocation(cours.getTypeLieu().name());
                 events.add(weekViewEvent);
             }
@@ -215,6 +220,7 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 100 || requestCode == 200) {
+            coursList = CoursService.getAll();
             planningEventList = PlanningEventService.getAll();
             mWeekView.notifyDatasetChanged();
         }
