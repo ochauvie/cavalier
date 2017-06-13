@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,8 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
     private WeekView mWeekView;
     private List<Cours> coursList;
     private List<PlanningEvent> planningEventList;
+    private ProgressBar spinner;
+
 
     private static final int TYPE_DAY_VIEW = 1;
     private static final int TYPE_THREE_DAY_VIEW = 2;
@@ -61,6 +64,9 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
         coursList = CoursService.getAll();
 
         planningEventList = PlanningEventService.getAll();
+
+        spinner = (ProgressBar)findViewById(R.id.progressBar1);
+        spinner.setVisibility(View.GONE);
 
         // Get a reference for the week view in the layout.
         mWeekView = (WeekView) findViewById(R.id.weekView);
@@ -137,6 +143,7 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
         if (cours != null) {
             showCoursEvent(cours);
         } else {
+            spinner.setVisibility(View.VISIBLE);
             PlanningEvent plannigEvent = PlanningEventService.getById(event.getId());
             if (plannigEvent != null) {
                 showPlannigEvent(plannigEvent);
@@ -153,6 +160,7 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
     @Override
     public void onEmptyViewLongPress(Calendar time) {
         //Toast.makeText(this, "Empty view long pressed: " + getEventTitle(time), Toast.LENGTH_SHORT).show();
+        spinner.setVisibility(View.VISIBLE);
         Intent myIntent = new Intent(getApplicationContext(), AddPlanningEventActivity.class);
         myIntent.putExtra("Calendar", time);
         startActivityForResult(myIntent, 200);
@@ -224,6 +232,7 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
             planningEventList = PlanningEventService.getAll();
             mWeekView.notifyDatasetChanged();
         }
+        spinner.setVisibility(View.GONE);
     }
 
     @Override
@@ -276,10 +285,17 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
                     mWeekView.setEventTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 10, getResources().getDisplayMetrics()));
                 }
                 return true;
+            case R.id.action_close_cours:
+                finish();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        // Nothings
+    }
 
 }

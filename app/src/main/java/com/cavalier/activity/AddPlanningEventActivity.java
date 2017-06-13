@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TimePicker;
@@ -51,7 +53,6 @@ public class AddPlanningEventActivity extends Activity implements MyDialogInterf
     private PlanningEvent planningEvent = null;
     private MyDialogInterface myInterface;
     private Menu menu = null;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,16 +125,9 @@ public class AddPlanningEventActivity extends Activity implements MyDialogInterf
                 dateFinPicker.updateDate(fin.get(Calendar.YEAR), fin.get(Calendar.MONTH), fin.get(Calendar.DAY_OF_MONTH));
                 timeFinPicker.setCurrentHour(fin.get(Calendar.HOUR_OF_DAY));
                 timeFinPicker.setCurrentMinute(fin.get(Calendar.MINUTE));
-                if (menu != null) {
-                    MenuItem item = menu.findItem(R.id.action_transform_reprise);
-                    Utils.enableItem(item);
-                }
-            } else {
-                if (menu != null) {
-                    MenuItem item = menu.findItem(R.id.action_transform_reprise);
-                    Utils.disableItem(item);
-                }
             }
+            updateMenu(menu);
+            this.setTitle(R.string.title_activity_update_planning);
         }
     }
 
@@ -146,10 +140,7 @@ public class AddPlanningEventActivity extends Activity implements MyDialogInterf
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem item = menu.findItem(R.id.action_transform_reprise);
-        if (planningEvent == null) {
-            Utils.disableItem(item);
-        }
+        updateMenu(menu);
         return true;
     }
 
@@ -173,6 +164,20 @@ public class AddPlanningEventActivity extends Activity implements MyDialogInterf
                 return true;
         }
         return false;
+    }
+
+    private void updateMenu(Menu menu) {
+        if (menu !=null) {
+            MenuItem itemR = menu.findItem(R.id.action_transform_reprise);
+            MenuItem itemD = menu.findItem(R.id.action_delete_planning);
+            if (planningEvent == null) {
+                Utils.disableItem(itemR);
+                Utils.disableItem(itemD);
+            } else {
+                Utils.enableItem(itemR);
+                Utils.enableItem(itemD);
+            }
+        }
     }
 
     private void loadSpinnerCavalier(Spinner spinner) {
@@ -229,7 +234,7 @@ public class AddPlanningEventActivity extends Activity implements MyDialogInterf
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(true);
             builder.setIcon(R.drawable.delete);
-            builder.setTitle(planningEvent.getMonture().getNom());
+            builder.setTitle(getString(R.string.title_activity_delete_planning) + " " + planningEvent.getMonture().getNom());
             builder.setInverseBackgroundForced(true);
             builder.setPositiveButton(R.string.oui, new DialogInterface.OnClickListener() {
                 @Override

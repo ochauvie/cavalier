@@ -129,8 +129,10 @@
     <string name="planning_save">L\'évènement est sauvegardé</string>
     <string name="planning_delete">L\'évènement est supprimé</string>
     <string name="title_activity_add_planning">Ajouter un évènement</string>
+    <string name="title_activity_delete_planning">Supprimer l\'évènement</string>
+    <string name="title_activity_update_planning">Evènement</string>
 
-    <string name="action_today">Affichage</string>
+    <string name="action_today">Affichage: </string>
     <string name="action_day_view">Aujourd\'hui</string>
     <string name="action_three_day_view">Vue 3 jours</string>
     <string name="action_week_view">Vue hebdomadaire</string>
