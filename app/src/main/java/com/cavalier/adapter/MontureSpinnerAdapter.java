@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.cavalier.R;
 import com.cavalier.model.Monture;
+import com.cavalier.service.BitmapService;
 import com.cavalier.tools.PictureUtils;
 
 import java.util.HashMap;
@@ -65,6 +66,10 @@ public class MontureSpinnerAdapter extends BaseAdapter {
 
     private void loadBitmaps() {
         for (Monture item:dataList) {
+//            Bitmap bitmap = PictureUtils.getImage(item.getImg());
+//            if (bitmap != null) {
+//                BitmapService.addBitmapToMemoryCache("Monture_" + item.getId().toString(), bitmap);
+//            }
             bitmaps.put(item.getId(), PictureUtils.getImage(item.getImg()));
         }
     }
@@ -82,6 +87,7 @@ public class MontureSpinnerAdapter extends BaseAdapter {
         }
 
         ImageView left_pic = (ImageView) mySpinner.findViewById(R.id.left_pic);
+        //left_pic.setImageBitmap(BitmapService.getBitmapFromMemCache("Monture_" + item.getId().toString()));
         left_pic.setImageBitmap(bitmaps.get(item.getId()));
 
         return mySpinner;

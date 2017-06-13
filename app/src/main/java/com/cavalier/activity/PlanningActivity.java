@@ -139,13 +139,15 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
 
     @Override
     public void onEventClick(WeekViewEvent event, RectF eventRect) {
-        Cours cours = CoursService.getById(event.getId());
-        if (cours != null) {
-            showCoursEvent(cours);
+        if (event.getName().startsWith("Reprise")) {
+            Cours cours = CoursService.getById(event.getId());
+            if (cours != null) {
+                showCoursEvent(cours);
+            }
         } else {
-            spinner.setVisibility(View.VISIBLE);
             PlanningEvent plannigEvent = PlanningEventService.getById(event.getId());
             if (plannigEvent != null) {
+                spinner.setVisibility(View.VISIBLE);
                 showPlannigEvent(plannigEvent);
             }
         }
