@@ -311,7 +311,7 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            imageView.setImageBitmap(imageBitmap);
+            imageView.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap, 256, 280, false));
         }
         if (requestCode == REQUEST_IMAGE_SELECT && resultCode == RESULT_OK) {
             final Bundle extras = data.getExtras();
