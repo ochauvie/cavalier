@@ -123,7 +123,7 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
                 weekViewEvent.setStartTime(deb);
                 weekViewEvent.setEndTime(fin);
 
-                int alpha = 85;
+                int alpha = 150;
                 weekViewEvent.setColor(ColorUtils.setAlphaComponent(planningEvent.getMonture().getPlanningColor(), alpha));
 
                 //weekViewEvent.setColor(planningEvent.getMonture().getPlanningColor());
