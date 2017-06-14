@@ -108,6 +108,7 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
                 weekViewEvent.setStartTime(deb);
                 weekViewEvent.setEndTime(fin);
                 weekViewEvent.setColor(cours.getMonture().getPlanningColor());
+                weekViewEvent.setTextColor(Color.WHITE);
                 //weekViewEvent.setLocation(cours.getTypeLieu().name());
                 events.add(weekViewEvent);
             }
@@ -124,6 +125,7 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
                 weekViewEvent.setName("Evènement\n" + planningEvent.getCavalier().getPrenom() + "\n" + planningEvent.getMonture().getNom());
                 weekViewEvent.setStartTime(deb);
                 weekViewEvent.setEndTime(fin);
+                weekViewEvent.setTextColor(Color.BLACK);
 
                 int alpha = 150;
                 weekViewEvent.setColor(ColorUtils.setAlphaComponent(planningEvent.getMonture().getPlanningColor(), alpha));

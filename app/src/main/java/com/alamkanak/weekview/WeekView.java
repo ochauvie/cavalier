@@ -888,6 +888,9 @@ public class WeekView extends View {
             bob.append(event.getLocation());
         }
 
+
+        mEventTextPaint.setColor(event.getTextColor());
+
         int availableHeight = (int) (rect.bottom - originalTop - mEventPadding * 2);
         int availableWidth = (int) (rect.right - originalLeft - mEventPadding * 2);
 
