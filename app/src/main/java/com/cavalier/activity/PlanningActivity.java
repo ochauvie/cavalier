@@ -29,6 +29,7 @@ import com.cavalier.model.Cours;
 import com.cavalier.model.Personne;
 import com.cavalier.model.PlanningEvent;
 import com.cavalier.model.TypePersonne;
+import com.cavalier.model.TypePlanningEvent;
 import com.cavalier.service.CoursService;
 import com.cavalier.service.PersonneService;
 import com.cavalier.service.PlanningEventService;
@@ -103,8 +104,9 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
             fin.add(Calendar.HOUR, cours.getDuree());
             if (deb.get(Calendar.YEAR) == newYear && (deb.get(Calendar.MONTH)+1) == newMonth) {
                 WeekViewEvent weekViewEvent = new WeekViewEvent();
+                weekViewEvent.setTypeEvent(TypePlanningEvent.COURS);
                 weekViewEvent.setId(cours.getId());
-                weekViewEvent.setName("Reprise\n" + cours.getCavalier().getPrenom() + "\n" + cours.getMonture().getNom());
+                weekViewEvent.setName(getString(TypePlanningEvent.COURS.getLabel()) + "\n" + cours.getCavalier().getPrenom() + "\n" + cours.getMonture().getNom());
                 weekViewEvent.setStartTime(deb);
                 weekViewEvent.setEndTime(fin);
                 weekViewEvent.setColor(cours.getMonture().getPlanningColor());
@@ -121,8 +123,9 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
             fin.setTime(planningEvent.getDateFin());
             if (deb.get(Calendar.YEAR) == newYear && (deb.get(Calendar.MONTH)+1) == newMonth) {
                 WeekViewEvent weekViewEvent = new WeekViewEvent();
+                weekViewEvent.setTypeEvent(TypePlanningEvent.COURS_PLANIFIE);
                 weekViewEvent.setId(planningEvent.getId());
-                weekViewEvent.setName("Evènement\n" + planningEvent.getCavalier().getPrenom() + "\n" + planningEvent.getMonture().getNom());
+                weekViewEvent.setName(getString(TypePlanningEvent.COURS_PLANIFIE.getLabel()) + "\n" + planningEvent.getCavalier().getPrenom() + "\n" + planningEvent.getMonture().getNom());
                 weekViewEvent.setStartTime(deb);
                 weekViewEvent.setEndTime(fin);
                 weekViewEvent.setTextColor(Color.BLACK);
@@ -143,17 +146,22 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
 
     @Override
     public void onEventClick(WeekViewEvent event, RectF eventRect) {
-        if (event.getName().startsWith("Reprise")) {
+
+        // TODO : choix action sur l'élément (delete, update, transfomrer)
+
+        if ( TypePlanningEvent.COURS.name().equals(event.getTypeEvent().name())) {
             Cours cours = CoursService.getById(event.getId());
             if (cours != null) {
                 showCoursEvent(cours);
             }
-        } else {
+        } else if (TypePlanningEvent.COURS_PLANIFIE.name().equals(event.getTypeEvent().name())) {
             PlanningEvent plannigEvent = PlanningEventService.getById(event.getId());
             if (plannigEvent != null) {
                 spinner.setVisibility(View.VISIBLE);
                 showPlannigEvent(plannigEvent);
             }
+        } else if (TypePlanningEvent.NOTE.name().equals(event.getTypeEvent().name())) {
+            // TODO
         }
     }
 
@@ -166,6 +174,9 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
     @Override
     public void onEmptyViewLongPress(Calendar time) {
         //Toast.makeText(this, "Empty view long pressed: " + getEventTitle(time), Toast.LENGTH_SHORT).show();
+
+        // TODO : choix cours planifié ou note
+
         spinner.setVisibility(View.VISIBLE);
         Intent myIntent = new Intent(getApplicationContext(), AddPlanningEventActivity.class);
         myIntent.putExtra("Calendar", time);

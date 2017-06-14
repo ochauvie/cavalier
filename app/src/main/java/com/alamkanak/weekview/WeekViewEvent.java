@@ -1,5 +1,7 @@
 package com.alamkanak.weekview;
 
+import com.cavalier.model.TypePlanningEvent;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -19,7 +21,9 @@ public class WeekViewEvent {
     private int mColor;
     private boolean mAllDay;
 
+    // Custom
     private int mTextColor;
+    private TypePlanningEvent mTypeEvent;
 
 
     public WeekViewEvent(){
@@ -167,6 +171,14 @@ public class WeekViewEvent {
         this.mTextColor = textColor;
     }
 
+    public TypePlanningEvent getTypeEvent() {
+        return mTypeEvent;
+    }
+
+    public void setTypeEvent(TypePlanningEvent typeEvent) {
+        this.mTypeEvent = typeEvent;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -197,6 +209,7 @@ public class WeekViewEvent {
             WeekViewEvent event1 = new WeekViewEvent(this.getId(), this.getName(), this.getLocation(), this.getStartTime(), endTime, this.isAllDay());
             event1.setColor(this.getColor());
             event1.setTextColor(this.getTextColor());
+            event1.setTypeEvent(this.getTypeEvent());
             events.add(event1);
 
             // Add other days.
@@ -212,6 +225,7 @@ public class WeekViewEvent {
                 WeekViewEvent eventMore = new WeekViewEvent(this.getId(), this.getName(), null, overDay, endOfOverDay, this.isAllDay());
                 eventMore.setColor(this.getColor());
                 eventMore.setTextColor(this.getTextColor());
+                eventMore.setTypeEvent(this.getTypeEvent());
                 events.add(eventMore);
 
                 // Add next day.
@@ -225,6 +239,7 @@ public class WeekViewEvent {
             WeekViewEvent event2 = new WeekViewEvent(this.getId(), this.getName(), this.getLocation(), startTime, this.getEndTime(), this.isAllDay());
             event2.setColor(this.getColor());
             event2.setTextColor(this.getTextColor());
+            event2.setTypeEvent(this.getTypeEvent());
             events.add(event2);
         }
         else{
