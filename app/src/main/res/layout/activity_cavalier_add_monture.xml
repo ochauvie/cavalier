@@ -139,6 +139,25 @@
 
             </TableRow>
 
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Photo"
+                    android:textSize="20sp"
+                    android:layout_column="0" />
+
+                <ImageView android:id="@+id/cheval_pic"
+                    android:contentDescription="Photo"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_centerHorizontal="true"/>
+            </TableRow>
+
         </TableLayout>
 
         <TextView
@@ -149,6 +168,7 @@
             android:textSize="20sp"
             android:id="@+id/textView8"
             android:layout_below="@+id/tableLayout" />
+
 
         <EditText
             android:layout_marginTop="10dp"
@@ -161,19 +181,12 @@
             android:layout_below="@+id/textView8"
             android:lines="2" />
 
-        <ImageView android:id="@+id/cheval_pic"
-            android:contentDescription="Photo"
-            android:layout_width="400dp"
-            android:layout_height="400dp"
-            android:layout_below="@+id/editTextCaracteristique"
-            android:layout_centerHorizontal="true"/>
-
 
         <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/eventLayout"
-            android:layout_below="@+id/cheval_pic">
+            android:layout_below="@+id/editTextCaracteristique">
 
             <TableRow
                 android:layout_width="fill_parent"

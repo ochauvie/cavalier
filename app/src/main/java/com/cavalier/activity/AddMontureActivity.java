@@ -339,8 +339,8 @@ public class AddMontureActivity extends ListActivity implements MyDialogInterfac
         intent.setType("image/*");
         intent.putExtra("crop", "true");
         intent.putExtra("scale", true);
-        intent.putExtra("outputX", 256);
-        intent.putExtra("outputY", 280);
+        intent.putExtra("outputX", 156);
+        intent.putExtra("outputY", 180);
         intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1);
         intent.putExtra("return-data", true);
@@ -352,13 +352,13 @@ public class AddMontureActivity extends ListActivity implements MyDialogInterfac
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            imageView.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap, 256, 280, false));
+            imageView.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap, 70, 70, false));
         }
         if (requestCode == REQUEST_IMAGE_SELECT && resultCode == RESULT_OK) {
             final Bundle extras = data.getExtras();
             if (extras != null) {
                 Bitmap imageBitmap = extras.getParcelable("data");
-                imageView.setImageBitmap(imageBitmap);
+                imageView.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap, 70, 70, false));
             }
         }
     }

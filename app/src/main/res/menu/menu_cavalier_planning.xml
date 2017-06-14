@@ -2,9 +2,9 @@
 xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/action_close_cours"
+        android:icon="@drawable/smallexit"
         android:title="@string/action_end"
-        app:icon="@drawable/smallexit"
-        app:showAsAction="ifRoom" />
+        android:showAsAction="always" />
 
     <group android:checkableBehavior="single">
         <item android:id="@+id/action_day_view"

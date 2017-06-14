@@ -16,7 +16,8 @@ public class PictureUtils {
 
     public static Bitmap getImage(byte[] imgByte){
         if (imgByte != null) {
-            return BitmapFactory.decodeByteArray(imgByte, 0, imgByte.length);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imgByte, 0, imgByte.length);
+            return Bitmap.createScaledBitmap(bitmap, 70, 70, false);
         }
        return null;
     }
