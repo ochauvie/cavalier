@@ -84,6 +84,8 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
         // Set long press listener for empty view
         mWeekView.setEmptyViewLongPressListener(this);
 
+        mWeekView.goToHour(8);
+
         // Hide keyboard
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
