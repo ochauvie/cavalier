@@ -1,7 +1,5 @@
 package com.alamkanak.weekview;
 
-import com.cavalier.model.TypePlanningEvent;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -23,7 +21,7 @@ public class WeekViewEvent {
 
     // Custom
     private int mTextColor;
-    private TypePlanningEvent mTypeEvent;
+    private String mTypeEvent;
 
 
     public WeekViewEvent(){
@@ -171,11 +169,11 @@ public class WeekViewEvent {
         this.mTextColor = textColor;
     }
 
-    public TypePlanningEvent getTypeEvent() {
+    public String getTypeEvent() {
         return mTypeEvent;
     }
 
-    public void setTypeEvent(TypePlanningEvent typeEvent) {
+    public void setTypeEvent(String typeEvent) {
         this.mTypeEvent = typeEvent;
     }
 

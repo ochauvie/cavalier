@@ -104,7 +104,7 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
             fin.add(Calendar.HOUR, cours.getDuree());
             if (deb.get(Calendar.YEAR) == newYear && (deb.get(Calendar.MONTH)+1) == newMonth) {
                 WeekViewEvent weekViewEvent = new WeekViewEvent();
-                weekViewEvent.setTypeEvent(TypePlanningEvent.COURS);
+                weekViewEvent.setTypeEvent(TypePlanningEvent.COURS.name());
                 weekViewEvent.setId(cours.getId());
                 weekViewEvent.setName(getString(TypePlanningEvent.COURS.getLabel()) + "\n" + cours.getCavalier().getPrenom() + "\n" + cours.getMonture().getNom());
                 weekViewEvent.setStartTime(deb);
@@ -123,7 +123,7 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
             fin.setTime(planningEvent.getDateFin());
             if (deb.get(Calendar.YEAR) == newYear && (deb.get(Calendar.MONTH)+1) == newMonth) {
                 WeekViewEvent weekViewEvent = new WeekViewEvent();
-                weekViewEvent.setTypeEvent(TypePlanningEvent.COURS_PLANIFIE);
+                weekViewEvent.setTypeEvent(TypePlanningEvent.COURS_PLANIFIE.name());
                 weekViewEvent.setId(planningEvent.getId());
                 weekViewEvent.setName(getString(TypePlanningEvent.COURS_PLANIFIE.getLabel()) + "\n" + planningEvent.getCavalier().getPrenom() + "\n" + planningEvent.getMonture().getNom());
                 weekViewEvent.setStartTime(deb);
@@ -147,20 +147,20 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
     @Override
     public void onEventClick(WeekViewEvent event, RectF eventRect) {
 
-        // TODO : choix action sur l'élément (delete, update, transfomrer)
+        // TODO : choix action sur l'élément (menu: delete, update, transfomrer)
 
-        if ( TypePlanningEvent.COURS.name().equals(event.getTypeEvent().name())) {
+        if ( TypePlanningEvent.COURS.name().equals(event.getTypeEvent())) {
             Cours cours = CoursService.getById(event.getId());
             if (cours != null) {
                 showCoursEvent(cours);
             }
-        } else if (TypePlanningEvent.COURS_PLANIFIE.name().equals(event.getTypeEvent().name())) {
+        } else if (TypePlanningEvent.COURS_PLANIFIE.name().equals(event.getTypeEvent())) {
             PlanningEvent plannigEvent = PlanningEventService.getById(event.getId());
             if (plannigEvent != null) {
                 spinner.setVisibility(View.VISIBLE);
                 showPlannigEvent(plannigEvent);
             }
-        } else if (TypePlanningEvent.NOTE.name().equals(event.getTypeEvent().name())) {
+        } else if (TypePlanningEvent.NOTE.name().equals(event.getTypeEvent())) {
             // TODO
         }
     }
