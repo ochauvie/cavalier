@@ -402,7 +402,7 @@ public class AddMontureActivity extends ListActivity implements MyDialogInterfac
         dialog.setColorListener(new ColorListener() {
             @Override
             public void OnColorClick(View v, int color) {
-                colorPicker.setBackgroundColor(color);;
+                colorPicker.setBackgroundColor(color);
             }
         });
         dialog.show();

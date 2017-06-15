@@ -3,16 +3,12 @@ package com.cavalier.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TimePicker;
@@ -22,7 +18,6 @@ import com.cavalier.R;
 import com.cavalier.adapter.IDataSpinnerAdapter;
 import com.cavalier.adapter.MontureSpinnerAdapter;
 import com.cavalier.adapter.PersonneSpinnerAdapter;
-import com.cavalier.listner.CoursListener;
 import com.cavalier.model.Cours;
 import com.cavalier.model.IRefData;
 import com.cavalier.model.Monture;
@@ -35,13 +30,10 @@ import com.cavalier.service.PersonneService;
 import com.cavalier.tools.SpinnerTool;
 import com.cavalier.tools.Utils;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class AddPlanningEventActivity extends Activity implements MyDialogInterface.DialogReturn {

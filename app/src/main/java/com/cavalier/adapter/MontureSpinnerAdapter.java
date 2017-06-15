@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.cavalier.R;
 import com.cavalier.model.Monture;
-import com.cavalier.service.BitmapService;
 import com.cavalier.tools.PictureUtils;
 
 import java.util.HashMap;
