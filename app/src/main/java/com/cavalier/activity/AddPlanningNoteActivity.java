@@ -3,14 +3,18 @@ package com.cavalier.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ScrollView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -18,14 +22,20 @@ import com.cavalier.R;
 import com.cavalier.model.PlanningNote;
 import com.cavalier.tools.Utils;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class AddPlanningNoteActivity extends Activity implements MyDialogInterface.DialogReturn {
 
+    private TableRow dateDebutRowPicker, dateFinRowPicker, dateDebutRowTxt, dateFinRowTxt, titreRow, noteRow;
     private DatePicker dateDebutPicker, dateFinPicker;
     private TimePicker timeDebutPicker, timeFinPicker;
     private EditText editTextTitre, editTextNote;
+    private TextView textDateDebut, textDateFin;
+    private Button buttonUpdateDates, buttonSaveDates;
+
     private PlanningNote planningNote = null;
     private MyDialogInterface myInterface;
     private Menu menu = null;
@@ -34,6 +44,20 @@ public class AddPlanningNoteActivity extends Activity implements MyDialogInterfa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cavalier_add_planning_note);
+
+        titreRow = (TableRow) findViewById(R.id.titreRow);
+        noteRow = (TableRow) findViewById(R.id.noteRow);
+
+        dateDebutRowPicker = (TableRow) findViewById(R.id.dateDebutRowPicker);
+        dateFinRowPicker = (TableRow) findViewById(R.id.dateFinRowPicker);
+
+        dateDebutRowTxt = (TableRow) findViewById(R.id.dateDebutRowTxt);
+        dateFinRowTxt = (TableRow) findViewById(R.id.dateFinRowTxt);
+
+        textDateDebut = (TextView) findViewById(R.id.textDateDebut);
+        textDateFin = (TextView) findViewById(R.id.textDateFin);
+        buttonUpdateDates = (Button) findViewById(R.id.updateDates);
+        buttonSaveDates = (Button) findViewById(R.id.saveDates);
 
         timeDebutPicker = (TimePicker) findViewById(R.id.timeDebutPicker);
         timeDebutPicker.setIs24HourView(true);
@@ -48,6 +72,18 @@ public class AddPlanningNoteActivity extends Activity implements MyDialogInterfa
 
         myInterface = new MyDialogInterface();
         myInterface.setListener(this);
+
+        buttonUpdateDates.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                updateDates();
+            }
+        });
+
+        buttonSaveDates.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                saveDates();
+            }
+        });
 
         initView();
 
@@ -101,6 +137,8 @@ public class AddPlanningNoteActivity extends Activity implements MyDialogInterfa
             updateMenu(menu);
             this.setTitle(R.string.title_activity_update_note);
         }
+
+        saveDates();
     }
 
     @Override
@@ -206,12 +244,48 @@ public class AddPlanningNoteActivity extends Activity implements MyDialogInterfa
         // Nothings
     }
 
-@Override
+    @Override
     public void onDialogCompleted(boolean answer, String type) {
         if ("planningNote".equals(type) && answer && planningNote != null) {
             planningNote.delete();
             Toast.makeText(getBaseContext(), getString(R.string.note_delete), Toast.LENGTH_LONG).show();
             finish();
         }
+    }
+
+    private void updateDates() {
+        dateDebutRowTxt.setVisibility(View.GONE);
+        dateFinRowTxt.setVisibility(View.GONE);
+        buttonUpdateDates.setVisibility(View.GONE);
+        titreRow.setVisibility(View.GONE);
+        noteRow.setVisibility(View.GONE);
+
+        dateDebutRowPicker.setVisibility(View.VISIBLE);
+        dateFinRowPicker.setVisibility(View.VISIBLE);
+        buttonSaveDates.setVisibility(View.VISIBLE);
+    }
+
+
+    private void saveDates() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
+        String dateDebutFormat = dateFormat.format(new Date(dateDebutPicker.getYear(), dateDebutPicker.getMonth(), dateDebutPicker.getDayOfMonth()));
+        String dateFinFormat = dateFormat.format(new Date(dateFinPicker.getYear(), dateFinPicker.getMonth(), dateFinPicker.getDayOfMonth()));
+
+        String heureDebut = timeDebutPicker.getCurrentHour() + " : " +  timeDebutPicker.getCurrentMinute();
+        String heureFin = timeFinPicker.getCurrentHour() + " : " +  timeFinPicker.getCurrentMinute();
+
+        textDateDebut.setText(dateDebutFormat + " " + heureDebut);
+        textDateFin.setText(dateFinFormat + " " + heureFin);
+
+        dateDebutRowPicker.setVisibility(View.GONE);
+        dateFinRowPicker.setVisibility(View.GONE);
+        buttonSaveDates.setVisibility(View.GONE);
+
+        dateDebutRowTxt.setVisibility(View.VISIBLE);
+        dateFinRowTxt.setVisibility(View.VISIBLE);
+        buttonUpdateDates.setVisibility(View.VISIBLE);
+        titreRow.setVisibility(View.VISIBLE);
+        noteRow.setVisibility(View.VISIBLE);
+
     }
 }
