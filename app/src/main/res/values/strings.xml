@@ -133,6 +133,12 @@
     <string name="title_activity_delete_planning">Supprimer l\'évènement</string>
     <string name="title_activity_update_planning">Evènement</string>
 
+    <string name="title_activity_add_note">Note</string>
+    <string name="title_activity_update_note">Note</string>
+    <string name="note_save">La note est sauvegardée</string>
+    <string name="note_delete">La note est supprimée</string>
+    <string name="title_activity_delete_note">Supprimer la note</string>
+
     <string name="planning_cours">Reprise</string>
     <string name="planning_cours_planifie">Reprise planifiée</string>
     <string name="planning_note">Note</string>

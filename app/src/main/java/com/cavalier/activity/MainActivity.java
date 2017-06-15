@@ -21,6 +21,7 @@ import com.cavalier.model.EvenementMonture;
 import com.cavalier.model.Monture;
 import com.cavalier.model.Personne;
 import com.cavalier.model.PlanningEvent;
+import com.cavalier.model.PlanningNote;
 import com.cavalier.model.Ration;
 import com.cavalier.model.TypePersonne;
 import com.cavalier.R;
@@ -38,7 +39,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
 
         // Ouvre la BD
         Configuration.Builder config = new Configuration.Builder(this);
-        config.addModelClasses(Personne.class, Monture.class, Cours.class, EvenementMonture.class, Ration.class, PlanningEvent.class);
+        config.addModelClasses(Personne.class, Monture.class, Cours.class, EvenementMonture.class, Ration.class, PlanningEvent.class, PlanningNote.class);
         ActiveAndroid.initialize(config.create());
         updateDatabase();
 

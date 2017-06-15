@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/cours_scrollView">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_filter">
+
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="100"
+            android:layout_alignParentTop="true"
+            android:id="@+id/tableLayoutDateDebut">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent">
+
+                <DatePicker
+                    android:id="@+id/dateDebutPicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="40"
+                    android:spinnersShown="true"
+                    android:calendarViewShown="false"/>
+
+                <TimePicker
+                    android:id="@+id/timeDebutPicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50"
+                    android:timePickerMode="spinner"/>
+
+            </TableRow>
+            <TableRow>
+
+                <DatePicker
+                    android:id="@+id/dateFinPicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="40"
+                    android:spinnersShown="true"
+                    android:calendarViewShown="false"/>
+
+                <TimePicker
+                    android:id="@+id/timeFinPicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50"
+                    android:timePickerMode="spinner"/>
+            </TableRow>
+        </TableLayout>
+
+
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tableLayoutDateDebut">
+
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Titre"
+                    android:textSize="15sp"
+                    android:id="@+id/textView6"
+                    android:layout_column="0"
+                    />
+
+                <EditText
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/editTextTitre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="15sp"
+                    android:inputType="textMultiLine"
+                    android:lines="1"
+                    android:layout_column="1"/>
+
+            </TableRow>
+
+        </TableLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tableLayoutObs"
+            android:layout_below="@+id/tableLayout">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Note"
+                    android:textSize="15sp"
+                    android:id="@+id/textView8"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/editTextNote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="15sp"
+                    android:inputType="textMultiLine"
+                    android:lines="2"/>
+            </TableRow>
+
+        </TableLayout>
+
+    </RelativeLayout>
+</ScrollView>

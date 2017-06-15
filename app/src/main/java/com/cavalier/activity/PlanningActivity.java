@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,11 +29,13 @@ import com.cavalier.R;
 import com.cavalier.model.Cours;
 import com.cavalier.model.Personne;
 import com.cavalier.model.PlanningEvent;
+import com.cavalier.model.PlanningNote;
 import com.cavalier.model.TypePersonne;
 import com.cavalier.model.TypePlanningEvent;
 import com.cavalier.service.CoursService;
 import com.cavalier.service.PersonneService;
 import com.cavalier.service.PlanningEventService;
+import com.cavalier.service.PlanningNoteService;
 import com.cavalier.tools.PictureUtils;
 
 import java.util.ArrayList;
@@ -46,6 +49,7 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
     private WeekView mWeekView;
     private List<Cours> coursList;
     private List<PlanningEvent> planningEventList;
+    private List<PlanningNote> planningNoteList;
     private ProgressBar spinner;
 
 
@@ -63,8 +67,8 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
         linearlayout.setBackgroundColor(Color.WHITE);
 
         coursList = CoursService.getAll();
-
         planningEventList = PlanningEventService.getAll();
+        planningNoteList = PlanningNoteService.getAll();
 
         spinner = (ProgressBar)findViewById(R.id.progressBar1);
         spinner.setVisibility(View.GONE);
@@ -139,6 +143,23 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
             }
         }
 
+        for (PlanningNote planningNote:planningNoteList) {
+            Calendar deb = Calendar.getInstance();
+            Calendar fin = Calendar.getInstance();
+            deb.setTime(planningNote.getDateDebut());
+            fin.setTime(planningNote.getDateFin());
+            if (deb.get(Calendar.YEAR) == newYear && (deb.get(Calendar.MONTH)+1) == newMonth) {
+                WeekViewEvent weekViewEvent = new WeekViewEvent();
+                weekViewEvent.setTypeEvent(TypePlanningEvent.NOTE.name());
+                weekViewEvent.setId(planningNote.getId());
+                weekViewEvent.setName(getString(TypePlanningEvent.NOTE.getLabel()) + "\n" + planningNote.getTitre());
+                weekViewEvent.setStartTime(deb);
+                weekViewEvent.setEndTime(fin);
+                weekViewEvent.setTextColor(Color.YELLOW);
+                events.add(weekViewEvent);
+            }
+        }
+
         return events;
     }
 
@@ -161,7 +182,10 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
                 showPlannigEvent(plannigEvent);
             }
         } else if (TypePlanningEvent.NOTE.name().equals(event.getTypeEvent())) {
-            // TODO
+            PlanningNote planningNote = PlanningNoteService.getById(event.getId());
+            if (planningNote != null) {
+                showPlannigNote(planningNote);
+            }
         }
     }
 
@@ -173,14 +197,34 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
 
     @Override
     public void onEmptyViewLongPress(Calendar time) {
-        //Toast.makeText(this, "Empty view long pressed: " + getEventTitle(time), Toast.LENGTH_SHORT).show();
+        final Calendar  calendar = time;
 
-        // TODO : choix cours planifié ou note
+        // TODO : marche pas
+        PopupMenu popup = new PopupMenu(PlanningActivity.this, linearlayout);
+        popup.getMenuInflater().inflate(R.menu.menu_popup_planning_new, popup.getMenu());
 
-        spinner.setVisibility(View.VISIBLE);
-        Intent myIntent = new Intent(getApplicationContext(), AddPlanningEventActivity.class);
-        myIntent.putExtra("Calendar", time);
-        startActivityForResult(myIntent, 200);
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+
+                switch (item.getItemId()) {
+                    case R.id.addCoursPlanifie:
+                        spinner.setVisibility(View.VISIBLE);
+                        Intent myIntent = new Intent(getApplicationContext(), AddPlanningEventActivity.class);
+                        myIntent.putExtra("Calendar", calendar);
+                        startActivityForResult(myIntent, 200);
+                        return true;
+
+                    case R.id.addNote:
+                        Intent noteIntent = new Intent(getApplicationContext(), AddPlanningNoteActivity.class);
+                        noteIntent.putExtra("Calendar", calendar);
+                        startActivityForResult(noteIntent, 300);
+                        return true;
+                }
+                return true;
+            }
+        });
+        popup.show();
+
     }
 
     protected String getEventTitle(Calendar time) {
@@ -244,13 +288,24 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 100 || requestCode == 200) {
+        if (requestCode == 100 || requestCode == 200 ) {
             coursList = CoursService.getAll();
             planningEventList = PlanningEventService.getAll();
             mWeekView.notifyDatasetChanged();
         }
+        if (requestCode == 300) {
+            planningNoteList = PlanningNoteService.getAll();
+            mWeekView.notifyDatasetChanged();
+        }
         spinner.setVisibility(View.GONE);
     }
+
+    private void showPlannigNote(PlanningNote planningNote) {
+        Intent myIntent = new Intent(getApplicationContext(), AddPlanningNoteActivity.class);
+        myIntent.putExtra("PlanningNote", planningNote.getId());
+        startActivityForResult(myIntent, 300);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
