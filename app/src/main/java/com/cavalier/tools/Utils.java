@@ -13,4 +13,12 @@ public class Utils {
         item.setEnabled(false);
         item.getIcon().setAlpha(130);
     }
+
+    public static void hideItem (MenuItem item) {
+        item.setVisible(false);
+    }
+
+    public static void showtem (MenuItem item) {
+        item.setVisible(true);
+    }
 }

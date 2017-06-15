@@ -104,6 +104,12 @@ public class AddPlanningEventActivity extends Activity implements MyDialogInterf
                 dateDebutPicker.updateDate(calendarDeb.get(Calendar.YEAR), calendarDeb.get(Calendar.MONTH), calendarDeb.get(Calendar.DAY_OF_MONTH));
                 timeDebutPicker.setCurrentHour(calendarDeb.get(Calendar.HOUR_OF_DAY));
                 timeDebutPicker.setCurrentMinute(calendarDeb.get(Calendar.MINUTE));
+
+                Calendar calendarFin = calendarDeb;
+                calendarFin.add(Calendar.HOUR, 1);
+                dateFinPicker.updateDate(calendarFin.get(Calendar.YEAR), calendarFin.get(Calendar.MONTH), calendarFin.get(Calendar.DAY_OF_MONTH));
+                timeFinPicker.setCurrentHour(calendarFin.get(Calendar.HOUR_OF_DAY));
+                timeFinPicker.setCurrentMinute(calendarFin.get(Calendar.MINUTE));
             }
             long  planningEventId = bundle.getLong("PlanningEvent");
             planningEvent = PlanningEvent.load(PlanningEvent.class, planningEventId);

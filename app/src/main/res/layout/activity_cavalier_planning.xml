@@ -6,24 +6,20 @@
     android:layout_height="fill_parent"
     android:scrollbars="vertical">
 
-
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/progressBar"
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        >
-
+        android:gravity="center">
 
         <ProgressBar
             android:id="@+id/progressBar1"
             style="?android:attr/progressBarStyleLarge"
             android:progressDrawable="@drawable/circular_progress_bar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 
@@ -32,9 +28,7 @@
         android:id="@+id/planning"
         android:orientation="vertical" android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:scrollbars="vertical"
-        >
-
+        android:scrollbars="vertical">
 
         <com.alamkanak.weekview.WeekView
             android:id="@+id/weekView"

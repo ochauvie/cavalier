@@ -71,6 +71,13 @@ public class AddPlanningNoteActivity extends Activity implements MyDialogInterfa
                 dateDebutPicker.updateDate(calendarDeb.get(Calendar.YEAR), calendarDeb.get(Calendar.MONTH), calendarDeb.get(Calendar.DAY_OF_MONTH));
                 timeDebutPicker.setCurrentHour(calendarDeb.get(Calendar.HOUR_OF_DAY));
                 timeDebutPicker.setCurrentMinute(calendarDeb.get(Calendar.MINUTE));
+
+                Calendar calendarFin = calendarDeb;
+                calendarFin.add(Calendar.HOUR, 1);
+                dateFinPicker.updateDate(calendarFin.get(Calendar.YEAR), calendarFin.get(Calendar.MONTH), calendarFin.get(Calendar.DAY_OF_MONTH));
+                timeFinPicker.setCurrentHour(calendarFin.get(Calendar.HOUR_OF_DAY));
+                timeFinPicker.setCurrentMinute(calendarFin.get(Calendar.MINUTE));
+
             }
             long  planningNoteId = bundle.getLong("PlanningNote");
             planningNote = PlanningNote.load(PlanningNote.class, planningNoteId);
@@ -130,7 +137,7 @@ public class AddPlanningNoteActivity extends Activity implements MyDialogInterfa
     private void updateMenu(Menu menu) {
         if (menu !=null) {
             MenuItem itemR = menu.findItem(R.id.action_transform_reprise);
-            Utils.disableItem(itemR);
+            Utils.hideItem(itemR);
             MenuItem itemD = menu.findItem(R.id.action_delete_planning);
             if (planningNote == null) {
                 Utils.disableItem(itemD);

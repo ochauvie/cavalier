@@ -76,8 +76,7 @@
                     android:text="Titre"
                     android:textSize="15sp"
                     android:id="@+id/textView6"
-                    android:layout_column="0"
-                    />
+                    android:layout_column="0"/>
 
                 <EditText
                     android:layout_marginTop="10dp"
@@ -86,19 +85,11 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:textSize="15sp"
-                    android:inputType="textMultiLine"
-                    android:lines="1"
+                    android:inputType="text"
                     android:layout_column="1"/>
 
             </TableRow>
 
-        </TableLayout>
-
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tableLayoutObs"
-            android:layout_below="@+id/tableLayout">
 
             <TableRow
                 android:layout_width="fill_parent"
@@ -110,12 +101,8 @@
                     android:layout_height="wrap_content"
                     android:text="Note"
                     android:textSize="15sp"
-                    android:id="@+id/textView8"/>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent">
+                    android:id="@+id/textView8"
+                    android:layout_column="0"/>
 
                 <EditText
                     android:layout_marginTop="10dp"
@@ -125,7 +112,8 @@
                     android:ems="10"
                     android:textSize="15sp"
                     android:inputType="textMultiLine"
-                    android:lines="2"/>
+                    android:lines="2"
+                    android:layout_column="1"/>
             </TableRow>
 
         </TableLayout>
