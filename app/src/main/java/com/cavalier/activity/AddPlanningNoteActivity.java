@@ -3,6 +3,7 @@ package com.cavalier.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -54,7 +55,7 @@ public class AddPlanningNoteActivity extends Activity implements MyDialogInterfa
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         // Scrool to top
-        final ScrollView scrollview = (ScrollView)findViewById(R.id.cours_scrollView);
+        final ScrollView scrollview = (ScrollView)findViewById(R.id.noteView);
         scrollview.post(new Runnable() {
             public void run() {
                 scrollview.scrollTo(0, 0);
