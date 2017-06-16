@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
@@ -39,9 +40,10 @@ import com.cavalier.tools.PictureUtils;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 // https://github.com/alamkanak/Android-Week-View
-public class PlanningActivity extends Activity implements MonthLoader.MonthChangeListener, WeekView.EventClickListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
+public class PlanningActivity extends Activity implements MonthLoader.MonthChangeListener, WeekView.EventClickListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener, MyDialogInterface.DialogReturn {
 
     private LinearLayout linearlayout;
     private WeekView mWeekView;
@@ -49,7 +51,9 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
     private List<PlanningEvent> planningEventList;
     private List<PlanningNote> planningNoteList;
     private ProgressBar spinner;
+    private MyDialogInterface myInterface;
 
+    private PlanningEvent currentPlanningEvent;
 
     private static final int TYPE_DAY_VIEW = 1;
     private static final int TYPE_THREE_DAY_VIEW = 2;
@@ -89,6 +93,9 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
 
         mWeekView.goToHour(8);
 
+        myInterface = new MyDialogInterface();
+        myInterface.setListener(this);
+
         // Hide keyboard
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
@@ -112,7 +119,7 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
                 weekViewEvent.setStartTime(deb);
                 weekViewEvent.setEndTime(fin);
                 weekViewEvent.setColor(cours.getMonture().getPlanningColor());
-                weekViewEvent.setTextColor(Color.WHITE);
+                weekViewEvent.setTextColor(Color.BLACK);
                 //weekViewEvent.setLocation(cours.getTypeLieu().name());
                 events.add(weekViewEvent);
             }
@@ -130,7 +137,7 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
                 weekViewEvent.setName(getString(TypePlanningEvent.COURS_PLANIFIE.getLabel()) + "\n" + planningEvent.getCavalier().getPrenom() + "\n" + planningEvent.getMonture().getNom());
                 weekViewEvent.setStartTime(deb);
                 weekViewEvent.setEndTime(fin);
-                weekViewEvent.setTextColor(Color.WHITE);
+                weekViewEvent.setTextColor(Color.BLACK);
                 int alpha = 150;
                 weekViewEvent.setColor(ColorUtils.setAlphaComponent(planningEvent.getMonture().getPlanningColor(), alpha));
                 events.add(weekViewEvent);
@@ -161,27 +168,25 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
 
     @Override
     public void onEventClick(WeekViewEvent event, RectF eventRect) {
-
-        // TODO : choix action sur l'élément (menu: delete, update, transfomrer)
-
         if ( TypePlanningEvent.COURS.name().equals(event.getTypeEvent())) {
             Cours cours = CoursService.getById(event.getId());
             if (cours != null) {
                 showCoursEvent(cours);
-            }
-        } else if (TypePlanningEvent.COURS_PLANIFIE.name().equals(event.getTypeEvent())) {
-            PlanningEvent plannigEvent = PlanningEventService.getById(event.getId());
-            if (plannigEvent != null) {
-                spinner.setVisibility(View.VISIBLE);
-                showPlannigEvent(plannigEvent);
             }
         } else if (TypePlanningEvent.NOTE.name().equals(event.getTypeEvent())) {
             PlanningNote planningNote = PlanningNoteService.getById(event.getId());
             if (planningNote != null) {
                 showPlannigNote(planningNote);
             }
+        } else if (TypePlanningEvent.COURS_PLANIFIE.name().equals(event.getTypeEvent())) {
+            currentPlanningEvent = PlanningEventService.getById(event.getId());
+            if (currentPlanningEvent != null) {
+                openPopupUpdatePlaning();
+            }
         }
     }
+
+
 
     @Override
     public void onEventLongPress(WeekViewEvent event, RectF eventRect) {
@@ -376,6 +381,127 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
     @Override
     public void onBackPressed() {
         // Nothings
+    }
+
+    private void openPopupUpdatePlaning() {
+
+        LayoutInflater layoutInflater = (LayoutInflater)getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = layoutInflater.inflate(R.layout.popup_planning_update, null);
+        final PopupWindow popupWindow = new PopupWindow(
+                popupView,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        Button btnDismiss = (Button)popupView.findViewById(R.id.dismiss);
+        btnDismiss.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+            }
+        });
+
+        Button transformCours = (Button)popupView.findViewById(R.id.transformCours);
+        transformCours.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+                if (currentPlanningEvent != null) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(PlanningActivity.this);
+                    builder.setCancelable(true);
+                    builder.setIcon(R.drawable.selle);
+                    builder.setTitle(R.string.action_transform_reprise);
+                    builder.setInverseBackgroundForced(true);
+                    builder.setPositiveButton(R.string.oui, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            myInterface.getListener().onDialogCompleted(true, "transformCours");
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setNegativeButton(R.string.non, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            myInterface.getListener().onDialogCompleted(false, "transformCours");
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+            }
+        });
+
+        Button updateEvent = (Button)popupView.findViewById(R.id.updateEvent);
+        updateEvent.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                spinner.setVisibility(View.VISIBLE);
+                showPlannigEvent(currentPlanningEvent);
+                popupWindow.dismiss();
+            }
+        });
+
+        Button deleteEvent = (Button)popupView.findViewById(R.id.deleteEvent);
+        deleteEvent.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+                AlertDialog.Builder builder = new AlertDialog.Builder(PlanningActivity.this);
+                builder.setCancelable(true);
+                builder.setIcon(R.drawable.delete);
+                builder.setTitle(getString(R.string.title_activity_delete_planning) + " " + currentPlanningEvent.getMonture().getNom());
+                builder.setInverseBackgroundForced(true);
+                builder.setPositiveButton(R.string.oui, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        myInterface.getListener().onDialogCompleted(true, "deletePlanningEvent");
+                        dialog.dismiss();
+                    }
+                });
+                builder.setNegativeButton(R.string.non, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        myInterface.getListener().onDialogCompleted(false, "deletePlanningEvent");
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
+
+        popupWindow.showAtLocation(linearlayout, Gravity.CENTER, 0, 0);
+
+    }
+
+    @Override
+    public void onDialogCompleted(boolean answer, String type) {
+        if ("deletePlanningEvent".equals(type) && answer && currentPlanningEvent != null) {
+            currentPlanningEvent.delete();
+            Toast.makeText(getBaseContext(), getString(R.string.planning_delete), Toast.LENGTH_LONG).show();
+
+            planningEventList = PlanningEventService.getAll();
+            mWeekView.notifyDatasetChanged();
+        }
+        if ("transformCours".equals(type) && answer && currentPlanningEvent != null) {
+            long intervalle = currentPlanningEvent.getDateFin().getTime() - currentPlanningEvent.getDateDebut().getTime();
+            int duree = (int) TimeUnit.HOURS.convert(intervalle, TimeUnit.MILLISECONDS);
+
+            Cours cours = new Cours(currentPlanningEvent.getMoniteur(),
+                    currentPlanningEvent.getCavalier(),
+                    currentPlanningEvent.getMonture(),
+                    currentPlanningEvent.getTypeLieu(),
+                    currentPlanningEvent.getDateDebut(),
+                    duree,
+                    currentPlanningEvent.getObservation());
+            cours.save();
+            currentPlanningEvent.delete();
+            Toast.makeText(getBaseContext(), getString(R.string.action_transform_reprise_ok), Toast.LENGTH_LONG).show();
+
+            coursList = CoursService.getAll();
+            planningEventList = PlanningEventService.getAll();
+            mWeekView.notifyDatasetChanged();
+        }
     }
 
 }

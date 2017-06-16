@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:id="@+id/popupUpdate"
+    android:layout_height="wrap_content"
+    android:background="#444444"
+    android:orientation="vertical"
+    android:padding="10sp" >
+
+
+    <Button
+        android:id="@+id/transformCours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transformer en reprise"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:id="@+id/updateEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Modifier"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:id="@+id/deleteEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Supprimer"
+        android:layout_gravity="center_horizontal" />
+
+
+    <Button
+        android:id="@+id/dismiss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableBottom="@drawable/smallexit"
+        android:background="#444444"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>
