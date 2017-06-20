@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.view.Gravity;
 import android.view.View;
@@ -335,6 +336,7 @@ public class SimpleFileDialog {
     {
         return new ArrayAdapter<String>(m_context, android.R.layout.select_dialog_item, android.R.id.text1, items)
         {
+            @NonNull
             @Override
             public View getView(int position, View convertView, ViewGroup parent)
             {
