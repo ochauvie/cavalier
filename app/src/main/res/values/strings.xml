@@ -5,6 +5,8 @@
     <!-- CHEVAL -->
 
     <string name="app_name">Cavalier</string>
+    <string name="drawer_open">Cavalier</string>
+    <string name="drawer_close">Sous menu</string>
 
     <string name="action_settings">Settings</string>
 
@@ -115,7 +117,7 @@
     <!--URL-->
     <string name="menu_http">Liens</string>
     <string name="menu_kath">Kath Equitation</string>
-    <string name="menu_hippologie">http://www.hippologie.fr/</string>
+    <string name="menu_hippologie">Hippologie</string>
 
     <string name="galop0">Débutant</string>
     <string name="galop1">Galop 1</string>

@@ -5,33 +5,43 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.Configuration;
+import com.cavalier.adapter.IDataSpinnerAdapter;
 import com.cavalier.data.InitDataBase;
 import com.cavalier.model.Cours;
 import com.cavalier.model.EvenementMonture;
+import com.cavalier.model.IRefData;
 import com.cavalier.model.Monture;
 import com.cavalier.model.Personne;
 import com.cavalier.model.PlanningEvent;
 import com.cavalier.model.PlanningNote;
 import com.cavalier.model.Ration;
+import com.cavalier.model.RefData;
 import com.cavalier.model.TypePersonne;
 import com.cavalier.R;
 
+import java.util.ArrayList;
 
-public class MainActivity extends Activity implements MyDialogInterface.DialogReturn {
 
-    private Button but0, but1, but2, but3, but4, but5, but6;
+public class MainActivity extends Activity implements MyDialogInterface.DialogReturn, ListView.OnItemClickListener {
+
+    private DrawerLayout mDrawerLayout;
+    private ListView myDrawer;
     private MyDialogInterface myInterface;
-    private Animation blinkAnim;
+    private ActionBarDrawerToggle mDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +56,45 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         setContentView(R.layout.activity_cavalier_main);
 
         // load the animation
-        blinkAnim = AnimationUtils.loadAnimation(getApplicationContext(),
-                R.anim.blink);
+        Animation  blinkAnim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.blink);
 
         myInterface = new MyDialogInterface();
         myInterface.setListener(this);
 
+        myDrawer = (ListView) findViewById(R.id.my_drawer);
+        myDrawer.setAdapter(new IDataSpinnerAdapter(this, getListDrawer(), R.layout.custom_spinner));
+        myDrawer.setOnItemClickListener(this);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        mDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                mDrawerLayout,
+                R.string.drawer_open,
+                R.string.drawer_close
+        ) {
+
+            /** Called when a drawer has settled in a completely closed state. */
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                getActionBar().setTitle(getString(R.string.drawer_open));
+            }
+
+            /** Called when a drawer has settled in a completely open state. */
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                getActionBar().setTitle(getString(R.string.drawer_close));
+            }
+        };
+
+        // Set the drawer toggle as the DrawerListener
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
+
+
         // Initialisation BD
-        but0 = (Button) findViewById(R.id.button0);
+        Button but0 = (Button) findViewById(R.id.button0);
         but0.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 onInitDb();
@@ -63,7 +104,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         but0.setVisibility(View.INVISIBLE);
 
         // Moniteurs
-        but1 = (Button) findViewById(R.id.button1);
+        Button but1 = (Button) findViewById(R.id.button1);
         but1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent myIntent = new Intent(getApplicationContext(), ListPersonneActivity.class);
@@ -73,7 +114,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         });
 
         // Cavaliers
-        but2 = (Button) findViewById(R.id.button2);
+        Button but2 = (Button) findViewById(R.id.button2);
         but2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent myIntent = new Intent(getApplicationContext(), ListPersonneActivity.class);
@@ -83,7 +124,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         });
 
         // Montures
-        but3 = (Button) findViewById(R.id.button3);
+        Button but3 = (Button) findViewById(R.id.button3);
         but3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivityForResult(new Intent(getApplicationContext(), ListMontureActivity.class), 0);
@@ -91,7 +132,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         });
 
         // Nouveau cours
-        but4 = (Button) findViewById(R.id.button4);
+        Button but4 = (Button) findViewById(R.id.button4);
         but4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivityForResult(new Intent(getApplicationContext(), AddCoursActivity.class), 0);
@@ -100,7 +141,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         //but4.startAnimation(blinkAnim);
 
         // Mes cours
-        but5 = (Button) findViewById(R.id.button5);
+        Button but5 = (Button) findViewById(R.id.button5);
         but5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivityForResult(new Intent(getApplicationContext(), ListCoursActivity.class), 0);
@@ -108,35 +149,12 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         });
 
         // Planning
-        but6 = (Button) findViewById(R.id.button6);
+        Button but6 = (Button) findViewById(R.id.button6);
         but6.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivityForResult(new Intent(getApplicationContext(), PlanningActivity.class), 0);
             }
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.export_db:
-                Intent exportActivity = new Intent(MainActivity.this, ExportActivity.class);
-                startActivityForResult(exportActivity, 0);
-                return true;
-            case R.id.hippologie:
-                openHippologie();
-                return true;
-//            case R.id.kath:
-//                openKathEquitation();
-//                return true;
-        }
-        return false;
     }
 
     private void onInitDb() {
@@ -190,6 +208,43 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
 //    }
 
     private void updateDatabase() {}
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (id == 0) {
+            openHippologie();
+        } else if (id == 1) {
+            Intent exportActivity = new Intent(MainActivity.this, ExportActivity.class);
+            startActivityForResult(exportActivity, 0);
+        }
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    private ArrayList<IRefData> getListDrawer() {
+        ArrayList<IRefData> listDrawer = new ArrayList<>();
+        RefData item = new RefData(R.string.menu_hippologie, R.drawable.internet);
+        listDrawer.add(item);
+
+        item = new RefData(R.string.menu_export_db, R.drawable.backup);
+        listDrawer.add(item);
+
+        return listDrawer;
+    }
 
 
 }
