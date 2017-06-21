@@ -311,13 +311,13 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            imageView.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap, 70, 70, false));
+            imageView.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap, 156, 180, false));
         }
         if (requestCode == REQUEST_IMAGE_SELECT && resultCode == RESULT_OK) {
             final Bundle extras = data.getExtras();
             if (extras != null) {
                 Bitmap imageBitmap = extras.getParcelable("data");
-                imageView.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap, 70, 70, false));
+                imageView.setImageBitmap(imageBitmap);
             }
         }
     }

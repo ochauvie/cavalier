@@ -14,10 +14,12 @@ public class PictureUtils {
         return outputStream.toByteArray();
     }
 
+
+
     public static Bitmap getImage(byte[] imgByte){
         if (imgByte != null) {
             Bitmap bitmap = BitmapFactory.decodeByteArray(imgByte, 0, imgByte.length);
-            return Bitmap.createScaledBitmap(bitmap, 70, 70, false);
+            return bitmap;
         }
        return null;
     }

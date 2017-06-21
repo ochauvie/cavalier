@@ -6,26 +6,29 @@
 
     <ImageView android:id="@+id/pic"
         android:contentDescription="Photo"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="5dp"/>
+        android:layout_width="256px"
+        android:layout_height="280px"
+        android:scaleType="centerCrop"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="5dp"
+
+        />
 
     <TextView android:text="Prénom" android:id="@+id/prenom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:textSize="20sp"
-        android:layout_marginLeft="80dp"
+        android:layout_marginStart="80dp"
         android:layout_centerVertical="true">
     </TextView>
 
     <TextView android:text="Nom" android:id="@+id/nom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:textSize="20sp"
-        android:layout_marginLeft="200dp"
+        android:layout_marginStart="200dp"
         android:layout_centerVertical="true">
     </TextView>
 
