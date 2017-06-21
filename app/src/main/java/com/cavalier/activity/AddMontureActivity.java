@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.PaintDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
@@ -198,9 +201,9 @@ public class AddMontureActivity extends ListActivity implements MyDialogInterfac
                 if (monture.getImg() != null) {
                     imageView.setImageBitmap(PictureUtils.getImage(monture.getImg()));
                 }
-                colorPicker.setBackgroundColor(monture.getPlanningColor());
+                colorPicker.setTextColor(monture.getPlanningColor());
             } else {
-                colorPicker.setBackgroundColor(Color.RED);
+                colorPicker.setTextColor(Color.RED);
             }
         }
     }
@@ -222,7 +225,7 @@ public class AddMontureActivity extends ListActivity implements MyDialogInterfac
             monture.setRobe(edRobe.toString());
             monture.setCaracteristique(edCaracteristique.toString());
             monture.setRace(edRace.toString());
-            monture.setPlanningColor(((ColorDrawable)colorPicker.getBackground()).getColor());
+            monture.setPlanningColor(colorPicker.getTextColors().getDefaultColor());
 
             imageView.buildDrawingCache();
             Bitmap imageBitmap = imageView.getDrawingCache();
@@ -402,7 +405,7 @@ public class AddMontureActivity extends ListActivity implements MyDialogInterfac
         dialog.setColorListener(new ColorListener() {
             @Override
             public void OnColorClick(View v, int color) {
-                colorPicker.setBackgroundColor(color);
+                colorPicker.setTextColor(color);
             }
         });
         dialog.show();
