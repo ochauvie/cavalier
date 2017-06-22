@@ -23,14 +23,12 @@ import java.util.List;
 public class MontureListAdapter extends BaseAdapter {
 
     private List<Monture> montureList;
-    private Context mContext;
     private LayoutInflater mInflater;
     private List<MontureListener> listeners = new ArrayList<>();
     HashMap<Long, Bitmap> bitmaps = new HashMap<>();
 
     public MontureListAdapter(Context mContext, List<Monture> montureList) {
         this.montureList = montureList;
-        this.mContext = mContext;
         mInflater = LayoutInflater.from(mContext);
         loadBitmaps();
     }

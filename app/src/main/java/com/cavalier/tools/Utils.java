@@ -18,7 +18,7 @@ public class Utils {
         item.setVisible(false);
     }
 
-    public static void showtem (MenuItem item) {
+    public static void showItem (MenuItem item) {
         item.setVisible(true);
     }
 }

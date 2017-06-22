@@ -99,17 +99,15 @@ public class FilterActivity extends Activity implements DatePickerDialog.OnDateS
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_applay:
-                if (onApplay()) {
-                    Intent listActivity = new Intent(getApplicationContext(), ListCoursActivity.class);
-                    listActivity.putExtra("CoursFilter", coursFilter);
-                    startActivity(listActivity);
-                    finish();
-                    return true;
-                }
-                return false;
-            case R.id.action_close:
+                onApplay();
                 Intent listActivity = new Intent(getApplicationContext(), ListCoursActivity.class);
+                listActivity.putExtra("CoursFilter", coursFilter);
                 startActivity(listActivity);
+                finish();
+                return true;
+            case R.id.action_close:
+                Intent activity = new Intent(getApplicationContext(), ListCoursActivity.class);
+                startActivity(activity);
                 finish();
                 return true;
         }
@@ -137,7 +135,7 @@ public class FilterActivity extends Activity implements DatePickerDialog.OnDateS
         spinner.setAdapter(new MontureSpinnerAdapter(this, montures));
     }
 
-    private boolean onApplay() {
+    private void onApplay() {
         if (coursFilter == null) {
             coursFilter = new CoursFilter();
         }
@@ -159,7 +157,6 @@ public class FilterActivity extends Activity implements DatePickerDialog.OnDateS
         coursFilter.setMoniteurId(((Personne) spinnerMoniteur.getSelectedItem()).getId());
         coursFilter.setMontureId(((Monture) spinnerMonture.getSelectedItem()).getId());
 
-        return true;
     }
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {

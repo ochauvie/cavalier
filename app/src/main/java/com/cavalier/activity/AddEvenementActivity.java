@@ -103,18 +103,16 @@ public class AddEvenementActivity extends Activity implements DatePickerDialog.O
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add:
-                if (onSave()) {
-                    Intent myIntent = new Intent(getApplicationContext(), AddMontureActivity.class);
-                    myIntent.putExtra(Monture.ID_MONTURE, monture.getId());
-                    startActivity(myIntent);
-                    finish();
-                    return true;
-                }
-                return false;
-            case R.id.action_close:
+                onSave();
                 Intent myIntent = new Intent(getApplicationContext(), AddMontureActivity.class);
                 myIntent.putExtra(Monture.ID_MONTURE, monture.getId());
                 startActivity(myIntent);
+                finish();
+                return true;
+            case R.id.action_close:
+                Intent intent = new Intent(getApplicationContext(), AddMontureActivity.class);
+                intent.putExtra(Monture.ID_MONTURE, monture.getId());
+                startActivity(intent);
                 finish();
                 return true;
         }
@@ -131,7 +129,7 @@ public class AddEvenementActivity extends Activity implements DatePickerDialog.O
         spinner.setAdapter(new IDataSpinnerAdapter(this, list, R.layout.custom_spinner));
     }
 
-    private boolean onSave() {
+    private void onSave() {
         EvenementMonture evenementMonture = new EvenementMonture();
         try {
             evenementMonture.setDate(sdf.parse(textDate.getText().toString()));
@@ -145,9 +143,8 @@ public class AddEvenementActivity extends Activity implements DatePickerDialog.O
 
         evenementMonture.save();
         Toast.makeText(getBaseContext(), getString(R.string.evenement_save), Toast.LENGTH_LONG).show();
-
-        return true;
     }
+
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
         String day = String.valueOf(dayOfMonth);

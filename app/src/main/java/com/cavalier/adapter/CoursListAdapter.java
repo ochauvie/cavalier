@@ -22,14 +22,12 @@ import java.util.Locale;
 public class CoursListAdapter extends BaseAdapter {
 
     private List<Cours> coursList;
-    private Context mContext;
     private LayoutInflater mInflater;
     private List<CoursListener> listeners = new ArrayList<>();
     private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy", Locale.FRANCE);
 
     public CoursListAdapter(Context mContext, List<Cours> coursList) {
         this.coursList = coursList;
-        this.mContext = mContext;
         mInflater = LayoutInflater.from(mContext);
     }
 

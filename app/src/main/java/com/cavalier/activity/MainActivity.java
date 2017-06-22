@@ -10,8 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -54,9 +52,6 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         updateDatabase();
 
         setContentView(R.layout.activity_cavalier_main);
-
-        // load the animation
-        Animation  blinkAnim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.blink);
 
         myInterface = new MyDialogInterface();
         myInterface.setListener(this);
@@ -147,7 +142,6 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
                 startActivityForResult(new Intent(getApplicationContext(), AddCoursActivity.class), 0);
             }
         });
-        //but4.startAnimation(blinkAnim);
 
         // Mes cours
         Button but5 = (Button) findViewById(R.id.button5);

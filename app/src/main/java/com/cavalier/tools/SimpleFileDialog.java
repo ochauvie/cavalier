@@ -336,9 +336,8 @@ public class SimpleFileDialog {
     {
         return new ArrayAdapter<String>(m_context, android.R.layout.select_dialog_item, android.R.id.text1, items)
         {
-            @NonNull
             @Override
-            public View getView(int position, View convertView, ViewGroup parent)
+            public View getView(int position, View convertView, @NonNull ViewGroup parent)
             {
                 View v = super.getView(position, convertView, parent);
                 if (v instanceof TextView)

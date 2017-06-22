@@ -23,14 +23,12 @@ import java.util.List;
 public class PersonneListAdapter extends BaseAdapter {
 
     private List<Personne> personneList;
-    private Context mContext;
     private LayoutInflater mInflater;
     private List<PersonneListener> listeners = new ArrayList<>();
     HashMap<Long, Bitmap> bitmaps = new HashMap<>();
 
     public PersonneListAdapter(Context mContext, List<Personne> personneList) {
         this.personneList = personneList;
-        this.mContext = mContext;
         mInflater = LayoutInflater.from(mContext);
         loadBitmaps();
     }

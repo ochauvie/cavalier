@@ -20,15 +20,12 @@ import java.util.List;
 
 public class MontureSpinnerAdapter extends BaseAdapter {
 
-
     private List<Monture> dataList;
-    private Context mContext;
     private LayoutInflater mInflater;
     HashMap<Long, Bitmap> bitmaps = new HashMap<>();
 
     public MontureSpinnerAdapter(Context mContext, List<Monture> dataList) {
         this.dataList = dataList;
-        this.mContext = mContext;
         mInflater = LayoutInflater.from(mContext);
         loadBitmaps();
     }

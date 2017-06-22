@@ -185,11 +185,9 @@ public class AddPlanningEventActivity extends Activity implements MyDialogInterf
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add_planning:
-                if (onSave()) {
-                    finish();
-                    return true;
-                }
-                return false;
+                onSave();
+                finish();
+                return true;
             case R.id.action_close_planning:
                 finish();
                 return true;
@@ -236,7 +234,7 @@ public class AddPlanningEventActivity extends Activity implements MyDialogInterf
     }
 
 
-    private boolean onSave() {
+    private void onSave() {
         if (planningEvent == null) {
             planningEvent = new PlanningEvent();
         }
@@ -261,8 +259,6 @@ public class AddPlanningEventActivity extends Activity implements MyDialogInterf
 
         planningEvent.save();
         Toast.makeText(getBaseContext(), getString(R.string.planning_save), Toast.LENGTH_LONG).show();
-
-        return true;
     }
 
 

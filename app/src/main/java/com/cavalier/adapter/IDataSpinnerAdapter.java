@@ -18,13 +18,11 @@ public class IDataSpinnerAdapter extends BaseAdapter {
 
 
     private List<IRefData> dataList;
-    private Context mContext;
     private LayoutInflater mInflater;
     private int layoutId;
 
     public IDataSpinnerAdapter(Context mContext, List<IRefData> dataList, int layoutId) {
         this.dataList = dataList;
-        this.mContext = mContext;
         this.mInflater = LayoutInflater.from(mContext);
         this.layoutId = layoutId;
     }
