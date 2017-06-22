@@ -259,19 +259,19 @@ public class PlanningActivity extends Activity implements MonthLoader.MonthChang
         ImageView imgCavalier = (ImageView) view.findViewById(R.id.imgCavalier);
         ImageView imgMoniteur = (ImageView) view.findViewById(R.id.imgMoniteur);
 
-        txMonture.setText(cours.getMonture().getNom());
-        txCavalier.setText(cours.getCavalier().getPrenom() + " " + cours.getCavalier().getNom());
-        txMoniteur.setText(cours.getMoniteur().getPrenom() + " " + cours.getMoniteur().getNom());
+        txMonture.setText(cours.getMonture() != null ? cours.getMonture().getNom() : "");
+        txCavalier.setText(cours.getCavalier() != null ? cours.getCavalier().getPrenom() + " " + cours.getCavalier().getNom() : "");
+        txMoniteur.setText(cours.getMoniteur() != null ? cours.getMoniteur().getPrenom() + " " + cours.getMoniteur().getNom() : "");
         txLieu.setText(getString(cours.getTypeLieu().getLabel()));
         txObs.setText(cours.getObservation());
 
-        if (cours.getMonture().getImg() != null) {
+        if (cours.getMonture() != null && cours.getMonture().getImg() != null) {
             imgMonture.setImageBitmap(PictureUtils.getImage(cours.getMonture().getImg()));
         }
-        if (cours.getMoniteur().getImg() != null) {
+        if (cours.getMoniteur() !=null && cours.getMoniteur().getImg() != null) {
             imgMoniteur.setImageBitmap(PictureUtils.getImage(cours.getMoniteur().getImg()));
         }
-        if (cours.getCavalier().getImg() != null) {
+        if (cours.getCavalier() != null && cours.getCavalier().getImg() != null) {
             imgCavalier.setImageBitmap(PictureUtils.getImage(cours.getCavalier().getImg()));
         }
 

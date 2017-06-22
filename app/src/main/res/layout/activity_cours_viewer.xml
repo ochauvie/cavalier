@@ -29,8 +29,9 @@
                     <!--android:layout_column="0"/>-->
 
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="256px"
+                    android:layout_height="280px"
+                    android:scaleType="centerCrop"
                     android:id="@+id/imgMonture"
                     android:layout_column="0"/>
 
