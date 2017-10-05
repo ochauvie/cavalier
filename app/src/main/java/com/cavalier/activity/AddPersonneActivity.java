@@ -2,6 +2,7 @@ package com.cavalier.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,11 +15,16 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cavalier.adapter.CarteListAdapter;
+import com.cavalier.listner.CarteListener;
 import com.cavalier.listner.PersonneListener;
+import com.cavalier.model.Carte;
+import com.cavalier.model.CarteItem;
 import com.cavalier.model.Galop;
 import com.cavalier.model.Personne;
 import com.cavalier.model.Sexe;
@@ -27,14 +33,16 @@ import com.cavalier.service.CoursService;
 import com.cavalier.R;
 import com.cavalier.adapter.IDataSpinnerAdapter;
 import com.cavalier.model.IRefData;
+import com.cavalier.service.PersonneService;
 import com.cavalier.tools.PictureUtils;
 import com.cavalier.tools.SpinnerTool;
 import com.cavalier.tools.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
-public class AddPersonneActivity extends Activity implements MyDialogInterface.DialogReturn, PersonneListener {
+public class AddPersonneActivity extends ListActivity implements MyDialogInterface.DialogReturn, PersonneListener, CarteListener {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_IMAGE_SELECT = 2;
@@ -42,10 +50,14 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
     private Spinner spinnerSexe, spinnerGalop;
     private EditText editTextNom, editTextPrenom;
     private TextView textViewType;
-    private ImageView imageView;
+    private ImageView imageView, eventAdd;
     private MyDialogInterface myInterface;
     private Personne personne = null;
     private TypePersonne typePersonne;
+
+    private List<Carte> cartes = new ArrayList<>();
+    private ListView listView;
+    private CarteListAdapter carteListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +74,7 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
         editTextPrenom = (EditText)  findViewById(R.id.editTextPrenom);
         textViewType = (TextView) findViewById(R.id.textViewType);
         imageView = (ImageView) findViewById(R.id.personne_pic);
-
+        eventAdd = (ImageView) findViewById(R.id.event_add);
 
         myInterface = new MyDialogInterface();
         myInterface.setListener(this);
@@ -80,6 +92,18 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
             }
             setTitle("Moniteur");
         }
+
+        // Liste évènements
+        listView = getListView();
+        carteListAdapter = new CarteListAdapter(this, cartes);
+        carteListAdapter.addListener(this);
+        setListAdapter(carteListAdapter);
+
+        eventAdd.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                addCarte();
+            }
+        });
 
         // Hide keyboard
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -171,6 +195,7 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
                 if (personne.getImg() != null) {
                     imageView.setImageBitmap(PictureUtils.getImage(personne.getImg()));
                 }
+                cartes = PersonneService.findCarteByPersonneId(personneId);
 
             } else {
                 typePersonne = TypePersonne.valueOf(bundle.getString(Personne.TYPE_PERSONNE));
@@ -332,6 +357,29 @@ public class AddPersonneActivity extends Activity implements MyDialogInterface.D
         // Nothings
     }
 
+    private void addCarte() {
+        if (personne != null) {
+            Intent myIntent = new Intent(getApplicationContext(), AddCarteActivity.class);
+            myIntent.putExtra(Personne.ID_PERSONNE, personne.getId());
+            startActivity(myIntent);
+            finish();
+        }
+    }
 
+    @Override
+    public void onUpdateCarte(Carte carte, int position) {
+        if (carte != null) {
+            Intent myIntent = new Intent(getApplicationContext(), UpdateCarteActivity.class);
+            myIntent.putExtra(Carte.ID_CARTE, carte.getId());
+            startActivity(myIntent);
+            finish();
+        }
+
+    }
+
+    @Override
+    public void onUpdateCarteItem(CarteItem item, int position) {
+        // Nothings
+    }
 
 }

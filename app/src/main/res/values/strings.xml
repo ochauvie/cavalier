@@ -33,6 +33,8 @@
     <string name="title_activity_add_cours">Nouvelle reprise</string>
     <string name="title_activity_filter">Filtrer</string>
     <string name="title_activity_add_evenement">Soin</string>
+    <string name="title_activity_add_carte">Carte</string>
+
 
     <!--Home-->
     <string name="title_home_moniteurs">Moniteurs</string>
@@ -80,6 +82,7 @@
     <string name="nom_mandatory">Le nom est obligatoire</string>
     <string name="prenom_mandatory">Le prénom est obligatoire</string>
     <string name="duree_mandatory">Le durée est obligatoire</string>
+    <string name="carte_mandatory">Le nom et la capacité sont obligatoires</string>
 
     <!--Personne-->
     <string name="personne_save">La personne est sauvegardée</string>
@@ -152,6 +155,8 @@
     <string name="action_transform_reprise">Transformer en reprise</string>
     <string name="action_transform_reprise_ok">Reprise sauvegarder</string>
 
+    <!--Carte-->
+    <string name="carte_save">La carte est sauvegardé</string>
 
 
 

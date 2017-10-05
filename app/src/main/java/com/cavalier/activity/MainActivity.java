@@ -19,6 +19,7 @@ import com.activeandroid.ActiveAndroid;
 import com.activeandroid.Configuration;
 import com.cavalier.adapter.IDataSpinnerAdapter;
 import com.cavalier.data.InitDataBase;
+import com.cavalier.model.Carte;
 import com.cavalier.model.Cours;
 import com.cavalier.model.EvenementMonture;
 import com.cavalier.model.IRefData;
@@ -47,7 +48,7 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
 
         // Ouvre la BD
         Configuration.Builder config = new Configuration.Builder(this);
-        config.addModelClasses(Personne.class, Monture.class, Cours.class, EvenementMonture.class, Ration.class, PlanningEvent.class, PlanningNote.class);
+        config.addModelClasses(Personne.class, Monture.class, Cours.class, EvenementMonture.class, Ration.class, PlanningEvent.class, PlanningNote.class, Carte.class);
         ActiveAndroid.initialize(config.create());
         updateDatabase();
 

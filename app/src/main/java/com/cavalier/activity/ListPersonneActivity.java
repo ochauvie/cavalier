@@ -9,7 +9,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.cavalier.adapter.PersonneListAdapter;
+import com.cavalier.listner.CarteListener;
 import com.cavalier.listner.PersonneListener;
+import com.cavalier.model.Carte;
+import com.cavalier.model.CarteItem;
 import com.cavalier.model.Personne;
 import com.cavalier.model.TypePersonne;
 import com.cavalier.service.ImportService;
@@ -20,7 +23,7 @@ import com.cavalier.tools.SimpleFileDialog;
 import java.io.File;
 import java.util.List;
 
-public class ListPersonneActivity extends ListActivity implements PersonneListener{
+public class ListPersonneActivity extends ListActivity implements PersonneListener, CarteListener{
 
     private ListView listView;
     private PersonneListAdapter personneListAdapter;
@@ -97,6 +100,20 @@ public class ListPersonneActivity extends ListActivity implements PersonneListen
         myIntent.putExtra(Personne.ID_PERSONNE, personne.getId());
         startActivityForResult(myIntent, 0);
         finish();
+    }
+
+
+    @Override
+    public void onUpdateCarte(Carte carte, int position) {
+        Intent myIntent = new Intent(getApplicationContext(), UpdateCarteActivity.class);
+        myIntent.putExtra(Carte.ID_CARTE, carte.getId());
+        startActivityForResult(myIntent, 0);
+        finish();
+    }
+
+    @Override
+    public void onUpdateCarteItem(CarteItem carte, int position) {
+        // Nothings
     }
 
 

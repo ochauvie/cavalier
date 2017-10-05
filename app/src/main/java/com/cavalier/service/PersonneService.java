@@ -2,6 +2,7 @@ package com.cavalier.service;
 
 import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
+import com.cavalier.model.Carte;
 import com.cavalier.model.Personne;
 import com.cavalier.model.TypePersonne;
 
@@ -47,5 +48,14 @@ public class PersonneService {
         new Delete().from(Personne.class)
                     .execute();
     }
+
+    public static List<Carte> findCarteByPersonneId(Long idPersonne) {
+        return new Select()
+                .from(Carte.class)
+                .where("cavalier = ?", idPersonne)
+                .orderBy("dateOuverture DESC")
+                .execute();
+    }
+
 
 }

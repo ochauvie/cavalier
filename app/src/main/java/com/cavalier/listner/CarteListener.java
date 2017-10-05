@@ -5,8 +5,11 @@ import com.cavalier.model.CarteItem;
 import com.cavalier.model.Personne;
 
 
-public interface PersonneListener {
+public interface CarteListener {
 
-    void onClick(Personne item, int position);
+    void onUpdateCarte(Carte item, int position);
+
+    void onUpdateCarteItem(CarteItem item, int position);
+
 
 }

@@ -19,7 +19,7 @@
             android:value="Cavalier.db" />
         <meta-data
             android:name="AA_DB_VERSION"
-            android:value="9" />
+            android:value="10" />
         <!--<meta-data-->
             <!--android:name="AA_MODELS"-->
             <!--android:value="com.cavalier.model.Item, com.cavalier.model.Category" />-->
@@ -57,6 +57,16 @@
             android:name=".activity.AddEvenementActivity"
             android:icon="@drawable/event"
             android:label="@string/title_activity_add_evenement" >
+        </activity>
+        <activity
+            android:name=".activity.AddCarteActivity"
+            android:icon="@drawable/selle"
+            android:label="@string/title_activity_add_carte" >
+        </activity>
+        <activity
+            android:name=".activity.UpdateCarteActivity"
+            android:icon="@drawable/selle"
+            android:label="@string/title_activity_add_carte" >
         </activity>
         <activity
             android:name=".activity.ListCoursActivity"

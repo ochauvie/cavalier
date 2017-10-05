@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:id="@+id/item_carte">
+
+    <TextView android:text="Nom" android:id="@+id/nom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:textSize="12sp"
+        android:layout_marginLeft="4dp"
+        android:layout_centerVertical="true">
+    </TextView>
+
+    <TextView android:text="Date ouverture" android:id="@+id/dateOuverture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:textSize="12sp"
+        android:layout_marginLeft="82dp"
+        android:layout_centerVertical="true">
+    </TextView>
+
+    <TextView android:text="Points" android:id="@+id/points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:textSize="12sp"
+        android:layout_marginLeft="148dp"
+        android:layout_centerVertical="true">
+    </TextView>
+
+
+    <ImageButton
+        android:id="@+id/update"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginLeft="290dp"
+        android:layout_centerVertical="true"
+        android:contentDescription="Supprimer"
+        android:background="#00000000"
+        android:scaleType="fitCenter"
+        android:src="@drawable/details"
+        android:adjustViewBounds="false" />
+
+</RelativeLayout>

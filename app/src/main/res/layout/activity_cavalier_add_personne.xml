@@ -147,4 +147,44 @@
 
     </TableLayout>
 
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/eventLayout"
+        android:layout_below="@+id/tableLayout">
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cartes"
+                android:textSize="20sp"
+                android:id="@+id/textCartes"
+                android:layout_column="0" />
+
+            <ImageView android:id="@+id/event_add"
+                android:contentDescription="Ajouter"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:scaleType="fitStart"
+                android:src="@drawable/small_add"
+                android:layout_column="1"
+                android:baselineAlignBottom="false" />
+
+        </TableRow>
+    </TableLayout>
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_below="@+id/eventLayout">
+    </ListView>
+
 </RelativeLayout>
