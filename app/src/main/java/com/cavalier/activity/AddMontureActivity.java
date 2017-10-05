@@ -363,10 +363,12 @@ public class AddMontureActivity extends ListActivity implements MyDialogInterfac
     }
 
     private void addEvenement() {
-        Intent myIntent = new Intent(getApplicationContext(), AddEvenementActivity.class);
-        myIntent.putExtra(Monture.ID_MONTURE, monture.getId());
-        startActivity(myIntent);
-        finish();
+        if (monture != null) {
+            Intent myIntent = new Intent(getApplicationContext(), AddEvenementActivity.class);
+            myIntent.putExtra(Monture.ID_MONTURE, monture.getId());
+            startActivity(myIntent);
+            finish();
+        }
     }
 
     private void onClickImageListener() {
