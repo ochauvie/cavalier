@@ -116,6 +116,11 @@ public class ListPersonneActivity extends ListActivity implements PersonneListen
         // Nothings
     }
 
+    @Override
+    public void onDeleteCarte(Carte carte, int position) {
+        // Nothings
+    }
+
 
     @Override
     public void onBackPressed() {

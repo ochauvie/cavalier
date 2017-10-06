@@ -10,4 +10,14 @@
         android:text="" />
 
 
+    <ImageView android:id="@+id/pic"
+        android:contentDescription="Image"
+        android:layout_width="256px"
+        android:layout_height="280px"
+        android:scaleType="centerCrop"
+        android:layout_toRightOf="@+id/checkBox1"
+        android:padding="3dp"/>
+
+
+
 </RelativeLayout>

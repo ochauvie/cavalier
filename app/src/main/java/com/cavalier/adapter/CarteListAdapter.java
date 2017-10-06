@@ -50,6 +50,12 @@ public class CarteListAdapter extends BaseAdapter {
         }
     }
 
+    private void sendListenerToDelete(Carte item, int position) {
+        for(int i = listeners.size()-1; i >= 0; i--) {
+            listeners.get(i).onDeleteCarte(item, position);
+        }
+    }
+
     @Override
     public int getCount() {
         if (carteList!=null) {
@@ -78,6 +84,9 @@ public class CarteListAdapter extends BaseAdapter {
         TextView tv_dateOuverture = (TextView)layoutItem.findViewById(R.id.dateOuverture);
         TextView tv_points = (TextView)layoutItem.findViewById(R.id.points);
         ImageButton img_update = (ImageButton) layoutItem.findViewById(R.id.update);
+        ImageButton img_delete = (ImageButton) layoutItem.findViewById(R.id.delete);
+
+
 
         // Renseignement des valeurs
         Carte current = carteList.get(position);
@@ -91,6 +100,14 @@ public class CarteListAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Integer position = (Integer) v.getTag();
                 sendListenerToUpdate(carteList.get(position), position);
+            }
+        });
+
+        img_delete.setTag(position);
+        img_delete.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Integer position = (Integer) v.getTag();
+                sendListenerToDelete(carteList.get(position), position);
             }
         });
 

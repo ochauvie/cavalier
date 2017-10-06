@@ -9,6 +9,8 @@ public interface CarteListener {
 
     void onUpdateCarte(Carte item, int position);
 
+    void onDeleteCarte(Carte item, int position);
+
     void onUpdateCarteItem(CarteItem item, int position);
 
 

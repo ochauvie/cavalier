@@ -75,12 +75,25 @@
 
         </TableLayout>
 
-        <ListView
-            android:id="@android:id/list"
-            android:layout_width="match_parent"
+        <!--<ListView-->
+            <!--android:id="@android:id/list"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="400dp"-->
+            <!--android:layout_below="@+id/tableLayout">-->
+        <!--</ListView>-->
+
+        <GridView
+            android:id="@+id/gridview"
+            android:layout_width="wrap_content"
             android:layout_height="400dp"
-            android:layout_below="@+id/tableLayout">
-        </ListView>
+            android:gravity="center"
+            android:columnWidth="100dp"
+            android:numColumns="auto_fit"
+            android:verticalSpacing="24dp"
+            android:horizontalSpacing="10dp"
+            android:stretchMode="spacingWidthUniform"
+            android:layout_below="@+id/tableLayout"
+            />
 
 
     </RelativeLayout>

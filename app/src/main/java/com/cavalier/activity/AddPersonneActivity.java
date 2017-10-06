@@ -38,14 +38,18 @@ import com.cavalier.tools.PictureUtils;
 import com.cavalier.tools.SpinnerTool;
 import com.cavalier.tools.Utils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public class AddPersonneActivity extends ListActivity implements MyDialogInterface.DialogReturn, PersonneListener, CarteListener {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_IMAGE_SELECT = 2;
+
+    private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
 
     private Spinner spinnerSexe, spinnerGalop;
     private EditText editTextNom, editTextPrenom;
@@ -56,6 +60,7 @@ public class AddPersonneActivity extends ListActivity implements MyDialogInterfa
     private TypePersonne typePersonne;
 
     private List<Carte> cartes = new ArrayList<>();
+    private Carte currentCarte = null;
     private ListView listView;
     private CarteListAdapter carteListAdapter;
 
@@ -308,6 +313,17 @@ public class AddPersonneActivity extends ListActivity implements MyDialogInterfa
             personne.setImg(null);
             imageView.setImageBitmap(null);
         }
+        if (answer && currentCarte!=null && "DELETE_CARTE".equals(type)) {
+            currentCarte.delete();
+            Toast.makeText(getBaseContext(), getString(R.string.carte_delete), Toast.LENGTH_LONG).show();
+            if (cartes!=null) {
+                for (int i=cartes.size()-1; i>=0; i--) {
+                    cartes.remove(i);
+                }
+            }
+            cartes.addAll(PersonneService.findCarteByPersonneId(personne.getId()));
+            carteListAdapter.notifyDataSetChanged();
+        }
     }
 
     private void takePersonnePictureIntent() {
@@ -374,12 +390,41 @@ public class AddPersonneActivity extends ListActivity implements MyDialogInterfa
             startActivity(myIntent);
             finish();
         }
+    }
 
+    @Override
+    public void onDeleteCarte(Carte carte, int position) {
+        if (carte != null) {
+            currentCarte = carte;
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(true);
+            builder.setIcon(R.drawable.delete);
+            builder.setTitle(carte.getNom() + " - " + sdf.format(carte.getDateOuverture()));
+            builder.setInverseBackgroundForced(true);
+            builder.setPositiveButton(R.string.oui, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    myInterface.getListener().onDialogCompleted(true, "DELETE_CARTE");
+                    dialog.dismiss();
+                }
+            });
+            builder.setNegativeButton(R.string.non, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    myInterface.getListener().onDialogCompleted(false, "DELETE_CARTE");
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
     }
 
     @Override
     public void onUpdateCarteItem(CarteItem item, int position) {
         // Nothings
     }
+
+
 
 }

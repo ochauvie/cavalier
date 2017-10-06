@@ -1,11 +1,13 @@
 package com.cavalier.activity;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -29,7 +31,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class UpdateCarteActivity extends ListActivity implements CarteListener {
+public class UpdateCarteActivity extends Activity implements CarteListener {
 
     private Spinner spinnerPersonne;
     private TextView txNom, txDateOuverture, txDateCloture;
@@ -68,12 +70,17 @@ public class UpdateCarteActivity extends ListActivity implements CarteListener {
             txDateCloture.setText("");
         }
 
-        listView = getListView();
+
+        GridView gridView = (GridView)findViewById(R.id.gridview);
+
+
+
+        //listView = getListView();
         for (int i=0; i<carte.getCapacite(); i++) {
             carteItemList.add(new CarteItem(i, i<carte.getPointRestant() ? false : true));
         }
         carteItemListAdapter = new CarteItemListAdapter(this, carteItemList);
-        setListAdapter(carteItemListAdapter);
+        gridView.setAdapter(carteItemListAdapter);
         carteItemListAdapter.addListener(this);
 
         // Hide keyboard
@@ -142,10 +149,14 @@ public class UpdateCarteActivity extends ListActivity implements CarteListener {
         // Nothings
     }
 
-
     @Override
     public void onUpdateCarte(Carte item, int position) {
+        // Nothings
+    }
 
+    @Override
+    public void onDeleteCarte(Carte carte, int position) {
+        // Nothings
     }
 
     @Override

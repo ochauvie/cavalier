@@ -60,12 +60,12 @@
         </activity>
         <activity
             android:name=".activity.AddCarteActivity"
-            android:icon="@drawable/selle"
+            android:icon="@drawable/checklist"
             android:label="@string/title_activity_add_carte" >
         </activity>
         <activity
             android:name=".activity.UpdateCarteActivity"
-            android:icon="@drawable/selle"
+            android:icon="@drawable/checklist"
             android:label="@string/title_activity_add_carte" >
         </activity>
         <activity

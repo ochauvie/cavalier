@@ -157,6 +157,7 @@
 
     <!--Carte-->
     <string name="carte_save">La carte est sauvegardé</string>
+    <string name="carte_delete">La carte est supprimée</string>
 
 
 

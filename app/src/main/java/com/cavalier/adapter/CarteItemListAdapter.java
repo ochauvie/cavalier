@@ -1,11 +1,13 @@
 package com.cavalier.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.cavalier.R;
@@ -67,6 +69,7 @@ public class CarteItemListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         RelativeLayout layoutItem = (RelativeLayout) mInflater.inflate(R.layout.activity_cavalier_list_carte_item_item, parent, false);
         CheckBox cb = (CheckBox)layoutItem.findViewById(R.id.checkBox1);
+        ImageView pic = (ImageView)layoutItem.findViewById(R.id.pic);
 
         // Renseignement des valeurs
         CarteItem current = carteItemsList.get(position);
@@ -79,6 +82,13 @@ public class CarteItemListAdapter extends BaseAdapter {
                 sendListenerToUpdate(carteItemsList.get(position), position);
             }
         });
+
+        if (current.isCheck()) {
+            pic.setImageResource(R.drawable.horsejump);
+        } else {
+            pic.setImageResource(R.drawable.van);
+        }
+
         return layoutItem;
     }
 }
