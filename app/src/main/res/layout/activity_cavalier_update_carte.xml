@@ -35,7 +35,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nom"
@@ -50,7 +50,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
@@ -64,7 +64,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
@@ -74,13 +74,6 @@
             </TableRow>
 
         </TableLayout>
-
-        <!--<ListView-->
-            <!--android:id="@android:id/list"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="400dp"-->
-            <!--android:layout_below="@+id/tableLayout">-->
-        <!--</ListView>-->
 
         <GridView
             android:id="@+id/gridview"

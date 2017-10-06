@@ -1,14 +1,12 @@
 package com.cavalier.activity;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +22,6 @@ import com.cavalier.service.PersonneService;
 import com.cavalier.tools.SpinnerTool;
 import com.cavalier.tools.Utils;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,7 +33,6 @@ public class UpdateCarteActivity extends Activity implements CarteListener {
     private Spinner spinnerPersonne;
     private TextView txNom, txDateOuverture, txDateCloture;
     private Carte carte;
-    private ListView listView;
     private List<CarteItem> carteItemList = new ArrayList<>();
     private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
     private CarteItemListAdapter carteItemListAdapter;
@@ -70,12 +66,7 @@ public class UpdateCarteActivity extends Activity implements CarteListener {
             txDateCloture.setText("");
         }
 
-
         GridView gridView = (GridView)findViewById(R.id.gridview);
-
-
-
-        //listView = getListView();
         for (int i=0; i<carte.getCapacite(); i++) {
             carteItemList.add(new CarteItem(i, i<carte.getPointRestant() ? false : true));
         }
