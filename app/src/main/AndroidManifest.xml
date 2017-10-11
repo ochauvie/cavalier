@@ -109,6 +109,11 @@
             android:label="@string/menu_http" >
         </activity>
         <activity
+            android:name=".game.TaquinActivity"
+            android:icon="@drawable/cheval"
+            android:label="@string/title_activity_taquin" >
+        </activity>
+        <activity
             android:name="org.achartengine.GraphicalActivity"
             android:label="@string/menu_chart"
             android:icon="@drawable/chart"

@@ -159,6 +159,9 @@
     <string name="carte_save">La carte est sauvegardé</string>
     <string name="carte_delete">La carte est supprimée</string>
 
+    <!--Taquin-->
+    <string name="title_activity_taquin">Taquin</string>
+
 
 
 </resources>

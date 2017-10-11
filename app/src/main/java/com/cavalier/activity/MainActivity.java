@@ -19,6 +19,7 @@ import com.activeandroid.ActiveAndroid;
 import com.activeandroid.Configuration;
 import com.cavalier.adapter.IDataSpinnerAdapter;
 import com.cavalier.data.InitDataBase;
+import com.cavalier.game.TaquinActivity;
 import com.cavalier.model.Carte;
 import com.cavalier.model.Cours;
 import com.cavalier.model.EvenementMonture;
@@ -205,6 +206,11 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         startActivity(myIntent);
     }
 
+    private void openTaquin() {
+        Intent myIntent = new Intent(getApplicationContext(), TaquinActivity.class);
+        startActivity(myIntent);
+    }
+
 //    private void openKathEquitation() {
 //        Intent myIntent = new Intent(getApplicationContext(), HttpActivity.class);
 //        myIntent.putExtra("URL", "https://www.facebook.com/people/Kath%C3%A9quitation-Mary/100010372802263");
@@ -221,6 +227,8 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         } else if (id == 1) {
             Intent exportActivity = new Intent(MainActivity.this, ExportActivity.class);
             startActivityForResult(exportActivity, 0);
+        } else if (id == 2) {
+            openTaquin();
         }
     }
 
@@ -245,6 +253,9 @@ public class MainActivity extends Activity implements MyDialogInterface.DialogRe
         listDrawer.add(item);
 
         item = new RefData(R.string.menu_export_db, R.drawable.backup);
+        listDrawer.add(item);
+
+        item = new RefData(R.string.title_activity_taquin, R.drawable.cheval);
         listDrawer.add(item);
 
         return listDrawer;
