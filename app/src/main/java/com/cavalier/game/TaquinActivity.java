@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,11 +31,14 @@ public class TaquinActivity extends Activity {
     private TextView textView;
     private int iter;
     private Random r = new Random();
+    private Animation shake;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.taquin);
+
+        shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake);
 
         taquin = (GridLayout) findViewById(R.id.gridLayout);
 
@@ -58,6 +63,8 @@ public class TaquinActivity extends Activity {
                     imgView.setOnClickListener(new View.OnClickListener() {
                     @Override
                         public void onClick(View v) {
+
+                            v.startAnimation(shake);
 
                             if (textView.getText().toString().equals(v.getContentDescription())) {
                                 Toast toast = Toast.makeText(getBaseContext(), "Bravo !", Toast.LENGTH_LONG);
