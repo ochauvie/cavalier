@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.cavalier.R;
 import com.cavalier.listner.CarteListener;
-import com.cavalier.listner.PersonneListener;
 import com.cavalier.model.Carte;
 
 import java.text.SimpleDateFormat;
