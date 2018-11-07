@@ -51,7 +51,7 @@ public class AddPersonneActivity extends ListActivity implements MyDialogInterfa
     private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
 
     private Spinner spinnerSexe, spinnerGalop;
-    private EditText editTextNom, editTextPrenom;
+    private EditText editTextNom, editTextPrenom, editTextLicence;
     private TextView textViewType;
     private ImageView imageView, eventAdd;
     private MyDialogInterface myInterface;
@@ -76,6 +76,7 @@ public class AddPersonneActivity extends ListActivity implements MyDialogInterfa
 
         editTextNom = (EditText)  findViewById(R.id.editTextNom);
         editTextPrenom = (EditText)  findViewById(R.id.editTextPrenom);
+        editTextLicence = (EditText) findViewById(R.id.editTextLicence);
         textViewType = (TextView) findViewById(R.id.textViewType);
         imageView = (ImageView) findViewById(R.id.personne_pic);
         eventAdd = (ImageView) findViewById(R.id.event_add);
@@ -190,6 +191,7 @@ public class AddPersonneActivity extends ListActivity implements MyDialogInterfa
             if (personne!=null) {
                 editTextNom.setText(personne.getNom());
                 editTextPrenom.setText(personne.getPrenom());
+                editTextLicence.setText(personne.getLicence());
                 textViewType.setText(personne.getType().getLabel());
                 SpinnerTool.SelectSpinnerItemByValue(spinnerSexe, personne.getSexe().name());
                 if (personne.getGalop() != null) {
@@ -218,6 +220,7 @@ public class AddPersonneActivity extends ListActivity implements MyDialogInterfa
     private boolean onSave() {
         Editable edName = editTextNom.getText();
         Editable edPrenom = editTextPrenom.getText();
+        Editable edLicense = editTextLicence.getText();
         if (edName==null || "".equals(edName.toString())) {
             Toast.makeText(getBaseContext(), getString(R.string.nom_mandatory), Toast.LENGTH_LONG).show();
             return false;
@@ -233,6 +236,7 @@ public class AddPersonneActivity extends ListActivity implements MyDialogInterfa
             personne.setGalop((Galop) spinnerGalop.getSelectedItem());
             personne.setNom(edName.toString());
             personne.setPrenom(edPrenom.toString());
+            personne.setLicence(edLicense.toString());
 
             imageView.buildDrawingCache();
             Bitmap imageBitmap = imageView.getDrawingCache();

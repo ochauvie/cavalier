@@ -41,6 +41,11 @@ public class Personne extends Model  {
     @Column(name = "galop")
     private Galop galop;
 
+    @Expose
+    @Column(name = "licence")
+    private String licence;
+
+
     public Personne() {
     }
 
@@ -116,5 +121,13 @@ public class Personne extends Model  {
 
     public void setGalop(Galop galop) {
         this.galop = galop;
+    }
+
+    public String getLicence() {
+        return licence;
+    }
+
+    public void setLicence(String licence) {
+        this.licence = licence;
     }
 }
