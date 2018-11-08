@@ -1,1 +1,1 @@
-ALTER TABLE personne ADD COLUMN license TEXT
+ALTER TABLE personne ADD COLUMN licence TEXT
